@@ -15,14 +15,15 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Custom EntityRenderer subclass for scope perspective rendering.
  * <p>
- * The only behavioral differences from vanilla EntityRenderer:
+ * Behavioural differences from vanilla EntityRenderer:
  * <ul>
- *   <li>Hand rendering is skipped in {@link #renderWorld} (the scope framebuffer
- *       should show the world without the player's hand)</li>
- *   <li>Post-processing shaders can be conditionally applied via {@link #useShader}</li>
+ *   <li>Hand rendering is suppressed via {@code MixinEntityRenderer}</li>
+ *   <li>Chunk frustum culling is skipped via {@code MixinRenderGlobal}</li>
+ *   <li>Iris hand rendering is suppressed via {@code hideGUI} flag in
+ *       {@link ScopePerspective}</li>
+ *   <li>Post-processing shaders can be conditionally applied via
+ *       {@link #useShader}</li>
  * </ul>
- * All other rendering behavior (terrain, entities, particles, weather, fog, camera,
- * lighting) is inherited from EntityRenderer via access-transformer-exposed methods.
  */
 @SideOnly(Side.CLIENT)
 public class ScopeWorldRenderer extends EntityRenderer {
@@ -33,28 +34,10 @@ public class ScopeWorldRenderer extends EntityRenderer {
         super(minecraft, resourceManager);
     }
 
-    /**
-     * Renders the world without the first-person hand, then conditionally applies
-     * post-processing shaders. This is called by {@link ScopePerspective} to render
-     * the scene into the scope's framebuffer.
-     * <p>
-     * Delegates to {@code super.renderWorld()} so that any Mixin modifications from
-     * other mods (e.g. Angelica) are preserved. Hand rendering is suppressed by
-     * overriding {@link #renderHand} as a no-op.
-     */
     @Override
     public void renderWorld(float partialTicks, long finishTimeNano) {
         super.renderWorld(partialTicks, finishTimeNano);
         applyShaderIfNeeded(partialTicks);
-    }
-
-    /**
-     * No-op override — the scope framebuffer should not contain the player's
-     * hand/weapon model. Made accessible via Access Transformer (mw_at.cfg).
-     */
-    @Override
-    public void renderHand(float partialTicks, int pass) {
-        // Intentionally empty — scope perspective should not render the hand.
     }
 
     private void applyShaderIfNeeded(float partialTicks) {

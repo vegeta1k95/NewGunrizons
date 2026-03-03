@@ -13,7 +13,6 @@ import com.vicmatskiv.weaponlib.RenderingPhase;
 import com.vicmatskiv.weaponlib.shader.DynamicShaderContext;
 import com.vicmatskiv.weaponlib.shader.DynamicShaderGroupManager;
 import com.vicmatskiv.weaponlib.shader.DynamicShaderPhase;
-import com.vicmatskiv.weaponlib.shader.Framebuffers;
 
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 
@@ -24,24 +23,22 @@ public class ScopePerspective {
 
     protected ClientModContext modContext;
     protected Framebuffer framebuffer;
-    protected int width;
-    protected int height;
     protected ScopeWorldRenderer entityRenderer;
     protected EffectRenderer effectRenderer;
     protected DynamicShaderGroupManager shaderGroupManager;
 
     private long renderEndNanoTime = System.nanoTime();
 
-    public ScopePerspective() {
-        this.width = DEFAULT_WIDTH;
-        this.height = DEFAULT_HEIGHT;
-    }
+    /** Set to {@code true} while the scope is rendering, read by MixinRenderGlobal. */
+    public static boolean isRenderingScope;
+
+    public ScopePerspective() {}
 
     public void activate(ClientModContext modContext, PerspectiveManager manager) {
         this.modContext = modContext;
 
         if (this.framebuffer == null) {
-            this.framebuffer = new Framebuffer(this.width, this.height, true);
+            this.framebuffer = new Framebuffer(DEFAULT_WIDTH, DEFAULT_HEIGHT, true);
             this.framebuffer.setFramebufferColor(0.0F, 0.0F, 0.0F, 0.0F);
         }
 
@@ -55,16 +52,12 @@ public class ScopePerspective {
     }
 
     public void deactivate() {
-        int originalFramebufferId = Framebuffers.getCurrentFramebuffer();
         this.framebuffer.deleteFramebuffer();
         this.shaderGroupManager.removeAllShaders(
             new DynamicShaderContext(null, this.entityRenderer, null, 0.0F));
-        Minecraft mc = Minecraft.getMinecraft();
-        Framebuffers.bindFramebuffer(
-            originalFramebufferId,
-            true,
-            mc.getFramebuffer().framebufferWidth,
-            mc.getFramebuffer().framebufferHeight);
+        Minecraft.getMinecraft()
+            .getFramebuffer()
+            .bindFramebuffer(true);
     }
 
     public float getBrightness(RenderContext renderContext) {
@@ -92,36 +85,61 @@ public class ScopePerspective {
     }
 
     private static boolean isAimingState(RenderableState renderableState) {
-        return renderableState == RenderableState.ZOOMING || renderableState == RenderableState.ZOOMING_RECOILED
+        return renderableState == RenderableState.ZOOMING
+            || renderableState == RenderableState.ZOOMING_RECOILED
             || renderableState == RenderableState.ZOOMING_SHOOTING;
     }
 
     public void update(RenderTickEvent event) {
+
         PlayerWeaponInstance instance = this.modContext.getMainHeldWeapon();
-        if (instance != null && instance.isAimed()) {
-            this.modContext.getSafeGlobals().renderingPhase.set(RenderingPhase.RENDER_PERSPECTIVE);
-            long finishTimeNano = this.renderEndNanoTime + 16666666L;
-            int origDisplayWidth = Minecraft.getMinecraft().displayWidth;
-            int origDisplayHeight = Minecraft.getMinecraft().displayHeight;
-            EntityRenderer origEntityRenderer = Minecraft.getMinecraft().entityRenderer;
-            this.framebuffer.bindFramebuffer(true);
-            Minecraft.getMinecraft().displayWidth = this.width;
-            Minecraft.getMinecraft().displayHeight = this.height;
-            Minecraft.getMinecraft().entityRenderer = this.entityRenderer;
-            this.entityRenderer.setPrepareTerrain(false);
-            this.entityRenderer.updateRenderer();
-            this.prepareRenderWorld(event);
-            this.entityRenderer.renderWorld(event.renderTickTime, finishTimeNano);
-            this.postRenderWorld(event);
-            Minecraft.getMinecraft().entityRenderer = origEntityRenderer;
-            Minecraft.getMinecraft()
-                .getFramebuffer()
-                .bindFramebuffer(true);
-            Minecraft.getMinecraft().displayWidth = origDisplayWidth;
-            Minecraft.getMinecraft().displayHeight = origDisplayHeight;
-            this.renderEndNanoTime = System.nanoTime();
-            this.modContext.getSafeGlobals().renderingPhase.set(RenderingPhase.NORMAL);
+        if (instance == null || !instance.isAimed()) {
+            return;
         }
+
+        this.modContext.getSafeGlobals().renderingPhase.set(RenderingPhase.RENDER_PERSPECTIVE);
+        long finishTimeNano = this.renderEndNanoTime + 16666666L;
+        Minecraft mc = Minecraft.getMinecraft();
+
+        // Save Minecraft state
+        int origDisplayWidth = mc.displayWidth;
+        int origDisplayHeight = mc.displayHeight;
+        EntityRenderer origEntityRenderer = mc.entityRenderer;
+        Framebuffer origFramebuffer = mc.framebufferMc;
+        boolean origHideGUI = mc.gameSettings.hideGUI;
+
+        // Swap to scope rendering context.
+        // - framebufferMc: Angelica/Iris pipeline compositing targets the scope FBO
+        // - hideGUI: suppresses Iris HandRenderer.renderSolid()/renderTranslucent()
+        // Vanilla hand rendering and chunk frustum culling are handled by mixins
+        // (MixinEntityRenderer and MixinRenderGlobal respectively).
+        mc.framebufferMc = this.framebuffer;
+        mc.displayWidth = DEFAULT_WIDTH;
+        mc.displayHeight = DEFAULT_HEIGHT;
+        mc.entityRenderer = this.entityRenderer;
+        mc.gameSettings.hideGUI = true;
+
+        this.framebuffer.bindFramebuffer(true);
+        this.entityRenderer.updateRenderer();
+        this.prepareRenderWorld(event);
+        isRenderingScope = true;
+        try {
+            this.entityRenderer.renderWorld(event.renderTickTime, finishTimeNano);
+        } finally {
+            isRenderingScope = false;
+        }
+        this.postRenderWorld(event);
+
+        // Restore Minecraft state
+        mc.gameSettings.hideGUI = origHideGUI;
+        mc.framebufferMc = origFramebuffer;
+        mc.entityRenderer = origEntityRenderer;
+        mc.displayWidth = origDisplayWidth;
+        mc.displayHeight = origDisplayHeight;
+        origFramebuffer.bindFramebuffer(true);
+
+        this.renderEndNanoTime = System.nanoTime();
+        this.modContext.getSafeGlobals().renderingPhase.set(RenderingPhase.NORMAL);
     }
 
     private void prepareRenderWorld(RenderTickEvent event) {
