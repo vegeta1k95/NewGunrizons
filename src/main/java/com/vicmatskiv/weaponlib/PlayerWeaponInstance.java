@@ -110,7 +110,7 @@ public class PlayerWeaponInstance extends PlayerItemInstance<WeaponState> {
                 "Radius",
                 (context) -> this.getOpticScopeVignetteRadius(context.getPartialTicks()));
         this.zoom = 1.0F;
-        this.filteredStateQueue = new LinkedBlockingDeque();
+        this.filteredStateQueue = new LinkedBlockingDeque<>();
         this.activeAttachmentIds = new int[0];
         this.selectedAttachmentIndexes = new byte[0];
     }
@@ -313,10 +313,9 @@ public class PlayerWeaponInstance extends PlayerItemInstance<WeaponState> {
         if (this.activeAttachmentIds == null || this.activeAttachmentIds.length != AttachmentCategory.values.length) {
             this.activeAttachmentIds = new int[AttachmentCategory.values.length];
 
-            for (CompatibleAttachment weaponCompatibleAttachment : this.getWeapon()
+            for (CompatibleAttachment attachment : this.getWeapon()
                 .getCompatibleAttachments()
                 .values()) {
-                CompatibleAttachment attachment = weaponCompatibleAttachment;
                 if (attachment.isDefault()) {
                     this.activeAttachmentIds[attachment.getAttachment()
                         .getCategory()

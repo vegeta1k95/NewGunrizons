@@ -6,7 +6,7 @@ import net.minecraft.client.shader.ShaderGroup;
 
 import org.lwjgl.opengl.GL11;
 
-import com.vicmatskiv.weaponlib.perspective.ScopeWorldRenderer;
+import com.vicmatskiv.weaponlib.scope.ScopeWorldRenderer;
 
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
@@ -46,7 +46,7 @@ public interface DynamicShaderPhase {
             if (target instanceof ScopeWorldRenderer entityRenderer) {
                 ShaderGroup currentShaderGroup = entityRenderer.getShaderGroup();
                 if (currentShaderGroup != shaderGroup) {
-                    entityRenderer.setShaderGroup(shaderGroup);
+                    entityRenderer.theShaderGroup = shaderGroup;
                     entityRenderer.useShader(true);
                 }
             }
@@ -59,7 +59,7 @@ public interface DynamicShaderPhase {
                 ShaderGroup currentShaderGroup = entityRenderer.getShaderGroup();
                 if (currentShaderGroup instanceof DynamicShaderGroup) {
                     currentShaderGroup.deleteShaderGroup();
-                    entityRenderer.setShaderGroup(null);
+                    entityRenderer.theShaderGroup = null;
                 }
             }
 

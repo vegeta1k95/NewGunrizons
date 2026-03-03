@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
-import com.vicmatskiv.weaponlib.perspective.PerspectiveRenderer;
+import com.vicmatskiv.weaponlib.scope.ScopeRenderer;
 
 public class ItemScope extends ItemAttachment {
 
@@ -81,7 +81,7 @@ public class ItemScope extends ItemAttachment {
                     };
                 }
 
-                withPostRender(new PerspectiveRenderer(this.viewfinderPositioning));
+                withPostRender(new ScopeRenderer(this.viewfinderPositioning));
             }
 
             return new ItemScope(this);

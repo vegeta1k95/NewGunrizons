@@ -8,6 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.vicmatskiv.weaponlib.scope.ScopeManager;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResourcePack;
@@ -22,7 +23,6 @@ import com.vicmatskiv.weaponlib.grenade.EntityGrenade;
 import com.vicmatskiv.weaponlib.grenade.EntityGrenadeRenderer;
 import com.vicmatskiv.weaponlib.grenade.GrenadeRenderer;
 import com.vicmatskiv.weaponlib.grenade.ItemGrenade;
-import com.vicmatskiv.weaponlib.perspective.PerspectiveManager;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -36,7 +36,7 @@ public class ClientModContext extends CommonModContext {
     private final Queue<Runnable> runInClientThreadQueue = new LinkedBlockingQueue<>();
     @Getter private final SafeGlobals safeGlobals = new SafeGlobals();
     @Getter private StatusMessageCenter statusMessageCenter;
-    @Getter private PerspectiveManager viewManager;
+    @Getter private ScopeManager viewManager;
     @Getter private float aspectRatio;
     @Getter private Map<Object, Integer> inventoryTextureMap;
     @Getter private EffectManager effectManager;
@@ -75,7 +75,7 @@ public class ClientModContext extends CommonModContext {
         RenderingRegistry.registerEntityRenderingHandler(EntityShellCasing.class, new ShellCasingRenderer());
         RenderingRegistry.registerEntityRenderingHandler(EntityGrenade.class, new EntityGrenadeRenderer());
 
-        this.viewManager = new PerspectiveManager(this);
+        this.viewManager = new ScopeManager(this);
         this.inventoryTextureMap = new HashMap<>();
         this.effectManager = new ClientEffectManager();
         this.playerRawPitchAnimationManager = new PlayerRawPitchAnimationManager();

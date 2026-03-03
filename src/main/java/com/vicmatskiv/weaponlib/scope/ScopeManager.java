@@ -1,20 +1,20 @@
-package com.vicmatskiv.weaponlib.perspective;
+package com.vicmatskiv.weaponlib.scope;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.particle.EffectRenderer;
 
 import com.vicmatskiv.weaponlib.ClientModContext;
 import com.vicmatskiv.weaponlib.PlayerItemInstance;
 
-public class PerspectiveManager {
+public class ScopeManager {
+
+    private final ClientModContext clientModContext;
 
     private ScopePerspective currentPerspective;
-    private final ClientModContext clientModContext;
     private ScopeWorldRenderer entityRenderer;
     private EffectRenderer effectRenderer;
 
-    public PerspectiveManager(ClientModContext clientModContext) {
+    public ScopeManager(ClientModContext clientModContext) {
         this.clientModContext = clientModContext;
     }
 

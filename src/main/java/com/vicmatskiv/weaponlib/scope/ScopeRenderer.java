@@ -1,4 +1,4 @@
-package com.vicmatskiv.weaponlib.perspective;
+package com.vicmatskiv.weaponlib.scope;
 
 import java.util.function.BiConsumer;
 
@@ -15,12 +15,12 @@ import com.vicmatskiv.weaponlib.RenderContext;
 import com.vicmatskiv.weaponlib.TransformType;
 import com.vicmatskiv.weaponlib.ViewfinderModel;
 
-public class PerspectiveRenderer implements CustomRenderer {
+public class ScopeRenderer implements CustomRenderer {
 
     private final ViewfinderModel model = new ViewfinderModel();
     private final BiConsumer<EntityLivingBase, ItemStack> positioning;
 
-    public PerspectiveRenderer(BiConsumer<EntityLivingBase, ItemStack> positioning) {
+    public ScopeRenderer(BiConsumer<EntityLivingBase, ItemStack> positioning) {
         this.positioning = positioning;
     }
 

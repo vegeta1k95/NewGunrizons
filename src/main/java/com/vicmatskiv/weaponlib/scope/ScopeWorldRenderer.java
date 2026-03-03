@@ -1,4 +1,4 @@
-package com.vicmatskiv.weaponlib.perspective;
+package com.vicmatskiv.weaponlib.scope;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -6,8 +6,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.resources.IResourceManager;
 
 import org.lwjgl.opengl.GL11;
-
-import com.vicmatskiv.weaponlib.shader.DynamicShaderGroup;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -53,12 +51,6 @@ public class ScopeWorldRenderer extends EntityRenderer {
                 .getFramebuffer()
                 .bindFramebuffer(true);
         }
-    }
-
-    public void setPrepareTerrain(boolean b) {}
-
-    public void setShaderGroup(DynamicShaderGroup shaderGroup) {
-        this.theShaderGroup = shaderGroup;
     }
 
     public void useShader(boolean useShader) {

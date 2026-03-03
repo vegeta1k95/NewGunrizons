@@ -10,7 +10,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.RenderHandEvent;
 
-import com.vicmatskiv.weaponlib.perspective.ScopePerspective;
+import com.vicmatskiv.weaponlib.scope.ScopePerspective;
 import com.vicmatskiv.weaponlib.shader.DynamicShaderContext;
 import com.vicmatskiv.weaponlib.shader.DynamicShaderGroupManager;
 import com.vicmatskiv.weaponlib.shader.DynamicShaderPhase;
@@ -143,13 +143,12 @@ public class ClientEventHandler {
         if (event.phase == TickEvent.Phase.START) {
             this.mainLoopLock.lock();
             if (clientPlayer != null) {
-                PlayerItemInstance<?> instance = this.modContext.getPlayerItemInstanceRegistry()
-                    .getMainHandItemInstance(clientPlayer);
-                if (instance != null) {
+                PlayerWeaponInstance weaponInstance = this.modContext.getMainHeldWeapon();
+                if (weaponInstance != null && weaponInstance.isAimed()) {
                     ScopePerspective view = this.modContext.getViewManager()
-                        .getPerspective(instance, true);
+                        .getPerspective(weaponInstance, true);
                     if (view != null) {
-                        view.update(event);
+                        view.update(event, weaponInstance);
                     }
                 }
             }

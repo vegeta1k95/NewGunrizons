@@ -1,4 +1,4 @@
-package com.vicmatskiv.weaponlib.perspective;
+package com.vicmatskiv.weaponlib.scope;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
@@ -34,7 +34,7 @@ public class ScopePerspective {
 
     public ScopePerspective() {}
 
-    public void activate(ClientModContext modContext, PerspectiveManager manager) {
+    public void activate(ClientModContext modContext, ScopeManager manager) {
         this.modContext = modContext;
 
         if (this.framebuffer == null) {
@@ -90,13 +90,7 @@ public class ScopePerspective {
             || renderableState == RenderableState.ZOOMING_SHOOTING;
     }
 
-    public void update(RenderTickEvent event) {
-
-        PlayerWeaponInstance instance = this.modContext.getMainHeldWeapon();
-        if (instance == null || !instance.isAimed()) {
-            return;
-        }
-
+    public void update(RenderTickEvent event, PlayerWeaponInstance weaponInstance) {
         this.modContext.getSafeGlobals().renderingPhase.set(RenderingPhase.RENDER_PERSPECTIVE);
         long finishTimeNano = this.renderEndNanoTime + 16666666L;
         Minecraft mc = Minecraft.getMinecraft();
@@ -121,7 +115,7 @@ public class ScopePerspective {
 
         this.framebuffer.bindFramebuffer(true);
         this.entityRenderer.updateRenderer();
-        this.prepareRenderWorld(event);
+        this.prepareRenderWorld(event, weaponInstance);
         isRenderingScope = true;
         try {
             this.entityRenderer.renderWorld(event.renderTickTime, finishTimeNano);
@@ -142,14 +136,13 @@ public class ScopePerspective {
         this.modContext.getSafeGlobals().renderingPhase.set(RenderingPhase.NORMAL);
     }
 
-    private void prepareRenderWorld(RenderTickEvent event) {
+    private void prepareRenderWorld(RenderTickEvent event, PlayerWeaponInstance weaponInstance) {
         DynamicShaderContext shaderContext = new DynamicShaderContext(
             DynamicShaderPhase.POST_WORLD_OPTICAL_SCOPE_RENDER,
             this.entityRenderer,
             this.framebuffer,
             event.renderTickTime);
-        PlayerWeaponInstance instance = this.modContext.getMainHeldWeapon();
-        this.shaderGroupManager.applyShader(shaderContext, instance);
+        this.shaderGroupManager.applyShader(shaderContext, weaponInstance);
     }
 
     private void postRenderWorld(RenderTickEvent event) {
