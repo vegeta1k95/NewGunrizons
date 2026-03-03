@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(wc:*)",
+      "Bash(./gradlew build:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(gh api:*)",
+      "Bash(xargs grep:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(command:*)",
+      "Bash(curl:*)",
+      "Bash(where gh:*)",
+      "Bash(cmd:*)",
+      "Bash(ls:*)",
+      "WebSearch",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(python:*)",
+      "Bash(done)",
+      "Bash(rm:*)",
+      "Bash(find:*)",
+      "Bash(test:*)",
+      "Bash(gh search:*)"
+    ]
+  }
+}
