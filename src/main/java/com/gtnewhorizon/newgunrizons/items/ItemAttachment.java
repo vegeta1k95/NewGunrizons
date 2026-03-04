@@ -5,55 +5,100 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
-import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
-import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.attachment.Part;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
+import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
+import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.client.render.CustomRenderer;
 import com.gtnewhorizon.newgunrizons.util.Pair;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Base class for all weapon attachments (scopes, grips, silencers, magazines, bullets).
+ * <p>
+ * Each attachment belongs to an {@link AttachmentCategory} and can have rendering models,
+ * equip/unequip handlers, and nested sub-attachments. Subclasses add specialized behavior:
+ * {@link ItemScope} (zoom), {@link ItemMagazine} (ammo capacity), {@link ItemBullet} (type marker).
+ */
 public class ItemAttachment extends Item {
+
+    // ==================== Identity & classification ====================
 
     @Getter
     private final AttachmentCategory category;
+
     @Getter
-    private final String crosshair;
-    @Getter
-    private final ItemAttachment.ApplyHandler apply;
-    @Getter
-    private final ItemAttachment.ApplyHandler remove;
-    @Getter
-    public ItemAttachment.ApplyHandler2 apply2;
-    public ItemAttachment.ApplyHandler2 remove2;
+    @Setter
+    private String name;
+
+    // ==================== Rendering ====================
+
+    /** Model+texture pairs rendered for this attachment. */
     @Getter
     private final List<Pair<ModelBase, String>> texturedModels;
+
+    /** Optional renderer executed after the main render pass. */
     @Getter
     @Setter
     private CustomRenderer postRenderer;
-    @Setter
+
+    /** Custom render slot for this attachment; null if it shares the weapon's render pass. */
     @Getter
+    @Setter
     private Part renderablePart;
-    @Setter
-    private String name;
-    @Setter
+
+    // ==================== Equip/unequip handlers ====================
+
+    /** Called when this attachment is equipped onto a weapon. */
     @Getter
+    @Setter
+    private AttachmentHandler applyHandler;
+
+    /** Called when this attachment is removed from a weapon. */
+    @Getter
+    @Setter
+    private AttachmentHandler removeHandler;
+
+    // ==================== Item display ====================
+
+    /** Optional HUD crosshair texture path (fully qualified). */
+    @Getter
+    private final String crosshair;
+
+    /** Optional tooltip provider shown when hovering over this item in inventory. */
+    @Getter
+    @Setter
     private Function<ItemStack, String> informationProvider;
-    public int maxStackSize;
+
+    // ==================== Nested attachments ====================
+
+    /** Attachments that can be mounted on this attachment (e.g. sights on a rail). */
     private final List<CompatibleAttachment> attachments;
-    private final List<ItemWeapon> compatibleWeapons;
-    public String textureName;
+
+    // ==================== Constructor ====================
+
+    /**
+     * @param modId     mod identifier for resource paths
+     * @param category  the attachment slot category
+     * @param crosshair crosshair texture name (without path prefix), or null
+     */
+    public ItemAttachment(String modId, AttachmentCategory category, String crosshair) {
+        this.texturedModels = new ArrayList<>();
+        this.attachments = new ArrayList<>();
+        this.category = category;
+        this.crosshair = crosshair != null ? modId + ":textures/crosshairs/" + crosshair + ".png" : null;
+    }
+
+    // ==================== Item overrides ====================
 
     @Override
     public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
@@ -61,62 +106,26 @@ public class ItemAttachment extends Item {
         stack.setTagCompound(new NBTTagCompound());
     }
 
-    public ItemAttachment(String modId, AttachmentCategory category, ModelBase model, String textureName,
-        String crosshair, ItemAttachment.ApplyHandler apply, ItemAttachment.ApplyHandler remove) {
-        this.texturedModels = new ArrayList<>();
-        this.maxStackSize = 1;
-        this.attachments = new ArrayList<>();
-        this.compatibleWeapons = new ArrayList<>();
-        this.category = category;
-        this.textureName = textureName.toLowerCase();
-        this.crosshair = crosshair != null ? modId + ":" + "textures/crosshairs/" + crosshair + ".png" : null;
-        this.apply = apply;
-        this.remove = remove;
-    }
-
-    public ItemAttachment(String modId, AttachmentCategory category, String crosshair,
-        ItemAttachment.ApplyHandler apply, ItemAttachment.ApplyHandler remove) {
-        this.texturedModels = new ArrayList<>();
-        this.maxStackSize = 1;
-        this.attachments = new ArrayList<>();
-        this.compatibleWeapons = new ArrayList<>();
-        this.category = category;
-        this.crosshair = crosshair != null ? modId + ":" + "textures/crosshairs/" + crosshair + ".png" : null;
-        this.apply = apply;
-        this.remove = remove;
-    }
-
-    public int getItemStackLimit() {
-        return this.maxStackSize;
-    }
-
-    public Item setTextureName(String name) {
-        return this;
-    }
-
-    public void addModel(ModelBase model, String textureName) {
-        this.texturedModels.add(new Pair<>(model, textureName));
-    }
-
-    public ItemAttachment(String modId, AttachmentCategory category, String crosshair) {
-        this(modId, category, crosshair, (a, w, p) -> {}, (a, w, p) -> {});
-    }
-
-    public ItemAttachment(String modId, AttachmentCategory category, ModelBase attachment, String textureName,
-        String crosshair) {
-        this(modId, category, attachment, textureName, crosshair, (a, w, p) -> {}, (a, w, p) -> {});
-    }
-
-    public void addCompatibleWeapon(ItemWeapon weapon) {
-        this.compatibleWeapons.add(weapon);
-    }
-
     @Override
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean flag) {
         if (tooltip != null && this.informationProvider != null) {
             tooltip.add(this.informationProvider.apply(itemStack));
         }
     }
+
+    @Override
+    public String toString() {
+        return this.name != null ? "Attachment [" + this.name + "]" : super.toString();
+    }
+
+    // ==================== Model management ====================
+
+    public void addModel(ModelBase model, String textureName) {
+        this.texturedModels.add(new Pair<>(model, textureName));
+    }
+
+    // ==================== Nested attachment management ====================
 
     public void addCompatibleAttachment(CompatibleAttachment attachment) {
         this.attachments.add(attachment);
@@ -126,21 +135,12 @@ public class ItemAttachment extends Item {
         return Collections.unmodifiableList(this.attachments);
     }
 
-    public String toString() {
-        return this.name != null ? "Attachment [" + this.name + "]" : super.toString();
-    }
+    // ==================== Handler interface ====================
 
-    public ItemAttachment.ApplyHandler2 getRemove2() {
-        return this.remove2;
-    }
-
-    public interface ApplyHandler2 {
+    /** Callback invoked when an attachment is equipped or removed from a weapon. */
+    @FunctionalInterface
+    public interface AttachmentHandler {
 
         void apply(ItemAttachment attachment, PlayerWeaponInstance weaponInstance);
-    }
-
-    public interface ApplyHandler {
-
-        void apply(ItemAttachment attachment, ItemWeapon weapon, EntityLivingBase entity);
     }
 }

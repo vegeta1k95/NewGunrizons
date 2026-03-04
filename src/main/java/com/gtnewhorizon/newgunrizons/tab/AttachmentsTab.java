@@ -19,7 +19,8 @@ public class AttachmentsTab extends CreativeTabs {
         int catA = getCategorySortOrder(a.getItem());
         int catB = getCategorySortOrder(b.getItem());
         if (catA != catB) return Integer.compare(catA, catB);
-        return a.getDisplayName().compareToIgnoreCase(b.getDisplayName());
+        return a.getDisplayName()
+            .compareToIgnoreCase(b.getDisplayName());
     };
 
     private static int getCategorySortOrder(Item item) {

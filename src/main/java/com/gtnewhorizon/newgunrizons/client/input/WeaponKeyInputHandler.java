@@ -8,9 +8,9 @@ import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
+import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
 import com.gtnewhorizon.newgunrizons.weapon.Reloadable;
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

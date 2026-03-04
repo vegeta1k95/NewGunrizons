@@ -332,7 +332,8 @@ public class UDP9Factory {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
@@ -499,7 +500,8 @@ public class UDP9Factory {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 

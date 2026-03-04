@@ -47,10 +47,7 @@ public class ImpactGrenadeFactory implements GrenadeFactory {
                         GL11.glScalef(0.2F, 0.2F, 0.2F);
                         GL11.glRotatef(180.0F, 0.0F, 0.0F, 0.0F);
                     })
-                    .withEntityRotationCenterOffsets(
-                        () -> -0.025F,
-                        () -> 0.2F,
-                        () -> -0.025F)
+                    .withEntityRotationCenterOffsets(() -> -0.025F, () -> 0.2F, () -> -0.025F)
                     .withInventoryPositioning((itemStack) -> {
                         GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
                         GL11.glTranslatef(1.0F, 1.3F, -1.3F);

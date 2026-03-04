@@ -8,14 +8,14 @@ import com.gtnewhorizon.newgunrizons.crafting.RecipeManager;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeAttackAspect;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeRenderer;
 import com.gtnewhorizon.newgunrizons.grenade.ItemGrenade;
+import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
+import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.MagazineReloadAspect;
+import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstanceRegistry;
+import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
-import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
-import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstanceRegistry;
-import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 

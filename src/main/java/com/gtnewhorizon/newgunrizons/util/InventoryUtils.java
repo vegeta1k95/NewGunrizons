@@ -80,6 +80,19 @@ public class InventoryUtils {
         return false;
     }
 
+    @SafeVarargs
+    public static boolean hasCompatibleItem(List<? extends Item> compatibleParts, EntityPlayer player,
+        Predicate<ItemStack>... conditions) {
+        for (Predicate<ItemStack> condition : conditions) {
+            for (Item item : compatibleParts) {
+                if (itemSlotIndex(item, condition, player) >= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static int getInventorySlot(EntityPlayer player, ItemStack itemStack) {
         for (int i = 0; i < player.inventory.mainInventory.length; ++i) {
             if (player.inventory.mainInventory[i] == itemStack) {

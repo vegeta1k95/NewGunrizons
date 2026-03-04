@@ -359,7 +359,8 @@ public class M110Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
@@ -484,7 +485,8 @@ public class M110Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 

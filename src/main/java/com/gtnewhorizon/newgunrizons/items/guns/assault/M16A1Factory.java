@@ -226,7 +226,8 @@ public class M16A1Factory {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.09F, 0.1F);
                         }
 
@@ -465,7 +466,8 @@ public class M16A1Factory {
                             GL11.glTranslatef(0.0F, -0.02F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, -0.015F, 0.1F);
                         }
 

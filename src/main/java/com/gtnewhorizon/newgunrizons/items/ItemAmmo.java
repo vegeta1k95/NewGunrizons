@@ -3,12 +3,13 @@ package com.gtnewhorizon.newgunrizons.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 
 public class ItemAmmo extends Item {
 

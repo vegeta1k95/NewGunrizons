@@ -1,16 +1,19 @@
 package com.gtnewhorizon.newgunrizons.items;
 
-import net.minecraft.client.model.ModelBase;
-
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentBuilder;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 
+/**
+ * A bullet attachment type.
+ * <p>
+ * Exists primarily as a type marker so that {@code instanceof ItemBullet} checks
+ * can distinguish bullets from other attachments. Bullets are stackable (default 64).
+ */
 public class ItemBullet extends ItemAttachment {
 
-    public ItemBullet(String modId, AttachmentCategory category, ModelBase model, String textureName, String crosshair,
-        ItemAttachment.ApplyHandler apply, ItemAttachment.ApplyHandler remove) {
-        super(modId, category, model, textureName, crosshair, apply, remove);
+    public ItemBullet(String modId, AttachmentCategory category, String crosshair) {
+        super(modId, category, crosshair);
     }
 
     public static final class Builder extends AttachmentBuilder {
@@ -20,14 +23,7 @@ public class ItemBullet extends ItemAttachment {
         }
 
         public ItemAttachment createAttachment(ModContext modContext) {
-            return new ItemBullet(
-                getModId(),
-                AttachmentCategory.BULLET,
-                getModel(),
-                getTextureName(),
-                null,
-                null,
-                null);
+            return new ItemBullet(getModId(), AttachmentCategory.BULLET, null);
         }
     }
 }

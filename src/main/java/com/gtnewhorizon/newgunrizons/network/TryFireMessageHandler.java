@@ -3,8 +3,8 @@ package com.gtnewhorizon.newgunrizons.network;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
 import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;

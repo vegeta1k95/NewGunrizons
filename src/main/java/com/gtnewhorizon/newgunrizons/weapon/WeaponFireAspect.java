@@ -6,19 +6,18 @@ import java.util.Random;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
+import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import com.gtnewhorizon.newgunrizons.config.CommonModContext;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.config.Tags;
 import com.gtnewhorizon.newgunrizons.network.TryFireMessage;
 import com.gtnewhorizon.newgunrizons.state.Aspect;
-import com.gtnewhorizon.newgunrizons.state.PermitManager;
 import com.gtnewhorizon.newgunrizons.state.StateManager;
 
 public class WeaponFireAspect implements Aspect<WeaponState, PlayerWeaponInstance> {
@@ -48,8 +47,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, PlayerWeaponInstanc
     public WeaponFireAspect(CommonModContext modContext) {
         this.modContext = modContext;
     }
-
-    public void setPermitManager(PermitManager permitManager) {}
 
     public void setStateManager(StateManager<WeaponState, ? super PlayerWeaponInstance> stateManager) {
         this.stateManager = stateManager;
@@ -203,10 +200,8 @@ public class WeaponFireAspect implements Aspect<WeaponState, PlayerWeaponInstanc
                 weapon.builder.flashOffsetY.get());
         }
 
-        ParticleManager.spawnSmokeParticle(
-                player,
-                weapon.builder.smokeOffsetX.get(),
-                weapon.builder.smokeOffsetY.get());
+        ParticleManager
+            .spawnSmokeParticle(player, weapon.builder.smokeOffsetX.get(), weapon.builder.smokeOffsetY.get());
 
         weaponInstance.setSeriesShotCount(weaponInstance.getSeriesShotCount() + 1);
         weaponInstance.setLastFireTimestamp(System.currentTimeMillis());

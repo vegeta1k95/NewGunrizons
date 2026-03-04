@@ -211,11 +211,13 @@ public class PlayerItemInstanceRegistry {
         Map<Integer, PlayerItemInstance<?>> slotContexts = this.registry.get(player.getPersistentID());
         if (slotContexts == null) return;
 
-        Iterator<Entry<Integer, PlayerItemInstance<?>>> it = slotContexts.entrySet().iterator();
+        Iterator<Entry<Integer, PlayerItemInstance<?>>> it = slotContexts.entrySet()
+            .iterator();
         while (it.hasNext()) {
             Entry<Integer, PlayerItemInstance<?>> entry = it.next();
             ItemStack slotStack = player.inventory.getStackInSlot(entry.getKey());
-            if (slotStack == null || slotStack.getItem() != entry.getValue().getItem()) {
+            if (slotStack == null || slotStack.getItem() != entry.getValue()
+                .getItem()) {
                 logger.debug("Removing {} from slot {}", entry.getValue(), entry.getKey());
                 this.syncManager.unwatch(entry.getValue());
                 it.remove();

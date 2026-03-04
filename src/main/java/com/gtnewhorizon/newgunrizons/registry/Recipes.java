@@ -21,36 +21,7 @@ public class Recipes {
         GameRegistry.addSmelting(Ores.TantalumOre, new ItemStack(Ores.TantalumIngot), 5.0F);
         GameRegistry.addSmelting(Ores.SulfurDust, new ItemStack(Items.gunpowder, 1, 0), 5.0F);
         GameRegistry.addSmelting(Ores.SteelDust, new ItemStack(Ores.SteelIngot), 5.0F);
-        modContext.getRecipeManager()
-            .registerShapedRecipe(
-                new ItemStack(CommonProxy.Cloth, 3),
-                "XAX",
-                "AXA",
-                "XAX",
-                'X',
-                Items.string,
-                'A',
-                Blocks.wool);
-        modContext.getRecipeManager()
-            .registerShapedRecipe(
-                new ItemStack(CommonProxy.TanCloth, 3),
-                "XAX",
-                "AXA",
-                "XAX",
-                'X',
-                Blocks.sandstone,
-                'A',
-                CommonProxy.Cloth);
-        modContext.getRecipeManager()
-            .registerShapedRecipe(
-                new ItemStack(CommonProxy.GreenCloth, 3),
-                "XAX",
-                "AXA",
-                "XAX",
-                'X',
-                Blocks.leaves,
-                'A',
-                CommonProxy.Cloth);
+
         modContext.getRecipeManager()
             .registerShapedRecipe(
                 new ItemStack(CommonProxy.ElectronicCircuitBoard),
@@ -176,18 +147,6 @@ public class Recipes {
                 Items.coal,
                 'X',
                 Items.water_bucket);
-        modContext.getRecipeManager()
-            .registerShapedRecipe(
-                new ItemStack(CommonProxy.Piston),
-                "XA ",
-                "AXX",
-                " XE",
-                'A',
-                CommonProxy.SteelPlate,
-                'X',
-                "ingotSteel",
-                'E',
-                CommonProxy.ElectronicCircuitBoard);
         modContext.getRecipeManager()
             .registerShapedRecipe(
                 new ItemStack(Ores.SteelDust, 1),

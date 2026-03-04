@@ -292,7 +292,8 @@ public class KrissVectorFactory implements GunFactory {
 
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {}
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {}
 
                     })
                     .withFirstPersonCustomPositioning(Magazines.VectorMag, (renderContext) -> {})
@@ -374,7 +375,8 @@ public class KrissVectorFactory implements GunFactory {
 
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {}
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {}
 
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {

@@ -297,7 +297,8 @@ public class M249Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 
@@ -1024,7 +1025,8 @@ public class M249Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 

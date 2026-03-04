@@ -283,7 +283,8 @@ public class TAR21Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.0785F, 0.0F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.078F, 0.0F);
                         }
 
@@ -391,7 +392,8 @@ public class TAR21Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.0785F, 0.0F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.078F, 0.0F);
                         }
 

@@ -289,7 +289,8 @@ public class MXFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.13F, 0.4F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.13F, 0.4F);
                         }
 
@@ -376,7 +377,8 @@ public class MXFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.13F, 0.4F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.13F, 0.4F);
                         }
 

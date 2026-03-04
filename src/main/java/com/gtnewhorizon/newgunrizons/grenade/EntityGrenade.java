@@ -23,10 +23,11 @@ import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gtnewhorizon.newgunrizons.config.ModContext;
-import com.gtnewhorizon.newgunrizons.entities.Explosion;
 import com.gtnewhorizon.gtnhlib.blockpos.BlockPos;
 import com.gtnewhorizon.gtnhlib.client.model.state.BlockState;
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
+import com.gtnewhorizon.newgunrizons.config.ModContext;
+import com.gtnewhorizon.newgunrizons.entities.Explosion;
 import com.gtnewhorizon.newgunrizons.util.RayCast;
 
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
@@ -368,7 +369,8 @@ public class EntityGrenade extends Entity implements IEntityAdditionalSpawnData,
                         this.worldObj.getBlock(
                             movingobjectposition.blockX,
                             movingobjectposition.blockY,
-                            movingobjectposition.blockZ), 0);
+                            movingobjectposition.blockZ),
+                        0);
                     if (madeFromHardMaterial(blockState)) {
                         this.worldObj
                             .playSoundAtEntity(this, bounceHardSound, 2.0F / ((float) this.bounceCount + 1.0F), 1.0F);
@@ -381,7 +383,8 @@ public class EntityGrenade extends Entity implements IEntityAdditionalSpawnData,
                         this.worldObj.getBlock(
                             movingobjectposition.blockX,
                             movingobjectposition.blockY,
-                            movingobjectposition.blockZ), 0);
+                            movingobjectposition.blockZ),
+                        0);
                     if (!madeFromHardMaterial(blockState)) {
                         this.worldObj
                             .playSoundAtEntity(this, bounceSoftSound, 1.0F / ((float) this.bounceCount + 1.0F), 1.0F);
@@ -447,12 +450,14 @@ public class EntityGrenade extends Entity implements IEntityAdditionalSpawnData,
                 intercept = axisalignedbb.calculateIntercept(currentPos, projectedPos);
                 if (intercept == null) {
                     BlockPos blockPos = new BlockPos(
-                        (int) projectedPos.xCoord, (int) projectedPos.yCoord, (int) projectedPos.zCoord);
+                        (int) projectedPos.xCoord,
+                        (int) projectedPos.yCoord,
+                        (int) projectedPos.zCoord);
                     BlockState blockState = new BlockState(
-                        this.worldObj
-                            .getBlock(blockPos.getX(), blockPos.getY(), blockPos.getZ()), 0);
+                        this.worldObj.getBlock(blockPos.getX(), blockPos.getY(), blockPos.getZ()),
+                        0);
                     if (blockState.block()
-                            .getMaterial() != Material.air) {
+                        .getMaterial() != Material.air) {
                         logger.debug("Found non-intercept position colliding with block {}", blockState);
                         intercept = movingobjectposition;
                     } else {
@@ -473,7 +478,7 @@ public class EntityGrenade extends Entity implements IEntityAdditionalSpawnData,
     private void explode() {
         logger.debug("Exploding {}", this);
         Explosion.createServerSideExplosion(
-            this.modContext,
+            this.getModContext(),
             this.worldObj,
             this,
             this.posX,
@@ -505,8 +510,7 @@ public class EntityGrenade extends Entity implements IEntityAdditionalSpawnData,
                 Vec3 cvec2 = Vec3.createVectorHelper(this.posX + x * k, this.posY + y * k, this.posZ + z * k);
                 BiPredicate<Block, Integer> isCollidable = (block, blockMetadata) -> block
                     .canCollideCheck(blockMetadata, false);
-                MovingObjectPosition rayTraceResult = RayCast
-                    .rayCastBlocks(this.worldObj, cvec1, cvec2, isCollidable);
+                MovingObjectPosition rayTraceResult = RayCast.rayCastBlocks(this.worldObj, cvec1, cvec2, isCollidable);
                 if (rayTraceResult != null) {
                     cvec2 = Vec3.createVectorHelper(
                         rayTraceResult.hitVec.xCoord,
@@ -643,10 +647,16 @@ public class EntityGrenade extends Entity implements IEntityAdditionalSpawnData,
         }
     }
 
-    public void setContext(ModContext modContext) {
+    /**
+     * Returns the ModContext for this grenade, falling back to the global
+     * static instance if none was provided at construction time (e.g. when
+     * the entity is reconstructed by Forge from spawn data or NBT).
+     */
+    protected ModContext getModContext() {
         if (this.modContext == null) {
-            this.modContext = modContext;
+            this.modContext = NewGunrizonsMod.MOD_CONTEXT;
         }
+        return this.modContext;
     }
 
     public static class Builder {

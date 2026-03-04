@@ -1,4 +1,4 @@
-package com.gtnewhorizon.newgunrizons.attachment;
+package com.gtnewhorizon.newgunrizons.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

@@ -16,7 +16,6 @@ import com.gtnewhorizon.newgunrizons.config.CommonModContext;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.entities.Explosion;
 import com.gtnewhorizon.newgunrizons.state.Aspect;
-import com.gtnewhorizon.newgunrizons.state.PermitManager;
 import com.gtnewhorizon.newgunrizons.state.StateManager;
 
 public class GrenadeAttackAspect implements Aspect<GrenadeState, PlayerGrenadeInstance> {
@@ -45,8 +44,6 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, PlayerGrenadeIn
     public GrenadeAttackAspect(CommonModContext modContext) {
         this.modContext = modContext;
     }
-
-    public void setPermitManager(PermitManager permitManager) {}
 
     public void setStateManager(StateManager<GrenadeState, ? super PlayerGrenadeInstance> stateManager) {
         this.stateManager = stateManager;

@@ -330,7 +330,8 @@ public class AK15Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.18F, -0.2F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.18F, -0.2F);
                         }
 
@@ -595,7 +596,8 @@ public class AK15Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.18F, -0.2F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.18F, -0.2F);
                         }
 

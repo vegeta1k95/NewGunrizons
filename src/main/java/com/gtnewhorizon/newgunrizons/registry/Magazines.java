@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL11;
 import com.gtnewhorizon.newgunrizons.CommonProxy;
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
+import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 import com.gtnewhorizon.newgunrizons.model.magazine.AK12Magazine;
 import com.gtnewhorizon.newgunrizons.model.magazine.AS50Mag;
 import com.gtnewhorizon.newgunrizons.model.magazine.ASValMag;
@@ -61,7 +62,6 @@ import com.gtnewhorizon.newgunrizons.model.magazine.Type100Mag;
 import com.gtnewhorizon.newgunrizons.model.magazine.VEPRMag;
 import com.gtnewhorizon.newgunrizons.model.magazine.VSSVintorezMag;
 import com.gtnewhorizon.newgunrizons.model.magazine.revolverclip;
-import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 
 public class Magazines {
 

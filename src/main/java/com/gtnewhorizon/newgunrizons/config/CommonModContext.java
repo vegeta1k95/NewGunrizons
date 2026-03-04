@@ -6,13 +6,12 @@ import java.util.Map;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 
 import com.gtnewhorizon.newgunrizons.client.input.WeaponKeyInputHandler;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.RecipeManager;
-import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
+import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
 import com.gtnewhorizon.newgunrizons.grenade.EntityGrenade;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeAttackAspect;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeMessage;
@@ -21,32 +20,32 @@ import com.gtnewhorizon.newgunrizons.grenade.GrenadeRenderer;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeState;
 import com.gtnewhorizon.newgunrizons.grenade.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.grenade.PlayerGrenadeInstance;
-import com.gtnewhorizon.newgunrizons.weapon.MagazineReloadAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
 import com.gtnewhorizon.newgunrizons.network.BlockHitMessage;
 import com.gtnewhorizon.newgunrizons.network.BlockHitMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.ExplosionMessage;
 import com.gtnewhorizon.newgunrizons.network.ExplosionMessageHandler;
-import com.gtnewhorizon.newgunrizons.network.NetworkPermitManager;
-import com.gtnewhorizon.newgunrizons.network.PermitMessage;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessage;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
 import com.gtnewhorizon.newgunrizons.network.SyncManager;
+import com.gtnewhorizon.newgunrizons.network.SyncMessage;
+import com.gtnewhorizon.newgunrizons.network.SyncMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.TryFireMessage;
 import com.gtnewhorizon.newgunrizons.network.TryFireMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
-import com.gtnewhorizon.newgunrizons.server.ServerEventHandler;
-import com.gtnewhorizon.newgunrizons.state.Permit;
+import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
+import com.gtnewhorizon.newgunrizons.network.WeaponActionMessageHandler;
 import com.gtnewhorizon.newgunrizons.state.StateManager;
+import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.weapon.MagazineReloadAspect;
 import com.gtnewhorizon.newgunrizons.weapon.MagazineState;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstance;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerMagazineInstance;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
+import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
+import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -73,7 +72,6 @@ public class CommonModContext implements ModContext {
     protected SyncManager<?> syncManager;
     @Getter
     protected MagazineReloadAspect magazineReloadAspect;
-    protected NetworkPermitManager permitManager;
     @Getter
     protected PlayerItemInstanceRegistry playerItemInstanceRegistry;
     private final Map<ResourceLocation, String> registeredSounds = new HashMap<>();
@@ -102,25 +100,20 @@ public class CommonModContext implements ModContext {
         StateManager<GrenadeState, PlayerGrenadeInstance> grenadeStateManager = new StateManager<>(
             (s1, s2) -> s1 == s2);
         this.grenadeAttackAspect.setStateManager(grenadeStateManager);
-        this.permitManager = new NetworkPermitManager(this);
-        this.syncManager = new SyncManager<>(this.permitManager);
+        this.syncManager = new SyncManager<>(channel);
         this.playerItemInstanceRegistry = new PlayerItemInstanceRegistry(this.syncManager);
         StateManager<WeaponState, PlayerWeaponInstance> weaponStateManager = new StateManager<>((s1, s2) -> s1 == s2);
-        this.weaponReloadAspect.setPermitManager(this.permitManager);
         this.weaponReloadAspect.setStateManager(weaponStateManager);
-        this.weaponFireAspect.setPermitManager(this.permitManager);
         this.weaponFireAspect.setStateManager(weaponStateManager);
-        this.weaponAttachmentAspect.setPermitManager(this.permitManager);
         this.weaponAttachmentAspect.setStateManager(weaponStateManager);
         StateManager<MagazineState, PlayerMagazineInstance> magazineStateManager = new StateManager<>(
             (s1, s2) -> s1 == s2);
-        this.magazineReloadAspect.setPermitManager(this.permitManager);
         this.magazineReloadAspect.setStateManager(magazineStateManager);
         this.recipeManager = new RecipeManager();
         channel
             .registerMessage(new TryFireMessageHandler(this.weaponFireAspect), TryFireMessage.class, 11, Side.SERVER);
-        channel.registerMessage(this.permitManager, PermitMessage.class, 14, Side.SERVER);
-        channel.registerMessage(this.permitManager, PermitMessage.class, 15, Side.CLIENT);
+        channel.registerMessage(new SyncMessageHandler(), SyncMessage.class, 14, Side.SERVER);
+        channel.registerMessage(new WeaponActionMessageHandler(), WeaponActionMessage.class, 15, Side.SERVER);
         channel.registerMessage(new SpawnParticleMessageHandler(this), SpawnParticleMessage.class, 18, Side.CLIENT);
         channel.registerMessage(new BlockHitMessageHandler(), BlockHitMessage.class, 19, Side.CLIENT);
         channel.registerMessage(
@@ -129,22 +122,11 @@ public class CommonModContext implements ModContext {
             20,
             Side.SERVER);
         channel.registerMessage(new ExplosionMessageHandler(this), ExplosionMessage.class, 21, Side.CLIENT);
-        ServerEventHandler serverHandler = new ServerEventHandler(this, modId);
-        FMLCommonHandler.instance()
-            .bus()
-            .register(serverHandler);
-        MinecraftForge.EVENT_BUS.register(serverHandler);
         FMLCommonHandler.instance()
             .bus()
             .register(new WeaponKeyInputHandler(this, (ctx) -> this.getPlayer()));
-        EntityRegistry.registerModEntity(
-            EntityBullet.class,
-            "Ammo" + this.modEntityID,
-            this.modEntityID++,
-            mod,
-            64,
-            3,
-            true);
+        EntityRegistry
+            .registerModEntity(EntityBullet.class, "Ammo" + this.modEntityID, this.modEntityID++, mod, 64, 3, true);
         EntityRegistry.registerModEntity(
             EntityShellCasing.class,
             "ShellCasing" + this.modEntityID,
@@ -244,8 +226,6 @@ public class CommonModContext implements ModContext {
 
     static {
         TypeRegistry.getInstance()
-            .register(MagazineReloadAspect.LoadPermit.class);
-        TypeRegistry.getInstance()
             .register(MagazineState.class);
         TypeRegistry.getInstance()
             .register(PlayerItemInstance.class);
@@ -253,22 +233,6 @@ public class CommonModContext implements ModContext {
             .register(PlayerWeaponInstance.class);
         TypeRegistry.getInstance()
             .register(PlayerMagazineInstance.class);
-        TypeRegistry.getInstance()
-            .register(PlayerWeaponInstance.class);
-        TypeRegistry.getInstance()
-            .register(Permit.class);
-        TypeRegistry.getInstance()
-            .register(WeaponAttachmentAspect.EnterAttachmentModePermit.class);
-        TypeRegistry.getInstance()
-            .register(WeaponAttachmentAspect.ExitAttachmentModePermit.class);
-        TypeRegistry.getInstance()
-            .register(WeaponAttachmentAspect.ChangeAttachmentPermit.class);
-        TypeRegistry.getInstance()
-            .register(WeaponReloadAspect.UnloadPermit.class);
-        TypeRegistry.getInstance()
-            .register(MagazineReloadAspect.LoadPermit.class);
-        TypeRegistry.getInstance()
-            .register(PlayerWeaponInstance.class);
         TypeRegistry.getInstance()
             .register(WeaponState.class);
         TypeRegistry.getInstance()

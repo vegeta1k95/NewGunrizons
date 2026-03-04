@@ -8,11 +8,11 @@ import org.lwjgl.opengl.GL11;
 import com.gtnewhorizon.newgunrizons.CommonProxy;
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
+import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.model.ammo.Bullet44;
 import com.gtnewhorizon.newgunrizons.model.ammo.BulletBig;
 import com.gtnewhorizon.newgunrizons.model.ammo.SMAWRocket;
 import com.gtnewhorizon.newgunrizons.model.ammo.ShotgunShell;
-import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 
 public class Bullets {
 

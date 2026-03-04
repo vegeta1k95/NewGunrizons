@@ -296,7 +296,8 @@ public class Mk48MOD1Factory {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 
@@ -1023,7 +1024,8 @@ public class Mk48MOD1Factory {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.1F, 0.6F);
                         }
 

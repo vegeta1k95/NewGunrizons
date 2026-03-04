@@ -17,7 +17,6 @@ public enum GrenadeState implements ManagedState<GrenadeState> {
 
     private static final int DEFAULT_PRIORITY = 0;
     private final GrenadeState preparingPhase;
-    private final GrenadeState permitRequestedPhase;
     private final GrenadeState commitPhase;
     @Getter
     private final boolean isTransient;
@@ -25,37 +24,26 @@ public enum GrenadeState implements ManagedState<GrenadeState> {
     private final int priority;
 
     GrenadeState() {
-        this(null, null, null, true);
+        this(0, null, null, true);
     }
 
     GrenadeState(int priority) {
-        this(priority, null, null, null, true);
+        this(priority, null, null, true);
     }
 
     GrenadeState(boolean isTransient) {
-        this(null, null, null, isTransient);
+        this(0, null, null, isTransient);
     }
 
-    GrenadeState(GrenadeState preparingPhase, GrenadeState permitRequestedState, GrenadeState transactionFinalState,
-        boolean isTransient) {
-        this(DEFAULT_PRIORITY, preparingPhase, permitRequestedState, transactionFinalState, isTransient);
-    }
-
-    GrenadeState(int priority, GrenadeState preparingPhase, GrenadeState permitRequestedState,
-        GrenadeState transactionFinalState, boolean isTransient) {
+    GrenadeState(int priority, GrenadeState preparingPhase, GrenadeState commitPhase, boolean isTransient) {
         this.priority = priority;
         this.preparingPhase = preparingPhase;
-        this.permitRequestedPhase = permitRequestedState;
-        this.commitPhase = transactionFinalState;
+        this.commitPhase = commitPhase;
         this.isTransient = false;
     }
 
     public GrenadeState preparingPhase() {
         return this.preparingPhase;
-    }
-
-    public GrenadeState permitRequestedPhase() {
-        return this.permitRequestedPhase;
     }
 
     public GrenadeState commitPhase() {

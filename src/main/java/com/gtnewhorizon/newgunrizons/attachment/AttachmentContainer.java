@@ -5,7 +5,9 @@ import java.util.List;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
+/** An item that supports attachments (weapons, grenades). */
+@FunctionalInterface
 public interface AttachmentContainer {
 
-    List<CompatibleAttachment> getActiveAttachments(EntityLivingBase var1, ItemStack var2);
+    List<CompatibleAttachment> getActiveAttachments(EntityLivingBase entity, ItemStack itemStack);
 }

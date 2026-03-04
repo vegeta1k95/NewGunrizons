@@ -9,16 +9,16 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.event.RenderLivingEvent.Pre;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+
 
 import com.gtnewhorizon.newgunrizons.client.render.RenderingPhase;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.config.SafeGlobals;
-import com.gtnewhorizon.newgunrizons.grenade.EntityGrenade;
+
 import com.gtnewhorizon.newgunrizons.grenade.PlayerGrenadeInstance;
+import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstance;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -90,15 +90,6 @@ public class WeaponEventHandler {
             }
 
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
-        if (event.entity instanceof EntityGrenade) {
-            ((EntityGrenade) event.entity).setContext(this.modContext);
-        }
-
     }
 
     @SubscribeEvent

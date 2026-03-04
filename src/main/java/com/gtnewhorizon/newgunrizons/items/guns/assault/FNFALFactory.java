@@ -281,7 +281,8 @@ public class FNFALFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.105F, 1.0F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(1.369F, -1.23F, 3.0F);
                         } else {
                             GL11.glTranslatef(1.373F, -1.34F, 2.4F);
@@ -368,7 +369,8 @@ public class FNFALFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.105F, 1.0F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(1.369F, -1.23F, 3.0F);
                         } else {
                             GL11.glTranslatef(1.373F, -1.34F, 2.4F);

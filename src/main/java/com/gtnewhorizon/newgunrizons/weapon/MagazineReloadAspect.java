@@ -7,18 +7,15 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.config.Tags;
-import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
-import com.gtnewhorizon.newgunrizons.state.Aspect;
-import com.gtnewhorizon.newgunrizons.state.Permit;
-import com.gtnewhorizon.newgunrizons.state.PermitManager;
-import com.gtnewhorizon.newgunrizons.state.StateManager;
-import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
 import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
+import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
+import com.gtnewhorizon.newgunrizons.state.Aspect;
+import com.gtnewhorizon.newgunrizons.state.StateManager;
+import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
 
 public class MagazineReloadAspect implements Aspect<MagazineState, PlayerMagazineInstance> {
 
@@ -26,42 +23,39 @@ public class MagazineReloadAspect implements Aspect<MagazineState, PlayerMagazin
     private static final long reloadAnimationDuration;
     private static final Predicate<PlayerMagazineInstance> reloadAnimationCompleted;
     private final ModContext modContext;
-    private PermitManager permitManager;
     private StateManager<MagazineState, ? super PlayerMagazineInstance> stateManager;
     private final Predicate<PlayerMagazineInstance> notFull = (instance) -> Tags.getAmmo(instance.getItemStack())
         < instance.getMagazine()
             .getAmmo();
+
+    /** Client-side guard: checks if player has compatible bullets in inventory. */
+    private final Predicate<PlayerMagazineInstance> hasCompatibleBullets = (instance) -> {
+        if (!(instance.getPlayer() instanceof EntityPlayer player)) {
+            return false;
+        }
+        if (!(instance.getItemStack().getItem() instanceof ItemMagazine magazine)) {
+            return false;
+        }
+        List<ItemBullet> compatibleBullets = magazine.getCompatibleBullets();
+        return InventoryUtils.hasCompatibleItem(compatibleBullets, player, (s) -> true);
+    };
 
     public MagazineReloadAspect(ModContext modContext) {
         this.modContext = modContext;
     }
 
     public void setStateManager(StateManager<MagazineState, ? super PlayerMagazineInstance> stateManager) {
-        if (this.permitManager == null) {
-            throw new IllegalStateException("Permit manager not initialized");
-        } else {
-            this.stateManager = stateManager.in(this)
-                .change(MagazineState.READY)
-                .to(MagazineState.LOAD)
-                .when(this.notFull)
-                .withPermit(
-                    (s, es) -> new LoadPermit(s),
-                    this.modContext.getPlayerItemInstanceRegistry()::update,
-                    this.permitManager)
-                .withAction((c, f, t, p) -> this.doPermittedLoad(c, (LoadPermit) p))
-                .manual()
-                .in(this)
-                .change(MagazineState.LOAD)
-                .to(MagazineState.READY)
-                .when(reloadAnimationCompleted)
-                .automatic();
-        }
-    }
-
-    public void setPermitManager(PermitManager permitManager) {
-        this.permitManager = permitManager;
-        permitManager
-            .registerEvaluator(MagazineReloadAspect.LoadPermit.class, PlayerMagazineInstance.class, this::evaluateLoad);
+        this.stateManager = stateManager.in(this)
+            .change(MagazineState.READY)
+            .to(MagazineState.LOAD)
+            .when(this.notFull.and(this.hasCompatibleBullets))
+            .withAction(this::performLoad)
+            .manual()
+            .in(this)
+            .change(MagazineState.LOAD)
+            .to(MagazineState.READY)
+            .when(reloadAnimationCompleted)
+            .automatic();
     }
 
     public void reloadMainHeldItem(EntityPlayer player) {
@@ -79,54 +73,17 @@ public class MagazineReloadAspect implements Aspect<MagazineState, PlayerMagazin
 
     }
 
-    private void evaluateLoad(MagazineReloadAspect.LoadPermit p, PlayerMagazineInstance magazineInstance) {
-        if (magazineInstance.getPlayer() instanceof EntityPlayer) {
-            ItemStack magazineStack = magazineInstance.getItemStack();
-            Permit.Status status = Permit.Status.DENIED;
-            if (magazineStack.getItem() instanceof ItemMagazine magazine) {
-                List<ItemBullet> compatibleBullets = magazine.getCompatibleBullets();
-                int currentAmmo = Tags.getAmmo(magazineStack);
-                ItemStack consumedStack;
-                if ((consumedStack = InventoryUtils.tryConsumingCompatibleItem(
-                    compatibleBullets,
-                    magazine.getAmmo() - currentAmmo,
-                    (EntityPlayer) magazineInstance.getPlayer(),
-                    (i) -> true)) != null) {
-                    Tags.setAmmo(magazineStack, Tags.getAmmo(magazineStack) + consumedStack.stackSize);
-                    if (magazine.getReloadSound() != null) {
-                        magazineInstance.getPlayer()
-                            .playSound(magazine.getReloadSound(), 1.0F, 1.0F);
-                    }
-
-                    status = Permit.Status.GRANTED;
-                }
-            }
-
-            p.setStatus(status);
-        }
-    }
-
-    private void doPermittedLoad(PlayerMagazineInstance weaponInstance, MagazineReloadAspect.LoadPermit permit) {
-        if (permit == null) {
-            System.err.println("Permit is null, something went wrong");
-        }
+    private void performLoad(PlayerMagazineInstance magazineInstance) {
+        // Send action to server for authoritative inventory operations (bullet consumption)
+        this.modContext.getChannel()
+            .sendToServer(
+                new WeaponActionMessage(WeaponActionMessage.MAGAZINE_LOAD, magazineInstance.getItemInventoryIndex()));
     }
 
     static {
-        TypeRegistry.getInstance()
-            .register(MagazineReloadAspect.LoadPermit.class);
-        allowedUpdateFromStates = new HashSet<>(Arrays.asList(MagazineState.LOAD_REQUESTED, MagazineState.LOAD));
+        allowedUpdateFromStates = new HashSet<>(Arrays.asList(MagazineState.LOAD));
         reloadAnimationDuration = 1000L;
         reloadAnimationCompleted = (es) -> System.currentTimeMillis()
             >= es.getStateUpdateTimestamp() + reloadAnimationDuration;
-    }
-
-    public static class LoadPermit extends Permit<MagazineState> {
-
-        public LoadPermit() {}
-
-        public LoadPermit(MagazineState state) {
-            super(state);
-        }
     }
 }

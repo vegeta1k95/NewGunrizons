@@ -12,9 +12,9 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.client.shader.Framebuffers;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.util.Pair;
 
 import cpw.mods.fml.relauncher.Side;

@@ -194,7 +194,8 @@ public class LeeEnfieldSMLE {
                             GL11.glTranslatef(-0.003F, 0.105F, 1.3F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PriscopicScope)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PriscopicScope)) {
                             GL11.glTranslatef(-0.3F, -0.12F, 0.93F);
                         }
 
@@ -538,7 +539,8 @@ public class LeeEnfieldSMLE {
                             GL11.glTranslatef(-0.003F, 0.105F, 1.5F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PriscopicScope)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PriscopicScope)) {
                             GL11.glTranslatef(-0.3F, -0.12F, 1.15F);
                         }
 

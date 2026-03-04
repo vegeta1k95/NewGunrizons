@@ -2,31 +2,29 @@ package com.gtnewhorizon.newgunrizons.items;
 
 import java.util.function.BiConsumer;
 
-import com.gtnewhorizon.newgunrizons.attachment.AttachmentBuilder;
-import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizon.newgunrizons.attachment.AttachmentBuilder;
+import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.client.scope.ScopeRenderer;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 
+/**
+ * A scope attachment that provides zoom capabilities.
+ * <p>
+ * Scopes can be optical (with a viewfinder overlay) and optionally provide night vision.
+ * Zoom level is configured via the {@link Builder}.
+ */
 public class ItemScope extends ItemAttachment {
 
     private final ItemScope.Builder builder;
 
     private ItemScope(ItemScope.Builder builder) {
-        super(
-            builder.getModId(),
-            AttachmentCategory.SCOPE,
-            builder.getModel(),
-            builder.getTextureName(),
-            null,
-            null,
-            null);
+        super(builder.getModId(), AttachmentCategory.SCOPE, null);
         this.builder = builder;
-        this.setMaxStackSize(1);
     }
 
     public float getMinZoom() {
@@ -91,11 +89,11 @@ public class ItemScope extends ItemAttachment {
         }
 
         public ItemAttachment build(ModContext modContext) {
-            this.apply2 = (a, instance) -> {
+            this.applyHandler = (a, instance) -> {
                 float zoom = this.minZoom + (this.maxZoom - this.minZoom) / 2.0F;
                 instance.setZoom(zoom);
             };
-            this.remove2 = (a, instance) -> instance.setZoom(1.0F);
+            this.removeHandler = (a, instance) -> instance.setZoom(1.0F);
             return super.build(modContext);
         }
     }

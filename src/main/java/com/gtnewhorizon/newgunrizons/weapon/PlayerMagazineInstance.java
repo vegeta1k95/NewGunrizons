@@ -1,9 +1,9 @@
 package com.gtnewhorizon.newgunrizons.weapon;
 
-import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
+import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 
 import io.netty.buffer.ByteBuf;

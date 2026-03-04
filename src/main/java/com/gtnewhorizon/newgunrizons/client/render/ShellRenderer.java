@@ -1,6 +1,5 @@
 package com.gtnewhorizon.newgunrizons.client.render;
 
-import com.gtnewhorizon.newgunrizons.model.ModelShell;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -9,12 +8,13 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
+import com.gtnewhorizon.newgunrizons.model.ModelShell;
 import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 
 public class ShellRenderer extends Render {
 
-    private static final ResourceLocation DEFAULT_TEXTURE =
-        new ResourceLocation("newgunrizons:/com/gtnewhorizon/newgunrizons/resources/shell.png");
+    private static final ResourceLocation DEFAULT_TEXTURE = new ResourceLocation(
+        "newgunrizons:/com/gtnewhorizon/newgunrizons/resources/shell.png");
 
     private static final ModelShell DEFAULT_MODEL = new ModelShell();
 
@@ -22,18 +22,18 @@ public class ShellRenderer extends Render {
         EntityShellCasing entityShellCasing = (EntityShellCasing) entity;
         ItemWeapon weapon = entityShellCasing.getWeapon();
         if (weapon != null) {
-                GL11.glPushMatrix();
-                this.bindTexture(DEFAULT_TEXTURE);
-                GL11.glTranslated(x, y, z);
-                float fov = Minecraft.getMinecraft().gameSettings.fovSetting;
-                float scale = (fov * 0.001F - 0.02F) * 0.3F;
-                GL11.glScalef(scale, scale, scale);
-                GL11.glRotatef(entityShellCasing.getXRotation(), 1.0F, 0.0F, 0.0F);
-                GL11.glRotatef(entityShellCasing.getYRotation(), 0.0F, 1.0F, 0.0F);
-                GL11.glRotatef(entityShellCasing.getZRotation(), 0.0F, 0.0F, 1.0F);
-                GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                DEFAULT_MODEL.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-                GL11.glPopMatrix();
+            GL11.glPushMatrix();
+            this.bindTexture(DEFAULT_TEXTURE);
+            GL11.glTranslated(x, y, z);
+            float fov = Minecraft.getMinecraft().gameSettings.fovSetting;
+            float scale = (fov * 0.001F - 0.02F) * 0.3F;
+            GL11.glScalef(scale, scale, scale);
+            GL11.glRotatef(entityShellCasing.getXRotation(), 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(entityShellCasing.getYRotation(), 0.0F, 1.0F, 0.0F);
+            GL11.glRotatef(entityShellCasing.getZRotation(), 0.0F, 0.0F, 1.0F);
+            GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
+            DEFAULT_MODEL.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+            GL11.glPopMatrix();
         }
     }
 

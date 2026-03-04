@@ -1,6 +1,5 @@
 package com.gtnewhorizon.newgunrizons.entities;
 
-import lombok.Getter;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +16,7 @@ import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
 
 public class EntityBullet extends EntityProjectile {
 
@@ -34,7 +34,7 @@ public class EntityBullet extends EntityProjectile {
     }
 
     public EntityBullet(ItemWeapon weapon, World world, EntityLivingBase player, float speed, float gravityVelocity,
-                        float inaccuracy, float damage, float explosionRadius) {
+        float inaccuracy, float damage, float explosionRadius) {
         super(world, player, speed, gravityVelocity, inaccuracy);
         this.weapon = weapon;
         this.damage = damage;
@@ -47,8 +47,7 @@ public class EntityBullet extends EntityProjectile {
 
     public void onImpact(MovingObjectPosition position) {
 
-        if (worldObj.isRemote || weapon == null)
-            return;
+        if (worldObj.isRemote || weapon == null) return;
 
         if (explosionRadius > 0.0F) {
             Explosion.createServerSideExplosion(
@@ -65,8 +64,7 @@ public class EntityBullet extends EntityProjectile {
             if (getThrower() == null) {
                 position.entityHit.attackEntityFrom(new DamageSource("generic"), damage);
             } else {
-                position.entityHit
-                    .attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
+                position.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, getThrower()), damage);
             }
 
             position.entityHit.hurtResistantTime = 0;
@@ -79,8 +77,8 @@ public class EntityBullet extends EntityProjectile {
                 posZ,
                 100.0D);
 
-            double magnitude = Math.sqrt(
-                this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) + 1.0D;
+            double magnitude = Math
+                .sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ) + 1.0D;
 
             float bleedingCoefficient = 1.0F;
             int count = (int) ((float) this.getParticleCount(this.damage) * bleedingCoefficient);
@@ -93,12 +91,7 @@ public class EntityBullet extends EntityProjectile {
             var10006 = position.entityHit.posY - var10007;
             double var10008 = this.motionZ / magnitude;
             var8.sendToAllAround(
-                new SpawnParticleMessage(
-                    var10003,
-                    count,
-                    var10005,
-                    var10006,
-                    position.entityHit.posZ - var10008),
+                new SpawnParticleMessage(var10003, count, var10005, var10006, position.entityHit.posZ - var10008),
                 point);
         }
 

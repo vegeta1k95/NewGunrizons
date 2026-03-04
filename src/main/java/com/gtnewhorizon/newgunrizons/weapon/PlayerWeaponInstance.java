@@ -14,10 +14,10 @@ import net.minecraft.util.ResourceLocation;
 
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
-import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.client.shader.DynamicShaderGroupSource;
 import com.gtnewhorizon.newgunrizons.client.shader.DynamicShaderPhase;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
+import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.util.MiscUtils;
 
@@ -308,8 +308,8 @@ public class PlayerWeaponInstance extends PlayerItemInstance<WeaponState> {
     }
 
     public int[] getActiveAttachmentIds() {
-        if (this.activeAttachmentIds == null || this.activeAttachmentIds.length != AttachmentCategory.values.length) {
-            this.activeAttachmentIds = new int[AttachmentCategory.values.length];
+        if (this.activeAttachmentIds == null || this.activeAttachmentIds.length != AttachmentCategory.VALUES.length) {
+            this.activeAttachmentIds = new int[AttachmentCategory.VALUES.length];
 
             for (CompatibleAttachment attachment : this.getWeapon()
                 .getCompatibleAttachments()

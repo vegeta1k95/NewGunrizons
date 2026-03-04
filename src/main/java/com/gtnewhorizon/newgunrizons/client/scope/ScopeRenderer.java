@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL11;
 import com.gtnewhorizon.newgunrizons.client.render.CustomRenderer;
 import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 import com.gtnewhorizon.newgunrizons.client.render.TransformType;
-import com.gtnewhorizon.newgunrizons.model.ModelViewfinder;
 import com.gtnewhorizon.newgunrizons.config.ClientModContext;
+import com.gtnewhorizon.newgunrizons.model.ModelViewfinder;
 
 public class ScopeRenderer implements CustomRenderer {
 

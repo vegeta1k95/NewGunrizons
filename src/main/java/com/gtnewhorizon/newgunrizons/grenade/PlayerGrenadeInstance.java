@@ -6,8 +6,6 @@ import java.util.Deque;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,6 +17,8 @@ import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstance;
 
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
+import lombok.Setter;
 
 public class PlayerGrenadeInstance extends PlayerItemInstance<GrenadeState> {
 
@@ -148,8 +148,8 @@ public class PlayerGrenadeInstance extends PlayerItemInstance<GrenadeState> {
     }
 
     public int[] getActiveAttachmentIds() {
-        if (this.activeAttachmentIds == null || this.activeAttachmentIds.length != AttachmentCategory.values.length) {
-            this.activeAttachmentIds = new int[AttachmentCategory.values.length];
+        if (this.activeAttachmentIds == null || this.activeAttachmentIds.length != AttachmentCategory.VALUES.length) {
+            this.activeAttachmentIds = new int[AttachmentCategory.VALUES.length];
             for (CompatibleAttachment attachment : this.getWeapon()
                 .getCompatibleAttachments()
                 .values()) {

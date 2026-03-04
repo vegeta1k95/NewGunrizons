@@ -318,7 +318,8 @@ public class ScarHFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.045F, -0.2F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.045F, -0.21F);
                         }
 
@@ -463,7 +464,8 @@ public class ScarHFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.045F, -0.2F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.045F, -0.21F);
                         }
 

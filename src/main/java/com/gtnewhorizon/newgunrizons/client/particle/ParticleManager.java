@@ -38,7 +38,7 @@ public class ParticleManager {
     }
 
     public static void spawnFlashParticle(EntityLivingBase player, float flashIntensity, float flashScale,
-                                          float xOffset, float yOffset) {
+        float xOffset, float yOffset) {
         float distance = 0.7F;
         float scale = 0.8F * 2.3F * flashScale;
         float positionRandomizationFactor = 0.003F;
@@ -75,7 +75,7 @@ public class ParticleManager {
     }
 
     public static void spawnExplosionSmoke(double posX, double posY, double posZ, double motionX, double motionY,
-                                           double motionZ, float scale, int maxAge, ResourceLocation textureResource) {
+        double motionZ, float scale, int maxAge, ResourceLocation textureResource) {
         World world = Minecraft.getMinecraft().thePlayer.worldObj;
         ExplosionSmokeFX smokeParticle = new ExplosionSmokeFX(
             world,

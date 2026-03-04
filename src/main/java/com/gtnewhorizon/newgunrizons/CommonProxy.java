@@ -5,21 +5,17 @@ import net.minecraft.item.Item;
 import com.gtnewhorizon.newgunrizons.items.material.ItemAluminumPlate;
 import com.gtnewhorizon.newgunrizons.items.material.ItemBigSteelPlate;
 import com.gtnewhorizon.newgunrizons.items.material.ItemCapacitor;
-import com.gtnewhorizon.newgunrizons.items.material.ItemCloth;
 import com.gtnewhorizon.newgunrizons.items.material.ItemCopperWiring;
 import com.gtnewhorizon.newgunrizons.items.material.ItemDiode;
 import com.gtnewhorizon.newgunrizons.items.material.ItemElectronics;
-import com.gtnewhorizon.newgunrizons.items.material.ItemGreenCloth;
 import com.gtnewhorizon.newgunrizons.items.material.ItemInductor;
 import com.gtnewhorizon.newgunrizons.items.material.ItemLaserPointer;
 import com.gtnewhorizon.newgunrizons.items.material.ItemMetalComponents;
 import com.gtnewhorizon.newgunrizons.items.material.ItemMiniSteelPlate;
 import com.gtnewhorizon.newgunrizons.items.material.ItemOpticGlass;
-import com.gtnewhorizon.newgunrizons.items.material.ItemPiston;
 import com.gtnewhorizon.newgunrizons.items.material.ItemPlastic;
 import com.gtnewhorizon.newgunrizons.items.material.ItemResistor;
 import com.gtnewhorizon.newgunrizons.items.material.ItemSteelPlate;
-import com.gtnewhorizon.newgunrizons.items.material.ItemTanCloth;
 import com.gtnewhorizon.newgunrizons.items.material.ItemTransistor;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
@@ -36,16 +32,12 @@ public class CommonProxy {
 
     public static Item ElectronicCircuitBoard;
     public static Item OpticGlass;
-    public static Item Cloth;
-    public static Item TanCloth;
-    public static Item GreenCloth;
     public static Item Inductor;
     public static Item Transistor;
     public static Item Resistor;
     public static Item Diode;
     public static Item Capacitor;
     public static Item CopperWiring;
-    public static Item Piston;
     public static Item LaserPointer;
     public static Item AluminumPlate;
     public static Item SteelPlate;
@@ -68,16 +60,12 @@ public class CommonProxy {
 
         ElectronicCircuitBoard = new ItemElectronics();
         OpticGlass = new ItemOpticGlass();
-        Cloth = new ItemCloth();
-        TanCloth = new ItemTanCloth();
-        GreenCloth = new ItemGreenCloth();
         Inductor = new ItemInductor();
         Resistor = new ItemResistor();
         Transistor = new ItemTransistor();
         Diode = new ItemDiode();
         Capacitor = new ItemCapacitor();
         CopperWiring = new ItemCopperWiring();
-        Piston = new ItemPiston();
         LaserPointer = new ItemLaserPointer();
         Plastic = new ItemPlastic();
         AluminumPlate = new ItemAluminumPlate();
@@ -88,9 +76,6 @@ public class CommonProxy {
 
         GameRegistry.registerItem(ElectronicCircuitBoard, "Electronics");
         GameRegistry.registerItem(OpticGlass, "OpticGlass");
-        GameRegistry.registerItem(Cloth, "Cloth");
-        GameRegistry.registerItem(TanCloth, "TanCloth");
-        GameRegistry.registerItem(GreenCloth, "GreenCloth");
         GameRegistry.registerItem(AluminumPlate, "AluminumPlate");
         GameRegistry.registerItem(SteelPlate, "SteelPlate");
         GameRegistry.registerItem(BigSteelPlate, "BigSteelPlate");
@@ -102,7 +87,6 @@ public class CommonProxy {
         GameRegistry.registerItem(Diode, "Diode");
         GameRegistry.registerItem(Capacitor, "Capacitor");
         GameRegistry.registerItem(CopperWiring, "CopperWiring");
-        GameRegistry.registerItem(Piston, "Piston");
         GameRegistry.registerItem(LaserPointer, "LaserPointer");
         GameRegistry.registerItem(Plastic, "plastic");
 

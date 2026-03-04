@@ -1,9 +1,10 @@
 package com.gtnewhorizon.newgunrizons.model;
 
-import com.gtnewhorizon.newgunrizons.client.render.FlatSurfaceModelBox;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
+import com.gtnewhorizon.newgunrizons.client.render.FlatSurfaceModelBox;
 
 public class ModelViewfinder extends ModelBase {
 

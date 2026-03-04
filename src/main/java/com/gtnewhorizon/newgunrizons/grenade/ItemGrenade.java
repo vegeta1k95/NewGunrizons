@@ -24,11 +24,11 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentContainer;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.crafting.OptionsMetadata;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.util.Updatable;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstanceFactory;
 

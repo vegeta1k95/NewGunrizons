@@ -1,10 +1,18 @@
 package com.gtnewhorizon.newgunrizons.attachment;
 
+/**
+ * Represents a renderable part of a weapon or attachment.
+ * <p>
+ * {@link StandardPart Standard} parts define built-in rendering positions (main item, hands).
+ * {@link NamedPart Named} parts represent custom attachment-specific render slots.
+ * <p>
+ * Renderers use {@code instanceof StandardPart} to distinguish built-in positions from
+ * custom attachment parts.
+ */
 public interface Part {
 
-    Part MAIN_ITEM = new DefaultPart("MAIN_ITEM");
-    Part RIGHT_HAND = new DefaultPart("RIGHT_HAND");
-    Part LEFT_HAND = new DefaultPart("LEFT_HAND");
-    Part INVENTORY = new DefaultPart("INVENTORY");
-    Part NONE = new DefaultPart("NONE");
+    Part MAIN_ITEM = new StandardPart("MAIN_ITEM");
+    Part RIGHT_HAND = new StandardPart("RIGHT_HAND");
+    Part LEFT_HAND = new StandardPart("LEFT_HAND");
+    Part NONE = new StandardPart("NONE");
 }

@@ -261,27 +261,34 @@ public class FamasF1Factory implements GunFactory {
                         GL11.glRotatef(-0.5F, 1.0F, 0.0F, 0.0F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.ACOG)) {
                             GL11.glTranslatef(0.005F, 0.275F, 1.0F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Specter)) {
-                            GL11.glTranslatef(0.005F, 0.25F, 0.5F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Scope)) {
-                            GL11.glTranslatef(0.005F, -0.04F, 5.0F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.HP)) {
-                            GL11.glTranslatef(0.005F, -0.04F, 5.0F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Reflex)) {
-                            GL11.glTranslatef(0.0F, 0.2F, 0.28F);
-                        } else if (ItemWeapon
-                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
-                                GL11.glTranslatef(0.0F, 0.19F, 0.5F);
-                            } else
-                            if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {
-                                GL11.glTranslatef(0.0F, 0.19F, 0.4F);
-                            } else
-                                if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Kobra)) {
-                                    GL11.glTranslatef(0.0F, 0.2F, 0.28F);
+                        } else
+                            if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Specter)) {
+                                GL11.glTranslatef(0.005F, 0.25F, 0.5F);
+                            } else if (ItemWeapon
+                                .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Scope)) {
+                                    GL11.glTranslatef(0.005F, -0.04F, 5.0F);
+                                } else
+                                if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.HP)) {
+                                    GL11.glTranslatef(0.005F, -0.04F, 5.0F);
                                 } else if (ItemWeapon
-                                    .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.MicroT1)) {
+                                    .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Reflex)) {
                                         GL11.glTranslatef(0.0F, 0.2F, 0.28F);
-                                    }
+                                    } else if (ItemWeapon.isActiveAttachment(
+                                        renderContext.getWeaponInstance(),
+                                        Attachments.Holographic2)) {
+                                            GL11.glTranslatef(0.0F, 0.19F, 0.5F);
+                                        } else if (ItemWeapon
+                                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {
+                                                GL11.glTranslatef(0.0F, 0.19F, 0.4F);
+                                            } else if (ItemWeapon.isActiveAttachment(
+                                                renderContext.getWeaponInstance(),
+                                                Attachments.Kobra)) {
+                                                    GL11.glTranslatef(0.0F, 0.2F, 0.28F);
+                                                } else if (ItemWeapon.isActiveAttachment(
+                                                    renderContext.getWeaponInstance(),
+                                                    Attachments.MicroT1)) {
+                                                        GL11.glTranslatef(0.0F, 0.2F, 0.28F);
+                                                    }
 
                     })
                     .withFirstPersonCustomPositioning(Magazines.NATOFamasMag, (renderContext) -> {})
@@ -440,27 +447,34 @@ public class FamasF1Factory implements GunFactory {
                         GL11.glTranslatef(0.58F, 0.76F, 0.0F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.ACOG)) {
                             GL11.glTranslatef(0.005F, 0.275F, 1.05F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Specter)) {
-                            GL11.glTranslatef(0.005F, 0.25F, 0.5F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Scope)) {
-                            GL11.glTranslatef(0.005F, -0.04F, 5.0F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.HP)) {
-                            GL11.glTranslatef(0.005F, -0.04F, 5.0F);
-                        } else if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Reflex)) {
-                            GL11.glTranslatef(0.0F, 0.2F, 0.28F);
-                        } else if (ItemWeapon
-                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
-                                GL11.glTranslatef(0.0F, 0.19F, 0.5F);
-                            } else
-                            if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {
-                                GL11.glTranslatef(0.0F, 0.19F, 0.4F);
-                            } else
-                                if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Kobra)) {
-                                    GL11.glTranslatef(0.0F, 0.2F, 0.28F);
+                        } else
+                            if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Specter)) {
+                                GL11.glTranslatef(0.005F, 0.25F, 0.5F);
+                            } else if (ItemWeapon
+                                .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Scope)) {
+                                    GL11.glTranslatef(0.005F, -0.04F, 5.0F);
+                                } else
+                                if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.HP)) {
+                                    GL11.glTranslatef(0.005F, -0.04F, 5.0F);
                                 } else if (ItemWeapon
-                                    .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.MicroT1)) {
+                                    .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Reflex)) {
                                         GL11.glTranslatef(0.0F, 0.2F, 0.28F);
-                                    }
+                                    } else if (ItemWeapon.isActiveAttachment(
+                                        renderContext.getWeaponInstance(),
+                                        Attachments.Holographic2)) {
+                                            GL11.glTranslatef(0.0F, 0.19F, 0.5F);
+                                        } else if (ItemWeapon
+                                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {
+                                                GL11.glTranslatef(0.0F, 0.19F, 0.4F);
+                                            } else if (ItemWeapon.isActiveAttachment(
+                                                renderContext.getWeaponInstance(),
+                                                Attachments.Kobra)) {
+                                                    GL11.glTranslatef(0.0F, 0.2F, 0.28F);
+                                                } else if (ItemWeapon.isActiveAttachment(
+                                                    renderContext.getWeaponInstance(),
+                                                    Attachments.MicroT1)) {
+                                                        GL11.glTranslatef(0.0F, 0.2F, 0.28F);
+                                                    }
 
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {

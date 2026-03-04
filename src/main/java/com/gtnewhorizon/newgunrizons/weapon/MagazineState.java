@@ -9,11 +9,9 @@ import lombok.Getter;
 public enum MagazineState implements ManagedState<MagazineState> {
 
     READY(false),
-    LOAD_REQUESTED,
-    LOAD(null, LOAD_REQUESTED, null, true);
+    LOAD(true);
 
     private final MagazineState preparingPhase;
-    private final MagazineState permitRequestedPhase;
     private final MagazineState commitPhase;
     @Getter
     private final boolean isTransient;
@@ -21,33 +19,26 @@ public enum MagazineState implements ManagedState<MagazineState> {
     private final int priority;
 
     MagazineState() {
-        this(null, null, null, true);
+        this(null, null, true);
     }
 
     MagazineState(boolean isTransient) {
-        this(null, null, null, isTransient);
+        this(null, null, isTransient);
     }
 
-    MagazineState(MagazineState preparingPhase, MagazineState permitRequestedState, MagazineState transactionFinalState,
-        boolean isTransient) {
-        this(0, preparingPhase, permitRequestedState, transactionFinalState, isTransient);
+    MagazineState(MagazineState preparingPhase, MagazineState commitPhase, boolean isTransient) {
+        this(0, preparingPhase, commitPhase, isTransient);
     }
 
-    MagazineState(int priority, MagazineState preparingPhase, MagazineState permitRequestedState,
-        MagazineState transactionFinalState, boolean isTransient) {
+    MagazineState(int priority, MagazineState preparingPhase, MagazineState commitPhase, boolean isTransient) {
         this.priority = priority;
         this.preparingPhase = preparingPhase;
-        this.permitRequestedPhase = permitRequestedState;
-        this.commitPhase = transactionFinalState;
+        this.commitPhase = commitPhase;
         this.isTransient = isTransient;
     }
 
     public MagazineState preparingPhase() {
         return this.preparingPhase;
-    }
-
-    public MagazineState permitRequestedPhase() {
-        return this.permitRequestedPhase;
     }
 
     public MagazineState commitPhase() {

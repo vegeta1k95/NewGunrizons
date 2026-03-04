@@ -18,11 +18,11 @@ import com.gtnewhorizon.newgunrizons.client.input.KeyBindings;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.config.Tags;
 import com.gtnewhorizon.newgunrizons.grenade.ItemGrenade;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
-import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
-import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
+import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
 import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
+import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -230,8 +230,6 @@ public class CustomGui extends Gui {
 
     private boolean isInModifyingState(PlayerWeaponInstance weaponInstance) {
         return weaponInstance.getState() == WeaponState.MODIFYING
-            || weaponInstance.getState() == WeaponState.MODIFYING_REQUESTED
-            || weaponInstance.getState() == WeaponState.NEXT_ATTACHMENT
-            || weaponInstance.getState() == WeaponState.NEXT_ATTACHMENT_REQUESTED;
+            || weaponInstance.getState() == WeaponState.NEXT_ATTACHMENT;
     }
 }

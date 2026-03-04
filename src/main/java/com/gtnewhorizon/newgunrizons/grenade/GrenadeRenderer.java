@@ -29,9 +29,8 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.attachment.DefaultPart;
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.attachment.Part;
+import com.gtnewhorizon.newgunrizons.attachment.StandardPart;
 import com.gtnewhorizon.newgunrizons.client.animation.MultipartPositioning;
 import com.gtnewhorizon.newgunrizons.client.animation.MultipartRenderStateManager;
 import com.gtnewhorizon.newgunrizons.client.animation.MultipartTransition;
@@ -42,6 +41,7 @@ import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 import com.gtnewhorizon.newgunrizons.client.render.TransformType;
 import com.gtnewhorizon.newgunrizons.client.shader.Framebuffers;
 import com.gtnewhorizon.newgunrizons.config.ClientModContext;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.state.RenderableState;
 import com.gtnewhorizon.newgunrizons.util.Pair;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstance;
@@ -104,7 +104,7 @@ public class GrenadeRenderer implements IItemRenderer {
                     currentState = RenderableState.SAFETY_PIN_OFF;
                     break;
                 case STRIKER_LEVER_RELEASED:
-                    currentState = RenderableState.STRIKER_LEVEL_OFF;
+                    currentState = RenderableState.STRIKER_LEVER_OFF;
                     break;
                 case THROWING:
                     currentState = RenderableState.THROWING;
@@ -469,7 +469,7 @@ public class GrenadeRenderer implements IItemRenderer {
                     GrenadeRenderer.this.builder.firstPersonLeftHandPositioningSafetyPinOff,
                     GrenadeRenderer.this.builder.firstPersonRightHandPositioningSafetyPinOff,
                     GrenadeRenderer.this.builder.firstPersonCustomPositioningSafetyPinOff);
-                case STRIKER_LEVEL_OFF -> GrenadeRenderer.this.getSimpleTransition(
+                case STRIKER_LEVER_OFF -> GrenadeRenderer.this.getSimpleTransition(
                     GrenadeRenderer.this.builder.firstPersonPositioningStrikerLeverOff,
                     GrenadeRenderer.this.builder.firstPersonLeftHandPositioningStrikerLeverOff,
                     GrenadeRenderer.this.builder.firstPersonRightHandPositioningStrikerLeverOff,
@@ -641,7 +641,7 @@ public class GrenadeRenderer implements IItemRenderer {
 
         public GrenadeRenderer.Builder withFirstPersonCustomPositioning(Part part, Part attachedTo,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioning
                 .put(part, new GrenadeRenderer.SimplePositioning(attachedTo, positioning)) != null) {
@@ -666,7 +666,7 @@ public class GrenadeRenderer implements IItemRenderer {
 
         public GrenadeRenderer.Builder withFirstPersonCustomPositioningRunning(Part part,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningRunning.put(part, positioning) != null) {
                 throw new IllegalArgumentException("Part " + part + " already added");
@@ -690,7 +690,7 @@ public class GrenadeRenderer implements IItemRenderer {
 
         public GrenadeRenderer.Builder withFirstPersonCustomPositioningThrown(Part part, Part attachedTo,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningThrown
                 .put(part, new GrenadeRenderer.SimplePositioning(attachedTo, positioning)) != null) {
@@ -752,7 +752,7 @@ public class GrenadeRenderer implements IItemRenderer {
 
         public GrenadeRenderer.Builder withFirstPersonCustomPositioningStrikerLeverOff(Part part, Part attachedTo,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningStrikerLeverOff
                 .put(part, new GrenadeRenderer.SimplePositioning(attachedTo, positioning)) != null) {
@@ -765,7 +765,7 @@ public class GrenadeRenderer implements IItemRenderer {
         @SafeVarargs
         public final GrenadeRenderer.Builder withFirstPersonCustomPositioningSafetyPinOff(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningSafetyPinOff.put(part, Arrays.asList(transitions));
@@ -776,7 +776,7 @@ public class GrenadeRenderer implements IItemRenderer {
         @SafeVarargs
         public final GrenadeRenderer.Builder withFirstPersonCustomPositioningThrowing(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningThrowing.put(part, Arrays.asList(transitions));

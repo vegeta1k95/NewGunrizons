@@ -295,7 +295,8 @@ public class G36CFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.24F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.24F, 0.1F);
                         }
 
@@ -448,7 +449,8 @@ public class G36CFactory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.24F, 0.1F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.24F, 0.1F);
                         }
 

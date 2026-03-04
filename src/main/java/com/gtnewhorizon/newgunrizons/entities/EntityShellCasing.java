@@ -9,8 +9,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
 import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
 
 import io.netty.buffer.ByteBuf;
 

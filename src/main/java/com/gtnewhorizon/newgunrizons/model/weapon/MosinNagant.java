@@ -3,7 +3,7 @@ package com.gtnewhorizon.newgunrizons.model.weapon;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-import com.gtnewhorizon.newgunrizons.attachment.ModelWithAttachments;
+import com.gtnewhorizon.newgunrizons.model.ModelWithAttachments;
 
 public class MosinNagant extends ModelWithAttachments {
 

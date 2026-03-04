@@ -5,11 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.gtnewhorizon.newgunrizons.weapon.MagazineState;
-import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstanceFactory;
-import com.gtnewhorizon.newgunrizons.weapon.PlayerMagazineInstance;
-import com.gtnewhorizon.newgunrizons.weapon.Reloadable;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,26 +18,31 @@ import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.config.Tags;
 import com.gtnewhorizon.newgunrizons.util.Updatable;
+import com.gtnewhorizon.newgunrizons.weapon.MagazineState;
+import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstanceFactory;
+import com.gtnewhorizon.newgunrizons.weapon.PlayerMagazineInstance;
+import com.gtnewhorizon.newgunrizons.weapon.Reloadable;
 
 import lombok.Getter;
 
+/**
+ * A magazine attachment that holds ammunition.
+ * <p>
+ * Magazines track their current ammo count via NBT and support reloading with
+ * compatible {@link ItemBullet} types.
+ */
 public class ItemMagazine extends ItemAttachment
     implements PlayerItemInstanceFactory<PlayerMagazineInstance, MagazineState>, Reloadable, Updatable, Part {
 
     @Getter
     private final int ammo;
-    private List<ItemBullet> compatibleBullets;
+    List<ItemBullet> compatibleBullets;
     @Getter
-    private String reloadSound;
-    private ModContext modContext;
+    String reloadSound;
+    ModContext modContext;
 
-    ItemMagazine(String modId, ModelBase model, String textureName, int ammo) {
-        this(modId, model, textureName, ammo, null, null);
-    }
-
-    ItemMagazine(String modId, ModelBase model, String textureName, int ammo, ItemAttachment.ApplyHandler apply,
-        ItemAttachment.ApplyHandler remove) {
-        super(modId, AttachmentCategory.MAGAZINE, model, textureName, null, apply, remove);
+    ItemMagazine(String modId, int ammo) {
+        super(modId, AttachmentCategory.MAGAZINE, null);
         this.ammo = ammo;
         this.setMaxStackSize(1);
     }
@@ -58,23 +58,25 @@ public class ItemMagazine extends ItemAttachment
             itemStack.stackTagCompound = new NBTTagCompound();
             Tags.setAmmo(itemStack, initialAmmo);
         }
-
     }
 
-    public void onCreated(ItemStack stack, World p_77622_2_, EntityPlayer p_77622_3_) {
+    @Override
+    public void onCreated(ItemStack stack, World world, EntityPlayer player) {
         this.ensureItemStack(stack, 0);
-        super.onCreated(stack, p_77622_2_, p_77622_3_);
+        super.onCreated(stack, world, player);
     }
 
-    public void onUpdate(ItemStack stack, World world, Entity entity, int p_77663_4_, boolean p_77663_5_) {
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
         this.ensureItemStack(stack, this.ammo);
-        super.onUpdate(stack, world, entity, p_77663_4_, p_77663_5_);
+        super.onUpdate(stack, world, entity, slot, isSelected);
     }
 
     public List<ItemBullet> getCompatibleBullets() {
         return this.compatibleBullets;
     }
 
+    @Override
     public Part getRenderablePart() {
         return this;
     }
@@ -117,11 +119,7 @@ public class ItemMagazine extends ItemAttachment
         }
 
         public ItemAttachment createAttachment(ModContext modContext) {
-            ItemMagazine magazine = new ItemMagazine(
-                this.getModId(),
-                this.getModel(),
-                this.getTextureName(),
-                this.ammo);
+            ItemMagazine magazine = new ItemMagazine(this.getModId(), this.ammo);
             magazine.compatibleBullets = new ArrayList<>(this.compatibleBullets);
             if (this.reloadSound != null) {
                 magazine.reloadSound = modContext.registerSound(this.reloadSound);

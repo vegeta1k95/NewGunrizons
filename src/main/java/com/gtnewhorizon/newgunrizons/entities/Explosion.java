@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;
@@ -14,15 +13,20 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.*;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.gtnewhorizon.gtnhlib.blockpos.BlockPos;
+import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.network.ExplosionMessage;
-import com.gtnewhorizon.gtnhlib.blockpos.BlockPos;
 
 import lombok.Getter;
 
@@ -142,8 +146,7 @@ public class Explosion {
                                     pos.getZ(),
                                     this.explosionX,
                                     this.explosionY,
-                                    this.explosionZ)
-                                    : block.getExplosionResistance(null);
+                                    this.explosionZ) : block.getExplosionResistance(null);
                                 strength -= (resistance + 0.3F) * 0.3F;
                             }
 
@@ -253,23 +256,20 @@ public class Explosion {
                         offsetY *= velocityScale;
                         offsetZ *= velocityScale;
                         ParticleManager.spawnExplosionParticle(
-                                (particleX + this.explosionX) / 2.0D,
-                                (particleY + this.explosionY) / 2.0D,
-                                (particleZ + this.explosionZ) / 2.0D,
-                                offsetX / 2.0D,
-                                offsetY * 2.0D,
-                                offsetZ / 2.0D,
-                                1.5F * this.world.rand.nextFloat(),
-                                15 + (int) (this.world.rand.nextFloat() * 10.0F));
+                            (particleX + this.explosionX) / 2.0D,
+                            (particleY + this.explosionY) / 2.0D,
+                            (particleZ + this.explosionZ) / 2.0D,
+                            offsetX / 2.0D,
+                            offsetY * 2.0D,
+                            offsetZ / 2.0D,
+                            1.5F * this.world.rand.nextFloat(),
+                            15 + (int) (this.world.rand.nextFloat() * 10.0F));
                     }
                 }
 
                 if (block.getMaterial() != Material.air) {
                     if (block.canDropFromExplosion(getCompatibleExplosion())) {
-                        int meta = this.world.getBlockMetadata(
-                            blockpos.getX(),
-                            blockpos.getY(),
-                            blockpos.getZ());
+                        int meta = this.world.getBlockMetadata(blockpos.getX(), blockpos.getY(), blockpos.getZ());
                         block.dropBlockAsItemWithChance(
                             this.world,
                             blockpos.getX(),
@@ -298,14 +298,14 @@ public class Explosion {
                     double motionY = this.world.rand.nextGaussian() * 1.0E-4D;
                     double motionZ = this.world.rand.nextGaussian() * 0.001D;
                     ParticleManager.spawnExplosionSmoke(
-                            pX,
-                            pY,
-                            pZ,
-                            motionX,
-                            motionY,
-                            motionZ,
-                            1.0F,
-                            250 + (int) (this.world.rand.nextFloat() * 30.0F),
+                        pX,
+                        pY,
+                        pZ,
+                        motionX,
+                        motionY,
+                        motionZ,
+                        1.0F,
+                        250 + (int) (this.world.rand.nextFloat() * 30.0F),
                         SMOKE_TEXTURE);
                 }
             }
@@ -318,11 +318,7 @@ public class Explosion {
                     && this.world.getBlock(blockpos.getX(), blockpos.getY() - 1, blockpos.getZ())
                         .func_149730_j()
                     && this.explosionRNG.nextInt(3) == 0) {
-                    this.world.setBlock(
-                        blockpos.getX(),
-                        blockpos.getY(),
-                        blockpos.getZ(),
-                        Blocks.fire);
+                    this.world.setBlock(blockpos.getX(), blockpos.getY(), blockpos.getZ(), Blocks.fire);
                 }
             }
         }

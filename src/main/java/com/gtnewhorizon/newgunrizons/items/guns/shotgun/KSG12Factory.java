@@ -274,7 +274,8 @@ public class KSG12Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.07F, 0.0F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.07F, 0.0F);
                         }
 
@@ -395,7 +396,8 @@ public class KSG12Factory implements GunFactory {
                             GL11.glTranslatef(0.0F, 0.07F, 0.0F);
                         }
 
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
+                        if (ItemWeapon
+                            .isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holographic2)) {
                             GL11.glTranslatef(0.0F, 0.07F, 0.0F);
                         }
 

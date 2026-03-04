@@ -1,7 +1,5 @@
 package com.gtnewhorizon.newgunrizons.weapon;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,6 +15,8 @@ import com.gtnewhorizon.newgunrizons.state.ExtendedState;
 import com.gtnewhorizon.newgunrizons.state.ManagedState;
 
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
+import lombok.Setter;
 
 public class PlayerItemInstance<S extends ManagedState<S>> extends UniversalObject
 
@@ -77,7 +77,8 @@ public class PlayerItemInstance<S extends ManagedState<S>> extends UniversalObje
         this.item = Item.getItemById(buf.readInt());
         this.itemInventoryIndex = buf.readInt();
         this.updateId = buf.readLong();
-        this.state = TypeRegistry.getInstance().fromBytes(buf);
+        this.state = TypeRegistry.getInstance()
+            .fromBytes(buf);
     }
 
     public void serialize(ByteBuf buf) {
@@ -98,7 +99,8 @@ public class PlayerItemInstance<S extends ManagedState<S>> extends UniversalObje
                 .commitPhase() == state) {
                 logger.debug(
                     "Committing state {} to {}",
-                    this.preparedState.getState(), this.preparedState.getState()
+                    this.preparedState.getState(),
+                    this.preparedState.getState()
                         .commitPhase());
                 this.updateWith(this.preparedState, false);
             } else {

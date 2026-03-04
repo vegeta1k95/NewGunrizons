@@ -13,8 +13,6 @@ import java.util.Random;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -34,10 +32,9 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.attachment.DefaultPart;
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
-import com.gtnewhorizon.newgunrizons.attachment.ModelWithAttachments;
 import com.gtnewhorizon.newgunrizons.attachment.Part;
+import com.gtnewhorizon.newgunrizons.attachment.StandardPart;
+import com.gtnewhorizon.newgunrizons.model.ModelWithAttachments;
 import com.gtnewhorizon.newgunrizons.client.animation.MultipartPositioning;
 import com.gtnewhorizon.newgunrizons.client.animation.MultipartRenderStateManager;
 import com.gtnewhorizon.newgunrizons.client.animation.MultipartTransition;
@@ -45,17 +42,20 @@ import com.gtnewhorizon.newgunrizons.client.animation.MultipartTransitionProvide
 import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.shader.Framebuffers;
 import com.gtnewhorizon.newgunrizons.config.ClientModContext;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.state.RenderableState;
 import com.gtnewhorizon.newgunrizons.util.Pair;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponStateTimed;
+import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstance;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerWeaponInstance;
-import com.gtnewhorizon.newgunrizons.weapon.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
+import com.gtnewhorizon.newgunrizons.weapon.WeaponStateTimed;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import lombok.Getter;
+import lombok.Setter;
 
 public class WeaponRenderer implements IItemRenderer {
 
@@ -164,7 +164,6 @@ public class WeaponRenderer implements IItemRenderer {
                     }
                     break;
                 case UNLOAD_PREPARING:
-                case UNLOAD_REQUESTED:
                 case UNLOAD:
                     currentState = RenderableState.UNLOADING;
                     break;
@@ -184,9 +183,7 @@ public class WeaponRenderer implements IItemRenderer {
                     currentState = RenderableState.EJECT_SPENT_ROUND;
                     break;
                 case MODIFYING:
-                case MODIFYING_REQUESTED:
                 case NEXT_ATTACHMENT:
-                case NEXT_ATTACHMENT_REQUESTED:
                     currentState = RenderableState.MODIFYING;
                     break;
                 default:
@@ -356,7 +353,8 @@ public class WeaponRenderer implements IItemRenderer {
             }
         }
 
-        for (Pair<ModelBase, String> texturedModel : compatibleAttachment.getAttachment().getTexturedModels()) {
+        for (Pair<ModelBase, String> texturedModel : compatibleAttachment.getAttachment()
+            .getTexturedModels()) {
             Minecraft.getMinecraft().renderEngine.bindTexture(
                 new ResourceLocation(this.builder.getModId() + ":textures/models/" + texturedModel.getV()));
             GL11.glPushMatrix();
@@ -844,7 +842,7 @@ public class WeaponRenderer implements IItemRenderer {
         }
 
         public WeaponRenderer.Builder withFirstPersonCustomPositioning(Part part, Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioning.put(part, positioning) != null) {
                 throw new IllegalArgumentException("Part " + part + " already added");
@@ -855,7 +853,7 @@ public class WeaponRenderer implements IItemRenderer {
 
         public WeaponRenderer.Builder withFirstPersonPositioningCustomRecoiled(Part part,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningRecoiled.put(part, positioning) != null) {
                 throw new IllegalArgumentException("Part " + part + " already added");
@@ -866,7 +864,7 @@ public class WeaponRenderer implements IItemRenderer {
 
         public WeaponRenderer.Builder withFirstPersonPositioningCustomZoomingShooting(Part part,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningZoomingShooting.put(part, positioning) != null) {
                 throw new IllegalArgumentException("Part " + part + " already added");
@@ -877,7 +875,7 @@ public class WeaponRenderer implements IItemRenderer {
 
         public WeaponRenderer.Builder withFirstPersonPositioningCustomZoomingRecoiled(Part part,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningZoomingRecoiled.put(part, positioning) != null) {
                 throw new IllegalArgumentException("Part " + part + " already added");
@@ -889,7 +887,7 @@ public class WeaponRenderer implements IItemRenderer {
         @SafeVarargs
         public final WeaponRenderer.Builder withFirstPersonCustomPositioningReloading(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningReloading.put(part, Arrays.asList(transitions));
@@ -899,7 +897,7 @@ public class WeaponRenderer implements IItemRenderer {
 
         public WeaponRenderer.Builder withFirstPersonCustomPositioningLoadIterationCompleted(Part part,
             Consumer<RenderContext> positioning) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else if (this.firstPersonCustomPositioningLoadIterationCompleted.put(part, positioning) != null) {
                 throw new IllegalArgumentException("Part " + part + " already added");
@@ -911,7 +909,7 @@ public class WeaponRenderer implements IItemRenderer {
         @SafeVarargs
         public final WeaponRenderer.Builder withFirstPersonCustomPositioningUnloading(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningUnloading.put(part, Arrays.asList(transitions));
@@ -922,7 +920,7 @@ public class WeaponRenderer implements IItemRenderer {
         @SafeVarargs
         public final WeaponRenderer.Builder withFirstPersonCustomPositioningEjectSpentRound(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningEjectSpentRound.put(part, Arrays.asList(transitions));
@@ -933,7 +931,7 @@ public class WeaponRenderer implements IItemRenderer {
         @SafeVarargs
         public final WeaponRenderer.Builder withFirstPersonCustomPositioningLoadIteration(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningLoadIteration.put(part, Arrays.asList(transitions));
@@ -944,7 +942,7 @@ public class WeaponRenderer implements IItemRenderer {
         @SafeVarargs
         public final WeaponRenderer.Builder withFirstPersonCustomPositioningAllLoadIterationsCompleted(Part part,
             Transition... transitions) {
-            if (part instanceof DefaultPart) {
+            if (part instanceof StandardPart) {
                 throw new IllegalArgumentException("Part " + part + " is not custom");
             } else {
                 this.firstPersonCustomPositioningLoadIterationsCompleted.put(part, Arrays.asList(transitions));
@@ -1372,10 +1370,13 @@ public class WeaponRenderer implements IItemRenderer {
         GL11.glClear(256);
         GL11.glMatrixMode(5889);
         GL11.glLoadIdentity();
-        GL11.glOrtho(0.0D,
+        GL11.glOrtho(
+            0.0D,
             WeaponRenderer.INVENTORY_TEXTURE_WIDTH,
             WeaponRenderer.INVENTORY_TEXTURE_HEIGHT,
-            0.0D, 1000.0D, 3000.0D);
+            0.0D,
+            1000.0D,
+            3000.0D);
         GL11.glMatrixMode(5888);
         GL11.glLoadIdentity();
         GL11.glTranslatef(0.0F, 0.0F, -2000.0F);
@@ -1416,10 +1417,10 @@ public class WeaponRenderer implements IItemRenderer {
     private static void drawTexturedQuadFit() {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV( 0.0D,  256.0, 0.0, 0.0F, 1.0F);
-        tessellator.addVertexWithUV(256.0,  256.0, 0.0, 1.0F, 1.0F);
-        tessellator.addVertexWithUV( 256.0,  0.0D, 0.0, 1.0F, 0.0F);
-        tessellator.addVertexWithUV( 0.0D,  0.0D, 0.0, 0.0F, 0.0F);
+        tessellator.addVertexWithUV(0.0D, 256.0, 0.0, 0.0F, 1.0F);
+        tessellator.addVertexWithUV(256.0, 256.0, 0.0, 1.0F, 1.0F);
+        tessellator.addVertexWithUV(256.0, 0.0D, 0.0, 1.0F, 0.0F);
+        tessellator.addVertexWithUV(0.0D, 0.0D, 0.0, 0.0F, 0.0F);
         tessellator.draw();
     }
 

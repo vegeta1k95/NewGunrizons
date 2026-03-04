@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class RayCast {
 
     public static MovingObjectPosition rayCastBlocks(World world, Vec3 start, Vec3 end,
-                                                     BiPredicate<Block, Integer> isCollidable) {
+        BiPredicate<Block, Integer> isCollidable) {
 
         if (Double.isNaN(start.xCoord) || Double.isNaN(start.yCoord) || Double.isNaN(start.zCoord)) {
             return null;

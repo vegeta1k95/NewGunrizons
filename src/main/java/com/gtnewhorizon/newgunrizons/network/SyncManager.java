@@ -5,46 +5,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import net.minecraft.item.ItemStack;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gtnewhorizon.newgunrizons.config.Tags;
 import com.gtnewhorizon.newgunrizons.state.ManagedState;
-import com.gtnewhorizon.newgunrizons.state.Permit;
-import com.gtnewhorizon.newgunrizons.state.PermitManager;
 import com.gtnewhorizon.newgunrizons.weapon.PlayerItemInstance;
+
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 public class SyncManager<S extends ManagedState<S>> {
 
     private static final Logger logger = LogManager.getLogger(SyncManager.class);
-    private final PermitManager permitManager;
+    private final SimpleNetworkWrapper channel;
     private final Map<PlayerItemInstance<?>, Long> watchables = new LinkedHashMap<>();
     private final long syncTimeout = 10000L;
 
-    public SyncManager(PermitManager permitManager) {
-        this.permitManager = permitManager;
-        this.permitManager.registerEvaluator(Permit.class, PlayerItemInstance.class, this::syncOnServer);
-    }
-
-    private void syncOnServer(Permit<S> permit, PlayerItemInstance<S> instance) {
-        logger.debug("Syncing {} in state {} on server", instance, instance.getState());
-        ItemStack itemStack = instance.getItemStack();
-        if (itemStack != null) {
-            if (instance.getItem() == itemStack.getItem()) {
-                logger.debug("Stored instance {} of {} in stack {}", instance, instance.getItem(), itemStack);
-                Tags.setInstance(itemStack, instance);
-            } else {
-                logger.debug(
-                    "Item mismatch, expected: {}, actual: {}",
-                    instance.getItem()
-                        .getUnlocalizedName(),
-                    itemStack.getItem()
-                        .getUnlocalizedName());
-            }
-        }
-
+    public SyncManager(SimpleNetworkWrapper channel) {
+        this.channel = channel;
     }
 
     public void watch(PlayerItemInstance<?> watchableInstance) {
@@ -77,10 +54,9 @@ public class SyncManager<S extends ManagedState<S>> {
             watchable.getUpdateId());
         long updateId = watchable.getUpdateId();
         watchable.setSyncStartTimestamp(System.currentTimeMillis());
-        this.permitManager.request(new Permit(watchable.getState()), watchable, (p, e) -> {
-            this.watchables.put(watchable, updateId);
-            watchable.setSyncStartTimestamp(0L);
-            logger.debug("Completed syncing {} with update id {}", watchable, updateId);
-        });
+        this.channel.sendToServer(new SyncMessage(watchable));
+        this.watchables.put(watchable, updateId);
+        watchable.setSyncStartTimestamp(0L);
+        logger.debug("Sent sync for {} with update id {}", watchable, updateId);
     }
 }

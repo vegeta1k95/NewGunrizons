@@ -11,9 +11,6 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import com.gtnewhorizon.newgunrizons.items.ItemAmmo;
-import com.gtnewhorizon.newgunrizons.items.ItemBullet;
-import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,15 +25,18 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentContainer;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
-import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.config.Tags;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.crafting.OptionsMetadata;
-import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
+import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
+import com.gtnewhorizon.newgunrizons.items.ItemAmmo;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
+import com.gtnewhorizon.newgunrizons.items.ItemBullet;
+import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
+import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.util.Updatable;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -201,10 +201,11 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
         instance.setRecoil(this.builder.recoil);
         instance.setMaxShots(this.builder.maxShots.get(0));
 
-        for (CompatibleAttachment compatibleAttachment : this.getCompatibleAttachments().values()) {
+        for (CompatibleAttachment compatibleAttachment : this.getCompatibleAttachments()
+            .values()) {
             ItemAttachment attachment = compatibleAttachment.getAttachment();
-            if (compatibleAttachment.isDefault() && attachment.getApply2() != null) {
-                attachment.apply2.apply(attachment, instance);
+            if (compatibleAttachment.isDefault() && attachment.getApplyHandler() != null) {
+                attachment.getApplyHandler().apply(attachment, instance);
             }
         }
 
@@ -258,13 +259,7 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
     }
 
     public void spawnShell(PlayerWeaponInstance weaponInstance, EntityLivingBase player) {
-        EntityShellCasing shell = new EntityShellCasing(
-            weaponInstance,
-            player.worldObj,
-            player,
-            0.1F,
-            0.05F,
-            20.0F);
+        EntityShellCasing shell = new EntityShellCasing(weaponInstance, player.worldObj, player, 0.1F, 0.05F, 20.0F);
         shell.setPositionAndDirection();
         player.worldObj.spawnEntityInWorld(shell);
     }
@@ -341,18 +336,18 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
         }
     }
 
-    public ItemAttachment.ApplyHandler2 getEquivalentHandler(AttachmentCategory attachmentCategory) {
-        ItemAttachment.ApplyHandler2 handler = (a, i) -> {};
-        handler = switch (attachmentCategory) {
-            case SCOPE -> (a, i) -> {};
-            case GRIP -> (a, i) -> i.setRecoil(this.builder.recoil);
-            default -> handler;
-        };
-
-        return handler;
+    public ItemAttachment.AttachmentHandler getEquivalentHandler(AttachmentCategory attachmentCategory) {
+        if (attachmentCategory == AttachmentCategory.SCOPE) {
+            return (a, i) -> {};
+        } else if (attachmentCategory == AttachmentCategory.GRIP) {
+            return (a, i) -> i.setRecoil(this.builder.recoil);
+        }
+        return (a, i) -> {};
     }
 
-    public String getTextureName() { return this.builder.textureName; }
+    public String getTextureName() {
+        return this.builder.textureName;
+    }
 
     public float getRecoil() {
         return this.builder.recoil;
@@ -384,8 +379,10 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
 
     public static class Builder {
 
-        @Getter public String name;
-        @Getter public String textureName;
+        @Getter
+        public String name;
+        @Getter
+        public String textureName;
 
         private String modId;
 
@@ -526,18 +523,12 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
         }
 
         public ItemWeapon.Builder withCrosshairRunning(String crosshairRunning) {
-            this.crosshairRunning = this.modId + ":"
-                + "textures/crosshairs/"
-                + crosshairRunning.toLowerCase()
-                + ".png";
+            this.crosshairRunning = this.modId + ":" + "textures/crosshairs/" + crosshairRunning.toLowerCase() + ".png";
             return this;
         }
 
         public ItemWeapon.Builder withCrosshairZoomed(String crosshairZoomed) {
-            this.crosshairZoomed = this.modId + ":"
-                + "textures/crosshairs/"
-                + crosshairZoomed.toLowerCase()
-                + ".png";
+            this.crosshairZoomed = this.modId + ":" + "textures/crosshairs/" + crosshairZoomed.toLowerCase() + ".png";
             return this;
         }
 
@@ -622,21 +613,21 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
         }
 
         public ItemWeapon.Builder withCompatibleAttachment(ItemAttachment attachment,
-                                                           ItemAttachment.ApplyHandler2 applyHandler, ItemAttachment.ApplyHandler2 removeHandler) {
+            ItemAttachment.AttachmentHandler applyHandler, ItemAttachment.AttachmentHandler removeHandler) {
             this.compatibleAttachments
                 .put(attachment, new CompatibleAttachment(attachment, applyHandler, removeHandler));
             return this;
         }
 
         public ItemWeapon.Builder withCompatibleAttachment(ItemAttachment attachment,
-                                                           BiConsumer<EntityLivingBase, ItemStack> positioning, Consumer<ModelBase> modelPositioning) {
+            BiConsumer<EntityLivingBase, ItemStack> positioning, Consumer<ModelBase> modelPositioning) {
             this.compatibleAttachments
                 .put(attachment, new CompatibleAttachment(attachment, positioning, modelPositioning, false));
             return this;
         }
 
         public ItemWeapon.Builder withCompatibleAttachment(ItemAttachment attachment,
-                                                           BiConsumer<EntityLivingBase, ItemStack> positioning) {
+            BiConsumer<EntityLivingBase, ItemStack> positioning) {
             this.compatibleAttachments.put(attachment, new CompatibleAttachment(attachment, positioning, null, false));
             return this;
         }
@@ -647,15 +638,15 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
         }
 
         public ItemWeapon.Builder withCompatibleAttachment(ItemAttachment attachment, boolean isDefault,
-                                                           BiConsumer<EntityLivingBase, ItemStack> positioning, Consumer<ModelBase> modelPositioning) {
+            BiConsumer<EntityLivingBase, ItemStack> positioning, Consumer<ModelBase> modelPositioning) {
             this.compatibleAttachments
                 .put(attachment, new CompatibleAttachment(attachment, positioning, modelPositioning, isDefault));
             return this;
         }
 
         public ItemWeapon.Builder withCompatibleAttachment(ItemAttachment attachment, boolean isDefault,
-                                                           boolean isPermanent, BiConsumer<EntityLivingBase, ItemStack> positioning,
-                                                           Consumer<ModelBase> modelPositioning) {
+            boolean isPermanent, BiConsumer<EntityLivingBase, ItemStack> positioning,
+            Consumer<ModelBase> modelPositioning) {
             this.compatibleAttachments.put(
                 attachment,
                 new CompatibleAttachment(attachment, positioning, modelPositioning, isDefault, isPermanent));
@@ -663,7 +654,7 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
         }
 
         public ItemWeapon.Builder withCompatibleAttachment(ItemAttachment attachment, boolean isDefault,
-                                                           Consumer<ModelBase> positioner) {
+            Consumer<ModelBase> positioner) {
             this.compatibleAttachments.put(attachment, new CompatibleAttachment(attachment, positioner, isDefault));
             return this;
         }
@@ -788,8 +779,7 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
 
             weapon.reloadSound = modContext.registerSound(this.reloadSound);
             weapon.reloadIterationSound = modContext.registerSound(this.reloadIterationSound);
-            weapon.allReloadIterationsCompletedSound = modContext
-                .registerSound(this.allReloadIterationsCompletedSound);
+            weapon.allReloadIterationsCompletedSound = modContext.registerSound(this.allReloadIterationsCompletedSound);
             weapon.unloadSound = modContext.registerSound(this.unloadSound);
             weapon.silencedShootSound = modContext.registerSound(this.silencedShootSound);
             if (this.ejectSpentRoundSound != null) {
@@ -800,10 +790,6 @@ public class ItemWeapon extends Item implements PlayerItemInstanceFactory<Player
             weapon.setUnlocalizedName(this.name);
             if (this.ammo != null) {
                 this.ammo.addCompatibleWeapon(weapon);
-            }
-
-            for (ItemAttachment attachment : this.compatibleAttachments.keySet()) {
-                attachment.addCompatibleWeapon(weapon);
             }
 
             modContext.registerWeapon(this.name, weapon, this.renderer);
