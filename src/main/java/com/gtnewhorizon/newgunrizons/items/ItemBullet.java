@@ -12,8 +12,8 @@ import com.gtnewhorizon.newgunrizons.config.ModContext;
  */
 public class ItemBullet extends ItemAttachment {
 
-    public ItemBullet(String modId, AttachmentCategory category, String crosshair) {
-        super(modId, category, crosshair);
+    public ItemBullet(AttachmentCategory category, String crosshair) {
+        super(category, crosshair);
     }
 
     public static final class Builder extends AttachmentBuilder {
@@ -23,7 +23,7 @@ public class ItemBullet extends ItemAttachment {
         }
 
         public ItemAttachment createAttachment(ModContext modContext) {
-            return new ItemBullet(getModId(), AttachmentCategory.BULLET, null);
+            return new ItemBullet(AttachmentCategory.BULLET, null);
         }
     }
 }

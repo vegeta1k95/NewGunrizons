@@ -37,7 +37,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class ASValFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("ASVal")
             .withFireRate(0.5F)
             .withRecoil(2.8F)
@@ -86,12 +86,12 @@ public class ASValFactory implements GunFactory {
                 }
 
             })
-            .withCompatibleAttachment(Magazines.VSSVintorezMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.VSSVintorezMag, ((model) -> {
                 GL11.glTranslatef(-0.3F, 0.5F, -1.6F);
                 GL11.glScaled(0.8999999761581421D, 1.399999976158142D, 1.399999976158142D);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
             }))
-            .withCompatibleAttachment(Magazines.ASValMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.ASValMag, ((model) -> {
                 GL11.glTranslatef(-0.3F, 0.5F, -1.6F);
                 GL11.glScaled(0.8999999761581421D, 1.399999976158142D, 1.399999976158142D);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
@@ -141,7 +141,7 @@ public class ASValFactory implements GunFactory {
             })
             .withTextureName("ASVal")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new ASVal())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

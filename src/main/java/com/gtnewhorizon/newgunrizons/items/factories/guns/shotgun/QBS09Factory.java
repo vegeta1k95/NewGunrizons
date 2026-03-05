@@ -34,7 +34,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class QBS09Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("QBS09")
             .withAmmoCapacity(6)
             .withMaxBulletsPerReload(5)
@@ -118,7 +118,7 @@ public class QBS09Factory implements GunFactory {
                 GL11.glScaled(1.399999976158142D, 1.399999976158142D, 1.399999976158142D);
             })
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new QBS09())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

@@ -49,8 +49,8 @@ public class ClientModContext extends CommonModContext {
     @Getter
     private PlayerRawPitchAnimationManager playerRawPitchAnimationManager;
 
-    public void init(Object mod, String modId, SimpleNetworkWrapper channel) {
-        super.init(mod, modId, channel);
+    public void init(Object mod, SimpleNetworkWrapper channel) {
+        super.init(mod, channel);
 
         this.aspectRatio = (float) Minecraft.getMinecraft().displayWidth
             / (float) Minecraft.getMinecraft().displayHeight;
@@ -120,7 +120,4 @@ public class ClientModContext extends CommonModContext {
         renderer.setClientModContext(this);
     }
 
-    public String getModId() {
-        return this.modId;
-    }
 }

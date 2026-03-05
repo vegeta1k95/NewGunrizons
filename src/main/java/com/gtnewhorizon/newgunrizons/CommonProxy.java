@@ -52,7 +52,7 @@ public class CommonProxy {
 
     public void init(Object mod, FMLPreInitializationEvent event) {
 
-        NewGunrizonsMod.MOD_CONTEXT.init(mod, "newgunrizons", NewGunrizonsMod.CHANNEL);
+        NewGunrizonsMod.MOD_CONTEXT.init(mod, NewGunrizonsMod.CHANNEL);
         NewGunrizonsMod.MOD_CONTEXT.setChangeZoomSound("OpticZoom");
         NewGunrizonsMod.MOD_CONTEXT.setChangeFireModeSound("GunFireModeSwitch");
         NewGunrizonsMod.MOD_CONTEXT.setNoAmmoSound("dryfire");

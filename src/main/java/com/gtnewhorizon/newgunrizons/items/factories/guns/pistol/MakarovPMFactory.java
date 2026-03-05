@@ -25,7 +25,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MakarovPMFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MakarovPM")
             .withFireRate(0.35F)
             .withRecoil(5.0F)
@@ -69,10 +69,10 @@ public class MakarovPMFactory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.Magazine9mm,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.1F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.1F); }))
             .withTextureName("MakarovPM")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MakarovPM())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

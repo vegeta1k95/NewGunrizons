@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MAC10Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MAC-10")
             .withFireRate(0.9F)
             .withRecoil(2.7F)
@@ -111,14 +111,14 @@ public class MAC10Factory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.VectorMag,
-                (Consumer) ((model) -> { GL11.glTranslatef(-0.32F, 0.2F, 1.12F); }))
+                ((model) -> { GL11.glTranslatef(-0.32F, 0.2F, 1.12F); }))
             .withCompatibleAttachment(Attachments.Silencer45ACP, (model) -> {
                 GL11.glTranslatef(-0.25F, -1.1F, -3.8F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MAC10())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

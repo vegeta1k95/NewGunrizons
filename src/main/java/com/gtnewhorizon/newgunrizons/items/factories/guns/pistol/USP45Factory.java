@@ -25,7 +25,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class USP45Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HKUSP45")
             .withFireRate(0.4F)
             .withRecoil(5.0F)
@@ -74,14 +74,14 @@ public class USP45Factory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.ColtM1911Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.15F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.15F, 0.0F); }))
             .withCompatibleAttachment(Attachments.Silencer45ACP, (model) -> {
                 GL11.glTranslatef(-0.25F, -1.2F, -4.6F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
             })
             .withTextureName("USP45")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new USP45())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

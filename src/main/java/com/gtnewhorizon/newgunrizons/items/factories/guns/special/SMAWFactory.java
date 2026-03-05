@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class SMAWFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("SMAW")
             .withAmmoCapacity(1)
             .withFireRate(0.5F)
@@ -113,10 +113,10 @@ public class SMAWFactory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Bullets.SMAWRocket,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.07F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.07F); }))
             .withTextureName("SMAW")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new SMAW())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);

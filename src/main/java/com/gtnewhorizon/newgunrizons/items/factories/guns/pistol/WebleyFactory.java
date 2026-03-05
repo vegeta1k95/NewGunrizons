@@ -20,7 +20,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class WebleyFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("WebleyMkVI")
             .withAmmoCapacity(6)
             .withMaxBulletsPerReload(6)
@@ -63,7 +63,7 @@ public class WebleyFactory {
             .withCompatibleBullet(Bullets.Bullet455, (model) -> {})
             .withTextureName("Webley")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Webley())
                     .withPrepareFirstLoadIterationAnimationDuration(900)
                     .withAllLoadIterationAnimationsCompletedDuration(400)

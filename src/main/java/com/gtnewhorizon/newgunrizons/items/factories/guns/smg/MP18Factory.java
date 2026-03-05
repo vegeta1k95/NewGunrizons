@@ -34,7 +34,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MP18Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MP18")
             .withFireRate(0.55F)
             .withRecoil(3.0F)
@@ -65,7 +65,7 @@ public class MP18Factory {
                     "32rnd 7.62x25mm Drum Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.MP18mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.MP18mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -1.216F, -1.65F);
@@ -114,7 +114,7 @@ public class MP18Factory {
             .withCompatibleAttachment(AuxiliaryAttachments.MP18action, true, (model) -> {})
             .withTextureName("mp18")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MP18())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

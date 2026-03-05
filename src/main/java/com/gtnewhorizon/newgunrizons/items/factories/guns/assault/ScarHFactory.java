@@ -47,7 +47,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class ScarHFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("ScarH")
             .withFireRate(0.7F)
             .withRecoil(3.6F)
@@ -77,7 +77,7 @@ public class ScarHFactory implements GunFactory {
                     "30rnd .300 AAC Blackout Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.ScarHMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.ScarHMag, ((model) -> {
                 GL11.glTranslatef(-0.342F, 0.6F, -1.43F);
                 GL11.glScaled(1.100000023841858D, 1.5D, 1.5D);
             }))
@@ -255,7 +255,7 @@ public class ScarHFactory implements GunFactory {
             })
             .withTextureName("Scar")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Scar())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

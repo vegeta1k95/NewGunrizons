@@ -42,7 +42,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class L96Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("L115A3")
             .withFireRate(0.16F)
             .withEjectRoundRequired()
@@ -79,7 +79,7 @@ public class L96Factory implements GunFactory {
                     "10rnd .308 Winchester Magazine",
                     "Fire Rate: Bolt Action");
             })
-            .withCompatibleAttachment(Magazines.L115Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.L115Mag, ((model) -> {
                 GL11.glScaled(1.600000023841858D, 1.600000023841858D, 1.600000023841858D);
                 GL11.glTranslatef(-0.27F, 0.6F, -0.97F);
             }))
@@ -197,7 +197,7 @@ public class L96Factory implements GunFactory {
             })
             .withTextureName("L115")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new L96())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

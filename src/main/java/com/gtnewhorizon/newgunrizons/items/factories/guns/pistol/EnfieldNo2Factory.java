@@ -20,7 +20,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class EnfieldNo2Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("EnfieldNo2")
             .withAmmoCapacity(6)
             .withMaxBulletsPerReload(6)
@@ -63,7 +63,7 @@ public class EnfieldNo2Factory {
             .withCompatibleBullet(Bullets.Bullet380200, (model) -> {})
             .withTextureName("EnfieldNo2")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Webley())
                     .withPrepareFirstLoadIterationAnimationDuration(900)
                     .withAllLoadIterationAnimationsCompletedDuration(400)

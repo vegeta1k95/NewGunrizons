@@ -39,7 +39,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class LeeEnfieldSMLE {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("LeeEnfieldSMLEMkIII")
             .withAmmoCapacity(10)
             .withFireRate(0.16F)
@@ -155,7 +155,7 @@ public class LeeEnfieldSMLE {
             })
             .withTextureName("LeeEnfieldSMLE")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new LeeEnfieldSMLEMk3())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

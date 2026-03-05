@@ -23,7 +23,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class PythonFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Python")
             .withFireRate(0.2F)
             .withRecoil(5.0F)
@@ -50,11 +50,11 @@ public class PythonFactory implements GunFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.PythonCase, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.PythonClip,
-                (Consumer) ((model) -> { GL11.glScaled(0.0D, 0.0D, 0.0D); }))
+                ((model) -> { GL11.glScaled(0.0D, 0.0D, 0.0D); }))
             .withCompatibleBullet(Bullets.Bullet357, (model) -> {})
             .withTextureName("Python")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Python())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

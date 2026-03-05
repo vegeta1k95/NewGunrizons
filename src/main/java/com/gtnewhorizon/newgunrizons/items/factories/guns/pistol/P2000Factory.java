@@ -25,7 +25,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class P2000Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HKP2000")
             .withFireRate(0.6F)
             .withRecoil(6.0F)
@@ -69,7 +69,7 @@ public class P2000Factory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.M9BerettaMag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.1F, 0.1F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.1F, 0.1F); }))
             .withCompatibleAttachment(Attachments.Laser, (p, s) -> {
                 GL11.glTranslatef(0.01F, -0.7F, -2.2F);
                 GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.100000023841858D);
@@ -81,7 +81,7 @@ public class P2000Factory implements GunFactory {
             })
             .withTextureName("GunmetalTexture")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new P2000())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

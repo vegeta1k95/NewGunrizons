@@ -38,7 +38,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class DragonuvFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Dragunov")
             .withFireRate(0.6F)
             .withRecoil(3.0F)
@@ -93,7 +93,7 @@ public class DragonuvFactory implements GunFactory {
                 GL11.glTranslatef(0.0F, 0.0F, -0.3F);
                 GL11.glScaled(1.0D, 1.0D, 1.0499999523162842D);
             })
-            .withCompatibleAttachment(Magazines.DragunovMag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.DragunovMag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof AKMiron1) {
                     GL11.glTranslatef(0.125F, -1.8F, -0.5F);
@@ -143,7 +143,7 @@ public class DragonuvFactory implements GunFactory {
             })
             .withTextureName("Dragunov")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Dragunov())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

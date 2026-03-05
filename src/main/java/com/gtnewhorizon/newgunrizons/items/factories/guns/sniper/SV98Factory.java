@@ -41,7 +41,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class SV98Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("SV98")
             .withFireRate(0.16F)
             .withEjectRoundRequired()
@@ -78,7 +78,7 @@ public class SV98Factory implements GunFactory {
                     "10rnd 7.62x54mm Magazine",
                     "Fire Rate: Bolt Action");
             })
-            .withCompatibleAttachment(Magazines.SV98Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.SV98Mag, ((model) -> {
                 GL11.glScaled(1.5499999523162842D, 1.600000023841858D, 1.600000023841858D);
                 GL11.glTranslatef(-0.28F, 0.51F, -0.97F);
             }))
@@ -192,7 +192,7 @@ public class SV98Factory implements GunFactory {
             })
             .withTextureName("sv98")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new SV98())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M8A7Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M8A7")
             .withFireRate(0.9F)
             .withRecoil(2.4F)
@@ -66,7 +66,7 @@ public class M8A7Factory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.M8A7Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, -0.05F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, -0.05F, 0.0F); }))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.17F, -1.155F, -0.1F);
@@ -132,7 +132,7 @@ public class M8A7Factory implements GunFactory {
             })
             .withTextureName("M8A7")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M8A7())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.44999998807907104D, 0.44999998807907104D, 0.44999998807907104D);

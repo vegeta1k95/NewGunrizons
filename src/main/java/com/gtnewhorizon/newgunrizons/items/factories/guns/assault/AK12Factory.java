@@ -47,7 +47,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AK12Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AK12")
             .withFireRate(0.75F)
             .withRecoil(3.5F)
@@ -62,25 +62,23 @@ public class AK12Factory implements GunFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.6F; })
-            .withFlashOffsetX(() -> { return 0.14F; })
-            .withFlashOffsetY(() -> { return 0.12F; })
+            .withFlashScale(() -> 0.6F)
+            .withFlashOffsetX(() -> 0.14F)
+            .withFlashOffsetY(() -> 0.12F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withCrafting(
                 CraftingComplexity.MEDIUM,
                 CommonProxy.SteelPlate,
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
-                    "Type: Assault rifle",
-                    "Damage: 7.3",
-                    "Caliber: 5.45x39mm",
-                    "Magazines:",
-                    "31rnd 5.45x39mm Magazine",
-                    "Fire Rate: Auto");
-            })
-            .withCompatibleAttachment(Magazines.AK12Mag, (Consumer) ((model) -> {}))
+            .withInformationProvider((stack) -> Arrays.asList(
+                "Type: Assault rifle",
+                "Damage: 7.3",
+                "Caliber: 5.45x39mm",
+                "Magazines:",
+                "31rnd 5.45x39mm Magazine",
+                "Fire Rate: Auto"))
+            .withCompatibleAttachment(Magazines.AK12Mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.21F, -1.94F, 4.0F);
@@ -251,7 +249,7 @@ public class AK12Factory implements GunFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.AK12action, true, (model) -> {})
             .withTextureName("AK12kal")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new AK12())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

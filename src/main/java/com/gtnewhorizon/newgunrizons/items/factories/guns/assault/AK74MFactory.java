@@ -39,7 +39,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AK74MFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AK74M")
             .withFireRate(0.55F)
             .withRecoil(3.0F)
@@ -108,7 +108,7 @@ public class AK74MFactory implements GunFactory {
                 GL11.glScaled(0.5D, 0.5D, 3.0D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKaction, true, (model) -> {})
-            .withCompatibleAttachment(Magazines.AK74MMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.AK74MMag, ((model) -> {
                 GL11.glTranslatef(-0.01F, 0.0F, 0.0F);
                 GL11.glScaled(0.949999988079071D, 1.0D, 1.0D);
             }))
@@ -157,7 +157,7 @@ public class AK74MFactory implements GunFactory {
             })
             .withTextureName("AK74M")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new AK74M())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

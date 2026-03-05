@@ -45,7 +45,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class UMP45Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HKUMP45")
             .withFireRate(0.6F)
             .withRecoil(2.3F)
@@ -75,7 +75,7 @@ public class UMP45Factory implements GunFactory {
                     "26rnd .45 ACP Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.VectorMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.VectorMag, ((model) -> {
                 GL11.glTranslatef(-0.32F, 0.0F, 0.2F);
                 GL11.glScaled(1.0D, 1.0D, 1.2999999523162842D);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
@@ -222,7 +222,7 @@ public class UMP45Factory implements GunFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new UMP45())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

@@ -46,7 +46,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class UDP9Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("UDP9")
             .withFireRate(0.8F)
             .withRecoil(2.5F)
@@ -76,7 +76,7 @@ public class UDP9Factory {
                     "50rnd 9mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.M9BerettaMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.M9BerettaMag, ((model) -> {
                 GL11.glTranslatef(-0.01F, 0.3F, -1.08F);
                 GL11.glScaled(0.949999988079071D, 1.2000000476837158D, 0.800000011920929D);
             }))
@@ -274,7 +274,7 @@ public class UDP9Factory {
             })
             .withTextureName("udp9")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new UDP9())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

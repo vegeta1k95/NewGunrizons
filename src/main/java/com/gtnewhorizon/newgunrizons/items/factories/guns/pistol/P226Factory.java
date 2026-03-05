@@ -25,7 +25,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class P226Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("P226")
             .withFireRate(0.6F)
             .withRecoil(6.0F)
@@ -74,14 +74,14 @@ public class P226Factory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.M9BerettaMag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.1F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.1F); }))
             .withCompatibleAttachment(Attachments.Silencer9mm, (model) -> {
                 GL11.glTranslatef(-0.25F, -1.2F, -4.6F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
             })
             .withTextureName("P225")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new P220())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

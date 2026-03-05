@@ -24,7 +24,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class P99Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("P99")
             .withFireRate(0.6F)
             .withRecoil(6.0F)
@@ -71,7 +71,7 @@ public class P99Factory {
                 GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.100000023841858D);
                 GL11.glRotatef(-90.0F, 0.0F, 0.0F, -4.0F);
             })
-            .withCompatibleAttachment(Magazines.M9BerettaMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.M9BerettaMag, ((model) -> {
                 GL11.glTranslatef(-0.03F, 0.0F, -0.05F);
                 GL11.glScaled(0.800000011920929D, 1.0D, 1.0D);
             }))
@@ -81,7 +81,7 @@ public class P99Factory {
             })
             .withTextureName("P99")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new P99())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

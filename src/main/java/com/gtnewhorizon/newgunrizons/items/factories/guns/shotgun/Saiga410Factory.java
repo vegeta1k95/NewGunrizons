@@ -38,7 +38,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Saiga410Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Saiga410")
             .withFireRate(0.4F)
             .withRecoil(8.0F)
@@ -101,7 +101,7 @@ public class Saiga410Factory {
             .withCompatibleAttachment(AuxiliaryAttachments.Saiga12action, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.Saiga410Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
             .withCompatibleAttachment(Attachments.Silencer12Gauge, (model) -> {
                 GL11.glTranslatef(-0.22F, -1.1F, -8.9F);
                 GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
@@ -153,7 +153,7 @@ public class Saiga410Factory {
             })
             .withTextureName("Saiga410")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Saiga410())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

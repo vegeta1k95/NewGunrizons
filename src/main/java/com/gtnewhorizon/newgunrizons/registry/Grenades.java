@@ -21,7 +21,6 @@ public class Grenades {
             .withModel(new Pin(), "AK12.png")
             .withName("GrenadeSafetyPin")
             .withRenderablePart()
-            .withModId("newgunrizons")
             .withTextureName("Dummy.png")
             .build(NewGunrizonsMod.MOD_CONTEXT);
         FuseGrenade = (new FuseGrenadeFactory()).createGrenade(commonProxy);

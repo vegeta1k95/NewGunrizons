@@ -21,7 +21,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Tec9Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Tec9")
             .withFireRate(0.75F)
             .withRecoil(2.8F)
@@ -54,14 +54,14 @@ public class Tec9Factory {
             .withCompatibleAttachment(AuxiliaryAttachments.Tec9Action, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.Tec9Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.15F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.15F, 0.0F); }))
             .withCompatibleAttachment(Attachments.Silencer45ACP, (model) -> {
                 GL11.glTranslatef(-0.25F, -1.2F, -4.6F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Tec9())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

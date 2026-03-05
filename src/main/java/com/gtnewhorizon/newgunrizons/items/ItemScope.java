@@ -26,7 +26,7 @@ public class ItemScope extends ItemAttachment {
     private final boolean hasNightVision;
 
     private ItemScope(ItemScope.Builder builder) {
-        super(builder.getModId(), AttachmentCategory.SCOPE, null);
+        super(AttachmentCategory.SCOPE, null);
         this.minZoom = builder.minZoom;
         this.maxZoom = builder.maxZoom;
         this.isOpticalZoom = builder.isOpticalZoom;

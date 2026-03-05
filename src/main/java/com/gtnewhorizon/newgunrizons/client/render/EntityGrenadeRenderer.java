@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.entities.EntityGrenade;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
@@ -21,8 +22,7 @@ public class EntityGrenadeRenderer extends Render {
             GrenadeRenderer renderer = itemGrenade.getRenderer();
             Minecraft.getMinecraft().renderEngine.bindTexture(
                 new ResourceLocation(
-                    renderer.getClientModContext()
-                        .getModId(),
+                    NewGunrizonsMod.MODID,
                     "textures/models/" + itemGrenade.getTextureName()));
             ModelBase model = renderer.getModel();
             GL11.glPushMatrix();

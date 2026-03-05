@@ -54,7 +54,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class ACRFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("ACR")
             .withFireRate(0.7F)
             .withRecoil(3.5F)
@@ -87,23 +87,23 @@ public class ACRFactory implements GunFactory {
                     "100rnd 5.56x45mm NATO Beta-C Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.NATOMag1, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag1, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.3F, -1.31F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.2000000476837158D);
             }))
-            .withCompatibleAttachment(Magazines.NATOMag2, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag2, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.3F, -1.31F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.2000000476837158D);
             }))
-            .withCompatibleAttachment(Magazines.NATO20rnd, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATO20rnd, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.3F, -1.31F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.2000000476837158D);
             }))
-            .withCompatibleAttachment(Magazines.NATO40rnd, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATO40rnd, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.3F, -1.31F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.2000000476837158D);
             }))
-            .withCompatibleAttachment(Magazines.NATODrum100, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATODrum100, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.31F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.2000000476837158D);
             }))
@@ -299,7 +299,7 @@ public class ACRFactory implements GunFactory {
             })
             .withTextureName("ACR")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new BushmasterACR())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

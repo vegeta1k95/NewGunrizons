@@ -36,7 +36,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class PPSh41Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("PPSh41")
             .withFireRate(0.8F)
             .withRecoil(3.0F)
@@ -67,7 +67,7 @@ public class PPSh41Factory implements GunFactory {
                     "71rnd 7.62x25mm Tokarev Drum Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.PPSH41DrumMag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.PPSH41DrumMag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -1.216F, -1.65F);
@@ -122,7 +122,7 @@ public class PPSh41Factory implements GunFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.PPSH41action, true, (model) -> {})
             .withTextureName("PPSH41")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new PPSH41())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

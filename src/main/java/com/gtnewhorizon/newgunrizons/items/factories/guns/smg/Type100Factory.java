@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Type100Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Type100")
             .withFireRate(0.5F)
             .withRecoil(3.0F)
@@ -66,7 +66,7 @@ public class Type100Factory implements GunFactory {
                     "30rnd 8x22mm Nambu Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.Type100Mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.Type100Mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -1.216F, -1.65F);
@@ -115,7 +115,7 @@ public class Type100Factory implements GunFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.Type100action, true, (model) -> {})
             .withTextureName("Type100")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Type100())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

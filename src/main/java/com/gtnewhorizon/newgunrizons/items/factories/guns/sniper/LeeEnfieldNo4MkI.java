@@ -36,7 +36,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class LeeEnfieldNo4MkI {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("LeeEnfieldNo4MkI")
             .withFireRate(0.16F)
             .withEjectRoundRequired()
@@ -78,7 +78,7 @@ public class LeeEnfieldNo4MkI {
             })
             .withCompatibleAttachment(
                 Magazines.LeeEnfieldMag,
-                (Consumer) ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
+                ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
             .withCompatibleAttachment(AuxiliaryAttachments.M1CarbineRearSight, true, (model) -> {
                 GL11.glTranslatef(-0.183F, -1.39F, -1.15F);
                 GL11.glScaled(0.14000000059604645D, 0.15000000596046448D, 0.05999999865889549D);
@@ -138,7 +138,7 @@ public class LeeEnfieldNo4MkI {
             })
             .withTextureName("LeeEnfieldNo4")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new LeeEnfieldNo4())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

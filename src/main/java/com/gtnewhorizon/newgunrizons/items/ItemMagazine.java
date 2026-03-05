@@ -41,8 +41,8 @@ public class ItemMagazine extends ItemAttachment
     String reloadSound;
     ModContext modContext;
 
-    ItemMagazine(String modId, int ammo) {
-        super(modId, AttachmentCategory.MAGAZINE, null);
+    ItemMagazine(int ammo) {
+        super(AttachmentCategory.MAGAZINE, null);
         this.ammo = ammo;
         this.setMaxStackSize(1);
     }
@@ -119,7 +119,7 @@ public class ItemMagazine extends ItemAttachment
         }
 
         public ItemAttachment createAttachment(ModContext modContext) {
-            ItemMagazine magazine = new ItemMagazine(this.getModId(), this.ammo);
+            ItemMagazine magazine = new ItemMagazine(this.ammo);
             magazine.compatibleBullets = new ArrayList<>(this.compatibleBullets);
             if (this.reloadSound != null) {
                 magazine.reloadSound = modContext.registerSound(this.reloadSound);

@@ -34,7 +34,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MP41Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MP41")
             .withFireRate(0.7F)
             .withRecoil(3.0F)
@@ -66,7 +66,7 @@ public class MP41Factory {
                     "32rnd 9mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.MP40Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.MP40Mag, ((model) -> {
                 GL11.glTranslatef(-0.365F, 0.4F, -1.52F);
                 GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
             }))
@@ -121,7 +121,7 @@ public class MP41Factory {
             .withCompatibleAttachment(AuxiliaryAttachments.MP40action, true, (model) -> {})
             .withTextureName("MP41")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MP41())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

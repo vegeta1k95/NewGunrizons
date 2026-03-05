@@ -44,7 +44,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class HK416CFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HK416C")
             .withFireRate(0.7F)
             .withRecoil(2.8F)
@@ -76,23 +76,23 @@ public class HK416CFactory implements GunFactory {
                     "100rnd 5.56x45mm NATO Beta-C Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.NATOMag1, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag1, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATO40rnd, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATO40rnd, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATO20rnd, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATO20rnd, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATOMag2, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag2, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATODrum100, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATODrum100, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.69F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
@@ -303,7 +303,7 @@ public class HK416CFactory implements GunFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new HK416C())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

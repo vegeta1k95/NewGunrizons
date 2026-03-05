@@ -36,7 +36,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MP5KFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HKMP5K")
             .withFireRate(0.75F)
             .withRecoil(2.7F)
@@ -66,7 +66,7 @@ public class MP5KFactory implements GunFactory {
                     "25rnd 9mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.MP5KMag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.MP5KMag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.MP5KGrip, true, (model) -> {
                 if (model instanceof Grip2) {
                     GL11.glTranslatef(-0.21F, -0.5F, -2.3F);
@@ -125,7 +125,7 @@ public class MP5KFactory implements GunFactory {
             })
             .withTextureName("MP5K")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MP5K())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

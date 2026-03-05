@@ -23,7 +23,7 @@ public interface ModContext {
 
     boolean isClient();
 
-    void init(Object var1, String var2, SimpleNetworkWrapper var4);
+    void init(Object var1, SimpleNetworkWrapper var4);
 
     void registerWeapon(String var1, ItemWeapon var2, WeaponRenderer var3);
 
@@ -70,6 +70,4 @@ public interface ModContext {
     ResourceLocation getNamedResource(String var1);
 
     GrenadeAttackAspect getGrenadeAttackAspect();
-
-    String getModId();
 }

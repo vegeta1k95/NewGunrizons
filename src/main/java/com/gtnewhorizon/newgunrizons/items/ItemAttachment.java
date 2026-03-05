@@ -8,6 +8,8 @@ import java.util.function.Function;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -91,11 +93,13 @@ public class ItemAttachment extends Item {
      * @param category  the attachment slot category
      * @param crosshair crosshair texture name (without path prefix), or null
      */
-    public ItemAttachment(String modId, AttachmentCategory category, String crosshair) {
+    public ItemAttachment(AttachmentCategory category, String crosshair) {
         this.texturedModels = new ArrayList<>();
         this.attachments = new ArrayList<>();
         this.category = category;
-        this.crosshair = crosshair != null ? modId + ":textures/crosshairs/" + crosshair + ".png" : null;
+        this.crosshair = crosshair != null
+            ? NewGunrizonsMod.MODID + ":textures/crosshairs/" + crosshair + ".png"
+            : null;
     }
 
     // ==================== Item overrides ====================

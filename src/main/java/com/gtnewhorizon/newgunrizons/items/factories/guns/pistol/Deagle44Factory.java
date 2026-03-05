@@ -22,7 +22,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Deagle44Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Deagle50")
             .withFireRate(0.3F)
             .withRecoil(7.0F)
@@ -53,13 +53,13 @@ public class Deagle44Factory implements GunFactory {
                     "Fire Rate: Semi");
             })
             .withCompatibleAttachment(AuxiliaryAttachments.Deagle44Top, true, (model) -> {})
-            .withCompatibleAttachment(Magazines.Deagle50Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.Deagle50Mag, ((model) -> {
                 GL11.glTranslatef(-0.03F, -0.1F, 0.14F);
                 GL11.glScaled(0.699999988079071D, 1.0D, 1.0D);
             }))
             .withTextureName("Deagle44")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Deagle())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

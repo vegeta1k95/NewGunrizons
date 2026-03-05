@@ -12,6 +12,7 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.util.Pair;
@@ -30,7 +31,6 @@ public class StaticModelRenderer implements IItemRenderer {
     private static final float MODEL_SCALE = 0.08F;
 
     private final ModContext modContext;
-    private final String modId;
     private final Consumer<ItemStack> entityPositioning;
     private final Consumer<ItemStack> inventoryPositioning;
     private final BiConsumer<EntityPlayer, ItemStack> thirdPersonPositioning;
@@ -44,7 +44,6 @@ public class StaticModelRenderer implements IItemRenderer {
 
     private StaticModelRenderer(Builder builder) {
         this.modContext = builder.modContext;
-        this.modId = builder.modId;
         this.entityPositioning = builder.entityPositioning;
         this.inventoryPositioning = builder.inventoryPositioning;
         this.thirdPersonPositioning = builder.thirdPersonPositioning;
@@ -113,7 +112,7 @@ public class StaticModelRenderer implements IItemRenderer {
 
         for (Pair<ModelBase, String> texturedModel : attachment.getTexturedModels()) {
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + texturedModel.getV()));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + texturedModel.getV()));
             GL11.glPushMatrix();
             GL11.glPushAttrib(GL11.GL_ENABLE_BIT);
 
@@ -181,14 +180,7 @@ public class StaticModelRenderer implements IItemRenderer {
         private Consumer<RenderContext> firstPersonLeftHandPositioning;
         @Getter
         private Consumer<RenderContext> firstPersonRightHandPositioning;
-        @Getter
-        private String modId;
         private ModContext modContext;
-
-        public Builder withModId(String modId) {
-            this.modId = modId;
-            return this;
-        }
 
         public Builder withModContext(ModContext modContext) {
             this.modContext = modContext;

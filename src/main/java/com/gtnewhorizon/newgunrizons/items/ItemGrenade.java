@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentContainer;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
@@ -221,7 +222,7 @@ public class ItemGrenade extends Item
     public static class Builder {
 
         public String name;
-        protected String modId;
+
         protected ModelBase model;
         protected String textureName;
         protected Consumer<ItemStack> entityPositioning;
@@ -271,11 +272,6 @@ public class ItemGrenade extends Item
             return this;
         }
 
-        public ItemGrenade.Builder withModId(String modId) {
-            this.modId = modId;
-            return this;
-        }
-
         public ItemGrenade.Builder withModel(ModelBase model) {
             this.model = model;
             return this;
@@ -317,14 +313,10 @@ public class ItemGrenade extends Item
         }
 
         public ItemGrenade.Builder withTextureNames(String... textureNames) {
-            if (this.modId == null) {
-                throw new IllegalStateException("ModId is not set");
-            } else {
-                for (String textureName : textureNames) {
-                    this.textureNames.add(textureName.toLowerCase() + ".png");
-                }
-                return this;
+            for (String textureName : textureNames) {
+                this.textureNames.add(textureName.toLowerCase() + ".png");
             }
+            return this;
         }
 
         public ItemGrenade.Builder withCompatibleAttachment(ItemAttachment attachment,
@@ -467,7 +459,7 @@ public class ItemGrenade extends Item
 
         public ItemGrenade build(ModContext modContext) {
             ItemGrenade grenade = new ItemGrenade(this, modContext);
-            grenade.setUnlocalizedName(this.modId + "_" + this.name);
+            grenade.setUnlocalizedName(NewGunrizonsMod.MODID + "_" + this.name);
             grenade.setCreativeTab(this.tab);
             grenade.maxStackSize = this.maxStackSize;
             if (this.bounceHardSound != null) {

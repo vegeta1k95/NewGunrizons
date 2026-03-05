@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.RecipeManager;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
@@ -51,8 +52,6 @@ import lombok.Getter;
 public class CommonModContext implements ModContext {
 
     @Getter
-    protected String modId;
-    @Getter
     protected Object mod;
 
     @Getter
@@ -80,10 +79,9 @@ public class CommonModContext implements ModContext {
     @Getter
     private GrenadeAttackAspect grenadeAttackAspect;
 
-    public void init(Object mod, String modId, SimpleNetworkWrapper channel) {
+    public void init(Object mod, SimpleNetworkWrapper channel) {
         this.mod = mod;
         this.channel = channel;
-        this.modId = modId;
         this.weaponReloadAspect = new WeaponReloadAspect(this);
         this.magazineReloadAspect = new MagazineReloadAspect(this);
         this.weaponFireAspect = new WeaponFireAspect(this);
@@ -141,7 +139,7 @@ public class CommonModContext implements ModContext {
         if (sound == null) {
             return null;
         } else {
-            ResourceLocation soundResourceLocation = new ResourceLocation(this.modId, sound);
+            ResourceLocation soundResourceLocation = new ResourceLocation(NewGunrizonsMod.MODID, sound);
             return this.registerSound(soundResourceLocation);
         }
     }
@@ -205,7 +203,7 @@ public class CommonModContext implements ModContext {
     }
 
     public ResourceLocation getNamedResource(String name) {
-        return new ResourceLocation(this.modId, name);
+        return new ResourceLocation(NewGunrizonsMod.MODID, name);
     }
 
     static {

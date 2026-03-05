@@ -46,7 +46,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Mk48MOD1Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Mk48MOD1")
             .withFireRate(0.75F)
             .withRecoil(3.5F)
@@ -79,7 +79,7 @@ public class Mk48MOD1Factory {
                     "100rnd 7.62x51mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.Mk48Mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.Mk48Mag, ((model) -> {}))
             .withCompatibleAttachment(
                 AuxiliaryAttachments.M249Action,
                 true,
@@ -240,7 +240,7 @@ public class Mk48MOD1Factory {
             })
             .withTextureName("Mk48MOD1")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Mk48MOD1())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

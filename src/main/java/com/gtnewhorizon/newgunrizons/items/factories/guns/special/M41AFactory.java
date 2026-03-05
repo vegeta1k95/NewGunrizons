@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M41AFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M41A")
             .withFireRate(0.9999999F)
             .withRecoil(1.7F)
@@ -69,7 +69,7 @@ public class M41AFactory implements GunFactory {
                     "99rnd 10x24mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.M41AMag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.M41AMag, ((model) -> {}))
             .withTextureName("M41A")
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof M4Iron1) {
@@ -115,7 +115,7 @@ public class M41AFactory implements GunFactory {
 
             })
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M41A())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

@@ -44,7 +44,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class M1014Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M1014")
             .withAmmoCapacity(8)
             .withMaxBulletsPerReload(7)
@@ -202,7 +202,7 @@ public class M1014Factory implements GunFactory {
                 GL11.glScaled(1.399999976158142D, 1.399999976158142D, 1.399999976158142D);
             })
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M1014())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

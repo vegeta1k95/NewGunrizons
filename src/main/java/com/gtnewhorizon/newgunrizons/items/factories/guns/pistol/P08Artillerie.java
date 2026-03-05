@@ -26,7 +26,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class P08Artillerie {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("LugerArtillerie")
             .withFireRate(0.35F)
             .withRecoil(5.0F)
@@ -81,10 +81,10 @@ public class P08Artillerie {
             })
             .withCompatibleAttachment(
                 Magazines.LugerP08Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
             .withTextureName("P08Carbine")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new P08Carbine())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

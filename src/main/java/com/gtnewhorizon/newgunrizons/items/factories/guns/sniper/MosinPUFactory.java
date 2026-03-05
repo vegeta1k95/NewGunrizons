@@ -39,7 +39,7 @@ import com.gtnewhorizon.newgunrizons.registry.Guns;
 public class MosinPUFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MosinNagantM91-30PU")
             .withAmmoCapacity(5)
             .withFireRate(0.16F)
@@ -151,7 +151,7 @@ public class MosinPUFactory {
             })
             .withTextureName("MosinNagant")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MosinNagant())
                     .withPrepareFirstLoadIterationAnimationDuration(1300)
                     .withAllLoadIterationAnimationsCompletedDuration(1100)

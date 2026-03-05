@@ -31,6 +31,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
 import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.attachment.StandardPart;
@@ -83,7 +84,6 @@ public class WeaponRenderer implements IItemRenderer {
     // Fields copied from Builder
     private final ModelBase model;
     private final String textureName;
-    private final String modId;
     private final Consumer<ItemStack> entityPositioning;
     private final Consumer<ItemStack> inventoryPositioning;
     private final Consumer<RenderContext> thirdPersonPositioning;
@@ -158,7 +158,6 @@ public class WeaponRenderer implements IItemRenderer {
         // Copy fields from builder (use getters for @Getter-annotated fields)
         this.model = builder.getModel();
         this.textureName = builder.getTextureName();
-        this.modId = builder.getModId();
         this.entityPositioning = builder.getEntityPositioning();
         this.inventoryPositioning = builder.getInventoryPositioning();
         this.thirdPersonPositioning = builder.getThirdPersonPositioning();
@@ -440,13 +439,13 @@ public class WeaponRenderer implements IItemRenderer {
 
         if (this.textureName != null) {
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + this.textureName));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + this.textureName));
         } else {
             ItemWeapon weapon = (ItemWeapon) weaponItemStack.getItem();
             String textureName = weapon.getTextureName();
 
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + textureName));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + textureName));
         }
 
         this.model.render(
@@ -494,7 +493,7 @@ public class WeaponRenderer implements IItemRenderer {
         for (Pair<ModelBase, String> texturedModel : compatibleAttachment.getAttachment()
             .getTexturedModels()) {
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + texturedModel.getV()));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + texturedModel.getV()));
             GL11.glPushMatrix();
             GL11.glPushAttrib(8193);
             if (compatibleAttachment.getModelPositioning() != null) {
@@ -696,8 +695,6 @@ public class WeaponRenderer implements IItemRenderer {
         private long totalReloadingDuration;
         private long totalUnloadingDuration;
         private long totalLoadIterationDuration;
-        @Getter
-        private String modId;
         private int recoilAnimationDuration = 100;
         private int shootingAnimationDuration = 100;
         private final int loadIterationCompletedAnimationDuration = 100;
@@ -727,11 +724,6 @@ public class WeaponRenderer implements IItemRenderer {
 
         private final LinkedHashMap<Part, List<Transition>> firstPersonCustomPositioningEjectSpentRound = new LinkedHashMap<>();
         private boolean hasRecoilPositioningDefined;
-
-        public WeaponRenderer.Builder withModId(String modId) {
-            this.modId = modId;
-            return this;
-        }
 
         public WeaponRenderer.Builder withModel(ModelBase model) {
             this.model = model;

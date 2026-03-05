@@ -24,7 +24,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M1911TaurusFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M1911Taurus")
             .withFireRate(0.5F)
             .withRecoil(5.0F)
@@ -68,14 +68,14 @@ public class M1911TaurusFactory {
             })
             .withCompatibleAttachment(
                 Magazines.ColtM1911Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.2F, 0.12F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.2F, 0.12F); }))
             .withCompatibleAttachment(Attachments.Silencer45ACP, (model) -> {
                 GL11.glTranslatef(-0.23F, -1.14F, -4.92F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
             })
             .withTextureName("Taurus1911")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Taurus1911())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

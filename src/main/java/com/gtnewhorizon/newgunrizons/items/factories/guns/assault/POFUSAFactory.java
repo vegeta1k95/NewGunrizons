@@ -46,7 +46,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class POFUSAFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("POF308")
             .withFireRate(0.55F)
             .withRecoil(6.0F)
@@ -75,7 +75,7 @@ public class POFUSAFactory {
                     "10rnd .308 Winchester Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.Mag308, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.Mag308, ((model) -> {
                 GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }))
@@ -273,7 +273,7 @@ public class POFUSAFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new POFUSA())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

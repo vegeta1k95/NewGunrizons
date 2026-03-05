@@ -37,7 +37,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class MosinNagantFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MosinNagantM91-30")
             .withAmmoCapacity(5)
             .withFireRate(0.16F)
@@ -136,7 +136,7 @@ public class MosinNagantFactory implements GunFactory {
             })
             .withTextureName("MosinNagant")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MosinNagant())
                     .withPrepareFirstLoadIterationAnimationDuration(1300)
                     .withAllLoadIterationAnimationsCompletedDuration(1100)

@@ -31,7 +31,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MP7Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HKMP7")
             .withFireRate(0.8F)
             .withRecoil(3.3F)
@@ -60,7 +60,7 @@ public class MP7Factory implements GunFactory {
                     "20rnd 4.6x30mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.HKMP7Mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.HKMP7Mag, ((model) -> {}))
             .withCompatibleAttachment(Attachments.ACOG, (player, stack) -> {
                 GL11.glTranslatef(0.01F, -1.66F, 1.0F);
                 GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
@@ -148,7 +148,7 @@ public class MP7Factory implements GunFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MP7())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

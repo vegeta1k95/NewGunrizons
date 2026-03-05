@@ -37,7 +37,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class M1903A1Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M1903A1")
             .withAmmoCapacity(5)
             .withFireRate(0.16F)
@@ -150,7 +150,7 @@ public class M1903A1Factory {
             })
             .withTextureName("M1903A1")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M1903A1())
                     .withPrepareFirstLoadIterationAnimationDuration(1100)
                     .withAllLoadIterationAnimationsCompletedDuration(1000)

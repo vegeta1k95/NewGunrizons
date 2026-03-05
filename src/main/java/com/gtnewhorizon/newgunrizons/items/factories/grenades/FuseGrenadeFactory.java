@@ -16,7 +16,7 @@ import com.gtnewhorizon.newgunrizons.registry.Grenades;
 public class FuseGrenadeFactory implements GrenadeFactory {
 
     public ItemGrenade createGrenade(CommonProxy commonProxy) {
-        return (new ItemGrenade.Builder()).withModId("newgunrizons")
+        return (new ItemGrenade.Builder())
             .withName("M67Frag")
             .withCreativeTab(NewGunrizonsMod.GrenadesTab)
             .withTextureNames("M67Frag")
@@ -48,7 +48,7 @@ public class FuseGrenadeFactory implements GrenadeFactory {
                 'G',
                 "ingotSteel")
             .withRenderer(
-                (new GrenadeRenderer.Builder()).withModId("newgunrizons")
+                (new GrenadeRenderer.Builder())
                     .withModel(new M67Frag())
                     .withAnimationDuration(500)
                     .withThrownEntityPositioning(() -> {

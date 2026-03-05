@@ -44,7 +44,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class G36CFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("G36C")
             .withFireRate(0.7F)
             .withRecoil(3.2F)
@@ -73,11 +73,11 @@ public class G36CFactory implements GunFactory {
                     "30rnd 5.56x45mm NATO Magazine (Type 3)",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.NATOG36Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOG36Mag, ((model) -> {
                 GL11.glTranslatef(-0.37F, 0.8F, -1.7F);
                 GL11.glScaled(1.25D, 1.7000000476837158D, 1.7000000476837158D);
             }))
-            .withCompatibleAttachment(Magazines.NATODrum100, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATODrum100, ((model) -> {
                 GL11.glTranslatef(-0.37F, 0.8F, -1.7F);
                 GL11.glScaled(1.25D, 1.600000023841858D, 1.7000000476837158D);
                 GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
@@ -236,7 +236,7 @@ public class G36CFactory implements GunFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new G36C())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

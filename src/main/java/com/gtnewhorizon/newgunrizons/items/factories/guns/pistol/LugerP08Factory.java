@@ -26,7 +26,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class LugerP08Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("LugerP08")
             .withFireRate(0.35F)
             .withRecoil(5.0F)
@@ -82,10 +82,10 @@ public class LugerP08Factory {
             })
             .withCompatibleAttachment(
                 Magazines.LugerP08Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
             .withTextureName("LugerP08")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new LugerP08())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

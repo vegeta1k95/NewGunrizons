@@ -42,7 +42,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class SKSFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("SKS")
             .withFireRate(0.3F)
             .withRecoil(4.0F)
@@ -177,7 +177,7 @@ public class SKSFactory {
                 (model) -> { GL11.glTranslatef(-0.1F, 1.1F, 2.0F); })
             .withTextureName("sks")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new SKS())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

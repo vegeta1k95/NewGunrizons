@@ -38,7 +38,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AS50Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AS50")
             .withFireRate(0.16F)
             .withRecoil(4.0F)
@@ -71,7 +71,7 @@ public class AS50Factory implements GunFactory {
                     "10rnd .50 BMG Magazine (Type 1)",
                     "Fire Rate: Semi");
             })
-            .withCompatibleAttachment(Magazines.AS50Mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.AS50Mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof AKMiron1) {
                     GL11.glTranslatef(0.125F, -1.8F, -0.5F);
@@ -166,7 +166,7 @@ public class AS50Factory implements GunFactory {
             })
             .withTextureName("AS50")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new AS50())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

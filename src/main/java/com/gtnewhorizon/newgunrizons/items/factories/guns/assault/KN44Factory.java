@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 public class KN44Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("KN44")
             .withFireRate(0.6F)
             .withRecoil(2.3F)
@@ -143,7 +143,7 @@ public class KN44Factory implements GunFactory {
             })
             .withTextureName("KN44")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new KN44())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);

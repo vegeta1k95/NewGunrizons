@@ -28,6 +28,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL11;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
 import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.attachment.StandardPart;
@@ -97,7 +98,6 @@ public class GrenadeRenderer implements IItemRenderer {
     private final Consumer<RenderContext> firstPersonRightHandPositioningThrown;
     private final LinkedHashMap<Part, GrenadeRenderer.SimplePositioning> firstPersonCustomPositioningThrown;
     private final long totalThrowingDuration;
-    private final String modId;
     private final float normalRandomizingRate;
     private final float normalRandomizingAmplitude;
     private final int animationDuration;
@@ -136,7 +136,6 @@ public class GrenadeRenderer implements IItemRenderer {
         this.firstPersonRightHandPositioningThrown = builder.firstPersonRightHandPositioningThrown;
         this.firstPersonCustomPositioningThrown = builder.firstPersonCustomPositioningThrown;
         this.totalThrowingDuration = builder.totalThrowingDuration;
-        this.modId = builder.getModId();
         this.normalRandomizingRate = builder.normalRandomizingRate;
         this.normalRandomizingAmplitude = builder.normalRandomizingAmplitude;
         this.animationDuration = builder.animationDuration;
@@ -300,14 +299,14 @@ public class GrenadeRenderer implements IItemRenderer {
         MultipartPositioning.Positioner positioner) {
         if (this.textureName != null) {
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + this.textureName));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + this.textureName));
         } else {
             String textureName;
             ItemGrenade weapon = (ItemGrenade) weaponItemStack.getItem();
             textureName = weapon.getTextureName();
 
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + textureName));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + textureName));
         }
 
         this.model.render(
@@ -354,7 +353,7 @@ public class GrenadeRenderer implements IItemRenderer {
             .getTexturedModels()) {
             Pair<ModelBase, String> texturedModel = modelBaseStringPair;
             Minecraft.getMinecraft().renderEngine
-                .bindTexture(new ResourceLocation(this.modId + ":textures/models/" + texturedModel.getV()));
+                .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + texturedModel.getV()));
             GL11.glPushMatrix();
             GL11.glPushAttrib(8193);
             if (compatibleAttachment.getModelPositioning() != null) {
@@ -643,19 +642,12 @@ public class GrenadeRenderer implements IItemRenderer {
         private Consumer<RenderContext> firstPersonRightHandPositioningThrown;
         private final LinkedHashMap<Part, GrenadeRenderer.SimplePositioning> firstPersonCustomPositioningThrown = new LinkedHashMap<>();
         private long totalThrowingDuration;
-        @Getter
-        private String modId;
         private final float normalRandomizingRate = DEFAULT_RANDOMIZING_RATE;
         private final float normalRandomizingAmplitude = DEFAULT_NORMAL_RANDOMIZING_AMPLITUDE;
         public int animationDuration = DEFAULT_ANIMATION_DURATION;
         private Supplier<Float> xCenterOffset = () -> 0.0F;
         private Supplier<Float> yCenterOffset = () -> 0.0F;
         private Supplier<Float> zCenterOffset = () -> 0.0F;
-
-        public GrenadeRenderer.Builder withModId(String modId) {
-            this.modId = modId;
-            return this;
-        }
 
         public GrenadeRenderer.Builder withModel(ModelBase model) {
             this.model = model;
@@ -844,10 +836,9 @@ public class GrenadeRenderer implements IItemRenderer {
             if (!(FMLCommonHandler.instance()
                 .getSide() == Side.CLIENT)) {
                 return null;
-            } else if (this.modId == null) {
-                throw new IllegalStateException("ModId is not set");
-            } else {
-                if (this.inventoryPositioning == null) {
+            }
+
+            if (this.inventoryPositioning == null) {
                     this.inventoryPositioning = (itemStack) -> { GL11.glTranslatef(0.0F, 0.12F, 0.0F); };
                 }
 
@@ -1037,9 +1028,8 @@ public class GrenadeRenderer implements IItemRenderer {
                         });
                 }
 
-                GrenadeRenderer renderer = new GrenadeRenderer(this);
-                return renderer;
-            }
+            GrenadeRenderer renderer = new GrenadeRenderer(this);
+            return renderer;
         }
 
     }

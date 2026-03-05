@@ -138,7 +138,6 @@ public class Magazines {
         PythonClip = (new ItemMagazine.Builder()).withAmmo(6)
             .withCompatibleBullet(Bullets.Bullet357)
             .withName("PythonClip")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new revolverclip(), "RevolverClip.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -164,7 +163,6 @@ public class Magazines {
         Magazine762x39 = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet762x39)
             .withName("Magazine762x39")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Magazine762x39(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -191,7 +189,6 @@ public class Magazines {
         STG44Mag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet762x39)
             .withName("STG44Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new STG44Mag(), "STG44.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -218,7 +215,6 @@ public class Magazines {
         SVT40mag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet762x54)
             .withName("SVT40Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new SVT40mag(), "SVT40.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -245,7 +241,6 @@ public class Magazines {
         LeeEnfieldMag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet762x54)
             .withName("LeeEnfieldMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new LeeEnfieldNo4Magazine(), "LeeEnfieldNo4.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -272,7 +267,6 @@ public class Magazines {
         Saiga12mag = (new ItemMagazine.Builder()).withAmmo(5)
             .withCompatibleBullet(Bullets.ShotgunShell)
             .withName("Saiga12mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Saiga12mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -299,7 +293,6 @@ public class Magazines {
         VEPR12Mag = (new ItemMagazine.Builder()).withAmmo(8)
             .withCompatibleBullet(Bullets.ShotgunShell)
             .withName("VEPR12Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new VEPRMag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -326,7 +319,6 @@ public class Magazines {
         Saiga410Mag = (new ItemMagazine.Builder()).withAmmo(7)
             .withCompatibleBullet(Bullets.ShotgunShell410)
             .withName("Saiga410Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Saiga12mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -353,7 +345,6 @@ public class Magazines {
         Type100Mag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet8mm)
             .withName("Type100Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Type100Mag(), "Type100Mag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -380,7 +371,6 @@ public class Magazines {
         MP18mag = (new ItemMagazine.Builder()).withAmmo(32)
             .withCompatibleBullet(Bullets.Bullet762x25)
             .withName("MP18mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MP18mag(), "MP18.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -407,7 +397,6 @@ public class Magazines {
         M1A1mag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet45ACP)
             .withName("M1A1mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M1A1mag(), "M1A1Thompson.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -434,7 +423,6 @@ public class Magazines {
         PPSH41DrumMag = (new ItemMagazine.Builder()).withAmmo(71)
             .withCompatibleBullet(Bullets.Bullet762x25)
             .withName("PPSH41Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new PPSHDrumMag(), "PPSH41.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -461,7 +449,6 @@ public class Magazines {
         Mag75rnd762x39 = (new ItemMagazine.Builder()).withAmmo(75)
             .withCompatibleBullet(Bullets.Bullet762x39)
             .withName("Mag75rnd762x39")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Mag75rnd(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -488,7 +475,6 @@ public class Magazines {
         M8A7Mag = (new ItemMagazine.Builder()).withAmmo(32)
             .withCompatibleBullet(Bullets.Bullet300Blackout)
             .withName("M8A7Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withModel(new M8A7Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -515,7 +501,6 @@ public class Magazines {
         PMAG762x39 = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet762x39)
             .withName("PMAG762x39")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new PMAG762x39(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -542,7 +527,6 @@ public class Magazines {
         AK15Mag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet762x39)
             .withName("AK15Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new PMAG762x39(), "AK15.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -569,7 +553,6 @@ public class Magazines {
         AK12Mag = (new ItemMagazine.Builder()).withAmmo(31)
             .withCompatibleBullet(Bullets.Bullet556x39)
             .withName("AK12Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new AK12Magazine(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -596,7 +579,6 @@ public class Magazines {
         RPK74MMag = (new ItemMagazine.Builder()).withAmmo(40)
             .withCompatibleBullet(Bullets.Bullet762x39)
             .withName("RPK74MMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new RPK74MMag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -623,7 +605,6 @@ public class Magazines {
         AK74MMag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet545x39)
             .withName("AK74MMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Magazine545x39(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -650,7 +631,6 @@ public class Magazines {
         AKS74UMag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet545x39)
             .withName("AKS74UMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Magazine545x39(), "AKS74UMag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -677,7 +657,6 @@ public class Magazines {
         NATOMag1 = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATOMag1")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATOMag1(), "NATOMag1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -704,7 +683,6 @@ public class Magazines {
         MPXmag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("MPXmag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MPXmag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -731,7 +709,6 @@ public class Magazines {
         Mag308 = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet308)
             .withName("Mag308")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Mag308(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -758,7 +735,6 @@ public class Magazines {
         NATO20rnd = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATO20rnd")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATO20rnd(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -785,7 +761,6 @@ public class Magazines {
         M16A1Mag = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("M16A1Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M110Mag(), "NATOMag1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -812,7 +787,6 @@ public class Magazines {
         NATO40rnd = (new ItemMagazine.Builder()).withAmmo(40)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATO40rnd")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATO40rnd(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -839,7 +813,6 @@ public class Magazines {
         NATOMag2 = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATOMag2")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATOMag2(), "NATOMag2.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -866,7 +839,6 @@ public class Magazines {
         NATOFamasMag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATOFamasMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATOFamasMag(), "NATOMag1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -893,7 +865,6 @@ public class Magazines {
         NATOG36Mag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATOG36Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATOG36Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -920,7 +891,6 @@ public class Magazines {
         DragunovMag = (new ItemMagazine.Builder()).withAmmo(11)
             .withCompatibleBullet(Bullets.Bullet762x54)
             .withName("DragunovMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new DragunovMag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -947,7 +917,6 @@ public class Magazines {
         FALMag = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet762x51)
             .withName("FALMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new FNFALMag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -974,7 +943,6 @@ public class Magazines {
         M110Mag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet762x51)
             .withName("M110Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M110Mag(), "NATOMag1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1001,7 +969,6 @@ public class Magazines {
         HK417Mag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet762x51)
             .withName("HK417Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new HK417Mag(), "HK417Mag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1028,7 +995,6 @@ public class Magazines {
         M14DMRMag = (new ItemMagazine.Builder()).withAmmo(21)
             .withCompatibleBullet(Bullets.Bullet762x51)
             .withName("M14DMRMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M14Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1055,7 +1021,6 @@ public class Magazines {
         Glock21Mag = (new ItemMagazine.Builder()).withAmmo(13)
             .withCompatibleBullet(Bullets.Bullet45ACP)
             .withName("Glock21Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new GlockMagazine(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1082,7 +1047,6 @@ public class Magazines {
         LugerP08Mag = (new ItemMagazine.Builder()).withAmmo(8)
             .withCompatibleBullet(Bullets.Bullet762x21)
             .withName("LugerP08Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new LugerMag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1109,7 +1073,6 @@ public class Magazines {
         Tec9Mag = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("Tec9Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Tec9Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1136,7 +1099,6 @@ public class Magazines {
         G18Mag = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("G18Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new G18Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1163,7 +1125,6 @@ public class Magazines {
         Glock32Mag = (new ItemMagazine.Builder()).withAmmo(14)
             .withCompatibleBullet(Bullets.Bullet357)
             .withName("Glock32Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new GlockMagazine(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1190,7 +1151,6 @@ public class Magazines {
         M9BerettaMag = (new ItemMagazine.Builder()).withAmmo(15)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("M9BerettaMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M9Mag(), "M9Mag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1217,7 +1177,6 @@ public class Magazines {
         Mag10mm = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet10mm)
             .withName("Mag10mm")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withModel(new M9Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1244,7 +1203,6 @@ public class Magazines {
         Magazine9mm = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("Magazine9mm")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MakarovMag(), "MakarovMag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1271,7 +1229,6 @@ public class Magazines {
         NATODrum100 = (new ItemMagazine.Builder()).withAmmo(100)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("NATODrum100")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new NATODrum100(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1298,7 +1255,6 @@ public class Magazines {
         MP40Mag = (new ItemMagazine.Builder()).withAmmo(32)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("MP40Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MP40Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1325,7 +1281,6 @@ public class Magazines {
         M3A1Mag = (new ItemMagazine.Builder()).withAmmo(31)
             .withCompatibleBullet(Bullets.Bullet45ACP)
             .withName("M3A1Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M3A1GreaseGunMag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1352,7 +1307,6 @@ public class Magazines {
         VectorMag = (new ItemMagazine.Builder()).withAmmo(26)
             .withCompatibleBullet(Bullets.Bullet45ACP)
             .withName("VectorMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MP40Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1379,7 +1333,6 @@ public class Magazines {
         MP5KMag = (new ItemMagazine.Builder()).withAmmo(25)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("MP5KMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new HKMP5Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1406,7 +1359,6 @@ public class Magazines {
         Deagle50Mag = (new ItemMagazine.Builder()).withAmmo(7)
             .withCompatibleBullet(Bullets.Bullet50)
             .withName("Deagle50Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new DeagleMag(), "Deagle44.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1433,7 +1385,6 @@ public class Magazines {
         VSSVintorezMag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet9x39mm)
             .withName("VSSVintorezMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new VSSVintorezMag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1460,7 +1411,6 @@ public class Magazines {
         ASValMag = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet9x39mm)
             .withName("ASValMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new ASValMag(), "ASValMag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1487,7 +1437,6 @@ public class Magazines {
         AS50Mag = (new ItemMagazine.Builder()).withAmmo(5)
             .withCompatibleBullet(Bullets.BMG50)
             .withName("AS50Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new AS50Mag(), "NATOMag1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1514,7 +1463,6 @@ public class Magazines {
         HecateIIMag = (new ItemMagazine.Builder()).withAmmo(7)
             .withCompatibleBullet(Bullets.BMG50)
             .withName("HecateIIMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new AS50Mag(), "NATOMag1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1541,7 +1489,6 @@ public class Magazines {
         FNP90Mag = (new ItemMagazine.Builder()).withAmmo(50)
             .withCompatibleBullet(Bullets.Bullet57x28)
             .withName("FNP90Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new P90Mag(), "P90Mag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1568,7 +1515,6 @@ public class Magazines {
         M107BMag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.BMG50)
             .withName("M107BMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M107Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1595,7 +1541,6 @@ public class Magazines {
         HKMP7Mag = (new ItemMagazine.Builder()).withAmmo(20)
             .withCompatibleBullet(Bullets.Bullet46x30)
             .withName("HKMP7Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MP7Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1622,7 +1567,6 @@ public class Magazines {
         M1CarbineMag = (new ItemMagazine.Builder()).withAmmo(15)
             .withCompatibleBullet(Bullets.Carbine30)
             .withName("M1CarbineMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M14Mag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1649,7 +1593,6 @@ public class Magazines {
         M2CarbineMag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Carbine30)
             .withName("M2CarbineMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M2CarbineMag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1676,7 +1619,6 @@ public class Magazines {
         L115Mag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet308)
             .withName("L115Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new L115Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1703,7 +1645,6 @@ public class Magazines {
         SV98Mag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet762x54)
             .withName("SV98Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new SV98Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1730,7 +1671,6 @@ public class Magazines {
         ColtM1911Mag = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet45ACP)
             .withName("ColtM1911Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new GlockMagazine(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1757,7 +1697,6 @@ public class Magazines {
         M249Mag = (new ItemMagazine.Builder()).withAmmo(200)
             .withCompatibleBullet(Bullets.Bullet556x45)
             .withName("M249Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M249Mag(), "M249.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1784,7 +1723,6 @@ public class Magazines {
         Mk48Mag = (new ItemMagazine.Builder()).withAmmo(100)
             .withCompatibleBullet(Bullets.Bullet762x51)
             .withName("Mk48Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new Mk48MOD1Mag(), "Mk48MOD1.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1811,7 +1749,6 @@ public class Magazines {
         MXMag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet65x39)
             .withName("MXMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new MXMag(), "MXMag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1838,7 +1775,6 @@ public class Magazines {
         M41AMag = (new ItemMagazine.Builder()).withAmmo(99)
             .withCompatibleBullet(Bullets.Bullet65x39)
             .withName("M41AMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withModel(new M41AMag(), "M41AMag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1865,7 +1801,6 @@ public class Magazines {
         ScarHMag = (new ItemMagazine.Builder()).withAmmo(30)
             .withCompatibleBullet(Bullets.Bullet300Blackout)
             .withName("ScarHMag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new ScarHMag(), "GunmetalTexture.png")
             .withFirstPersonPositioning((player, itemStack) -> {
@@ -1892,7 +1827,6 @@ public class Magazines {
         PP19Mag = (new ItemMagazine.Builder()).withAmmo(65)
             .withCompatibleBullet(Bullets.Bullet9mm)
             .withName("PP19Mag")
-            .withModId("newgunrizons")
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new PPBizonMag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {

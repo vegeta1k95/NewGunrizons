@@ -23,7 +23,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class HecateIIFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HecateII")
             .withFireRate(0.16F)
             .withEjectRoundRequired()
@@ -60,7 +60,7 @@ public class HecateIIFactory implements GunFactory {
                     "7rnd .50 BMG Magazine",
                     "Fire Rate: Bolt Action");
             })
-            .withCompatibleAttachment(Magazines.HecateIIMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.HecateIIMag, ((model) -> {
                 GL11.glTranslatef(0.0F, -0.25F, 0.0F);
                 GL11.glScaled(1.2000000476837158D, 0.699999988079071D, 1.0D);
             }))
@@ -88,7 +88,7 @@ public class HecateIIFactory implements GunFactory {
             })
             .withTextureName("HecateII")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new HecateII())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);

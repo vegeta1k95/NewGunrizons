@@ -22,7 +22,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class DupletFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Duplet")
             .withAmmoCapacity(7)
             .withMaxBulletsPerReload(2)
@@ -62,7 +62,7 @@ public class DupletFactory implements GunFactory {
             .withCompatibleBullet(Bullets.ShotgunShell, (model) -> {})
             .withTextureName("Duplet")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Duplet())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

@@ -23,7 +23,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AUGFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AUG")
             .withFireRate(0.7F)
             .withRecoil(3.5F)
@@ -64,7 +64,7 @@ public class AUGFactory implements GunFactory {
                 }
 
             })
-            .withCompatibleAttachment(Magazines.NATOMag1, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag1, ((model) -> {
                 GL11.glTranslatef(-0.335F, 0.9F, 1.2F);
                 GL11.glScaled(1.0D, 1.5D, 1.5D);
                 GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
@@ -75,7 +75,7 @@ public class AUGFactory implements GunFactory {
             })
             .withTextureName("AUG")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new AUG())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

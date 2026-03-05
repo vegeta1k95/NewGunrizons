@@ -39,7 +39,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AN94Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AN94")
             .withFireRate(0.6F)
             .withRecoil(3.0F)
@@ -96,7 +96,7 @@ public class AN94Factory implements GunFactory {
 
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AN94action, true, (model) -> {})
-            .withCompatibleAttachment(Magazines.AK74MMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.AK74MMag, ((model) -> {
                 GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
                 GL11.glTranslatef(-0.08F, -0.1F, 0.3F);
                 GL11.glScaled(0.800000011920929D, 1.0D, 1.0D);
@@ -146,7 +146,7 @@ public class AN94Factory implements GunFactory {
             })
             .withTextureName("AN94")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new AN94())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

@@ -45,7 +45,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class KrissVectorFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("KrissVector")
             .withFireRate(0.8F)
             .withRecoil(3.0F)
@@ -80,7 +80,7 @@ public class KrissVectorFactory implements GunFactory {
                     "26rnd .45 ACP Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.VectorMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.VectorMag, ((model) -> {
                 GL11.glTranslatef(-0.43F, 0.8F, 0.2F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
                 GL11.glRotatef(17.0F, 1.0F, 0.0F, 0.0F);
@@ -247,7 +247,7 @@ public class KrissVectorFactory implements GunFactory {
             })
             .withTextureName("KrissVector")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new KrissVector())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);

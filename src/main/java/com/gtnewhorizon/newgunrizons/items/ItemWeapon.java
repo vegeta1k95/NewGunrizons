@@ -22,6 +22,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentContainer;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
@@ -452,8 +453,6 @@ public class ItemWeapon extends Item
         @Getter
         public String textureName;
 
-        private String modId;
-
         public int ammoCapacity = 0;
         float recoil = 1.0F;
         private String shootSound;
@@ -512,11 +511,6 @@ public class ItemWeapon extends Item
         public Builder() {
             this.silencedShootSoundVolume = 0.7F;
             this.shootSoundVolume = 10.0F;
-        }
-
-        public ItemWeapon.Builder withModId(String modId) {
-            this.modId = modId;
-            return this;
         }
 
         public ItemWeapon.Builder withEjectRoundRequired() {
@@ -580,17 +574,17 @@ public class ItemWeapon extends Item
         }
 
         public ItemWeapon.Builder withCrosshair(String crosshair) {
-            this.crosshair = this.modId + ":" + "textures/crosshairs/" + crosshair.toLowerCase() + ".png";
+            this.crosshair = NewGunrizonsMod.MODID + ":" + "textures/crosshairs/" + crosshair.toLowerCase() + ".png";
             return this;
         }
 
         public ItemWeapon.Builder withCrosshairRunning(String crosshairRunning) {
-            this.crosshairRunning = this.modId + ":" + "textures/crosshairs/" + crosshairRunning.toLowerCase() + ".png";
+            this.crosshairRunning = NewGunrizonsMod.MODID + ":" + "textures/crosshairs/" + crosshairRunning.toLowerCase() + ".png";
             return this;
         }
 
         public ItemWeapon.Builder withCrosshairZoomed(String crosshairZoomed) {
-            this.crosshairZoomed = this.modId + ":" + "textures/crosshairs/" + crosshairZoomed.toLowerCase() + ".png";
+            this.crosshairZoomed = NewGunrizonsMod.MODID + ":" + "textures/crosshairs/" + crosshairZoomed.toLowerCase() + ".png";
             return this;
         }
 
@@ -790,9 +784,6 @@ public class ItemWeapon extends Item
         }
 
         public ItemWeapon build(ModContext modContext) {
-            if (this.modId == null) {
-                throw new IllegalStateException("ModId is not set");
-            }
             if (this.name == null) {
                 throw new IllegalStateException("Weapon name not provided");
             }

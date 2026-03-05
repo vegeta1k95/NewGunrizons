@@ -34,7 +34,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class STG44Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("STG44")
             .withFireRate(0.6F)
             .withRecoil(3.5F)
@@ -65,7 +65,7 @@ public class STG44Factory {
                     "30rnd 7.92x33mm Kurz Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.STG44Mag, (Consumer) ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
+            .withCompatibleAttachment(Magazines.STG44Mag, ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -1.216F, -1.65F);
@@ -113,7 +113,7 @@ public class STG44Factory {
             .withCompatibleAttachment(AuxiliaryAttachments.STG44Action, true, (model) -> {})
             .withTextureName("STG44")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new STG44())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

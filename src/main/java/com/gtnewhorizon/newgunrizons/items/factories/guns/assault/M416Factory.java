@@ -46,7 +46,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M416Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M416")
             .withFireRate(0.7F)
             .withRecoil(3.5F)
@@ -79,23 +79,23 @@ public class M416Factory {
                     "100rnd 5.56x45mm NATO Beta-C Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.NATOMag1, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag1, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATO40rnd, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATO40rnd, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATO20rnd, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATO20rnd, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATOMag2, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag2, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.5F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
-            .withCompatibleAttachment(Magazines.NATODrum100, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATODrum100, ((model) -> {
                 GL11.glTranslatef(-0.35F, 0.69F, -1.25F);
                 GL11.glScaled(1.149999976158142D, 1.2000000476837158D, 1.149999976158142D);
             }))
@@ -322,7 +322,7 @@ public class M416Factory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M416())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

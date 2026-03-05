@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class PP19Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("PP19")
             .withFireRate(0.75F)
             .withRecoil(2.5F)
@@ -65,7 +65,7 @@ public class PP19Factory implements GunFactory {
                     "Fire Rate: Auto");
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKaction, true, (model) -> {})
-            .withCompatibleAttachment(Magazines.PP19Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.PP19Mag, ((model) -> {
                 GL11.glTranslatef(-0.38F, 0.85F, -1.62F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
             }))
@@ -118,7 +118,7 @@ public class PP19Factory implements GunFactory {
             })
             .withTextureName("ppbizon")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new PPBizon())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

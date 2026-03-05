@@ -38,7 +38,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AWPFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AWP")
             .withFireRate(0.16F)
             .withEjectRoundRequired()
@@ -75,7 +75,7 @@ public class AWPFactory implements GunFactory {
                     "8rnd 7.62x51mm Magazine",
                     "Fire Rate: Bolt Action");
             })
-            .withCompatibleAttachment(Magazines.L115Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.L115Mag, ((model) -> {
                 GL11.glScaled(1.600000023841858D, 1.600000023841858D, 1.600000023841858D);
                 GL11.glTranslatef(-0.27F, 0.6F, -0.97F);
             }))
@@ -180,7 +180,7 @@ public class AWPFactory implements GunFactory {
             })
             .withTextureName("AWP")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new L96())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

@@ -22,7 +22,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Glock18Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Glock18")
             .withFireRate(0.8F)
             .withRecoil(3.0F)
@@ -56,7 +56,7 @@ public class Glock18Factory implements GunFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.G18Top, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.G18Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.1F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.1F, 0.0F); }))
             .withCompatibleAttachment(Attachments.Laser, (p, s) -> {
                 GL11.glTranslatef(0.01F, -0.7F, -2.3F);
                 GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.100000023841858D);
@@ -68,7 +68,7 @@ public class Glock18Factory implements GunFactory {
             })
             .withTextureName("G18")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Glock())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

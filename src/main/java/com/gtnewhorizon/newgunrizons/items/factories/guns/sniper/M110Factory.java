@@ -47,7 +47,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M110Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M110")
             .withFireRate(0.7F)
             .withRecoil(3.5F)
@@ -76,7 +76,7 @@ public class M110Factory implements GunFactory {
                     "10rnd 7.62x51mm NATO Magazine",
                     "Fire Rate: Semi");
             })
-            .withCompatibleAttachment(Magazines.M110Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.M110Mag, ((model) -> {
                 GL11.glTranslatef(-0.33F, 0.5F, -1.3F);
                 GL11.glScaled(1.0499999523162842D, 1.2000000476837158D, 1.0D);
             }))
@@ -298,7 +298,7 @@ public class M110Factory implements GunFactory {
             })
             .withTextureName("M110")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M110())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

@@ -46,7 +46,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class HK417Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("HK417")
             .withFireRate(0.5F)
             .withRecoil(7.0F)
@@ -75,7 +75,7 @@ public class HK417Factory {
                     "10rnd 7.62x51mm NATO Magazine",
                     "Fire Rate: Semi");
             })
-            .withCompatibleAttachment(Magazines.HK417Mag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.HK417Mag, ((model) -> {
                 GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }))
@@ -301,7 +301,7 @@ public class HK417Factory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new HK417())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

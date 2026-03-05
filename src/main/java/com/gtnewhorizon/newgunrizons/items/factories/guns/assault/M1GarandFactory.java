@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class M1GarandFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M1Garand")
             .withFireRate(0.35F)
             .withAmmoCapacity(8)
@@ -122,7 +122,7 @@ public class M1GarandFactory implements GunFactory {
             })
             .withTextureName("M1Garand")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M1Garand())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.44999998807907104D, 0.44999998807907104D, 0.44999998807907104D);

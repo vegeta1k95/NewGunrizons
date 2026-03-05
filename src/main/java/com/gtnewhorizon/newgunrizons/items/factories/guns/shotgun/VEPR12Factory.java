@@ -45,7 +45,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class VEPR12Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("VEPR12")
             .withFireRate(0.4F)
             .withRecoil(8.0F)
@@ -89,7 +89,7 @@ public class VEPR12Factory {
             })
             .withCompatibleAttachment(
                 Magazines.VEPR12Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
             .withCompatibleAttachment(Attachments.Silencer12Gauge, (model) -> {
                 GL11.glTranslatef(-0.22F, -1.1F, -8.3F);
                 GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
@@ -232,7 +232,7 @@ public class VEPR12Factory {
             })
             .withTextureName("VEPR12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new VEPR12())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

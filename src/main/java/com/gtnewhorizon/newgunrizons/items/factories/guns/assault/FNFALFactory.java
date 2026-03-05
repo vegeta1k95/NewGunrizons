@@ -44,7 +44,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class FNFALFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("FNFAL")
             .withFireRate(0.5F)
             .withRecoil(2.0F)
@@ -73,7 +73,7 @@ public class FNFALFactory implements GunFactory {
                     "20rnd 7.62x51mm NATO Magazine",
                     "Fire Rate: Semi");
             })
-            .withCompatibleAttachment(Magazines.FALMag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.FALMag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof AKMiron1) {
                     GL11.glTranslatef(0.125F, -1.8F, -0.5F);
@@ -220,7 +220,7 @@ public class FNFALFactory implements GunFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new FNFAL())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

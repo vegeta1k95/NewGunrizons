@@ -35,7 +35,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M1928ThompsonFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M1928Thompson")
             .withFireRate(0.75F)
             .withRecoil(3.0F)
@@ -67,7 +67,7 @@ public class M1928ThompsonFactory {
                     ".45 ACP 30rnd Box Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.M1A1mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.M1A1mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -1.216F, -1.65F);
@@ -130,7 +130,7 @@ public class M1928ThompsonFactory {
                 (model) -> { GL11.glTranslatef(0.0F, 0.0F, 1.3F); })
             .withTextureName("M1A1Thompson")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M1928Thompson())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

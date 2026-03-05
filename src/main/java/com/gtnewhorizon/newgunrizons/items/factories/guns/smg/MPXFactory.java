@@ -46,7 +46,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MPXFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MPX")
             .withFireRate(0.7F)
             .withRecoil(3.0F)
@@ -75,7 +75,7 @@ public class MPXFactory {
                     "30rnd 9mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.MPXmag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.MPXmag, ((model) -> {
                 GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }))
@@ -271,7 +271,7 @@ public class MPXFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MPX())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

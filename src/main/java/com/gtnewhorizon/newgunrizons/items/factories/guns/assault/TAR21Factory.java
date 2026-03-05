@@ -45,7 +45,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class TAR21Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("TAR21")
             .withFireRate(0.6F)
             .withRecoil(3.5F)
@@ -74,7 +74,7 @@ public class TAR21Factory implements GunFactory {
                     "30rnd 5.56x45mm NATO Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.NATOMag1, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOMag1, ((model) -> {
                 GL11.glTranslatef(-0.32F, 0.35F, 1.45F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }))
@@ -236,7 +236,7 @@ public class TAR21Factory implements GunFactory {
             })
             .withTextureName("TAR21")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new TAR21())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

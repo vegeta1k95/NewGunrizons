@@ -44,7 +44,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class FamasFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Famas")
             .withFireRate(0.75F)
             .withRecoil(3.5F)
@@ -74,7 +74,7 @@ public class FamasFactory implements GunFactory {
                     "30rnd 5.56x45mm NATO Magazine (Type 2)",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.NATOFamasMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.NATOFamasMag, ((model) -> {
                 GL11.glTranslatef(-0.355F, 0.9F, 1.6F);
                 GL11.glScaled(1.2000000476837158D, 1.5D, 1.5D);
             }))
@@ -212,7 +212,7 @@ public class FamasFactory implements GunFactory {
             })
             .withTextureName("AK12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Felin())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

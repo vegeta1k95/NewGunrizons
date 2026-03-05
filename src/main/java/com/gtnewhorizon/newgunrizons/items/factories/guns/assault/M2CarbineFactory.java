@@ -36,7 +36,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M2CarbineFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M2Carbine")
             .withFireRate(0.5F)
             .withRecoil(2.8F)
@@ -79,11 +79,11 @@ public class M2CarbineFactory {
                 GL11.glTranslatef(-0.1385F, -1.125F, -0.72F);
                 GL11.glScaled(0.10999999940395355D, 0.10999999940395355D, 0.10999999940395355D);
             })
-            .withCompatibleAttachment(Magazines.M1CarbineMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.M1CarbineMag, ((model) -> {
                 GL11.glTranslatef(-0.3F, 0.5F, -1.3F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }))
-            .withCompatibleAttachment(Magazines.M2CarbineMag, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.M2CarbineMag, ((model) -> {
                 GL11.glTranslatef(-0.3F, 0.5F, -1.3F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }))
@@ -135,7 +135,7 @@ public class M2CarbineFactory {
             })
             .withTextureName("m2carbine")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new m1carbine())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.44999998807907104D, 0.44999998807907104D, 0.44999998807907104D);

@@ -21,7 +21,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class Pistol10mmFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("10mmPistol")
             .withFireRate(0.6F)
             .withRecoil(6.0F)
@@ -53,14 +53,14 @@ public class Pistol10mmFactory implements GunFactory {
                     "10rnd 10mm Magazine",
                     "Fire Rate: Semi");
             })
-            .withCompatibleAttachment(Magazines.Mag10mm, (Consumer) ((model) -> {
+            .withCompatibleAttachment(Magazines.Mag10mm, ((model) -> {
                 GL11.glTranslatef(0.0F, -0.2F, 0.14F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
                 GL11.glRotatef(15.0F, 1.0F, 0.0F, 0.0F);
             }))
             .withTextureName("Pistol10mm")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Pistol10mm())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);

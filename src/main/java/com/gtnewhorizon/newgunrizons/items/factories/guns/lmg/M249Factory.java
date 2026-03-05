@@ -47,7 +47,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class M249Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("M249")
             .withFireRate(0.8F)
             .withRecoil(2.5F)
@@ -80,7 +80,7 @@ public class M249Factory implements GunFactory {
                     "200rnd 5.56x45mm NATO Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.M249Mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.M249Mag, ((model) -> {}))
             .withCompatibleAttachment(
                 AuxiliaryAttachments.M249Action,
                 true,
@@ -241,7 +241,7 @@ public class M249Factory implements GunFactory {
             })
             .withTextureName("M249")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new M249())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

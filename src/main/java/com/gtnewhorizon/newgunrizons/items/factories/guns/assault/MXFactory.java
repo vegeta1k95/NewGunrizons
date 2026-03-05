@@ -44,7 +44,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class MXFactory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("MX")
             .withFireRate(0.55F)
             .withRecoil(3.0F)
@@ -78,7 +78,7 @@ public class MXFactory implements GunFactory {
             })
             .withCompatibleAttachment(
                 Magazines.MXMag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.07F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.07F); }))
             .withCompatibleAttachment(Attachments.AKMIron, true, (model) -> {
                 if (model instanceof ScarIron1) {
                     GL11.glTranslatef(0.17F, -1.61F, 1.3F);
@@ -232,7 +232,7 @@ public class MXFactory implements GunFactory {
             })
             .withTextureName("MX")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new MX())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

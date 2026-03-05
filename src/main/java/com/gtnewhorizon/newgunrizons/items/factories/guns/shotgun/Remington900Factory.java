@@ -21,7 +21,7 @@ import com.gtnewhorizon.newgunrizons.registry.Bullets;
 public class Remington900Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("Remington870")
             .withAmmoCapacity(5)
             .withMaxBulletsPerReload(4)
@@ -71,7 +71,7 @@ public class Remington900Factory implements GunFactory {
             .withCompatibleBullet(Bullets.ShotgunShell, (model) -> {})
             .withTextureName("Remington870")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new Remington870())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.5D, 0.5D, 0.5D);

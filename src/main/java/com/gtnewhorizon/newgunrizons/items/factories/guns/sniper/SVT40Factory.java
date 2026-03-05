@@ -39,7 +39,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class SVT40Factory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("SVT40")
             .withFireRate(0.4F)
             .withRecoil(4.0F)
@@ -100,7 +100,7 @@ public class SVT40Factory {
             .withCompatibleAttachment(AuxiliaryAttachments.SVT40action, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.SVT40mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, -0.17F, 0.05F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, -0.17F, 0.05F); }))
             .withCompatibleAttachment(Attachments.Silencer762x54, (model) -> {
                 GL11.glTranslatef(-0.2F, -0.7F, -8.3F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
@@ -150,7 +150,7 @@ public class SVT40Factory {
             })
             .withTextureName("svt40")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new SVT40())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

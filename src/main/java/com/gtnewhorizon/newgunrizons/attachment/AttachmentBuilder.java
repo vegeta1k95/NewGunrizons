@@ -18,6 +18,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.client.render.CustomRenderer;
 import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 import com.gtnewhorizon.newgunrizons.client.render.StaticModelRenderer;
@@ -46,8 +47,6 @@ public class AttachmentBuilder {
     // ==================== Identity ====================
 
     private String name;
-    @Getter
-    private String modId;
 
     // ==================== Visual appearance ====================
 
@@ -135,11 +134,6 @@ public class AttachmentBuilder {
 
     public AttachmentBuilder withName(String name) {
         this.name = name;
-        return this;
-    }
-
-    public AttachmentBuilder withModId(String modId) {
-        this.modId = modId;
         return this;
     }
 
@@ -324,13 +318,13 @@ public class AttachmentBuilder {
      * specific subtypes.
      */
     protected ItemAttachment createAttachment(ModContext modContext) {
-        return new ItemAttachment(this.modId, this.category, this.crosshair);
+        return new ItemAttachment(this.category, this.crosshair);
     }
 
     // ==================== Build internals ====================
 
     private void configureAttachment(ItemAttachment attachment) {
-        attachment.setUnlocalizedName(this.modId + "_" + this.name);
+        attachment.setUnlocalizedName(NewGunrizonsMod.MODID + "_" + this.name);
         attachment.setCreativeTab(this.tab);
         attachment.setMaxStackSize(this.maxStackSize);
         attachment.setName(this.name);
@@ -383,7 +377,6 @@ public class AttachmentBuilder {
                     this.firstPersonLeftHandPositioning,
                     this.firstPersonRightHandPositioning)
                 .withModContext(modContext)
-                .withModId(this.modId)
                 .build();
         }
 

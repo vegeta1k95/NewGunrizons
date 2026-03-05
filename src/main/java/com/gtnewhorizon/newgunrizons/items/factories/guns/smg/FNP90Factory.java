@@ -24,7 +24,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class FNP90Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("FNP90")
             .withFireRate(0.75F)
             .withRecoil(2.8F)
@@ -52,7 +52,7 @@ public class FNP90Factory implements GunFactory {
                     "50rnd 5.7x28mm Magazine",
                     "Fire Rate: Auto");
             })
-            .withCompatibleAttachment(Magazines.FNP90Mag, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.FNP90Mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.FNP90Sight, true, (model) -> {
                 if (model instanceof FNP90Sight) {
                     GL11.glTranslatef(0.045F, -1.7F, -0.3F);
@@ -73,7 +73,7 @@ public class FNP90Factory implements GunFactory {
             })
             .withTextureName("ak12")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new FNP90())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);

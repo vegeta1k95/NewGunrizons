@@ -48,7 +48,7 @@ import com.gtnewhorizon.newgunrizons.registry.Magazines;
 public class AK15Factory implements GunFactory {
 
     public Item createGun(CommonProxy commonProxy) {
-        return (new ItemWeapon.Builder()).withModId("newgunrizons")
+        return (new ItemWeapon.Builder())
             .withName("AK15")
             .withFireRate(0.6F)
             .withRecoil(3.0F)
@@ -88,11 +88,11 @@ public class AK15Factory implements GunFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.AKaction, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.Magazine762x39,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, -0.17F, 0.05F); }))
+                ((model) -> { GL11.glTranslatef(0.0F, -0.17F, 0.05F); }))
             .withCompatibleAttachment(
                 Magazines.AK15Mag,
-                (Consumer) ((model) -> { GL11.glTranslatef(0.0F, -0.17F, 0.05F); }))
-            .withCompatibleAttachment(Magazines.Mag75rnd762x39, (Consumer) ((model) -> {
+                ((model) -> { GL11.glTranslatef(0.0F, -0.17F, 0.05F); }))
+            .withCompatibleAttachment(Magazines.Mag75rnd762x39, ((model) -> {
                 GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslatef(0.011F, 0.59F, 0.05F);
                 GL11.glScaled(1.100000023841858D, 1.2999999523162842D, 1.0D);
@@ -101,7 +101,7 @@ public class AK15Factory implements GunFactory {
                 GL11.glTranslatef(-0.2F, -1.06F, -7.55F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             })
-            .withCompatibleAttachment(Magazines.PMAG762x39, (Consumer) ((model) -> {}))
+            .withCompatibleAttachment(Magazines.PMAG762x39, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof AKMiron1) {
                     GL11.glTranslatef(0.125F, -1.8F, -0.5F);
@@ -267,7 +267,7 @@ public class AK15Factory implements GunFactory {
             })
             .withTextureName("AK15")
             .withRenderer(
-                (new WeaponRenderer.Builder()).withModId("newgunrizons")
+                (new WeaponRenderer.Builder())
                     .withModel(new AK15())
                     .withEntityPositioning((itemStack) -> {
                         GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
