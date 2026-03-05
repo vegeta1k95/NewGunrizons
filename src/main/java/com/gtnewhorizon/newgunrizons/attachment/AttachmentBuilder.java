@@ -436,11 +436,4 @@ public class AttachmentBuilder {
         }
         return filename + ".png";
     }
-
-    protected static String stripFileExtension(String filename) {
-        if (filename.endsWith(".png")) {
-            return filename.substring(0, filename.length() - ".png".length());
-        }
-        return filename;
-    }
 }
