@@ -1,5 +1,6 @@
 package com.gtnewhorizon.newgunrizons.client.handlers;
 
+import com.gtnewhorizon.newgunrizons.config.ClientModContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -18,9 +19,9 @@ public class WeaponHudHandler {
     private final ModContext modContext;
     private final HudRenderer hudRenderer;
 
-    public WeaponHudHandler(Minecraft mc, ModContext modContext) {
+    public WeaponHudHandler(ClientModContext modContext) {
         this.modContext = modContext;
-        this.hudRenderer = new HudRenderer(mc, modContext);
+        this.hudRenderer = new HudRenderer(modContext);
     }
 
     @SubscribeEvent

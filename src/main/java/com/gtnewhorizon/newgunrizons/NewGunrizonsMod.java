@@ -4,16 +4,16 @@ import net.minecraft.creativetab.CreativeTabs;
 
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.registry.Recipes;
-import com.gtnewhorizon.newgunrizons.tab.AmmoTab;
-import com.gtnewhorizon.newgunrizons.tab.AssaultRiflesTab;
-import com.gtnewhorizon.newgunrizons.tab.AttachmentsTab;
-import com.gtnewhorizon.newgunrizons.tab.FunGunsTab;
-import com.gtnewhorizon.newgunrizons.tab.GrenadesTab;
-import com.gtnewhorizon.newgunrizons.tab.GunsTab;
-import com.gtnewhorizon.newgunrizons.tab.PistolsTab;
-import com.gtnewhorizon.newgunrizons.tab.SMGTab;
-import com.gtnewhorizon.newgunrizons.tab.ShotgunsTab;
-import com.gtnewhorizon.newgunrizons.tab.SnipersTab;
+import com.gtnewhorizon.newgunrizons.tabs.AmmoTab;
+import com.gtnewhorizon.newgunrizons.tabs.AssaultRiflesTab;
+import com.gtnewhorizon.newgunrizons.tabs.AttachmentsTab;
+import com.gtnewhorizon.newgunrizons.tabs.FunGunsTab;
+import com.gtnewhorizon.newgunrizons.tabs.GrenadesTab;
+import com.gtnewhorizon.newgunrizons.tabs.GunsTab;
+import com.gtnewhorizon.newgunrizons.tabs.PistolsTab;
+import com.gtnewhorizon.newgunrizons.tabs.SMGTab;
+import com.gtnewhorizon.newgunrizons.tabs.ShotgunsTab;
+import com.gtnewhorizon.newgunrizons.tabs.SnipersTab;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;

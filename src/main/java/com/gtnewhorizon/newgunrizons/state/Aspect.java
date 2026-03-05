@@ -1,5 +1,7 @@
 package com.gtnewhorizon.newgunrizons.state;
 
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
+
 /**
  * A behavior module that drives state transitions for a specific game mechanic.
  * <p>
@@ -17,7 +19,7 @@ package com.gtnewhorizon.newgunrizons.state;
  * @param <T> the state enum type this aspect operates on
  * @param <E> the extended state type (e.g. PlayerWeaponInstance)
  */
-public interface Aspect<T extends ManagedState<T>, E extends ExtendedState<T>> {
+public interface Aspect<T extends ManagedState<T>, E extends ItemInstance<T>> {
 
     /**
      * Injects the state manager and configures transition rules for this aspect.

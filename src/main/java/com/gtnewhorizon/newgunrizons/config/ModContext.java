@@ -11,7 +11,7 @@ import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
+import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
 import com.gtnewhorizon.newgunrizons.weapon.MagazineReloadAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
@@ -20,8 +20,6 @@ import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 
 public interface ModContext {
-
-    boolean isClient();
 
     void init(Object mod, SimpleNetworkWrapper channel);
 
@@ -37,13 +35,13 @@ public interface ModContext {
 
     WeaponFireAspect getWeaponFireAspect();
 
-    WeaponAttachmentAspect getAttachmentAspect();
+    WeaponAttachmentAspect getWeaponAttachmentAspect();
 
     MagazineReloadAspect getMagazineReloadAspect();
 
     ItemWeaponInstance getMainHeldWeapon();
 
-    StatusMessageCenter getStatusMessageCenter();
+    StatusMessageManager getStatusMessageCenter();
 
     RecipeManager getRecipeManager();
 

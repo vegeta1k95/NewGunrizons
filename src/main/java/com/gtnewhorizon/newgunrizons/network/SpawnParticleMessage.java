@@ -2,7 +2,9 @@ package com.gtnewhorizon.newgunrizons.network;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
 
+@Getter
 public class SpawnParticleMessage implements IMessage {
 
     private double posX;
@@ -65,42 +67,11 @@ public class SpawnParticleMessage implements IMessage {
 
     }
 
-    public SpawnParticleMessage.ParticleType getParticleType() {
-        return this.particleType;
-    }
-
-    public double getPosX() {
-        return this.posX;
-    }
-
-    public double getPosY() {
-        return this.posY;
-    }
-
-    public double getPosZ() {
-        return this.posZ;
-    }
-
-    public int getCount() {
-        return this.count;
-    }
-
-    public double getMotionX() {
-        return this.motionX;
-    }
-
-    public double getMotionY() {
-        return this.motionY;
-    }
-
-    public double getMotionZ() {
-        return this.motionZ;
-    }
-
     public enum ParticleType {
 
         BLOOD(false),
-        SHELL(false);
+        SHELL(false),
+        WATER_SPLASH(false);
 
         private final boolean isSmokeParticle;
 

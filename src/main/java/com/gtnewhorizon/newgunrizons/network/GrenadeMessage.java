@@ -4,7 +4,9 @@ import com.gtnewhorizon.newgunrizons.items.instances.ItemGrenadeInstance;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
 
+@Getter
 public class GrenadeMessage implements IMessage {
 
     private ItemGrenadeInstance instance;
@@ -29,11 +31,4 @@ public class GrenadeMessage implements IMessage {
         buf.writeLong(this.activationTimestamp);
     }
 
-    public ItemGrenadeInstance getInstance() {
-        return this.instance;
-    }
-
-    public long getActivationTimestamp() {
-        return this.activationTimestamp;
-    }
 }

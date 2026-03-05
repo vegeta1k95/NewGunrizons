@@ -37,15 +37,17 @@ public class Explosion {
     private static final ResourceLocation SMOKE_TEXTURE = new ResourceLocation(
         NewGunrizonsMod.MODID,
         "textures/effect/large-smoke.png");
-    private final ModContext modContext;
+
     private final boolean isFlaming;
     private final boolean isSmoking;
     private final Random explosionRNG;
     @Getter
     private final World world;
+
     private final double explosionX;
     private final double explosionY;
     private final double explosionZ;
+
     private final Entity exploder;
     private final float explosionSize;
     @Getter
@@ -58,7 +60,6 @@ public class Explosion {
     public static void createServerSideExplosion(ModContext modContext, World world, Entity entity, double posX,
         double posY, double posZ, float explosionStrength, boolean isFlaming, boolean isSmoking) {
         Explosion explosion = new Explosion(
-            modContext,
             world,
             entity,
             posX,
@@ -91,20 +92,19 @@ public class Explosion {
 
     }
 
-    public Explosion(ModContext modContext, World worldIn, Entity entityIn, double x, double y, double z, float size,
+    public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size,
         List<BlockPos> affectedPositions) {
-        this(modContext, worldIn, entityIn, x, y, z, size, false, true, affectedPositions);
+        this(worldIn, entityIn, x, y, z, size, false, true, affectedPositions);
     }
 
-    public Explosion(ModContext modContext, World worldIn, Entity entityIn, double x, double y, double z, float size,
+    public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size,
         boolean flaming, boolean smoking, List<BlockPos> affectedPositions) {
-        this(modContext, worldIn, entityIn, x, y, z, size, flaming, smoking);
+        this(worldIn, entityIn, x, y, z, size, flaming, smoking);
         this.affectedBlockPositions.addAll(affectedPositions);
     }
 
-    public Explosion(ModContext modContext, World worldIn, Entity entityIn, double x, double y, double z, float size,
+    public Explosion(World worldIn, Entity entityIn, double x, double y, double z, float size,
         boolean flaming, boolean smoking) {
-        this.modContext = modContext;
         this.explosionRNG = new Random();
         this.affectedBlockPositions = Lists.newArrayList();
         this.playerKnockbackMap = Maps.newHashMap();

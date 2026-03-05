@@ -10,12 +10,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
@@ -28,11 +25,9 @@ import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
 
 public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstance> {
 
-    private static final Logger logger = LogManager.getLogger(WeaponReloadAspect.class);
     private static final long ALERT_TIMEOUT = 500L;
     private static final Set<WeaponState> allowedUpdateFromStates;
 
-    private static final Predicate<ItemWeaponInstance> sprinting;
     private static final Predicate<ItemWeaponInstance> hasNextLoadIteration;
     private static final Predicate<ItemWeaponInstance> supportsDirectBulletLoad;
     private static final Predicate<ItemWeaponInstance> magazineAttached;
@@ -41,11 +36,13 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
     private static final Predicate<ItemWeaponInstance> reloadAnimationCompleted;
     private static final Predicate<ItemWeaponInstance> unloadAnimationCompleted;
     private static final Predicate<ItemWeaponInstance> prepareFirstLoadIterationAnimationCompleted;
+    private static final Predicate<ItemWeaponInstance> alertTimeoutExpired;
+
     private final Predicate<ItemWeaponInstance> inventoryHasFreeSlots = (
         weaponInstance) -> weaponInstance.getPlayer() instanceof EntityPlayer
             && InventoryUtils.inventoryHasFreeSlots((EntityPlayer) weaponInstance.getPlayer());
-    private static final Predicate<ItemWeaponInstance> alertTimeoutExpired;
-    private final Predicate<ItemStack> magazineNotEmpty = (magazineStack) -> Tags.getAmmo(magazineStack) > 0;
+
+    private final Predicate<ItemStack> magazineNotEmpty = (magazineStack) -> ItemInstance.getAmmo(magazineStack) > 0;
     private final ModContext modContext;
     private StateManager<WeaponState, ? super ItemWeaponInstance> stateManager;
 
@@ -174,13 +171,13 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
         if (!compatibleMagazines.isEmpty()) {
             ItemAttachment existingMagazine = WeaponAttachmentAspect
                 .getActiveAttachment(AttachmentCategory.MAGAZINE, weaponInstance);
-            int ammo = Tags.getAmmo(weaponInstance.getItemStack());
+            int ammo = ItemInstance.getAmmo(weaponInstance.getItemStack());
             if (existingMagazine == null) {
                 ammo = 0;
                 // Find compatible magazine stack in client inventory (read-only, mirrors server's two-pass search)
                 ItemStack foundStack = this.findCompatibleMagazineStack(compatibleMagazines, player);
                 if (foundStack != null) {
-                    ammo = Tags.getAmmo(foundStack);
+                    ammo = ItemInstance.getAmmo(foundStack);
                     WeaponAttachmentAspect.addAttachment((ItemMagazine) foundStack.getItem(), weaponInstance);
                 }
             }
@@ -215,7 +212,7 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
         // First pass: non-empty magazines
         for (ItemMagazine mag : compatibleMagazines) {
             for (ItemStack stack : player.inventory.mainInventory) {
-                if (stack != null && stack.getItem() == mag && Tags.getAmmo(stack) > 0) {
+                if (stack != null && stack.getItem() == mag && ItemInstance.getAmmo(stack) > 0) {
                     return stack;
                 }
             }
@@ -311,8 +308,7 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
                 WeaponState.UNLOAD_PREPARING,
                 WeaponState.UNLOAD,
                 WeaponState.ALERT));
-        sprinting = (instance) -> instance.getPlayer()
-            .isSprinting();
+
         hasNextLoadIteration = (weaponInstance) -> weaponInstance.getWeapon()
             .hasIteratedLoad() && weaponInstance.getLoadIterationCount() > 0;
         supportsDirectBulletLoad = (weaponInstance) -> weaponInstance.getWeapon()

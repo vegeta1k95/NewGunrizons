@@ -4,5 +4,5 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public interface Reloadable {
 
-    void reloadMainHeldItemForPlayer(EntityPlayer player);
+    void reloadHeldItem(EntityPlayer player);
 }

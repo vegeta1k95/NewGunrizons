@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.entities;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -18,6 +19,8 @@ import com.gtnewhorizon.newgunrizons.util.RayCast;
 
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
+
+import static net.minecraft.realms.RealmsMth.clamp;
 
 public abstract class EntityProjectile extends Entity implements IProjectile, IEntityAdditionalSpawnData {
 
@@ -181,6 +184,15 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
         Vec3 startPos = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
         Vec3 endPos = Vec3
             .createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+
+        // Check for water entry along the bullet's path before the solid block raycast
+        if (!this.worldObj.isRemote) {
+            this.checkWaterEntry(startPos, endPos);
+        }
+
+        startPos = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
+        endPos = Vec3
+            .createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
         MovingObjectPosition blockHit = RayCast
             .rayCastBlocks(this.worldObj, startPos, endPos, this::canCollideWithBlock);
         startPos = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
@@ -272,6 +284,37 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
 
         return closestEntity;
     }
+
+    /**
+     * Traces the projectile's path this tick looking for water entry.
+     * Uses a liquid-aware raycast to find the exact surface point.
+     * Called server-side; subclasses should override {@link #onWaterImpact}
+     * to broadcast particle/sound effects to clients.
+     */
+    private void checkWaterEntry(Vec3 start, Vec3 end) {
+        MovingObjectPosition waterHit = this.worldObj.rayTraceBlocks(
+            Vec3.createVectorHelper(start.xCoord, start.yCoord, start.zCoord),
+            Vec3.createVectorHelper(end.xCoord, end.yCoord, end.zCoord),
+            true);
+        if (waterHit == null || waterHit.typeOfHit != MovingObjectPosition.MovingObjectType.BLOCK) {
+            return;
+        }
+        Block hitBlock = this.worldObj.getBlock(waterHit.blockX, waterHit.blockY, waterHit.blockZ);
+        if (hitBlock.getMaterial() != Material.water) {
+            return;
+        }
+
+        double splashX = waterHit.hitVec.xCoord;
+        double splashY = waterHit.blockY + 1.0;
+        double splashZ = waterHit.hitVec.zCoord;
+        this.onWaterImpact(splashX, splashY, splashZ);
+    }
+
+    /**
+     * Called server-side when this projectile enters water.
+     * Override to send network particles. Default does nothing.
+     */
+    protected void onWaterImpact(double x, double y, double z) {}
 
     protected abstract void onImpact(MovingObjectPosition hit);
 

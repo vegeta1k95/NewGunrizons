@@ -17,10 +17,9 @@ import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.registry.Sounds;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemMagazineInstance;
-import com.gtnewhorizon.newgunrizons.util.Updatable;
 import com.gtnewhorizon.newgunrizons.weapon.MagazineState;
 import com.gtnewhorizon.newgunrizons.weapon.Reloadable;
 
@@ -37,10 +36,11 @@ public class ItemMagazine extends ItemAttachment
 
     @Getter
     private final int ammo;
-    List<ItemBullet> compatibleBullets;
     @Getter
-    String reloadSound;
-    ModContext modContext;
+    private List<ItemBullet> compatibleBullets;
+    @Getter
+    private String reloadSound;
+    private ModContext modContext;
 
     ItemMagazine(int ammo) {
         super(AttachmentCategory.MAGAZINE, null);
@@ -57,7 +57,7 @@ public class ItemMagazine extends ItemAttachment
     private void ensureItemStack(ItemStack itemStack, int initialAmmo) {
         if (itemStack.stackTagCompound == null) {
             itemStack.stackTagCompound = new NBTTagCompound();
-            Tags.setAmmo(itemStack, initialAmmo);
+            ItemInstance.setAmmo(itemStack, initialAmmo);
         }
     }
 
@@ -73,10 +73,6 @@ public class ItemMagazine extends ItemAttachment
         super.onUpdate(stack, world, entity, slot, isSelected);
     }
 
-    public List<ItemBullet> getCompatibleBullets() {
-        return this.compatibleBullets;
-    }
-
     @Override
     public Part getRenderablePart() {
         return this;
@@ -90,12 +86,12 @@ public class ItemMagazine extends ItemAttachment
 
     public void update(EntityPlayer player) {
         this.modContext.getMagazineReloadAspect()
-            .updateMainHeldItem(player);
+            .updateHeldItem(player);
     }
 
-    public void reloadMainHeldItemForPlayer(EntityPlayer player) {
+    public void reloadHeldItem(EntityPlayer player) {
         this.modContext.getMagazineReloadAspect()
-            .reloadMainHeldItem(player);
+            .reloadHeldItem(player);
     }
 
     public static final class Builder extends AttachmentBuilder {
@@ -127,7 +123,7 @@ public class ItemMagazine extends ItemAttachment
             }
 
             magazine.modContext = modContext;
-            this.withInformationProvider((stack) -> "Ammo: " + Tags.getAmmo(stack) + "/" + this.ammo);
+            this.withInformationProvider((stack) -> "Ammo: " + ItemInstance.getAmmo(stack) + "/" + this.ammo);
             return magazine;
         }
     }

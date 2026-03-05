@@ -1,5 +1,6 @@
 package com.gtnewhorizon.newgunrizons.client.render;
 
+import com.gtnewhorizon.newgunrizons.config.ClientModContext;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -12,12 +13,11 @@ import org.lwjgl.opengl.GL11;
 
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.client.input.KeyBindings;
-import com.gtnewhorizon.newgunrizons.config.ModContext;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
+import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
@@ -37,12 +37,10 @@ public class HudRenderer {
     private static final int COLOR_YELLOW = 0xFFFF00;
     private static final int COLOR_RED = 0xFF0000;
 
-    private final Minecraft mc;
-    private final ModContext modContext;
+    private final ClientModContext modContext;
     private final StatusBarPosition statusBarPosition;
 
-    public HudRenderer(Minecraft mc, ModContext modContext) {
-        this.mc = mc;
+    public HudRenderer(ClientModContext modContext) {
         this.modContext = modContext;
         this.statusBarPosition = StatusBarPosition.TOP_RIGHT;
     }
@@ -54,6 +52,8 @@ public class HudRenderer {
         if (crosshair == null) {
             return false;
         }
+
+        Minecraft mc = Minecraft.getMinecraft();
 
         int width = resolution.getScaledWidth();
         int height = resolution.getScaledHeight();
@@ -80,6 +80,7 @@ public class HudRenderer {
     public void renderMagazineHud(ScaledResolution resolution, ItemStack itemStack) {
         int width = resolution.getScaledWidth();
         int height = resolution.getScaledHeight();
+        Minecraft mc = Minecraft.getMinecraft();
         FontRenderer fontRender = mc.fontRenderer;
         mc.entityRenderer.setupOverlayRendering();
 
@@ -89,10 +90,11 @@ public class HudRenderer {
     public boolean renderGrenadeHud(ScaledResolution resolution) {
         int width = resolution.getScaledWidth();
         int height = resolution.getScaledHeight();
+        Minecraft mc = Minecraft.getMinecraft();
         FontRenderer fontRender = mc.fontRenderer;
         mc.entityRenderer.setupOverlayRendering();
 
-        StatusMessageCenter.Message message = modContext.getStatusMessageCenter()
+        StatusMessageManager.Message message = modContext.getStatusMessageCenter()
             .nextMessage();
         if (message == null) {
             return false;
@@ -137,7 +139,7 @@ public class HudRenderer {
         int color = COLOR_WHITE;
         String messageText;
 
-        StatusMessageCenter.Message message = modContext.getStatusMessageCenter()
+        StatusMessageManager.Message message = modContext.getStatusMessageCenter()
             .nextMessage();
         if (message != null) {
             messageText = message.getMessage();
@@ -156,7 +158,7 @@ public class HudRenderer {
     private String getDefaultMagazineMessage(ItemStack itemStack) {
         ItemMagazine magazine = (ItemMagazine) itemStack.getItem();
         return StatCollector
-            .translateToLocalFormatted("gui.ammoCounter", Tags.getAmmo(itemStack) + "/" + magazine.getAmmo());
+            .translateToLocalFormatted("gui.ammoCounter", ItemInstance.getAmmo(itemStack) + "/" + magazine.getAmmo());
     }
 
     private String getDefaultWeaponMessage(ItemWeaponInstance weaponInstance) {

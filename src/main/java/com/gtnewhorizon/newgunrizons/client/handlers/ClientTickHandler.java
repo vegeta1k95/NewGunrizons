@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 
 import com.gtnewhorizon.newgunrizons.config.ClientModContext;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.util.Updatable;
+import com.gtnewhorizon.newgunrizons.items.Updatable;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;

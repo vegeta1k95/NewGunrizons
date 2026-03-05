@@ -16,6 +16,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.network.BlockHitMessage;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessage;
 
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -69,6 +70,8 @@ public class EntityBullet extends EntityProjectile {
             handleExplosiveImpact(position);
         } else if (position.entityHit != null) {
             handleEntityHit(position.entityHit);
+        } else {
+            spawnBlockHitParticles(position);
         }
 
         this.setDead();
@@ -95,6 +98,28 @@ public class EntityBullet extends EntityProjectile {
         target.prevRotationYaw -= 0.3F;
 
         spawnBloodParticles(target);
+    }
+
+    private void spawnBlockHitParticles(MovingObjectPosition position) {
+        NetworkRegistry.TargetPoint broadcastPoint = new NetworkRegistry.TargetPoint(
+            dimension, posX, posY, posZ, PARTICLE_BROADCAST_RANGE);
+        weapon.getModContext()
+            .getChannel()
+            .sendToAllAround(
+                new BlockHitMessage(position.blockX, position.blockY, position.blockZ, position.sideHit),
+                broadcastPoint);
+    }
+
+    @Override
+    protected void onWaterImpact(double x, double y, double z) {
+        if (weapon == null) return;
+        NetworkRegistry.TargetPoint broadcastPoint = new NetworkRegistry.TargetPoint(
+            dimension, x, y, z, PARTICLE_BROADCAST_RANGE);
+        weapon.getModContext()
+            .getChannel()
+            .sendToAllAround(
+                new SpawnParticleMessage(SpawnParticleMessage.ParticleType.WATER_SPLASH, 8, x, y, z),
+                broadcastPoint);
     }
 
     private void spawnBloodParticles(Entity target) {

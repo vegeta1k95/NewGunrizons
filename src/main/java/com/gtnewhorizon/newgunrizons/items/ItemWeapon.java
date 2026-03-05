@@ -28,7 +28,7 @@ import com.gtnewhorizon.newgunrizons.attachment.AttachmentContainer;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.crafting.OptionsMetadata;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
@@ -37,7 +37,6 @@ import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
 import com.gtnewhorizon.newgunrizons.registry.Sounds;
-import com.gtnewhorizon.newgunrizons.util.Updatable;
 import com.gtnewhorizon.newgunrizons.weapon.*;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -220,7 +219,7 @@ public class ItemWeapon extends Item
     }
 
     public List<CompatibleAttachment> getActiveAttachments(EntityLivingBase player, ItemStack itemStack) {
-        return this.modContext.getAttachmentAspect()
+        return this.modContext.getWeaponAttachmentAspect()
             .getActiveAttachments(player, itemStack);
     }
 
@@ -250,7 +249,7 @@ public class ItemWeapon extends Item
         }
     }
 
-    public void reloadMainHeldItemForPlayer(EntityPlayer player) {
+    public void reloadHeldItem(EntityPlayer player) {
         this.modContext.getWeaponReloadAspect()
             .reloadMainHeldItem(player);
     }
@@ -260,7 +259,7 @@ public class ItemWeapon extends Item
             .updateMainHeldItem(player);
         this.modContext.getWeaponFireAspect()
             .onUpdate(player);
-        this.modContext.getAttachmentAspect()
+        this.modContext.getWeaponAttachmentAspect()
             .updateMainHeldItem(player);
     }
 
@@ -293,12 +292,12 @@ public class ItemWeapon extends Item
     }
 
     public void toggleClientAttachmentSelectionMode(EntityPlayer player) {
-        this.modContext.getAttachmentAspect()
+        this.modContext.getWeaponAttachmentAspect()
             .toggleClientAttachmentSelectionMode(player);
     }
 
     public boolean onDroppedByPlayer(ItemStack itemStack, EntityPlayer player) {
-        ItemWeaponInstance instance = (ItemWeaponInstance) Tags.getInstance(itemStack);
+        ItemWeaponInstance instance = (ItemWeaponInstance) ItemInstance.fromStack(itemStack);
         return instance == null || instance.getState() == WeaponState.READY;
     }
 

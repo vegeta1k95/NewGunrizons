@@ -2,7 +2,9 @@ package com.gtnewhorizon.newgunrizons.network;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
 
+@Getter
 public class BlockHitMessage implements IMessage {
 
     private int posX;
@@ -33,19 +35,4 @@ public class BlockHitMessage implements IMessage {
         buf.writeInt(this.sideHit);
     }
 
-    public int getPosX() {
-        return this.posX;
-    }
-
-    public int getPosY() {
-        return this.posY;
-    }
-
-    public int getPosZ() {
-        return this.posZ;
-    }
-
-    public int getSideHit() {
-        return this.sideHit;
-    }
 }

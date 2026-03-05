@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
 import net.minecraft.util.Vec3;
 
 import com.google.common.collect.Lists;
@@ -11,6 +12,7 @@ import com.gtnewhorizon.gtnhlib.blockpos.BlockPos;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import io.netty.buffer.ByteBuf;
 
+@Getter
 public class ExplosionMessage implements IMessage {
 
     private double posX;
@@ -37,38 +39,6 @@ public class ExplosionMessage implements IMessage {
             this.motionZ = (float) motion.zCoord;
         }
 
-    }
-
-    public double getPosX() {
-        return this.posX;
-    }
-
-    public double getPosY() {
-        return this.posY;
-    }
-
-    public double getPosZ() {
-        return this.posZ;
-    }
-
-    public float getMotionX() {
-        return this.motionX;
-    }
-
-    public float getMotionY() {
-        return this.motionY;
-    }
-
-    public float getMotionZ() {
-        return this.motionZ;
-    }
-
-    public float getStrength() {
-        return this.strength;
-    }
-
-    public List<BlockPos> getAffectedBlockPositions() {
-        return this.affectedBlockPositions;
     }
 
     public void fromBytes(ByteBuf buf) {

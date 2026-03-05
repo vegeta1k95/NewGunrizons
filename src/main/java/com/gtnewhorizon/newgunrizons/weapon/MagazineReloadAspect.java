@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import net.minecraft.entity.player.EntityPlayer;
 
 import com.gtnewhorizon.newgunrizons.config.ModContext;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemMagazineInstance;
@@ -25,7 +25,7 @@ public class MagazineReloadAspect implements Aspect<MagazineState, ItemMagazineI
     private static final Predicate<ItemMagazineInstance> reloadAnimationCompleted;
     private final ModContext modContext;
     private StateManager<MagazineState, ? super ItemMagazineInstance> stateManager;
-    private final Predicate<ItemMagazineInstance> notFull = (instance) -> Tags.getAmmo(instance.getItemStack())
+    private final Predicate<ItemMagazineInstance> notFull = (instance) -> ItemInstance.getAmmo(instance.getItemStack())
         < instance.getMagazine()
             .getAmmo();
 
@@ -60,13 +60,13 @@ public class MagazineReloadAspect implements Aspect<MagazineState, ItemMagazineI
             .automatic();
     }
 
-    public void reloadMainHeldItem(EntityPlayer player) {
+    public void reloadHeldItem(EntityPlayer player) {
         ItemMagazineInstance instance = this.modContext.getItemInstanceRegistry()
             .getMainHandItemInstance(player, ItemMagazineInstance.class);
         this.stateManager.changeState(this, instance, MagazineState.LOAD);
     }
 
-    public void updateMainHeldItem(EntityPlayer player) {
+    public void updateHeldItem(EntityPlayer player) {
         ItemMagazineInstance instance = this.modContext.getItemInstanceRegistry()
             .getMainHandItemInstance(player, ItemMagazineInstance.class);
         if (instance != null) {

@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.gtnewhorizon.newgunrizons.config.Tags;
 import com.gtnewhorizon.newgunrizons.state.ManagedState;
 import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
 
@@ -91,7 +90,7 @@ public class ItemInstanceRegistry {
 
         ItemInstance<?> result = null;
         try {
-            result = Tags.getInstance(itemStack);
+            result = ItemInstance.fromStack(itemStack);
         } catch (RuntimeException ignored) {}
 
         if (result == null) {
@@ -126,7 +125,7 @@ public class ItemInstanceRegistry {
 
         if (instance == null || instance.getItem() != itemStack.getItem()) {
             try {
-                instance = Tags.getInstance(itemStack);
+                instance = ItemInstance.fromStack(itemStack);
             } catch (RuntimeException ignored) {}
         }
 

@@ -41,11 +41,11 @@ public enum GrenadeState implements ManagedState<GrenadeState> {
         this.isTransient = false;
     }
 
-    public GrenadeState preparingPhase() {
+    public GrenadeState getPreparingPhase() {
         return this.preparingPhase;
     }
 
-    public GrenadeState commitPhase() {
+    public GrenadeState getCommitPhase() {
         return this.commitPhase;
     }
 

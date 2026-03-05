@@ -1,11 +1,12 @@
 package com.gtnewhorizon.newgunrizons.network;
 
-import java.util.Objects;
+import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityBreakingFX;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Items;
+import net.minecraft.world.World;
 
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 
@@ -16,34 +17,67 @@ import cpw.mods.fml.relauncher.Side;
 
 public class SpawnParticleMessageHandler implements IMessageHandler<SpawnParticleMessage, IMessage> {
 
-    private ModContext modContext;
-    private double yOffset = 1.0D;
+    private static final double Y_OFFSET = 1.0D;
+
+    private final ModContext modContext;
 
     public SpawnParticleMessageHandler(ModContext modContext) {
         this.modContext = modContext;
     }
 
     public IMessage onMessage(SpawnParticleMessage message, MessageContext ctx) {
-        if (ctx.side == Side.CLIENT) {
-            for (int i = 0; i < message.getCount(); ++i) {
-                if (Objects.requireNonNull(message.getParticleType()) == SpawnParticleMessage.ParticleType.BLOOD) {
-                    EntityBreakingFX particle = new EntityBreakingFX(
-                        Minecraft.getMinecraft().thePlayer.worldObj,
-                        message.getPosX(),
-                        message.getPosY() + yOffset,
-                        message.getPosZ(),
-                        Items.redstone);
-                    TextureAtlasSprite sprite = Minecraft.getMinecraft()
-                        .getTextureMapBlocks()
-                        .getAtlasSprite(
-                            modContext.getNamedResource("particle/blood")
-                                .toString());
-                    particle.setParticleIcon(sprite);
-                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-                }
-            }
+        if (ctx.side != Side.CLIENT) {
+            return null;
+        }
+
+        switch (message.getParticleType()) {
+            case BLOOD:
+                spawnBloodParticles(message);
+                break;
+            case WATER_SPLASH:
+                spawnWaterSplash(message);
+                break;
+            default:
+                break;
         }
 
         return null;
+    }
+
+    private void spawnBloodParticles(SpawnParticleMessage message) {
+        for (int i = 0; i < message.getCount(); ++i) {
+            EntityBreakingFX particle = new EntityBreakingFX(
+                Minecraft.getMinecraft().thePlayer.worldObj,
+                message.getPosX(),
+                message.getPosY() + Y_OFFSET,
+                message.getPosZ(),
+                Items.redstone);
+            TextureAtlasSprite sprite = Minecraft.getMinecraft()
+                .getTextureMapBlocks()
+                .getAtlasSprite(
+                    modContext.getNamedResource("particle/blood")
+                        .toString());
+            particle.setParticleIcon(sprite);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+        }
+    }
+
+    private void spawnWaterSplash(SpawnParticleMessage message) {
+        World world = Minecraft.getMinecraft().thePlayer.worldObj;
+        Random rand = world.rand;
+        double x = message.getPosX();
+        double y = message.getPosY();
+        double z = message.getPosZ();
+        for (int i = 0; i < message.getCount(); ++i) {
+            world.spawnParticle(
+                "splash",
+                x + (rand.nextDouble() - 0.5) * 0.3,
+                y + 0.1,
+                z + (rand.nextDouble() - 0.5) * 0.3,
+                (rand.nextDouble() - 0.5) * 0.2,
+                0.15 + rand.nextDouble() * 0.25,
+                (rand.nextDouble() - 0.5) * 0.2);
+        }
+        world.playSoundEffect(x, y, z, "random.splash", 0.3F, 1.5F + rand.nextFloat() * 0.4F);
     }
 }

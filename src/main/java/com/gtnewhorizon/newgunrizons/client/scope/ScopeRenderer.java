@@ -33,7 +33,7 @@ public class ScopeRenderer implements CustomRenderer {
         }
 
         ClientModContext clientModContext = (ClientModContext) renderContext.getModContext();
-        ScopePerspective perspective = clientModContext.getViewManager()
+        ScopePerspective perspective = clientModContext.getScopeManager()
             .getPerspective(renderContext.getItemInstance(), false);
 
         if (perspective == null) {

@@ -50,7 +50,7 @@ public class WeaponRenderHandler {
                 ItemWeaponInstance weaponInstance = this.modContext.getMainHeldWeapon();
                 if (weaponInstance != null) {
                     if (weaponInstance.isAimed()) {
-                        ScopePerspective view = this.modContext.getViewManager()
+                        ScopePerspective view = this.modContext.getScopeManager()
                             .getPerspective(weaponInstance, true);
                         if (view != null) {
                             view.update(event, weaponInstance);
@@ -59,7 +59,7 @@ public class WeaponRenderHandler {
                         // Trigger scope deactivation when no longer aiming.
                         // ScopeManager.getPerspective with init=true cleans up
                         // the perspective and frees the FBO.
-                        this.modContext.getViewManager()
+                        this.modContext.getScopeManager()
                             .getPerspective(weaponInstance, true);
                     }
                 }

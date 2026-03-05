@@ -1,10 +1,6 @@
 package com.gtnewhorizon.newgunrizons.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -26,9 +22,8 @@ import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
+import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -38,22 +33,16 @@ import lombok.Getter;
 public class ClientModContext extends CommonModContext {
 
     @Getter
-    private StatusMessageCenter statusMessageCenter;
+    private StatusMessageManager statusMessageManager;
     @Getter
-    private ScopeManager viewManager;
-    @Getter
-    private float aspectRatio;
-    @Getter
-    private Map<Object, Integer> inventoryTextureMap;
+    private ScopeManager scopeManager;
 
     public void init(Object mod, SimpleNetworkWrapper channel) {
         super.init(mod, channel);
 
-        this.aspectRatio = (float) Minecraft.getMinecraft().displayWidth
-            / (float) Minecraft.getMinecraft().displayHeight;
-        this.statusMessageCenter = new StatusMessageCenter();
+        this.statusMessageManager = new StatusMessageManager();
 
-        MinecraftForge.EVENT_BUS.register(new WeaponHudHandler(Minecraft.getMinecraft(), this));
+        MinecraftForge.EVENT_BUS.register(new WeaponHudHandler(this));
 
         KeyBindings.init();
 
@@ -78,12 +67,7 @@ public class ClientModContext extends CommonModContext {
         RenderingRegistry.registerEntityRenderingHandler(EntityShellCasing.class, new EntityShellRenderer());
         RenderingRegistry.registerEntityRenderingHandler(EntityGrenade.class, new EntityGrenadeRenderer());
 
-        this.viewManager = new ScopeManager(this);
-        this.inventoryTextureMap = new HashMap<>();
-    }
-
-    public boolean isClient() {
-        return true;
+        this.scopeManager = new ScopeManager(this);
     }
 
     public void registerWeapon(String name, ItemWeapon weapon, WeaponRenderer renderer) {
@@ -95,14 +79,6 @@ public class ClientModContext extends CommonModContext {
     public void registerRenderableItem(String name, Item item, Object renderer) {
         super.registerRenderableItem(name, item, renderer);
         MinecraftForgeClient.registerItemRenderer(item, (IItemRenderer) renderer);
-    }
-
-    protected EntityPlayer getPlayer() {
-        return Minecraft.getMinecraft().thePlayer;
-    }
-
-    public ItemInstanceRegistry getItemInstanceRegistry() {
-        return this.itemInstanceRegistry;
     }
 
     public ItemWeaponInstance getMainHeldWeapon() {

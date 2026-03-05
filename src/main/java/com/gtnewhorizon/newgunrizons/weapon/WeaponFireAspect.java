@@ -15,7 +15,7 @@ import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import com.gtnewhorizon.newgunrizons.config.CommonModContext;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
@@ -151,7 +151,7 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             String message;
             if (weaponInstance.getWeapon()
                 .getAmmoCapacity() == 0
-                && this.modContext.getAttachmentAspect()
+                && this.modContext.getWeaponAttachmentAspect()
                     .getActiveAttachment(weaponInstance, AttachmentCategory.MAGAZINE) == null) {
                 message = StatCollector.translateToLocalFormatted("gui.noMagazine");
             } else {
@@ -177,7 +177,7 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         this.modContext.getChannel()
             .sendToServer(
                 new WeaponActionMessage(WeaponActionMessage.FIRE, ((EntityPlayer) player).inventory.currentItem));
-        boolean silencerOn = this.modContext.getAttachmentAspect()
+        boolean silencerOn = this.modContext.getWeaponAttachmentAspect()
             .isSilencerOn(weaponInstance);
         {
             String snd = silencerOn ? weapon.getSilencedShootSound() : weapon.getShootSound();
@@ -239,10 +239,10 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         }
         ItemWeapon weapon = (ItemWeapon) itemStack.getItem();
 
-        ItemWeaponInstance instance = Tags.getInstance(itemStack, ItemWeaponInstance.class);
+        ItemWeaponInstance instance = ItemInstance.fromStack(itemStack, ItemWeaponInstance.class);
         if (instance == null) {
             instance = weapon.createItemInstance(player, itemStack, slotIndex);
-            Tags.setInstance(itemStack, instance);
+            ItemInstance.toStack(itemStack, instance);
         }
         instance.setPlayer(player);
 
@@ -252,8 +252,8 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             return;
         }
         instance.setAmmo(ammo - 1);
-        Tags.setAmmo(itemStack, ammo - 1);
-        Tags.setInstance(itemStack, instance);
+        ItemInstance.setAmmo(itemStack, ammo - 1);
+        ItemInstance.toStack(itemStack, instance);
 
         // Spawn projectiles
         for (int i = 0; i < weapon.getPellets(); ++i) {
@@ -265,7 +265,7 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         }
 
         // Play sound for other players
-        boolean silencerOn = this.modContext.getAttachmentAspect()
+        boolean silencerOn = this.modContext.getWeaponAttachmentAspect()
             .isSilencerOn(instance);
         String snd = silencerOn ? weapon.getSilencedShootSound() : weapon.getShootSound();
         float vol = silencerOn ? weapon.getSilencedShootSoundVolume() : weapon.getShootSoundVolume();

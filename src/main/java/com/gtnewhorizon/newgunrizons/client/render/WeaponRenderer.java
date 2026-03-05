@@ -152,6 +152,7 @@ public class WeaponRenderer implements IItemRenderer {
     private final LinkedHashMap<Part, Consumer<RenderContext>> firstPersonCustomPositioningLoadIterationCompleted;
     private final LinkedHashMap<Part, List<Transition>> firstPersonCustomPositioningEjectSpentRound;
     private final boolean hasRecoilPositioningDefined;
+    private Integer cachedInventoryTexture;
 
     private WeaponRenderer(Builder builder) {
         this.firstPersonStateManagers = new HashMap<>();
@@ -1296,24 +1297,20 @@ public class WeaponRenderer implements IItemRenderer {
         int currentTextureId = 0;
         if (type == ItemRenderType.INVENTORY) {
             currentTextureId = Framebuffers.getCurrentTexture();
-            inventoryTexture = this.getClientModContext()
-                .getInventoryTextureMap()
-                .get(this);
+            inventoryTexture = this.cachedInventoryTexture;
             if (inventoryTexture == null) {
                 inventoryTextureInitializationPhaseOn = true;
                 originalFramebufferId = Framebuffers.getCurrentFramebuffer();
                 Framebuffers.unbindFramebuffer();
                 framebuffer = new Framebuffer(INVENTORY_TEXTURE_WIDTH, INVENTORY_TEXTURE_HEIGHT, true);
                 inventoryTexture = framebuffer.framebufferTexture;
-                this.getClientModContext()
-                    .getInventoryTextureMap()
-                    .put(this, inventoryTexture);
+                this.cachedInventoryTexture = inventoryTexture;
                 framebuffer.bindFramebuffer(true);
                 this.setupInventoryRendering();
                 GL11.glScalef(130.0F, 130.0F, 130.0F);
                 GL11.glRotatef(25.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glTranslatef(1.449999F, 1.399999F, 0.0F);
+                GL11.glTranslatef(1.45F, 1.4F, 0.0F);
             }
         }
 

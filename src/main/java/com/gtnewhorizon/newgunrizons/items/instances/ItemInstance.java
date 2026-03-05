@@ -4,25 +4,25 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.gtnewhorizon.newgunrizons.config.PlayerContext;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.network.UniversalObject;
-import com.gtnewhorizon.newgunrizons.state.ExtendedState;
 import com.gtnewhorizon.newgunrizons.state.ManagedState;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ItemInstance<S extends ManagedState<S>> extends UniversalObject
-
-    implements ExtendedState<S>, PlayerContext {
+public class ItemInstance<S extends ManagedState<S>> extends UniversalObject {
 
     private static final Logger logger = LogManager.getLogger(ItemInstance.class);
+    private static final String AMMO_TAG = "Ammo";
+    private static final String INSTANCE_TAG = "Instance";
     @Getter
     protected S state;
     @Getter
@@ -88,12 +88,12 @@ public class ItemInstance<S extends ManagedState<S>> extends UniversalObject
         this.stateUpdateTimestamp = System.currentTimeMillis();
         if (this.preparedState != null) {
             if (this.preparedState.getState()
-                .commitPhase() == state) {
+                .getCommitPhase() == state) {
                 logger.debug(
                     "Committing state {} to {}",
                     this.preparedState.getState(),
                     this.preparedState.getState()
-                        .commitPhase());
+                        .getCommitPhase());
                 this.updateWith(this.preparedState, false);
             } else {
                 this.rollback();
@@ -116,6 +116,74 @@ public class ItemInstance<S extends ManagedState<S>> extends UniversalObject
 
     public boolean needsOpticalScopePerspective() {
         return false;
+    }
+
+    // ==================== Static NBT helpers ====================
+
+    public static int getAmmo(ItemStack itemStack) {
+        return itemStack != null && itemStack.stackTagCompound != null
+            ? itemStack.stackTagCompound.getInteger(AMMO_TAG)
+            : 0;
+    }
+
+    public static void setAmmo(ItemStack itemStack, int ammo) {
+        if (itemStack != null) {
+            if (itemStack.stackTagCompound == null) {
+                itemStack.stackTagCompound = new NBTTagCompound();
+            }
+            itemStack.stackTagCompound.setInteger(AMMO_TAG, ammo);
+        }
+    }
+
+    public static ItemInstance<?> fromStack(ItemStack itemStack) {
+        return deserializeInstance(itemStack);
+    }
+
+    public static <T extends ItemInstance<?>> T fromStack(ItemStack itemStack, Class<T> targetClass) {
+        try {
+            return targetClass.cast(deserializeInstance(itemStack));
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
+
+    public static void toStack(ItemStack itemStack, ItemInstance<?> instance) {
+        if (itemStack != null) {
+            if (itemStack.stackTagCompound == null) {
+                itemStack.stackTagCompound = new NBTTagCompound();
+            }
+            if (instance != null) {
+                ByteBuf buf = Unpooled.buffer();
+                try {
+                    TypeRegistry.getInstance()
+                        .toBytes(instance, buf);
+                    byte[] bytes = new byte[buf.readableBytes()];
+                    buf.readBytes(bytes);
+                    itemStack.stackTagCompound.setByteArray(INSTANCE_TAG, bytes);
+                } finally {
+                    buf.release();
+                }
+            } else {
+                itemStack.stackTagCompound.removeTag(INSTANCE_TAG);
+            }
+        }
+    }
+
+    private static ItemInstance<?> deserializeInstance(ItemStack itemStack) {
+        if (itemStack == null || itemStack.stackTagCompound == null) {
+            return null;
+        }
+        byte[] bytes = itemStack.stackTagCompound.getByteArray(INSTANCE_TAG);
+        if (bytes == null || bytes.length == 0) {
+            return null;
+        }
+        ByteBuf buf = Unpooled.copiedBuffer(bytes);
+        try {
+            return TypeRegistry.getInstance()
+                .fromBytes(buf);
+        } finally {
+            buf.release();
+        }
     }
 
     static {

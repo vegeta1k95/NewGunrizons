@@ -9,8 +9,7 @@ import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 
 /**
  * Finite state machine engine that manages state transitions for weapons, magazines, and grenades.
@@ -22,11 +21,7 @@ import org.apache.logging.log4j.Logger;
  * @param <S> the state enum type (e.g. WeaponState)
  * @param <E> the extended state type (e.g. PlayerWeaponInstance)
  */
-public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>> {
-
-    private static final Logger logger = LogManager.getLogger(StateManager.class);
-
-    // ==================== Core ====================
+public class StateManager<S extends ManagedState<S>, E extends ItemInstance<S>> {
 
     /** Strategy for comparing two states (typically enum identity). */
     private final StateComparator<S> stateComparator;
@@ -103,7 +98,6 @@ public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>>
         TransitionRule<S, E> matchingRule;
         while ((matchingRule = this.findMatchingRule(aspect, extendedState, activeState, remainingTargets)) != null) {
             extendedState.setState(matchingRule.toState);
-            logger.debug("Changed state of {} to {}", extendedState, matchingRule.toState);
 
             if (matchingRule.action != null) {
                 matchingRule.action.execute(extendedState, activeState, matchingRule.toState);
@@ -146,7 +140,7 @@ public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>>
     /**
      * A single transition rule: from-state → to-state, with optional guard and action.
      */
-    private static class TransitionRule<S extends ManagedState<S>, E extends ExtendedState<S>> {
+    private static class TransitionRule<S extends ManagedState<S>, E extends ItemInstance<S>> {
 
         final S fromState;
         final S toState;
@@ -175,7 +169,7 @@ public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>>
             boolean toMatches = (this.automatic && targetStates.length == 0) || Arrays.stream(targetStates)
                 .anyMatch(
                     target -> comparator.compare(this.toState, target)
-                        || comparator.compare(this.toState, target.preparingPhase()));
+                        || comparator.compare(this.toState, target.getPreparingPhase()));
             boolean guardPasses = this.guard.test(this.toState, context);
             return fromMatches && toMatches && guardPasses;
         }
@@ -210,7 +204,7 @@ public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>>
      * Fluent API for defining state transition rules.
      * <p>
      * Usage:
-     * 
+     *
      * <pre>
      * stateManager.in(aspect)
      *     .change(WeaponState.READY)
@@ -321,7 +315,7 @@ public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>>
 
                 TransitionRule<S, E> prepareRule = new TransitionRule<>(
                     this.fromState,
-                    this.toState.preparingPhase(),
+                    this.toState.getPreparingPhase(),
                     (S s, E e) -> this.guard.test(s, (EE) e),
                     (E c, S f, S t) -> {
                         if (this.prepareCallback != null) {
@@ -331,7 +325,7 @@ public class StateManager<S extends ManagedState<S>, E extends ExtendedState<S>>
                     false);
                 aspectRules.add(prepareRule);
 
-                effectiveFromState = this.toState.preparingPhase();
+                effectiveFromState = this.toState.getPreparingPhase();
                 effectiveGuard = (s, e) -> this.prepareGuard == null || this.prepareGuard.test((EE) e);
                 isAutoAfterPrepare = true;
             } else {

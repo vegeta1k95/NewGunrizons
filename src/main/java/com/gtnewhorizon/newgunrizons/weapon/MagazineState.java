@@ -11,7 +11,9 @@ public enum MagazineState implements ManagedState<MagazineState> {
     READY(false),
     LOAD(true);
 
+    @Getter
     private final MagazineState preparingPhase;
+    @Getter
     private final MagazineState commitPhase;
     @Getter
     private final boolean isTransient;
@@ -36,18 +38,6 @@ public enum MagazineState implements ManagedState<MagazineState> {
         this.commitPhase = commitPhase;
         this.isTransient = isTransient;
     }
-
-    public MagazineState preparingPhase() {
-        return this.preparingPhase;
-    }
-
-    public MagazineState commitPhase() {
-        return this.commitPhase;
-    }
-
-    public void init(ByteBuf buf) {}
-
-    public void serialize(ByteBuf buf) {}
 
     static {
         TypeRegistry.getInstance()

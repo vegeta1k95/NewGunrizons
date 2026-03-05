@@ -1,6 +1,5 @@
 package com.gtnewhorizon.newgunrizons.config;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +27,7 @@ import com.gtnewhorizon.newgunrizons.network.GrenadeMessage;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessage;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessageHandler;
-import com.gtnewhorizon.newgunrizons.network.StatusMessageCenter;
+import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessageHandler;
@@ -49,12 +48,10 @@ import lombok.Getter;
 public class CommonModContext implements ModContext {
 
     @Getter
-    protected Object mod;
-
-    @Getter
     protected SimpleNetworkWrapper channel;
     @Getter
     protected WeaponReloadAspect weaponReloadAspect;
+    @Getter
     protected WeaponAttachmentAspect weaponAttachmentAspect;
     @Getter
     protected WeaponFireAspect weaponFireAspect;
@@ -69,7 +66,6 @@ public class CommonModContext implements ModContext {
     private GrenadeAttackAspect grenadeAttackAspect;
 
     public void init(Object mod, SimpleNetworkWrapper channel) {
-        this.mod = mod;
         this.channel = channel;
         this.weaponReloadAspect = new WeaponReloadAspect(this);
         this.magazineReloadAspect = new MagazineReloadAspect(this);
@@ -99,7 +95,7 @@ public class CommonModContext implements ModContext {
             GrenadeMessage.class,
             20,
             Side.SERVER);
-        channel.registerMessage(new ExplosionMessageHandler(this), ExplosionMessage.class, 21, Side.CLIENT);
+        channel.registerMessage(new ExplosionMessageHandler(), ExplosionMessage.class, 21, Side.CLIENT);
         EntityRegistry
             .registerModEntity(EntityBullet.class, "Ammo" + this.modEntityID, this.modEntityID++, mod, 64, 3, true);
         EntityRegistry.registerModEntity(
@@ -120,35 +116,21 @@ public class CommonModContext implements ModContext {
             false);
     }
 
-    public boolean isClient() {
-        return false;
-    }
-
 
     public void registerWeapon(String name, ItemWeapon weapon, WeaponRenderer renderer) {
         GameRegistry.registerItem(weapon, name);
-    }
-
-    protected EntityPlayer getPlayer() {
-        return null;
     }
 
     public void registerRenderableItem(String name, Item item, Object renderer) {
         GameRegistry.registerItem(item, name);
     }
 
-    public WeaponAttachmentAspect getAttachmentAspect() {
-        return this.weaponAttachmentAspect;
-    }
-
     public ItemWeaponInstance getMainHeldWeapon() {
         throw new IllegalStateException();
     }
-
-    public StatusMessageCenter getStatusMessageCenter() {
+    public StatusMessageManager getStatusMessageCenter() {
         throw new IllegalStateException();
     }
-
 
     public void registerGrenadeWeapon(String name, ItemGrenade itemMelee, GrenadeRenderer renderer) {
         GameRegistry.registerItem(itemMelee, name);

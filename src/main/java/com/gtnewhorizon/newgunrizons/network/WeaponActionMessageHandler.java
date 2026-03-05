@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.config.Tags;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
@@ -103,10 +103,10 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
             weaponStack.stackTagCompound = new NBTTagCompound();
         }
 
-        ItemWeaponInstance instance = Tags.getInstance(weaponStack, ItemWeaponInstance.class);
+        ItemWeaponInstance instance = ItemInstance.fromStack(weaponStack, ItemWeaponInstance.class);
         if (instance == null) {
             instance = weapon.createItemInstance(player, weaponStack, slotIndex);
-            Tags.setInstance(weaponStack, instance);
+            ItemInstance.toStack(weaponStack, instance);
         }
         instance.setPlayer(player);
         return instance;
@@ -142,10 +142,10 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
 
         if (existingMagazine != null) {
             // Magazine already attached — ammo already set from existing magazine
-            int ammo = Tags.getAmmo(weaponStack);
+            int ammo = ItemInstance.getAmmo(weaponStack);
             instance.setAmmo(ammo);
             instance.setLoadIterationCount(0);
-            Tags.setInstance(weaponStack, instance);
+            ItemInstance.toStack(weaponStack, instance);
             return;
         }
 
@@ -154,17 +154,17 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
             compatibleMagazines,
             1,
             player,
-            (stack) -> Tags.getAmmo(stack) > 0,
+            (stack) -> ItemInstance.getAmmo(stack) > 0,
             (stack) -> true);
 
         if (magazineStack != null) {
-            int ammo = Tags.getAmmo(magazineStack);
-            Tags.setAmmo(weaponStack, ammo);
+            int ammo = ItemInstance.getAmmo(magazineStack);
+            ItemInstance.setAmmo(weaponStack, ammo);
 
             WeaponAttachmentAspect.addAttachment((ItemAttachment) magazineStack.getItem(), instance);
             instance.setAmmo(ammo);
             instance.setLoadIterationCount(0);
-            Tags.setInstance(weaponStack, instance);
+            ItemInstance.toStack(weaponStack, instance);
             player.worldObj.playSoundToNearExcept(player, weapon.getReloadSound(), 1.0F, 1.0F);
         }
     }
@@ -179,13 +179,13 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
 
         if (consumedStack != null) {
             int ammo = currentAmmo + consumedStack.stackSize;
-            Tags.setAmmo(weaponStack, ammo);
+            ItemInstance.setAmmo(weaponStack, ammo);
 
             instance.setAmmo(ammo);
             if (weapon.hasIteratedLoad()) {
                 instance.setLoadIterationCount(consumedStack.stackSize);
             }
-            Tags.setInstance(weaponStack, instance);
+            ItemInstance.toStack(weaponStack, instance);
 
             player.worldObj.playSoundToNearExcept(player, weapon.getReloadSound(), 1.0F, 1.0F);
         }
@@ -194,10 +194,10 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
     private void loadWithGenericAmmo(EntityPlayerMP player, ItemStack weaponStack, ItemWeapon weapon,
         ItemWeaponInstance instance) {
         if (player.inventory.consumeInventoryItem(weapon.getAmmo())) {
-            Tags.setAmmo(weaponStack, weapon.getAmmoCapacity());
+            ItemInstance.setAmmo(weaponStack, weapon.getAmmoCapacity());
 
             instance.setAmmo(weapon.getAmmoCapacity());
-            Tags.setInstance(weaponStack, instance);
+            ItemInstance.toStack(weaponStack, instance);
             player.worldObj.playSoundToNearExcept(player, weapon.getReloadSound(), 1.0F, 1.0F);
         }
     }
@@ -223,7 +223,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
         if (currentMagazine instanceof ItemMagazine magazine) {
             // Create magazine ItemStack with current ammo and return to inventory
             ItemStack magazineItemStack = magazine.createItemStack();
-            Tags.setAmmo(magazineItemStack, instance.getAmmo());
+            ItemInstance.setAmmo(magazineItemStack, instance.getAmmo());
             player.inventory.addItemStackToInventory(magazineItemStack);
 
             // Clear attachment from instance
@@ -231,9 +231,9 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
             instance.setActiveAttachmentIds(activeAttachmentIds);
         }
 
-        Tags.setAmmo(weaponStack, 0);
+        ItemInstance.setAmmo(weaponStack, 0);
         instance.setAmmo(0);
-        Tags.setInstance(weaponStack, instance);
+        ItemInstance.toStack(weaponStack, instance);
 
         player.worldObj.playSoundToNearExcept(player, weapon.getUnloadSound(), 1.0F, 1.0F);
     }
@@ -244,14 +244,14 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
         }
 
         List<ItemBullet> compatibleBullets = magazine.getCompatibleBullets();
-        int currentAmmo = Tags.getAmmo(magazineStack);
+        int currentAmmo = ItemInstance.getAmmo(magazineStack);
         int maxToLoad = magazine.getAmmo() - currentAmmo;
 
         ItemStack consumedStack = InventoryUtils
             .tryConsumingCompatibleItem(compatibleBullets, maxToLoad, player, (stack) -> true);
 
         if (consumedStack != null) {
-            Tags.setAmmo(magazineStack, currentAmmo + consumedStack.stackSize);
+            ItemInstance.setAmmo(magazineStack, currentAmmo + consumedStack.stackSize);
 
             if (magazine.getReloadSound() != null) {
                 player.playSound(magazine.getReloadSound(), 1.0F, 1.0F);
@@ -352,7 +352,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
         }
 
         instance.setActiveAttachmentIds(activeAttachmentIds);
-        Tags.setInstance(weaponStack, instance);
+        ItemInstance.toStack(weaponStack, instance);
     }
 
     private void processChangeFireMode(EntityPlayerMP player, ItemStack weaponStack, int slotIndex) {
@@ -373,7 +373,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
         int currentIndex = modes.indexOf(instance.getMaxShots());
         int nextIndex = (currentIndex + 1) % modes.size();
         instance.setMaxShots(modes.get(nextIndex));
-        Tags.setInstance(weaponStack, instance);
+        ItemInstance.toStack(weaponStack, instance);
     }
 
     private void processToggleLaser(EntityPlayerMP player, ItemStack weaponStack, int slotIndex) {
@@ -382,7 +382,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
             return;
         }
         instance.setLaserOn(!instance.isLaserOn());
-        Tags.setInstance(weaponStack, instance);
+        ItemInstance.toStack(weaponStack, instance);
     }
 
     private void processZoom(EntityPlayerMP player, ItemStack weaponStack, boolean zoomIn, int slotIndex) {
@@ -416,6 +416,6 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
         }
 
         instance.setZoom(zoom);
-        Tags.setInstance(weaponStack, instance);
+        ItemInstance.toStack(weaponStack, instance);
     }
 }

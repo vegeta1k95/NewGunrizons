@@ -97,7 +97,7 @@ public class WeaponInputHandler {
             if (itemStack != null) {
                 Item item = itemStack.getItem();
                 if (item instanceof Reloadable) {
-                    ((Reloadable) item).reloadMainHeldItemForPlayer(player);
+                    ((Reloadable) item).reloadHeldItem(player);
                 }
             }
         } else {
@@ -128,7 +128,7 @@ public class WeaponInputHandler {
                 instance = this.modContext.getItemInstanceRegistry()
                     .getMainHandItemInstance(player, ItemWeaponInstance.class);
                 if (instance != null && instance.getState() == WeaponState.MODIFYING) {
-                    this.modContext.getAttachmentAspect()
+                    this.modContext.getWeaponAttachmentAspect()
                         .changeAttachment(AttachmentCategory.SCOPE, instance);
                 }
             } else {
@@ -136,14 +136,14 @@ public class WeaponInputHandler {
                     instance = this.modContext.getItemInstanceRegistry()
                         .getMainHandItemInstance(player, ItemWeaponInstance.class);
                     if (instance != null && instance.getState() == WeaponState.MODIFYING) {
-                        this.modContext.getAttachmentAspect()
+                        this.modContext.getWeaponAttachmentAspect()
                             .changeAttachment(AttachmentCategory.GRIP, instance);
                     }
                 } else if (KeyBindings.leftArrowKey.isPressed()) {
                     instance = this.modContext.getItemInstanceRegistry()
                         .getMainHandItemInstance(player, ItemWeaponInstance.class);
                     if (instance != null && instance.getState() == WeaponState.MODIFYING) {
-                        this.modContext.getAttachmentAspect()
+                        this.modContext.getWeaponAttachmentAspect()
                             .changeAttachment(AttachmentCategory.SILENCER, instance);
                     }
                 } else if (KeyBindings.fireModeKey.isPressed()) {

@@ -29,7 +29,6 @@ import com.gtnewhorizon.newgunrizons.grenade.GrenadeState;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemGrenadeInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
 import com.gtnewhorizon.newgunrizons.registry.Sounds;
-import com.gtnewhorizon.newgunrizons.util.Updatable;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

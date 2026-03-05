@@ -58,11 +58,11 @@ public enum WeaponState implements ManagedState<WeaponState> {
         this.isTransient = false;
     }
 
-    public WeaponState preparingPhase() {
+    public WeaponState getPreparingPhase() {
         return this.preparingPhase;
     }
 
-    public WeaponState commitPhase() {
+    public WeaponState getCommitPhase() {
         return this.commitPhase;
     }
 

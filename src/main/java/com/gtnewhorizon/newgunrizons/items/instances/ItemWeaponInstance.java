@@ -21,7 +21,6 @@ import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
-import com.gtnewhorizon.newgunrizons.util.MiscUtils;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponStateTimed;
 
@@ -31,7 +30,7 @@ import lombok.Setter;
 
 public class ItemWeaponInstance extends ItemInstance<WeaponState> {
 
-    private static final int SERIAL_VERSION = 10;
+    private static final int SERIAL_VERSION = 11;
     private static final UUID NIGHT_VISION_SOURCE_UUID = UUID.randomUUID();
     private static final UUID VIGNETTE_SOURCE_UUID = UUID.randomUUID();
     private static final UUID BLUR_SOURCE_UUID = UUID.randomUUID();
@@ -161,6 +160,7 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         this.selectedAttachmentIndexes = initByteArray(buf);
         this.ammo = buf.readInt();
         this.maxShots = buf.readInt();
+        this.recoil = buf.readFloat();
         this.zoom = buf.readFloat();
         this.laserOn = buf.readBoolean();
     }
@@ -171,6 +171,7 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         serializeByteArray(buf, this.selectedAttachmentIndexes);
         buf.writeInt(this.ammo);
         buf.writeInt(this.maxShots);
+        buf.writeFloat(this.recoil);
         buf.writeFloat(this.zoom);
         buf.writeBoolean(this.laserOn);
     }
@@ -367,8 +368,10 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     }
 
     private float getAimChangeProgress() {
-        float p = MiscUtils
-            .clamp((float) (System.currentTimeMillis() - this.aimChangeTimestamp) / AIM_CHANGE_DURATION, 0.0F, 1.0F);
+
+        float delta = (float) (System.currentTimeMillis() - this.aimChangeTimestamp) / AIM_CHANGE_DURATION;
+        float p = Math.min(Math.max(delta, 0.0F), 1.0F);
+
         if (!this.isAimed()) {
             p = 1.0F - p;
         }

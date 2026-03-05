@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class RayCast {
 
     public static MovingObjectPosition rayCastBlocks(World world, Vec3 start, Vec3 end,
-        BiPredicate<Block, Integer> isCollidable) {
+        BiPredicate<Block, Integer> canCollide) {
 
         if (Double.isNaN(start.xCoord) || Double.isNaN(start.yCoord) || Double.isNaN(start.zCoord)) {
             return null;
@@ -29,7 +29,7 @@ public class RayCast {
 
         Block startBlock = world.getBlock(currentX, currentY, currentZ);
         int startMeta = world.getBlockMetadata(currentX, currentY, currentZ);
-        if (isCollidable.test(startBlock, startMeta)) {
+        if (canCollide.test(startBlock, startMeta)) {
             MovingObjectPosition hit = startBlock.collisionRayTrace(world, currentX, currentY, currentZ, start, end);
             if (hit != null) {
                 return hit;
@@ -122,7 +122,7 @@ public class RayCast {
 
             Block currentBlock = world.getBlock(currentX, currentY, currentZ);
             int currentMeta = world.getBlockMetadata(currentX, currentY, currentZ);
-            if (isCollidable.test(currentBlock, currentMeta)) {
+            if (canCollide.test(currentBlock, currentMeta)) {
                 MovingObjectPosition hit = currentBlock
                     .collisionRayTrace(world, currentX, currentY, currentZ, start, end);
                 if (hit != null) {
