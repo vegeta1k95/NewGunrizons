@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
 
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -39,9 +40,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class SKSFactory {
+public class SKSFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("SKS")
             .withFireRate(0.3F)
@@ -79,44 +80,44 @@ public class SKSFactory {
             }, (model) -> {
                 if (model instanceof PUscope) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof PUmount) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof SVTmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUreticle) {
                     GL11.glTranslatef(-0.5F, 0.23F, 0.82F);
-                    GL11.glScaled(0.029999999329447746D, 0.029999999329447746D, 0.029999999329447746D);
+                    GL11.glScaled(0.03D, 0.03D, 0.03D);
                 }
 
             })
             .withCompatibleAttachment(Attachments.PSO1, (player, stack) -> {
                 GL11.glTranslatef(0.07F, -0.6F, 0.4F);
-                GL11.glScaled(0.6499999761581421D, 0.6499999761581421D, 0.6499999761581421D);
+                GL11.glScaled(0.65D, 0.65D, 0.65D);
             }, (model) -> {
                 if (model instanceof PSO1reticle) {
                     GL11.glTranslatef(-0.212F, -0.486F, 1.27F);
-                    GL11.glScaled(0.017000000923871994D, 0.017000000923871994D, 0.017000000923871994D);
+                    GL11.glScaled(0.017D, 0.017D, 0.017D);
                 } else if (model instanceof PSO12) {
                     GL11.glTranslatef(-0.27F, -0.6F, 1.21F);
-                    GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                    GL11.glScaled(0.8D, 0.8D, 0.8D);
                 }
 
             })
             .withCompatibleAttachment(Attachments.OKP7, (model) -> {
                 if (model instanceof OKP7) {
                     GL11.glTranslatef(-0.13F, -0.43F, 0.22F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof OKP7reticle) {
                     GL11.glTranslatef(-0.07F, -0.9F, -0.0F);
-                    GL11.glScaled(0.03999999910593033D, 0.03999999910593033D, 0.03999999910593033D);
+                    GL11.glScaled(0.04D, 0.04D, 0.04D);
                 }
 
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKpart, true, (model) -> {
                 GL11.glTranslatef(-0.1F, -0.43F, -5.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 2.700000047683716D);
+                GL11.glScaled(0.7D, 0.7D, 2.7D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.SKSaction, true, (model) -> {})
             .withCompatibleAttachment(Attachments.Silencer762x39, (model) -> {
@@ -133,7 +134,7 @@ public class SKSFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.175F, -0.99F, -1.35F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.75D);
+                    GL11.glScaled(0.6D, 0.6D, 0.75D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.155F, -1.74F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -148,7 +149,7 @@ public class SKSFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.13F, -0.71F, -5.15F);
-                    GL11.glScaled(0.30000001192092896D, 0.3499999940395355D, 0.5D);
+                    GL11.glScaled(0.3D, 0.35D, 0.5D);
                 } else if (model instanceof ScarIron1) {
                     GL11.glTranslatef(0.165F, -1.65F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -180,16 +181,16 @@ public class SKSFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new SKS())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.2800000011920929D, 0.2800000011920929D, 0.2800000011920929D);
+                        GL11.glScaled(0.28D, 0.28D, 0.28D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.2F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-1.0F, 0.3F, 1.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -341,15 +342,15 @@ public class SKSFactory {
                     .withFirstPersonCustomPositioningReloading(
                         AuxiliaryAttachments.SKSmag1.getRenderablePart(),
                         new Transition((renderContext) -> {
-                            GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                            GL11.glScaled(0.6D, 0.6D, 0.6D);
                             GL11.glTranslatef(-0.8F, 0.0F, 0.0F);
                         }, 250L, 200L),
                         new Transition((renderContext) -> {
-                            GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                            GL11.glScaled(0.6D, 0.6D, 0.6D);
                             GL11.glTranslatef(-0.8F, 0.0F, 0.0F);
                         }, 250L, 200L),
                         new Transition((renderContext) -> {
-                            GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                            GL11.glScaled(0.6D, 0.6D, 0.6D);
                             GL11.glTranslatef(-0.8F, 0.0F, 0.0F);
                         }, 250L, 200L),
                         new Transition((renderContext) -> {
@@ -381,15 +382,15 @@ public class SKSFactory {
                     .withFirstPersonCustomPositioningReloading(
                         AuxiliaryAttachments.SKSmag2.getRenderablePart(),
                         new Transition((renderContext) -> {
-                            GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                            GL11.glScaled(0.6D, 0.6D, 0.6D);
                             GL11.glTranslatef(-0.8F, 0.0F, 0.0F);
                         }, 250L, 200L),
                         new Transition((renderContext) -> {
-                            GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                            GL11.glScaled(0.6D, 0.6D, 0.6D);
                             GL11.glTranslatef(-0.8F, 0.0F, 0.0F);
                         }, 250L, 200L),
                         new Transition((renderContext) -> {
-                            GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                            GL11.glScaled(0.6D, 0.6D, 0.6D);
                             GL11.glTranslatef(-0.8F, 0.0F, 0.0F);
                         }, 250L, 200L),
                         new Transition((renderContext) -> {
@@ -460,7 +461,7 @@ public class SKSFactory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     })
                     .withFirstPersonHandPositioningZooming((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 5.5F);
@@ -473,7 +474,7 @@ public class SKSFactory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     })
                     .withFirstPersonHandPositioningModifying((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -486,7 +487,7 @@ public class SKSFactory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     })
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 5.5F);
@@ -558,13 +559,11 @@ public class SKSFactory {
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 2.5F);
                         GL11.glRotatef(-55.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.25F, -0.725F, 0.325F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 2.5F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.05F, -0.275F, 0.1F);
                     }, 250L, 50L), new Transition((renderContext) -> {

@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -14,7 +13,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -35,9 +34,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class DragonuvFactory implements GunFactory {
+public class DragonuvFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Dragunov")
             .withFireRate(0.6F)
@@ -63,35 +62,34 @@ public class DragonuvFactory implements GunFactory {
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents,
                 Blocks.planks)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Sniper rifle/Designated marksmen rifle",
                     "Damage: 15",
                     "Caliber: 7.62x54mm",
                     "Magazines:",
                     "11rnd 7.62x54mm Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(Attachments.PSO1, (player, stack) -> {
                 GL11.glTranslatef(0.14F, -0.95F, -1.2F);
-                GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             }, (model) -> {
                 if (model instanceof PSO1reticle) {
                     GL11.glTranslatef(-0.212F, -0.486F, 1.27F);
-                    GL11.glScaled(0.017000000923871994D, 0.017000000923871994D, 0.017000000923871994D);
+                    GL11.glScaled(0.017D, 0.017D, 0.017D);
                 } else if (model instanceof PSO12) {
                     GL11.glTranslatef(-0.27F, -0.6F, 1.21F);
-                    GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                    GL11.glScaled(0.8D, 0.8D, 0.8D);
                 }
 
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKIron, true, (model) -> {
                 GL11.glTranslatef(-0.175F, -1.06F, -9.35F);
-                GL11.glScaled(0.6000000238418579D, 0.550000011920929D, 0.5D);
+                GL11.glScaled(0.6D, 0.55D, 0.5D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKaction, true, (model) -> {
                 GL11.glTranslatef(0.0F, 0.0F, -0.3F);
-                GL11.glScaled(1.0D, 1.0D, 1.0499999523162842D);
+                GL11.glScaled(1.0D, 1.0D, 1.05D);
             })
             .withCompatibleAttachment(Magazines.DragunovMag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
@@ -100,10 +98,10 @@ public class DragonuvFactory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AKMiron2) {
                     GL11.glTranslatef(-0.183F, -1.32F, -9.35F);
-                    GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.6800000071525574D);
+                    GL11.glScaled(0.55D, 0.55D, 0.68D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.25F, -1.65F, -3.6F);
-                    GL11.glScaled(0.800000011920929D, 0.699999988079071D, 0.6000000238418579D);
+                    GL11.glScaled(0.8D, 0.7D, 0.6D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.155F, -1.74F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -146,11 +144,11 @@ public class DragonuvFactory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new Dragunov())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.2800000011920929D, 0.2800000011920929D, 0.2800000011920929D);
+                        GL11.glScaled(0.28D, 0.28D, 0.28D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.2F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -188,13 +186,7 @@ public class DragonuvFactory implements GunFactory {
                         (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.AKaction.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.AKaction.getRenderablePart(),
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
@@ -214,44 +206,37 @@ public class DragonuvFactory implements GunFactory {
                         AuxiliaryAttachments.AKIron.getRenderablePart(),
                         (renderContext) -> {})
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.425F, 0.6F);
                     }, 300L, 60L), new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.425F, 0.6F);
                     }, 300L, 200L), new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.425F, 0.6F);
                     }, 400L, 100L), new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.425F, 0.6F);
                     }, 120L, 100L), new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.425F, 0.6F);
                     }, 130L, 150L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.425F, 0.6F);
                     }, 150L, 50L), new Transition((renderContext) -> {
-                        GL11.glScalef(1.0F, 1.0F, 1.0F);
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
@@ -310,7 +295,7 @@ public class DragonuvFactory implements GunFactory {
                         GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.45F, 0.525F);
+                        GL11.glTranslatef(-1.15F, 0.45F, 0.525F);
                     })
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 7.0F);

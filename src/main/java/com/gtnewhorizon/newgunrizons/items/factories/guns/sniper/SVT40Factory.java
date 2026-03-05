@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -36,9 +37,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class SVT40Factory {
+public class SVT40Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("SVT40")
             .withFireRate(0.4F)
@@ -64,37 +65,35 @@ public class SVT40Factory {
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents,
                 Blocks.planks)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Semi-automatic Battle Rifle",
                     "Damage: 13",
                     "Caliber: 7.62x54mm",
                     "Magazines:",
                     "10rnd 7.62x54mm Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(Attachments.PUscope, (player, stack) -> {
                 GL11.glTranslatef(0.4F, -1.2F, 0.2F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }, (model) -> {
                 if (model instanceof PUscope) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof PUmount) {
                     GL11.glTranslatef(-0.209F, -0.485F, 1.27F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof SVTmount) {
-                    GL11.glScalef(1.0F, 1.0F, 1.0F);
                     GL11.glTranslatef(-0.4F, 1.2F, -0.19F);
                 } else if (model instanceof PUreticle) {
                     GL11.glTranslatef(-0.5F, 0.23F, 0.82F);
-                    GL11.glScaled(0.029999999329447746D, 0.029999999329447746D, 0.029999999329447746D);
+                    GL11.glScaled(0.03D, 0.03D, 0.03D);
                 }
 
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKpart, true, (model) -> {
                 GL11.glTranslatef(-0.1F, -0.47F, -6.6F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 2.700000047683716D);
+                GL11.glScaled(0.7D, 0.7D, 2.7D);
                 GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.SVT40action, true, (model) -> {})
@@ -114,7 +113,7 @@ public class SVT40Factory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.2F, -1.05F, -1.92F);
-                    GL11.glScaled(0.75D, 0.6000000238418579D, 0.75D);
+                    GL11.glScaled(0.75D, 0.6D, 0.75D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.155F, -1.74F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -129,7 +128,7 @@ public class SVT40Factory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.13F, -0.77F, -6.2F);
-                    GL11.glScaled(0.30000001192092896D, 0.3499999940395355D, 0.30000001192092896D);
+                    GL11.glScaled(0.3D, 0.35D, 0.3D);
                 } else if (model instanceof ScarIron1) {
                     GL11.glTranslatef(0.165F, -1.65F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -153,16 +152,16 @@ public class SVT40Factory {
                 (new WeaponRenderer.Builder())
                     .withModel(new SVT40())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.2800000011920929D, 0.2800000011920929D, 0.2800000011920929D);
+                        GL11.glScaled(0.28D, 0.28D, 0.28D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.2F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-1.0F, 0.3F, 1.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -171,7 +170,7 @@ public class SVT40Factory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
@@ -196,13 +195,7 @@ public class SVT40Factory {
                         (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.SVT40action.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.SVT40action.getRenderablePart(),
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.7F); })
@@ -225,56 +218,53 @@ public class SVT40Factory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                         GL11.glRotatef(-3.0F, 1.0F, 0.0F, 0.0F);
                     }, 350L, 0L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                     }, 100L, 130L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-3.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                     }, 400L, 100L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.45F, 0.725F, -1.25F);
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                     }, 200L, 70L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                         GL11.glRotatef(-3.0F, 1.0F, 0.0F, 0.0F);
                     }, 180L, 0L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                     }, 100L, 50L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                         GL11.glRotatef(-3.0F, 1.0F, 0.0F, 0.0F);
                     }, 120L, 0L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.45F, 0.725F, -1.449999F);
+                        GL11.glTranslatef(-0.45F, 0.725F, -1.45F);
                         GL11.glRotatef(-1.0F, 1.0F, 0.0F, 0.0F);
                     }, 250L, 0L))
                     .withFirstPersonCustomPositioningUnloading(
@@ -348,7 +338,7 @@ public class SVT40Factory {
                         GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.249999F, 0.05F, -0.725F);
+                        GL11.glTranslatef(-1.25F, 0.05F, -0.725F);
                     })
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 7.0F);
@@ -361,7 +351,7 @@ public class SVT40Factory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     })
                     .withFirstPersonHandPositioningZooming((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 7.0F);
@@ -374,7 +364,7 @@ public class SVT40Factory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     })
                     .withFirstPersonHandPositioningModifying((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -387,7 +377,7 @@ public class SVT40Factory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     })
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -404,7 +394,6 @@ public class SVT40Factory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(55.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.3F, -0.675F, 0.475F);
                     }, 250L, 0L), new Transition((renderContext) -> {
@@ -431,19 +420,19 @@ public class SVT40Factory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 2.5F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 2.5F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     }, 260L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 4.0F);
                         GL11.glRotatef(-110.0F, 1.0F, 0.0F, 0.0F);
@@ -466,7 +455,6 @@ public class SVT40Factory {
                     .withFirstPersonLeftHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(55.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.3F, -0.675F, 0.475F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -487,19 +475,19 @@ public class SVT40Factory {
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 2.5F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.5F, 2.5F, 2.5F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.608F, -0.868999F, 0.051F);
+                        GL11.glTranslatef(0.608F, -0.869F, 0.051F);
                     }, 250L, 50L))
                     .build())
             .withSpawnEntityDamage(13.0F)

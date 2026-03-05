@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 
 import java.util.Arrays;
 
+
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -17,9 +18,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class WebleyFactory {
+public class WebleyFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("WebleyMkVI")
             .withAmmoCapacity(6)
@@ -45,13 +46,12 @@ public class WebleyFactory {
             .withFlashOffsetY(() -> { return 0.06F; })
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Service Revolver",
                     "Damage: 7",
                     "Cartridge: .455 Webley Mk II Bullet",
-                    "Fire Rate: Double Action Revolver");
-            })
+                    "Fire Rate: Double Action Revolver")
+            )
             .withCompatibleAttachment(
                 AuxiliaryAttachments.WebleyCylinder,
                 true,
@@ -72,7 +72,7 @@ public class WebleyFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -93,13 +93,13 @@ public class WebleyFactory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(8.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
-                        GL11.glTranslatef(-1.149999F, 1.5F, -5.0F);
+                        GL11.glTranslatef(-1.15F, 1.5F, -5.0F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
-                        GL11.glTranslatef(-1.149999F, 1.8F, -4.5F);
+                        GL11.glTranslatef(-1.15F, 1.8F, -4.5F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                     })
                     .withFirstPersonPositioningZoomingRecoiled((renderContext) -> {
@@ -135,14 +135,12 @@ public class WebleyFactory {
                         (renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         })
                     .withFirstPersonCustomPositioningLoadIterationCompleted(
                         AuxiliaryAttachments.WebleyBullets.getRenderablePart(),
                         (renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         })
                     .withFirstPersonCustomPositioningReloading(
                         AuxiliaryAttachments.WebleyCylinder.getRenderablePart(),
@@ -150,44 +148,36 @@ public class WebleyFactory {
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 100L, 0L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 300L, 0L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 280L, 0L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 290L, 0L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 270L, 0L))
                     .withFirstPersonCustomPositioningAllLoadIterationsCompleted(
                         AuxiliaryAttachments.WebleyCylinder.getRenderablePart(),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> { GL11.glScalef(1.0F, 1.0F, 1.0F); }, 150L, 50L),
                         new Transition((renderContext) -> { GL11.glScalef(1.0F, 1.0F, 1.0F); }, 150L, 50L))
@@ -196,12 +186,10 @@ public class WebleyFactory {
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L))
                     .withFirstPersonCustomPositioningReloading(
                         AuxiliaryAttachments.WebleyBullets.getRenderablePart(),
@@ -209,44 +197,36 @@ public class WebleyFactory {
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L))
                     .withFirstPersonCustomPositioningAllLoadIterationsCompleted(
                         AuxiliaryAttachments.WebleyBullets.getRenderablePart(),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -2.6F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 150L, 50L),
                         new Transition((renderContext) -> { GL11.glScalef(1.0F, 1.0F, 1.0F); }, 150L, 50L),
                         new Transition((renderContext) -> { GL11.glScalef(1.0F, 1.0F, 1.0F); }, 150L, 50L))
@@ -255,12 +235,10 @@ public class WebleyFactory {
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.0F, -15.0F, -0.45F);
                             GL11.glRotatef(65.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glScalef(1.0F, 1.0F, 1.0F);
                         }, 250L, 50L))
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
@@ -273,7 +251,6 @@ public class WebleyFactory {
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glTranslatef(-1.0F, 2.3F, -3.0F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                     }, 100L, 150L), new Transition((renderContext) -> {
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
@@ -358,14 +335,14 @@ public class WebleyFactory {
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.424999F, 3.600005F, -1.125F);
+                        GL11.glTranslatef(-1.425F, 3.6F, -1.125F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-3.299999F, 0.1F, -0.5F);
+                        GL11.glTranslatef(-3.3F, 0.1F, -0.5F);
                     })
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(7.0F, 7.0F, 7.0F);

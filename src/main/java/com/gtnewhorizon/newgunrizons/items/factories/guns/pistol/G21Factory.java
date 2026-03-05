@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,15 +12,15 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.weapon.Glock;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class G21Factory implements GunFactory {
+public class G21Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Glock21")
             .withFireRate(0.8F)
@@ -43,22 +42,21 @@ public class G21Factory implements GunFactory {
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Pistol",
                     "Damage: 5.5",
                     "Caliber: .45 ACP",
                     "Magazines:",
                     "13rnd .45 ACP Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.Glock21Slide, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.Glock21Mag,
                 ((model) -> { GL11.glTranslatef(0.0F, 0.1F, 0.1F); }))
             .withCompatibleAttachment(Attachments.Laser, (p, s) -> {
                 GL11.glTranslatef(0.01F, -0.7F, -2.3F);
-                GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.100000023841858D);
+                GL11.glScaled(1.1D, 1.1D, 1.1D);
                 GL11.glRotatef(-90.0F, 0.0F, 0.0F, -4.0F);
             })
             .withCompatibleAttachment(Attachments.Silencer45ACP, (model) -> {
@@ -70,11 +68,11 @@ public class G21Factory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new Glock())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -128,19 +126,18 @@ public class G21Factory implements GunFactory {
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 280L, 0L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 120L, 150L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
@@ -180,11 +177,11 @@ public class G21Factory implements GunFactory {
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glTranslatef(0.35F, 0.57F, -2.799999F);
+                        GL11.glTranslatef(0.35F, 0.57F, -2.8F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
                     })
@@ -193,7 +190,7 @@ public class G21Factory implements GunFactory {
                         GL11.glRotatef(-55.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 2.25F, -1.699999F);
+                        GL11.glTranslatef(-0.9F, 2.25F, -1.7F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);

@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,16 +12,16 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.LPscope;
 import com.gtnewhorizon.newgunrizons.model.weapon.AUG;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class AUGFactory implements GunFactory {
+public class AUGFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("AUG")
             .withFireRate(0.7F)
@@ -44,23 +43,22 @@ public class AUGFactory implements GunFactory {
             .withShellCasingForwardOffset(-0.1F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Assault rifle",
                     "Damage: 7",
                     "Caliber: 5.56x45mm NATO",
                     "Magazines:",
                     "30rnd 5.56x45mm NATO Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.AUGAction, true, (model) -> {})
             .withCompatibleAttachment(Attachments.AUGScope, true, true, (player, stack) -> {
                 GL11.glTranslatef(-0.165F, -1.4F, -1.05F);
-                GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                GL11.glScaled(0.6D, 0.6D, 0.6D);
             }, (model) -> {
                 if (model instanceof LPscope) {
                     GL11.glTranslatef(0.08F, -0.12F, 2.92F);
-                    GL11.glScaled(0.09000000357627869D, 0.10000000149011612D, 0.07999999821186066D);
+                    GL11.glScaled(0.09D, 0.1D, 0.08D);
                 }
 
             })
@@ -82,12 +80,12 @@ public class AUGFactory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-1.5F, -0.9F, 1.7F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -114,7 +112,6 @@ public class AUGFactory implements GunFactory {
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.AUGScope)) {
                             GL11.glTranslatef(0.39F, 0.77F, -0.225F);
                         } else {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                         }
 
                     })
@@ -130,31 +127,30 @@ public class AUGFactory implements GunFactory {
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.NATOMag1.getRenderablePart(),
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.NATOMag1.getRenderablePart(),
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScaled(2.0D, 2.0D, 2.0D);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.825F, -0.875F);
+                        GL11.glTranslatef(-1.15F, 0.825F, -0.875F);
                     }, 350L, 0L), new Transition((renderContext) -> {
                         GL11.glScaled(2.0D, 2.0D, 2.0D);
                         GL11.glRotatef(-68.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.825F, -0.875F);
+                        GL11.glTranslatef(-1.15F, 0.825F, -0.875F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glScaled(2.0D, 2.0D, 2.0D);
                         GL11.glRotatef(-58.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.825F, -0.875F);
+                        GL11.glTranslatef(-1.15F, 0.825F, -0.875F);
                     }, 100L, 130L), new Transition((renderContext) -> {
                         GL11.glScaled(2.0D, 2.0D, 2.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.4F, 0.7F, -0.7F);
@@ -166,7 +162,6 @@ public class AUGFactory implements GunFactory {
                         GL11.glTranslatef(-0.4F, 0.7F, -0.6F);
                     }, 200L, 70L), new Transition((renderContext) -> {
                         GL11.glScaled(2.0D, 2.0D, 2.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.4F, 0.7F, -0.7F);
@@ -176,13 +171,13 @@ public class AUGFactory implements GunFactory {
                         GL11.glRotatef(-58.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.825F, -0.875F);
+                        GL11.glTranslatef(-1.15F, 0.825F, -0.875F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glScaled(2.0D, 2.0D, 2.0D);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.825F, -0.875F);
+                        GL11.glTranslatef(-1.15F, 0.825F, -0.875F);
                     }, 150L, 50L))
                     .withFirstPersonCustomPositioningUnloading(Magazines.NATOMag1, new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, 0.5F, -0.2F);
@@ -218,7 +213,6 @@ public class AUGFactory implements GunFactory {
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.AUGScope)) {
                             GL11.glTranslatef(0.39F, 0.77F, -0.225F);
                         } else {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                         }
 
                     })
@@ -297,19 +291,16 @@ public class AUGFactory implements GunFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-95.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(55.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.85F, -0.925F, 0.375F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-95.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(55.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.85F, -0.925F, 0.375F);
                     }, 250L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);
                         GL11.glRotatef(-110.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.1F, -0.575F, 0.3F);
                     }, 250L, 0L), new Transition((renderContext) -> {
@@ -321,7 +312,6 @@ public class AUGFactory implements GunFactory {
                     }, 250L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);
                         GL11.glRotatef(-110.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.1F, -0.575F, 0.3F);
                     }, 250L, 0L))
@@ -365,7 +355,6 @@ public class AUGFactory implements GunFactory {
                     .withFirstPersonLeftHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-95.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(55.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.85F, -0.925F, 0.375F);
                     }, 50L, 200L), new Transition((renderContext) -> {

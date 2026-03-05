@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.action.P225Top;
 import com.gtnewhorizon.newgunrizons.model.sight.P226frontsight;
 import com.gtnewhorizon.newgunrizons.model.sight.P226rearsight;
@@ -22,9 +21,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class P226Factory implements GunFactory {
+public class P226Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("P226")
             .withFireRate(0.6F)
@@ -46,21 +45,20 @@ public class P226Factory implements GunFactory {
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Pistol",
                     "Damage: 5",
                     "Caliber: 9mm",
                     "Magazines:",
                     "15rnd 9mm Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.P226Top, true, (model) -> {
                 if (model instanceof P225Top) {
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof P226rearsight) {
                     GL11.glTranslatef(-0.155F, -1.175F, 0.03F);
-                    GL11.glScaled(0.30000001192092896D, 0.25D, 0.25D);
+                    GL11.glScaled(0.3D, 0.25D, 0.25D);
                 } else if (model instanceof P226frontsight) {
                     GL11.glTranslatef(-0.15F, -1.175F, -2.05F);
                     GL11.glScaled(0.25D, 0.25D, 0.25D);
@@ -69,7 +67,7 @@ public class P226Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Laser, (p, s) -> {
                 GL11.glTranslatef(0.01F, -0.7F, -2.2F);
-                GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.100000023841858D);
+                GL11.glScaled(1.1D, 1.1D, 1.1D);
                 GL11.glRotatef(-90.0F, 0.0F, 0.0F, -4.0F);
             })
             .withCompatibleAttachment(
@@ -84,11 +82,11 @@ public class P226Factory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new P220())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -142,28 +140,25 @@ public class P226Factory implements GunFactory {
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 280L, 0L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 120L, 150L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-12.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.125F, 1.149999F, -2.950002F);
+                        GL11.glTranslatef(-1.125F, 1.15F, -2.95F);
                     }, 200L, 50L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(4.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-1.125F, 1.0F, -3.0F);
@@ -194,11 +189,11 @@ public class P226Factory implements GunFactory {
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glTranslatef(0.35F, 0.62F, -2.799999F);
+                        GL11.glTranslatef(0.35F, 0.62F, -2.8F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
                     })
@@ -207,7 +202,7 @@ public class P226Factory implements GunFactory {
                         GL11.glRotatef(-55.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 2.25F, -1.699999F);
+                        GL11.glTranslatef(-0.9F, 2.25F, -1.7F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);

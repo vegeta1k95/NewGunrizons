@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
 
+
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -36,9 +37,9 @@ import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 import com.gtnewhorizon.newgunrizons.registry.Guns;
 
-public class MosinPUFactory {
+public class MosinPUFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("MosinNagantM91-30PU")
             .withAmmoCapacity(5)
@@ -64,18 +65,17 @@ public class MosinPUFactory {
             .withFlashOffsetY(() -> { return 0.1F; })
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withCraftingRecipe("A", "F", 'A', Attachments.PUscope, 'F', Guns.MosinNagant)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Bolt-action rifle",
                     "Damage: 20",
                     "Cartridge:",
                     "7.62x54mm Bullet",
-                    "Fire Rate: Bolt Action");
-            })
+                    "Fire Rate: Bolt Action")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.MosinBolt, true, (model) -> {
                 if (model instanceof MosinBolt) {
                     GL11.glTranslatef(0.85F, -1.29F, -0.03F);
-                    GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                    GL11.glScaled(0.9D, 0.85D, 0.95D);
                     GL11.glRotatef(-90.0F, 0.0F, 0.0F, 1.0F);
                 }
 
@@ -83,25 +83,25 @@ public class MosinPUFactory {
             .withCompatibleAttachment(AuxiliaryAttachments.MosinBolt2, true, (model) -> {
                 if (model instanceof MosinBolt2) {
                     GL11.glTranslatef(0.033F, -0.018F, -0.0F);
-                    GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                    GL11.glScaled(1.2D, 1.0D, 1.0D);
                 }
 
             })
             .withCompatibleAttachment(Attachments.PUscope, true, true, (player, stack) -> {
                 GL11.glTranslatef(0.36F, -1.75F, -1.5F);
-                GL11.glScaled(1.0499999523162842D, 1.0499999523162842D, 1.0499999523162842D);
+                GL11.glScaled(1.05D, 1.05D, 1.05D);
             }, (model) -> {
                 if (model instanceof PUscope) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof PUmount) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof SVTmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUreticle) {
                     GL11.glTranslatef(-0.5F, 0.23F, 0.82F);
-                    GL11.glScaled(0.029999999329447746D, 0.029999999329447746D, 0.029999999329447746D);
+                    GL11.glScaled(0.03D, 0.03D, 0.03D);
                 }
 
             })
@@ -124,13 +124,13 @@ public class MosinPUFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.27F, -1.58F, -3.45F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.22F, -1.94F, -1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.207F, -1.245F, -9.165F);
-                    GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.6499999761581421D);
+                    GL11.glScaled(0.35D, 0.35D, 0.65D);
                 } else if (model instanceof ScarIron1) {
                     GL11.glTranslatef(0.165F, -1.65F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -160,7 +160,7 @@ public class MosinPUFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3199999928474426D, 0.3199999928474426D, 0.3199999928474426D);
+                        GL11.glScaled(0.32D, 0.32D, 0.32D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -201,14 +201,14 @@ public class MosinPUFactory {
                         AuxiliaryAttachments.MosinBolt.getRenderablePart(),
                         (renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         })
                     .withFirstPersonCustomPositioningLoadIterationCompleted(
                         AuxiliaryAttachments.MosinBolt2.getRenderablePart(),
                         (renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         })
                     .withFirstPersonPositioningLoadIterationCompleted((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -222,48 +222,48 @@ public class MosinPUFactory {
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 200L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(43.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.46F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.46F);
                     }, 210L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.8F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.8F);
                     }, 200L, 20L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 220L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 210L, 10L))
                     .withFirstPersonCustomPositioningEjectSpentRound(
                         AuxiliaryAttachments.MosinBolt.getRenderablePart(),
                         new Transition((renderContext) -> {}, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, -0.03F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 300L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 0L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, -0.03F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 0L),
                         new Transition((renderContext) -> {}, 250L, 0L))
@@ -273,7 +273,7 @@ public class MosinPUFactory {
                         new Transition((renderContext) -> {}, 250L, 300L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 0L),
                         new Transition((renderContext) -> {}, 250L, 0L),
                         new Transition((renderContext) -> {}, 250L, 0L))
@@ -314,17 +314,17 @@ public class MosinPUFactory {
                         new Transition((renderContext) -> {}, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, -0.03F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L))
                     .withFirstPersonCustomPositioningReloading(
@@ -334,11 +334,11 @@ public class MosinPUFactory {
                         new Transition((renderContext) -> {}, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L))
                     .withFirstPersonPositioningLoadIteration(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -375,49 +375,49 @@ public class MosinPUFactory {
                         AuxiliaryAttachments.MosinBolt2.getRenderablePart(),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L))
                     .withFirstPersonCustomPositioningLoadIteration(
                         AuxiliaryAttachments.MosinBolt.getRenderablePart(),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L))
                     .withFirstPersonPositioningAllLoadIterationsCompleted(new Transition((renderContext) -> {
@@ -449,17 +449,17 @@ public class MosinPUFactory {
                         AuxiliaryAttachments.MosinBolt.getRenderablePart(),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, 0.7F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(-1.2F, -1.0F, -0.03F);
-                            GL11.glScaled(0.8999999761581421D, 0.8500000238418579D, 0.949999988079071D);
+                            GL11.glScaled(0.9D, 0.85D, 0.95D);
                             GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {}, 250L, 50L))
@@ -467,11 +467,11 @@ public class MosinPUFactory {
                         AuxiliaryAttachments.MosinBolt2.getRenderablePart(),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
                             GL11.glTranslatef(0.033F, -0.018F, 0.7F);
-                            GL11.glScaled(1.2000000476837158D, 1.0D, 1.0D);
+                            GL11.glScaled(1.2D, 1.0D, 1.0D);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {}, 250L, 50L),
                         new Transition((renderContext) -> {}, 250L, 50L))
@@ -505,7 +505,6 @@ public class MosinPUFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -518,7 +517,6 @@ public class MosinPUFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -630,7 +628,6 @@ public class MosinPUFactory {
                         new Transition((renderContext) -> {
                             GL11.glScalef(3.0F, 3.0F, 3.0F);
                             GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                             GL11.glRotatef(-40.0F, 0.0F, 0.0F, 1.0F);
                             GL11.glTranslatef(0.075F, -0.075F, -0.15F);
                         }, 250L, 1000L))
@@ -639,7 +636,6 @@ public class MosinPUFactory {
                         new Transition((renderContext) -> {
                             GL11.glScalef(3.0F, 3.0F, 3.0F);
                             GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                            GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                             GL11.glRotatef(-40.0F, 0.0F, 0.0F, 1.0F);
                             GL11.glTranslatef(0.075F, -0.075F, -0.15F);
                         }, 250L, 1000L),
@@ -704,7 +700,6 @@ public class MosinPUFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-130.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.2F, -0.125F, 0.225F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -748,7 +743,6 @@ public class MosinPUFactory {
                     .withFirstPersonRightHandPositioningEjectSpentRound(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.075F, -0.075F, -0.15F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
@@ -772,7 +766,6 @@ public class MosinPUFactory {
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.075F, -0.075F, -0.15F);
                     }, 250L, 1000L))

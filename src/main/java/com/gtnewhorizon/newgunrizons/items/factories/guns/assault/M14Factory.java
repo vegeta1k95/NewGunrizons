@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.action.M14Action;
 import com.gtnewhorizon.newgunrizons.model.action.M14Action2;
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
@@ -35,9 +34,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class M14Factory implements GunFactory {
+public class M14Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M14")
             .withFireRate(0.4F)
@@ -58,18 +57,17 @@ public class M14Factory implements GunFactory {
             .withFlashOffsetY(() -> { return 0.06F; })
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Designated Marksmen Rifle",
                     "Damage: 14",
                     "Caliber: 7.62x51mm NATO",
                     "Magazines:",
                     "21rnd 7.62x51mm NATO Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(Magazines.M14DMRMag, ((model) -> {
                 GL11.glTranslatef(-0.4F, 0.9F, -2.1F);
-                GL11.glScaled(1.399999976158142D, 1.5D, 1.5D);
+                GL11.glScaled(1.4D, 1.5D, 1.5D);
                 GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
             }))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
@@ -78,13 +76,13 @@ public class M14Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(-0.215F, -1.58F, -1.34F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 } else if (model instanceof AKMiron2) {
                     GL11.glTranslatef(0.129F, -1.63F, -5.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.163F, -1.36F, -8.512F);
-                    GL11.glScaled(0.36000001430511475D, 0.36000001430511475D, 0.699999988079071D);
+                    GL11.glScaled(0.36D, 0.36D, 0.7D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(0.092F, -1.91F, -0.9F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -99,7 +97,7 @@ public class M14Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.165F, -1.36F, -1.4F);
-                    GL11.glScaled(0.23000000417232513D, 0.23000000417232513D, 0.23000000417232513D);
+                    GL11.glScaled(0.23D, 0.23D, 0.23D);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.205F, -1.9F, -3.15F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -117,11 +115,11 @@ public class M14Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Leupold, (player, stack) -> {
                 GL11.glTranslatef(-0.157F, -1.22F, -2.85F);
-                GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                GL11.glScaled(0.55D, 0.55D, 0.55D);
             }, (model) -> {
                 if (model instanceof LeupoldReticle) {
                     GL11.glTranslatef(0.076F, -0.52F, 4.0251F);
-                    GL11.glScaled(0.09000000357627869D, 0.09000000357627869D, 0.09000000357627869D);
+                    GL11.glScaled(0.09D, 0.09D, 0.09D);
                 }
 
             })
@@ -141,23 +139,23 @@ public class M14Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Silencer762x51, (model) -> {
                 GL11.glTranslatef(-0.2F, -1.3F, -10.63F);
-                GL11.glScaled(1.0D, 1.0D, 1.2000000476837158D);
+                GL11.glScaled(1.0D, 1.0D, 1.2D);
             })
             .withTextureName("M14DMR")
             .withRenderer(
                 (new WeaponRenderer.Builder())
                     .withModel(new M14DMR())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.2800000011920929D, 0.2800000011920929D, 0.2800000011920929D);
+                        GL11.glScaled(0.28D, 0.28D, 0.28D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.2F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.4699999988079071D, 0.4699999988079071D, 0.4699999988079071D);
+                        GL11.glScaled(0.47D, 0.47D, 0.47D);
                         GL11.glTranslatef(-2.0F, -1.6F, 2.2F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -209,13 +207,13 @@ public class M14Factory implements GunFactory {
                         GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.249999F, 0.625F, -0.025F);
+                        GL11.glTranslatef(-1.25F, 0.625F, -0.025F);
                     }, 350L, 100L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.249999F, 0.625F, -0.025F);
+                        GL11.glTranslatef(-1.25F, 0.625F, -0.025F);
                     }, 450L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
@@ -240,13 +238,13 @@ public class M14Factory implements GunFactory {
                         GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.249999F, 0.625F, -0.025F);
+                        GL11.glTranslatef(-1.25F, 0.625F, -0.025F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.249999F, 0.625F, -0.025F);
+                        GL11.glTranslatef(-1.25F, 0.625F, -0.025F);
                     }, 150L, 50L))
                     .withFirstPersonCustomPositioningUnloading(
                         Magazines.M14DMRMag,

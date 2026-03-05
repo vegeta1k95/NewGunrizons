@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.action.M9Top;
 import com.gtnewhorizon.newgunrizons.model.sight.M9rearsight;
 import com.gtnewhorizon.newgunrizons.model.sight.m9frontsight;
@@ -22,9 +21,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class M9Factory implements GunFactory {
+public class M9Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M9")
             .withFireRate(0.4F)
@@ -46,24 +45,23 @@ public class M9Factory implements GunFactory {
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Pistol",
                     "Damage: 5",
                     "Caliber: 9mm",
                     "Magazines:",
                     "15rnd 9mm Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.M9Top, true, (model) -> {
                 if (model instanceof M9Top) {
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof M9rearsight) {
                     GL11.glTranslatef(-0.155F, -1.175F, -0.15F);
-                    GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.4000000059604645D);
+                    GL11.glScaled(0.3D, 0.3D, 0.4D);
                 } else if (model instanceof m9frontsight) {
                     GL11.glTranslatef(-0.15F, -1.175F, -1.85F);
-                    GL11.glScaled(0.25D, 0.25D, 0.30000001192092896D);
+                    GL11.glScaled(0.25D, 0.25D, 0.3D);
                 }
 
             })
@@ -72,18 +70,18 @@ public class M9Factory implements GunFactory {
                 ((model) -> { GL11.glTranslatef(0.0F, 0.1F, 0.1F); }))
             .withCompatibleAttachment(Attachments.Silencer9mm, (model) -> {
                 GL11.glTranslatef(-0.22F, -1.22F, -4.2F);
-                GL11.glScaled(1.2999999523162842D, 1.2999999523162842D, 1.2999999523162842D);
+                GL11.glScaled(1.3D, 1.3D, 1.3D);
             })
             .withTextureName("M9")
             .withRenderer(
                 (new WeaponRenderer.Builder())
                     .withModel(new M9())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -137,19 +135,18 @@ public class M9Factory implements GunFactory {
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 280L, 0L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 120L, 150L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
@@ -189,11 +186,11 @@ public class M9Factory implements GunFactory {
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glTranslatef(0.35F, 0.63F, -2.799999F);
+                        GL11.glTranslatef(0.35F, 0.63F, -2.8F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
                     })
@@ -202,7 +199,7 @@ public class M9Factory implements GunFactory {
                         GL11.glRotatef(-55.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 2.25F, -1.699999F);
+                        GL11.glTranslatef(-0.9F, 2.25F, -1.7F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);

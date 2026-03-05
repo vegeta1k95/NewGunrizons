@@ -13,15 +13,15 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.weapon.Duplet;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class DupletFactory implements GunFactory {
+public class DupletFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Duplet")
             .withAmmoCapacity(7)
@@ -50,14 +50,13 @@ public class DupletFactory implements GunFactory {
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents,
                 Blocks.planks)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Double Barrel Shotgun",
                     "Damage per Pellet: 10",
                     "Pellets per Shot: 10",
                     "Ammo: 12 Gauge Shotgun Shell",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.DupletBarrels, true, (model) -> {})
             .withCompatibleBullet(Bullets.ShotgunShell, (model) -> {})
             .withTextureName("Duplet")
@@ -69,12 +68,12 @@ public class DupletFactory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.44999998807907104D, 0.44999998807907104D, 0.44999998807907104D);
+                        GL11.glScaled(0.45D, 0.45D, 0.45D);
                         GL11.glTranslatef(-1.8F, -1.0F, 2.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -106,47 +105,47 @@ public class DupletFactory implements GunFactory {
                         GL11.glRotatef(-25.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.349999F, 1.075F);
+                        GL11.glTranslatef(-0.575F, 1.35F, 1.075F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(6.0F, 6.0F, 6.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.349999F, 1.075F);
+                        GL11.glTranslatef(-0.575F, 1.35F, 1.075F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(6.0F, 6.0F, 6.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.349999F, 1.075F);
+                        GL11.glTranslatef(-0.575F, 1.35F, 1.075F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(6.0F, 6.0F, 6.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.349999F, 1.075F);
+                        GL11.glTranslatef(-0.575F, 1.35F, 1.075F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(6.0F, 6.0F, 6.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.349999F, 1.075F);
+                        GL11.glTranslatef(-0.575F, 1.35F, 1.075F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(6.0F, 6.0F, 6.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.349999F, 1.075F);
+                        GL11.glTranslatef(-0.575F, 1.35F, 1.075F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.1F, -0.2F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-45.0F, 1.0F, 0.0F, 2.0F);
                         GL11.glTranslatef(1.0F, -1.2F, 0.0F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.1F, -0.2F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-45.0F, 1.0F, 0.0F, 2.0F);
                         GL11.glTranslatef(1.0F, -1.2F, 0.0F);
                     }, 250L, 50L))
@@ -190,7 +189,7 @@ public class DupletFactory implements GunFactory {
                         GL11.glRotatef(5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.224999F, 0.2F);
+                        GL11.glTranslatef(-0.25F, 1.225F, 0.2F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScalef(6.0F, 6.0F, 6.0F);

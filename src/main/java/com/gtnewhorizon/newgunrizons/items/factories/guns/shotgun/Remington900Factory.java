@@ -12,15 +12,15 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.weapon.Remington870;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class Remington900Factory implements GunFactory {
+public class Remington900Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Remington870")
             .withAmmoCapacity(5)
@@ -52,21 +52,20 @@ public class Remington900Factory implements GunFactory {
             .withFlashOffsetY(() -> { return 0.06F; })
             .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Shotgun",
                     "Damage per Pellet: 5",
                     "Pellets per Shot: 10",
                     "Cartridge: 12 Gauge Shotgun Shell",
-                    "Fire Rate: Pump-Action");
-            })
+                    "Fire Rate: Pump-Action")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.R870Pump, true, (model) -> {
                 GL11.glTranslatef(0.02F, 0.07F, 0.55F);
                 GL11.glScalef(1.3F, 1.2F, 1.2F);
             })
             .withCompatibleAttachment(Attachments.Silencer12Gauge, (model) -> {
                 GL11.glTranslatef(-0.19F, -0.6F, -8.0F);
-                GL11.glScaled(1.399999976158142D, 1.399999976158142D, 1.399999976158142D);
+                GL11.glScaled(1.4D, 1.4D, 1.4D);
             })
             .withCompatibleBullet(Bullets.ShotgunShell, (model) -> {})
             .withTextureName("Remington870")
@@ -78,12 +77,12 @@ public class Remington900Factory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.9F, 0.4F, 1.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -351,31 +350,26 @@ public class Remington900Factory implements GunFactory {
                     .withFirstPersonRightHandPositioningLoadIteration(new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.3F, -0.4F, 0.8F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.35F, -0.425F, 0.45F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.475F, -0.35F, 0.3F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.35F, -0.425F, 0.45F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.3F, -0.4F, 0.8F);
                     }, 250L, 50L))

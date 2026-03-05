@@ -143,20 +143,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .build(NewGunrizonsMod.MOD_CONTEXT, ItemMagazine.class);
@@ -168,20 +168,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
@@ -194,20 +194,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
@@ -220,13 +220,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, -0.5F, -0.2F);
@@ -246,20 +246,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 1.8F, -2.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
@@ -272,20 +272,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
@@ -298,20 +298,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
@@ -324,20 +324,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
@@ -350,18 +350,16 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.7F, 2.2F);
-                GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             })
@@ -376,18 +374,16 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 1.0F, 1.8F);
-                GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             })
@@ -402,20 +398,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, -0.5F, -0.1F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
@@ -428,20 +424,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, -1.0F, 0.2F);
                 GL11.glRotatef(-200.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
@@ -454,20 +450,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.2F, -0.6F);
                 GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
@@ -480,7 +476,7 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.8F, -1.0F, 0.9F);
@@ -493,7 +489,7 @@ public class Magazines {
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
@@ -506,20 +502,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
@@ -532,20 +528,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.5F, -1.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withTextureName("Dummy.png")
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
@@ -558,20 +554,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.3F, -0.6F, 1.0F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.9F, -1.3F, 1.0F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, 0.55F, -1.2F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -584,20 +580,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.85F, -0.35F, 0.4F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -610,20 +606,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.3F, -1.0F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -636,20 +632,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.7F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.8F, 0.3F, -1.0F);
                 GL11.glRotatef(-120.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -662,13 +658,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.0F, 0.4F);
@@ -688,20 +684,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.7F, -1.5F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -714,13 +710,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-1.0F, 0.6F, -1.2F);
@@ -740,13 +736,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.0F, 0.4F);
@@ -766,13 +762,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.0F, 0.4F);
@@ -792,20 +788,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, -0.1F, 0.2F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -818,13 +814,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.0F, 0.4F);
@@ -844,13 +840,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.3F, 0.1F, 0.4F);
@@ -870,13 +866,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, 0.2F, 0.4F);
@@ -896,13 +892,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.3F, 2.1F, -2.8F);
@@ -922,13 +918,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, 0.2F, 0.4F);
@@ -948,13 +944,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.25F, 0.1F, 0.4F);
@@ -974,13 +970,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-1.0F, 0.6F, -1.2F);
@@ -1000,13 +996,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.3F, 0.4F);
@@ -1026,13 +1022,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, -0.3F, 0.4F);
@@ -1052,20 +1048,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, -0.5F, 0.6F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCrafting(CraftingComplexity.LOW, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1104,20 +1100,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, -0.65F, 0.45F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.LOW, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1130,13 +1126,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, -0.3F, 0.4F);
@@ -1156,13 +1152,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.7F, -0.5F, 0.4F);
@@ -1182,13 +1178,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.7F, -0.5F, 0.4F);
@@ -1208,13 +1204,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.7F, -0.5F, 0.4F);
@@ -1234,20 +1230,19 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.5F, 0.4F, 0.4F);
                 GL11.glRotatef(-30.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1260,20 +1255,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -1.3F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, 0.0F, -1.3F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1286,20 +1281,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -1.3F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, -0.2F, -1.8F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                GL11.glScaled(0.6D, 0.6D, 0.6D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1312,20 +1307,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -1.3F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, 0.0F, -1.3F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1338,20 +1333,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 1.0F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.9F, -1.6F, 1.0F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.95F, -1.6F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1364,13 +1359,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.7F, -0.5F, 0.4F);
@@ -1390,13 +1385,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.3F, 0.2F, 0.4F);
@@ -1416,13 +1411,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.3F, 0.2F, 0.4F);
@@ -1442,13 +1437,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.9F, 0.2F, 0.4F);
@@ -1468,20 +1463,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.6D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.6000000238418579D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.6D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.9F, 0.2F, 0.4F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(1.0D, 0.8999999761581421D, 1.0D);
+                GL11.glScaled(1.0D, 0.9D, 1.0D);
             })
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1494,20 +1489,19 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.3F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.3F, 0.5F, 0.1F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(0.3F, 1.2F, 0.4F);
                 GL11.glRotatef(-170.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1520,13 +1514,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.9F, -0.1F, 0.4F);
@@ -1546,20 +1540,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(1.0F, -0.0F, 0.4F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1572,13 +1566,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.3F, 0.4F);
@@ -1598,13 +1592,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, -0.2F, 0.4F);
@@ -1624,20 +1618,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.3F, -0.5F, 0.6F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.2F, -0.5F, 0.9F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-1.0F, 0.3F, 0.4F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1650,20 +1644,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.3F, -0.5F, 0.6F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.2F, -0.5F, 0.9F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-1.0F, 0.3F, 0.4F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1676,13 +1670,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.6F, -0.3F, 0.4F);
@@ -1702,13 +1696,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, 0.4F, 0.4F);
@@ -1728,13 +1722,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.2F, 0.4F, 0.4F);
@@ -1754,13 +1748,13 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.0F, 0.4F);
@@ -1780,20 +1774,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.1F, -1.0F, 0.2F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.8F, -0.2F, 0.6F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, -0.6F, 0.8F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(1.2999999523162842D, 1.2999999523162842D, 1.2999999523162842D);
+                GL11.glScaled(1.3D, 1.3D, 1.3D);
             })
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1806,20 +1800,20 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-1.0F, -0.5F, 0.8F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(-0.4F, 0.2F, 0.4F);
                 GL11.glRotatef(-130.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glRotatef(-30.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.100000023841858D);
+                GL11.glScaled(1.1D, 1.1D, 1.1D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")
@@ -1832,20 +1826,19 @@ public class Magazines {
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.3F, 0.4F);
                 GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withThirdPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.3F, 0.5F, 0.1F);
                 GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                GL11.glScaled(0.7D, 0.7D, 0.7D);
             })
             .withInventoryPositioning((itemStack) -> {
                 GL11.glTranslatef(0.3F, 0.7F, -1.2F);
                 GL11.glRotatef(-170.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, "ingotSteel")
             .withTextureName("Dummy.png")

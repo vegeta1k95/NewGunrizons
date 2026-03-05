@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,14 +12,14 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.weapon.Pistol10mm;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class Pistol10mmFactory implements GunFactory {
+public class Pistol10mmFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("10mmPistol")
             .withFireRate(0.6F)
@@ -42,8 +41,7 @@ public class Pistol10mmFactory implements GunFactory {
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MetalComponents)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "--Fallout 4's starting pistol--",
                     "",
                     "Type: Pistol",
@@ -51,8 +49,8 @@ public class Pistol10mmFactory implements GunFactory {
                     "Caliber: 10mm",
                     "Magazines:",
                     "10rnd 10mm Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(Magazines.Mag10mm, ((model) -> {
                 GL11.glTranslatef(0.0F, -0.2F, 0.14F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
@@ -63,11 +61,11 @@ public class Pistol10mmFactory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new Pistol10mm())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -80,14 +78,14 @@ public class Pistol10mmFactory implements GunFactory {
                     .withFirstPersonPositioning((renderContext) -> {
                         GL11.glTranslatef(0.1F, -0.5F, -1.0F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-1.1F, -0.76F, 1.5F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.0F, -0.6F, -1.1F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-1.1F, -0.76F, 1.5F);
                     })
                     .withFirstPersonPositioningCustomRecoiled(Magazines.Mag10mm, (renderContext) -> {})
@@ -96,9 +94,9 @@ public class Pistol10mmFactory implements GunFactory {
                         GL11.glTranslatef(-0.3F, -0.4F, -0.5F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-4.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(0.31F, -1.34F, 1.5F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Reflex)) {
                             GL11.glTranslatef(0.0F, 0.5F, 0.7F);
                         }
@@ -113,30 +111,26 @@ public class Pistol10mmFactory implements GunFactory {
                     .withFirstPersonCustomPositioning(Magazines.Mag10mm, (renderContext) -> {})
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
                         GL11.glTranslatef(-0.6F, -0.6F, -0.6F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-60.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(1.0F, -1.2F, 0.0F);
                     }, 250L, 500L), new Transition((renderContext) -> {
                         GL11.glTranslatef(-0.4F, -0.2F, -0.3F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-30.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(1.0F, -1.2F, 0.0F);
                     }, 250L, 1000L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glTranslatef(-0.6F, -0.6F, -0.6F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-60.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(1.0F, -1.2F, 0.0F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(-0.6F, -0.6F, -0.6F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-60.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(1.0F, -1.2F, 0.0F);
@@ -152,9 +146,9 @@ public class Pistol10mmFactory implements GunFactory {
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glTranslatef(-0.235F, -0.3F, -0.44F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(0.31F, -1.34F, 1.5F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Reflex)) {
                             GL11.glTranslatef(0.0F, 0.5F, 0.7F);
                         }
@@ -170,12 +164,11 @@ public class Pistol10mmFactory implements GunFactory {
                         GL11.glTranslatef(0.1F, -1.5F, -1.0F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-50.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-1.1F, -0.76F, 1.5F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
-                        GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                        GL11.glScaled(1.2D, 1.2D, 1.2D);
                         GL11.glRotatef(-35.0F, 2.0F, 1.0F, 1.0F);
                         GL11.glTranslatef(-1.0F, 0.1F, 0.0F);
                     })

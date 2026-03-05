@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.smg;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -32,9 +31,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class MP5Factory implements GunFactory {
+public class MP5Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("HKMP5")
             .withFireRate(0.75F)
@@ -56,25 +55,24 @@ public class MP5Factory implements GunFactory {
             .withInaccuracy(2.0F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Submachine gun",
                     "Damage: 5.4",
                     "Caliber: 9mm",
                     "Magazines:",
                     "25rnd 9mm Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(Magazines.MP5KMag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.043F, -1.12F, -3.38F);
-                    GL11.glScaled(0.4000000059604645D, 0.4699999988079071D, 1.7999999523162842D);
+                    GL11.glScaled(0.4D, 0.47D, 1.8D);
                     GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.194F, -1.32F, -3.5F);
-                    GL11.glScaled(0.4399999976158142D, 0.5D, 0.5D);
+                    GL11.glScaled(0.44D, 0.5D, 0.5D);
                 } else if (model instanceof AKMiron1) {
                     GL11.glTranslatef(0.125F, -1.8F, -0.5F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -107,7 +105,7 @@ public class MP5Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof MP5Iron) {
                     GL11.glTranslatef(-0.101F, -1.27F, -0.18F);
-                    GL11.glScaled(0.5D, 0.550000011920929D, 0.550000011920929D);
+                    GL11.glScaled(0.5D, 0.55D, 0.55D);
                 }
 
             })
@@ -124,12 +122,12 @@ public class MP5Factory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3199999928474426D, 0.3199999928474426D, 0.3199999928474426D);
+                        GL11.glScaled(0.32D, 0.32D, 0.32D);
                         GL11.glTranslatef(1.0F, 1.8F, -1.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-1.6F, -0.8F, 1.7F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -281,7 +279,6 @@ public class MP5Factory implements GunFactory {
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);
                         GL11.glRotatef(-45.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.35F, -0.275F, 0.375F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -361,7 +358,6 @@ public class MP5Factory implements GunFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);
                         GL11.glRotatef(-45.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.35F, -0.275F, 0.375F);
                     }, 50L, 200L))

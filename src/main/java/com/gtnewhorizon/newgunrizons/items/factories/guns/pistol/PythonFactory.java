@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,16 +12,16 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.weapon.Python;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class PythonFactory implements GunFactory {
+public class PythonFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Python")
             .withFireRate(0.2F)
@@ -57,11 +56,11 @@ public class PythonFactory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new Python())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -102,10 +101,10 @@ public class PythonFactory implements GunFactory {
                     .withFirstPersonCustomPositioning(Magazines.PythonClip, (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.PythonClip,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.PythonClip,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioningUnloading(
                         Magazines.PythonClip,
                         new Transition((renderContext) -> {}, 250L, 1000L),
@@ -150,26 +149,21 @@ public class PythonFactory implements GunFactory {
                         AuxiliaryAttachments.PythonCase.getRenderablePart(),
                         new Transition((renderContext) -> {}, 250L, 50L),
                         new Transition((renderContext) -> {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                             GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                             GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                             GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 50L),
                         new Transition((renderContext) -> {}, 250L, 50L))
                     .withFirstPersonCustomPositioningUnloading(
                         AuxiliaryAttachments.PythonCase.getRenderablePart(),
                         new Transition((renderContext) -> {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                             GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 1000L),
                         new Transition((renderContext) -> {
-                            GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                             GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                         }, 250L, 1000L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
@@ -188,7 +182,7 @@ public class PythonFactory implements GunFactory {
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glTranslatef(0.35F, 0.75F, -2.799999F);
+                        GL11.glTranslatef(0.35F, 0.75F, -2.8F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
                     })
@@ -197,7 +191,7 @@ public class PythonFactory implements GunFactory {
                         GL11.glRotatef(-55.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 2.25F, -1.699999F);
+                        GL11.glTranslatef(-0.9F, 2.25F, -1.7F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
@@ -209,7 +203,6 @@ public class PythonFactory implements GunFactory {
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.4F, -0.775F, 0.275F);
                     }, (renderContext) -> {
@@ -235,31 +228,26 @@ public class PythonFactory implements GunFactory {
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.15F, -1.1F, 0.35F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.15F, -1.1F, 0.35F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.25F, -0.65F, 0.125F);
                     }, 250L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.15F, -1.1F, 0.35F);
                     }, 250L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.15F, -1.1F, 0.35F);
                     }, 250L, 0L))
@@ -297,7 +285,6 @@ public class PythonFactory implements GunFactory {
                     .withFirstPersonLeftHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.25F, -0.65F, 0.125F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -323,7 +310,6 @@ public class PythonFactory implements GunFactory {
                     .withFirstPersonHandPositioningZooming((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.4F, -0.775F, 0.275F);
                     }, (renderContext) -> {

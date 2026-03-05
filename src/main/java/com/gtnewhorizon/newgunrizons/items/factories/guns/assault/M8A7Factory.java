@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -32,9 +31,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class M8A7Factory implements GunFactory {
+public class M8A7Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M8A7")
             .withFireRate(0.9F)
@@ -55,15 +54,14 @@ public class M8A7Factory implements GunFactory {
             .withFlashOffsetY(() -> { return 0.12F; })
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Assault Rifle",
                     "Damage: 7.9",
                     "Caliber: .300 AAC Blackout",
                     "Magazines:",
                     "32rnd .300 AAC Blackout Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(
                 Magazines.M8A7Mag,
                 ((model) -> { GL11.glTranslatef(0.0F, -0.05F, 0.0F); }))
@@ -85,7 +83,7 @@ public class M8A7Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(-0.144F, -1.61F, 0.0F);
-                    GL11.glScaled(0.20000000298023224D, 0.20000000298023224D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.2D, 0.2D);
                 } else if (model instanceof M4Iron2) {
                     GL11.glTranslatef(0.26F, -1.55F, -2.35F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -100,7 +98,7 @@ public class M8A7Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.164F, -1.6F, -3.85F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -135,7 +133,7 @@ public class M8A7Factory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new M8A7())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.44999998807907104D, 0.44999998807907104D, 0.44999998807907104D);
+                        GL11.glScaled(0.45D, 0.45D, 0.45D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
@@ -152,13 +150,13 @@ public class M8A7Factory implements GunFactory {
                     .withFirstPersonPositioning((renderContext) -> {
                         GL11.glTranslatef(0.32F, 0.15F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.32F, 0.15F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-0.4F, -0.7F, 1.2F);
                         GL11.glRotatef(-2.0F, 1.0F, 0.0F, 0.0F);
                     })
@@ -168,7 +166,7 @@ public class M8A7Factory implements GunFactory {
                         GL11.glRotatef(-0.2F, 1.0F, 0.0F, 0.0F);
                         GL11.glScaled(0.5D, 0.5D, 0.5D);
                         GL11.glTranslatef(0.315F, -1.17F, 2.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PSO1)) {
                             GL11.glTranslatef(1.333F, -1.25F, 2.15F);
                         } else {
@@ -195,25 +193,25 @@ public class M8A7Factory implements GunFactory {
                         GL11.glTranslatef(0.32F, 0.15F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                     }, 350L, 60L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.32F, 0.15F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                     }, 100L, 0L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.32F, 0.15F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                     }, 100L, 0L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.32F, 0.15F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                     }, 250L, 0L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
@@ -253,7 +251,7 @@ public class M8A7Factory implements GunFactory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(0.5D, 0.5D, 0.5D);
                         GL11.glTranslatef(0.315F, -1.17F, 1.9F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PSO1)) {
                             GL11.glTranslatef(1.333F, -1.25F, 2.15F);
                         } else {
@@ -262,7 +260,7 @@ public class M8A7Factory implements GunFactory {
 
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {
-                        GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                        GL11.glScaled(0.9D, 0.9D, 0.9D);
                         GL11.glRotatef(-20.0F, -4.0F, 1.0F, -2.0F);
                         GL11.glTranslatef(0.3F, -0.25F, -0.1F);
                     })

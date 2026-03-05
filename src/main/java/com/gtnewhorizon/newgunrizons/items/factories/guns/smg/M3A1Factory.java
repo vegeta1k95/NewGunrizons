@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.smg;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -20,9 +21,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class M3A1Factory {
+public class M3A1Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M3A1")
             .withFireRate(0.42F)
@@ -45,23 +46,22 @@ public class M3A1Factory {
             .withShellCasingVerticalOffset(-0.02F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Submachine gun",
                     "Damage: 6.5",
                     "Caliber: .45 ACP",
                     "Magazines:",
                     "31rnd .45 ACP Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(Magazines.M3A1Mag, ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
             .withCompatibleAttachment(AuxiliaryAttachments.M3A1sight, true, (model) -> {
                 if (model instanceof M3A1rearsight) {
                     GL11.glTranslatef(-0.133F, -1.2F, -0.1F);
-                    GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                    GL11.glScaled(0.3D, 0.3D, 0.3D);
                 } else if (model instanceof M3A1frontsight) {
                     GL11.glTranslatef(-0.133F, -1.2F, -3.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.4000000059604645D, 0.30000001192092896D);
+                    GL11.glScaled(0.3D, 0.4D, 0.3D);
                 }
 
             })
@@ -79,7 +79,7 @@ public class M3A1Factory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -113,19 +113,13 @@ public class M3A1Factory {
                     .withFirstPersonCustomPositioning(Magazines.M3A1Mag, (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.M3A1Mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.M3A1Mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.M3A1action.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.M3A1action.getRenderablePart(),
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
@@ -272,19 +266,16 @@ public class M3A1Factory {
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.375F, 0.575F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.02F, -0.275F, 0.65F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.07F, -0.35F, 0.5F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -346,13 +337,11 @@ public class M3A1Factory {
                     .withFirstPersonLeftHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.05F, -0.275F, 0.65F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.375F, 0.575F);
                     }, 50L, 200L))

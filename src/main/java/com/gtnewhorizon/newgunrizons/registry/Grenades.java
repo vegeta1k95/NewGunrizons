@@ -16,14 +16,14 @@ public class Grenades {
     public static ItemGrenade ImpactGrenade;
     public static ItemAttachment GrenadeSafetyPin;
 
-    public static void init(CommonProxy commonProxy) {
+    public static void init() {
         GrenadeSafetyPin = (new AttachmentBuilder()).withCategory(AttachmentCategory.EXTRA)
             .withModel(new Pin(), "AK12.png")
             .withName("GrenadeSafetyPin")
             .withRenderablePart()
             .withTextureName("Dummy.png")
             .build(NewGunrizonsMod.MOD_CONTEXT);
-        FuseGrenade = (new FuseGrenadeFactory()).createGrenade(commonProxy);
-        ImpactGrenade = (new ImpactGrenadeFactory()).createGrenade(commonProxy);
+        FuseGrenade = (new FuseGrenadeFactory()).createGrenade();
+        ImpactGrenade = (new ImpactGrenadeFactory()).createGrenade();
     }
 }

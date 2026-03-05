@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.misc.AKRail;
 import com.gtnewhorizon.newgunrizons.model.misc.AKRail2;
 import com.gtnewhorizon.newgunrizons.model.misc.AKRail3;
@@ -43,9 +42,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class M107Factory implements GunFactory {
+public class M107Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M107")
             .withFireRate(0.5F)
@@ -70,15 +69,14 @@ public class M107Factory implements GunFactory {
                 CommonProxy.SteelPlate,
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.BigSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Anti-materiel sniper rifle",
                     "Damage: 50",
                     "Caliber: .50 BMG",
                     "Magazines:",
                     "10rnd .50 BMG Magazine (Type 2)",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(Magazines.M107BMag, ((model) -> {
                 GL11.glTranslatef(-0.42F, 0.8F, -1.4F);
                 GL11.glScaled(1.5D, 1.5D, 1.5D);
@@ -92,7 +90,7 @@ public class M107Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.2F, -1.8F, -5.0F);
-                    GL11.glScaled(0.5D, 0.6000000238418579D, 0.20000000298023224D);
+                    GL11.glScaled(0.5D, 0.6D, 0.2D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(-0.16F, -1.65F, -0.3F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -110,13 +108,13 @@ public class M107Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof ScarIron1) {
                     GL11.glTranslatef(-0.165F, -1.62F, -0.4F);
-                    GL11.glScaled(0.3799999952316284D, 0.3799999952316284D, 0.3799999952316284D);
+                    GL11.glScaled(0.38D, 0.38D, 0.38D);
                 } else if (model instanceof ScarIron2) {
                     GL11.glTranslatef(0.25F, -1.52F, -3.08F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.08F, -1.53F, -5.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.699999988079071D, 0.4000000059604645D);
+                    GL11.glScaled(0.3D, 0.7D, 0.4D);
                     GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
@@ -132,14 +130,14 @@ public class M107Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.ACOG, (player, stack) -> {
                 GL11.glTranslatef(-0.345F, -1.55F, -0.8F);
-                GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                GL11.glScaled(0.95D, 0.95D, 0.95D);
             }, (model) -> {
                 if (model instanceof AcogScope2) {
                     GL11.glTranslatef(-0.018F, -0.25F, 0.13F);
                     GL11.glScaled(0.5D, 0.5D, 0.5D);
                 } else if (model instanceof AcogReticle) {
                     GL11.glTranslatef(0.243F, -0.23F, 0.68F);
-                    GL11.glScaled(0.029999999329447746D, 0.029999999329447746D, 0.029999999329447746D);
+                    GL11.glScaled(0.03D, 0.03D, 0.03D);
                 }
 
             })
@@ -149,7 +147,7 @@ public class M107Factory implements GunFactory {
             }, (model) -> {
                 if (model instanceof Acog2) {
                     GL11.glTranslatef(0.15F, -1.035F, 1.513F);
-                    GL11.glScaled(0.10000000149011612D, 0.10000000149011612D, 0.10000000149011612D);
+                    GL11.glScaled(0.1D, 0.1D, 0.1D);
                 }
 
             })
@@ -159,27 +157,27 @@ public class M107Factory implements GunFactory {
             }, (model) -> {
                 if (model instanceof LPscope) {
                     GL11.glTranslatef(0.237F, -0.272F, 0.67F);
-                    GL11.glScaled(0.05000000074505806D, 0.05000000074505806D, 0.05000000074505806D);
+                    GL11.glScaled(0.05D, 0.05D, 0.05D);
                 }
 
             })
             .withCompatibleAttachment(Attachments.HP, (player, stack) -> {
                 GL11.glTranslatef(-0.335F, -1.53F, -1.2F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             }, (model) -> {
                 if (model instanceof LPscope) {
                     GL11.glTranslatef(0.237F, -0.235F, 1.16F);
-                    GL11.glScaled(0.10000000149011612D, 0.10000000149011612D, 0.10000000149011612D);
+                    GL11.glScaled(0.1D, 0.1D, 0.1D);
                 }
 
             })
             .withCompatibleAttachment(Attachments.MicroT1, (model) -> {
                 if (model instanceof MicroT1) {
                     GL11.glTranslatef(-0.18F, -1.53F, -1.0F);
-                    GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                    GL11.glScaled(0.35D, 0.35D, 0.35D);
                 } else if (model instanceof Reflex2) {
                     GL11.glTranslatef(-0.125F, -1.66F, -1.0F);
-                    GL11.glScaled(0.07000000029802322D, 0.07000000029802322D, 0.07000000029802322D);
+                    GL11.glScaled(0.07D, 0.07D, 0.07D);
                 }
 
             })
@@ -189,26 +187,25 @@ public class M107Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Silencer50BMG, (model) -> {
                 GL11.glTranslatef(-0.22F, -1.35F, -12.5F);
-                GL11.glScaled(1.2999999523162842D, 1.2999999523162842D, 1.600000023841858D);
+                GL11.glScaled(1.3D, 1.3D, 1.6D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AUGRail, true, (model) -> {
                 if (model instanceof AKRail) {
                     GL11.glTranslatef(-0.245F, -1.45F, -4.5F);
-                    GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                    GL11.glScaled(0.9D, 0.9D, 0.9D);
                 } else if (model instanceof AKRail2) {
                     GL11.glTranslatef(-0.245F, -1.45F, -6.25F);
-                    GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                    GL11.glScaled(0.9D, 0.9D, 0.9D);
                 } else if (model instanceof AKRail3) {
                     GL11.glTranslatef(-0.03F, -0.52F, -3.5F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AKRail4) {
                     GL11.glTranslatef(-0.245F, -1.45F, -2.33F);
-                    GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                    GL11.glScaled(0.9D, 0.9D, 0.9D);
                 }
 
             })
             .withCompatibleAttachment(AuxiliaryAttachments.M107action, true, (model) -> {
-                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             })
             .withTextureName("M107")
@@ -220,7 +217,7 @@ public class M107Factory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                        GL11.glScaled(0.3D, 0.3D, 0.3D);
                         GL11.glTranslatef(0.8F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -266,19 +263,19 @@ public class M107Factory implements GunFactory {
                     .withFirstPersonCustomPositioning(Magazines.M107BMag, (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.M107BMag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.M107BMag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.AUGRail.getRenderablePart(),
                         (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         AuxiliaryAttachments.AUGRail.getRenderablePart(),
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.AUGRail.getRenderablePart(),
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.M107action.getRenderablePart(),
                         (renderContext) -> {})
@@ -305,19 +302,19 @@ public class M107Factory implements GunFactory {
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.274999F, -0.125F);
+                        GL11.glTranslatef(-0.25F, 1.275F, -0.125F);
                     }, 400L, 100L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.274999F, -0.125F);
+                        GL11.glTranslatef(-0.25F, 1.275F, -0.125F);
                     }, 120L, 100L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.274999F, -0.125F);
+                        GL11.glTranslatef(-0.25F, 1.275F, -0.125F);
                     }, 130L, 150L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -391,7 +388,7 @@ public class M107Factory implements GunFactory {
                         GL11.glRotatef(5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.325F, 1.249999F, 0.0F);
+                        GL11.glTranslatef(-0.325F, 1.25F, 0.0F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -467,7 +464,6 @@ public class M107Factory implements GunFactory {
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 10.0F);
                         GL11.glRotatef(-95.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-50.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.25F, -0.175F, -0.225F);
                     }, 250L, 0L), new Transition((renderContext) -> {
@@ -479,7 +475,6 @@ public class M107Factory implements GunFactory {
                     }, 250L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 10.0F);
                         GL11.glRotatef(-95.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-50.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.25F, -0.175F, -0.225F);
                     }, 250L, 0L))

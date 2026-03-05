@@ -140,7 +140,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.8F, -0.5F, 0.8F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                    GL11.glScaled(0.3D, 0.3D, 0.3D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -151,7 +151,6 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.1F, 1.15F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -162,7 +161,7 @@ public class Attachments {
                 if (model instanceof Reflex) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -194,8 +193,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, 0.0F, 0.2F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.699999988079071D, 0.75D);
+                    GL11.glScaled(0.6D, 0.7D, 0.75D);
                 } else {
                     GL11.glScalef(0.0F, 0.0F, 0.0F);
                 }
@@ -205,7 +203,7 @@ public class Attachments {
                 if (model instanceof ColtRearSight) {
                     GL11.glTranslatef(0.1F, 0.0F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.5D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.5D, 0.7D, 0.7D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -216,7 +214,7 @@ public class Attachments {
                     GL11.glTranslatef(-1.6F, -0.5F, 1.2F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.5D, 0.5D);
+                    GL11.glScaled(0.3D, 0.5D, 0.5D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -245,7 +243,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.8F, -0.5F, 0.8F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                    GL11.glScaled(0.3D, 0.3D, 0.3D);
                 } else if (model instanceof OKP7reticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -256,7 +254,6 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.1F, 1.15F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof OKP7reticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -267,7 +264,7 @@ public class Attachments {
                 if (model instanceof OKP7) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof OKP7reticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -303,7 +300,7 @@ public class Attachments {
                 if (model instanceof ACOG) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof AcogReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AcogScope2) {
@@ -329,8 +326,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.7F, 0.65F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                    GL11.glScaled(1.2D, 1.2D, 1.2D);
                 } else if (model instanceof AcogReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AcogScope2) {
@@ -342,7 +338,7 @@ public class Attachments {
                 if (model instanceof ACOG) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof AcogReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AcogScope2) {
@@ -383,7 +379,7 @@ public class Attachments {
                 if (model instanceof SpecterSight) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                    GL11.glScaled(0.35D, 0.35D, 0.35D);
                 } else if (model instanceof Acog2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -405,8 +401,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, 0.0F, 0.85F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof Acog2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -416,7 +411,7 @@ public class Attachments {
                 if (model instanceof SpecterSight) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Acog2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -450,7 +445,7 @@ public class Attachments {
                 if (model instanceof Holographic) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.2F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 } else if (model instanceof Holo2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -471,7 +466,6 @@ public class Attachments {
                 if (model instanceof Holographic) {
                     GL11.glTranslatef(-0.6F, -0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof Holo2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -482,7 +476,7 @@ public class Attachments {
                 if (model instanceof Holographic) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Holo2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -512,7 +506,7 @@ public class Attachments {
                 if (model instanceof Holographic2) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.2F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 } else if (model instanceof Holo2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -533,7 +527,6 @@ public class Attachments {
                 if (model instanceof Holographic2) {
                     GL11.glTranslatef(-0.6F, -0.1F, 0.5F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof Holo2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -544,7 +537,7 @@ public class Attachments {
                 if (model instanceof Holographic2) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Holo2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -574,7 +567,7 @@ public class Attachments {
                 if (model instanceof MicroT1) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.2F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -595,7 +588,6 @@ public class Attachments {
                 if (model instanceof MicroT1) {
                     GL11.glTranslatef(-0.6F, -0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(0.6D, 0.6D, 0.6D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -606,7 +598,7 @@ public class Attachments {
                 if (model instanceof MicroT1) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -625,7 +617,7 @@ public class Attachments {
                 if (model instanceof Kobra) {
                     GL11.glTranslatef(0.4F, -0.8F, 0.5F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -646,7 +638,6 @@ public class Attachments {
                 if (model instanceof Kobra) {
                     GL11.glTranslatef(-0.6F, -0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -657,7 +648,7 @@ public class Attachments {
                 if (model instanceof Kobra) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -693,7 +684,7 @@ public class Attachments {
                 if (model instanceof UFCG36Scope) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -715,8 +706,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.7F, 1.2F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                    GL11.glScaled(0.9D, 0.9D, 0.9D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -726,7 +716,7 @@ public class Attachments {
                 if (model instanceof UFCG36Scope) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -748,7 +738,7 @@ public class Attachments {
                 if (model instanceof AUGScope) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -770,8 +760,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.7F, 0.65F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                    GL11.glScaled(1.2D, 1.2D, 1.2D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -781,7 +770,7 @@ public class Attachments {
                 if (model instanceof AUGScope) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -805,7 +794,7 @@ public class Attachments {
                 if (model instanceof LP) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -827,8 +816,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.6F, 0.5F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                    GL11.glScaled(0.8D, 0.8D, 0.8D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -838,7 +826,7 @@ public class Attachments {
                 if (model instanceof LP) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -876,7 +864,7 @@ public class Attachments {
                 if (model instanceof Leupold) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof LeupoldReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -898,8 +886,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.45F, 0.94F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                    GL11.glScaled(0.35D, 0.35D, 0.35D);
                 } else if (model instanceof LeupoldReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -909,7 +896,7 @@ public class Attachments {
                 if (model instanceof Leupold) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof LeupoldReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -948,7 +935,7 @@ public class Attachments {
                 if (model instanceof PSO1) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof PSO1reticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PSO12) {
@@ -974,7 +961,6 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.3F, 0.7F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof PSO1reticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -987,7 +973,7 @@ public class Attachments {
                 if (model instanceof PSO1) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof PSO1reticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PSO12) {
@@ -1025,7 +1011,7 @@ public class Attachments {
                 if (model instanceof PUscope) {
                     GL11.glTranslatef(0.1F, -1.2F, -0.0F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.20000000298023224D, 0.20000000298023224D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.2D, 0.2D);
                 } else if (model instanceof PUmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUreticle) {
@@ -1040,7 +1026,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.8F, -0.5F, 0.8F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.20000000298023224D, 0.20000000298023224D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.2D, 0.2D);
                 } else if (model instanceof SVTmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUmount) {
@@ -1055,8 +1041,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.2F, 1.7F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.44999998807907104D, 0.44999998807907104D, 0.44999998807907104D);
+                    GL11.glScaled(0.45D, 0.45D, 0.45D);
                 } else if (model instanceof SVTmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUmount) {
@@ -1070,7 +1055,7 @@ public class Attachments {
                 if (model instanceof PUscope) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof SVTmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUmount) {
@@ -1110,7 +1095,7 @@ public class Attachments {
                 if (model instanceof PriscopicScope) {
                     GL11.glTranslatef(0.1F, -1.2F, -0.0F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.20000000298023224D, 0.20000000298023224D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.2D, 0.2D);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -1122,7 +1107,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.8F, -0.5F, 0.8F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.20000000298023224D, 0.20000000298023224D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.2D, 0.2D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1133,7 +1118,6 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.2F, 1.7F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(0.2, 0.2, 0.2);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -1144,7 +1128,7 @@ public class Attachments {
                 if (model instanceof PriscopicScope) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1181,7 +1165,7 @@ public class Attachments {
                 if (model instanceof HP) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1203,8 +1187,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.6F, 0.6F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6499999761581421D, 0.6499999761581421D, 0.6499999761581421D);
+                    GL11.glScaled(0.65D, 0.65D, 0.65D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1214,7 +1197,7 @@ public class Attachments {
                 if (model instanceof HP) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof LPscope) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1249,11 +1232,11 @@ public class Attachments {
                 if (model instanceof M1903A1scope2) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof M1903A1scope) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1280,8 +1263,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.6F, 0.6F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6499999761581421D, 0.6499999761581421D, 0.6499999761581421D);
+                    GL11.glScaled(0.65D, 0.65D, 0.65D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1291,13 +1273,13 @@ public class Attachments {
                 if (model instanceof M1903A1scope2) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
                 if (model instanceof M1903A1scope) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1325,7 +1307,7 @@ public class Attachments {
                 if (model instanceof Suppressor556x45) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1342,7 +1324,6 @@ public class Attachments {
                 if (model instanceof Suppressor556x45) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1351,7 +1332,7 @@ public class Attachments {
                 if (model instanceof Suppressor556x45) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1366,7 +1347,7 @@ public class Attachments {
                 if (model instanceof Suppressor762x39) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1383,7 +1364,6 @@ public class Attachments {
                 if (model instanceof Suppressor762x39) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1392,7 +1372,7 @@ public class Attachments {
                 if (model instanceof Suppressor762x39) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1407,7 +1387,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1424,7 +1404,6 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1433,7 +1412,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1448,7 +1427,7 @@ public class Attachments {
                 if (model instanceof Suppressor45ACP) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1465,7 +1444,6 @@ public class Attachments {
                 if (model instanceof Suppressor45ACP) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1474,7 +1452,7 @@ public class Attachments {
                 if (model instanceof Suppressor45ACP) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1489,7 +1467,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1506,7 +1484,6 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1515,7 +1492,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1530,7 +1507,7 @@ public class Attachments {
                 if (model instanceof Suppressor762x51) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1547,7 +1524,6 @@ public class Attachments {
                 if (model instanceof Suppressor762x51) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1556,7 +1532,7 @@ public class Attachments {
                 if (model instanceof Suppressor762x51) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1571,7 +1547,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1588,7 +1564,6 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1597,7 +1572,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1612,7 +1587,7 @@ public class Attachments {
                 if (model instanceof Suppressor556x39) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1629,7 +1604,6 @@ public class Attachments {
                 if (model instanceof Suppressor556x39) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1638,7 +1612,7 @@ public class Attachments {
                 if (model instanceof Suppressor556x39) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1668,8 +1642,7 @@ public class Attachments {
                     GL11.glTranslatef(-0.6F, -0.7F, 0.65F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                    GL11.glScaled(1.2D, 1.2D, 1.2D);
                 } else {
                     GL11.glScalef(0.0F, 0.0F, 0.0F);
                 }
@@ -1679,7 +1652,7 @@ public class Attachments {
                 if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.7D, 0.7D, 0.7D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -1707,7 +1680,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1724,7 +1697,6 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1733,7 +1705,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1748,7 +1720,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1765,7 +1737,6 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1774,7 +1745,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1789,7 +1760,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1806,7 +1777,6 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1815,7 +1785,7 @@ public class Attachments {
                 if (model instanceof Suppressor) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1830,7 +1800,7 @@ public class Attachments {
                 if (model instanceof Suppressor45ACP) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1847,7 +1817,6 @@ public class Attachments {
                 if (model instanceof Suppressor45ACP) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1856,7 +1825,7 @@ public class Attachments {
                 if (model instanceof Suppressor45ACP) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1871,7 +1840,7 @@ public class Attachments {
                 if (model instanceof Suppressor300AACBlackout) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1888,7 +1857,6 @@ public class Attachments {
                 if (model instanceof Suppressor300AACBlackout) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1897,7 +1865,7 @@ public class Attachments {
                 if (model instanceof Suppressor300AACBlackout) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1912,7 +1880,7 @@ public class Attachments {
                 if (model instanceof Suppressor556x39) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1929,7 +1897,6 @@ public class Attachments {
                 if (model instanceof Suppressor556x39) {
                     GL11.glTranslatef(0.6F, 0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 }
 
@@ -1938,7 +1905,7 @@ public class Attachments {
                 if (model instanceof Suppressor556x39) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -1954,7 +1921,7 @@ public class Attachments {
                 if (model instanceof Laser) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -1977,8 +1944,7 @@ public class Attachments {
                 if (model instanceof Laser) {
                     GL11.glTranslatef(0.6F, -0.3F, 0.65F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.7999999523162842D, 1.7999999523162842D, 1.7999999523162842D);
+                    GL11.glScaled(1.8D, 1.8D, 1.8D);
                 }
 
             })
@@ -1986,7 +1952,7 @@ public class Attachments {
                 if (model instanceof Laser) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -2013,7 +1979,7 @@ public class Attachments {
                 if (model instanceof Laser2) {
                     GL11.glTranslatef(0.5F, -1.3F, -0.1F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2030,8 +1996,7 @@ public class Attachments {
                 if (model instanceof Laser2) {
                     GL11.glTranslatef(0.6F, -0.3F, 0.65F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.7999999523162842D, 1.7999999523162842D, 1.7999999523162842D);
+                    GL11.glScaled(1.8D, 1.8D, 1.8D);
                 }
 
             })
@@ -2039,7 +2004,7 @@ public class Attachments {
                 if (model instanceof Laser2) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 }
 
             })
@@ -2071,7 +2036,7 @@ public class Attachments {
                 if (model instanceof Grip2) {
                     GL11.glTranslatef(0.7F, -1.2F, 0.5F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2088,8 +2053,7 @@ public class Attachments {
                 if (model instanceof Grip2) {
                     GL11.glTranslatef(0.6F, 0.3F, -0.5F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.2999999523162842D, 1.2999999523162842D, 1.2999999523162842D);
+                    GL11.glScaled(1.3D, 1.3D, 1.3D);
                 }
 
             })
@@ -2097,7 +2061,7 @@ public class Attachments {
                 if (model instanceof Grip2) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2141,8 +2105,7 @@ public class Attachments {
                 if (model instanceof AngledGrip) {
                     GL11.glTranslatef(0.6F, 0.8F, -0.45F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                    GL11.glScaled(1.2D, 1.2D, 1.2D);
                 }
 
             })
@@ -2150,7 +2113,7 @@ public class Attachments {
                 if (model instanceof AngledGrip) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2177,7 +2140,7 @@ public class Attachments {
                 if (model instanceof StubbyGrip) {
                     GL11.glTranslatef(0.7F, -1.2F, 0.5F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2194,8 +2157,7 @@ public class Attachments {
                 if (model instanceof StubbyGrip) {
                     GL11.glTranslatef(0.6F, 0.5F, -0.5F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.600000023841858D, 1.600000023841858D, 1.600000023841858D);
+                    GL11.glScaled(1.6D, 1.6D, 1.6D);
                 }
 
             })
@@ -2203,7 +2165,7 @@ public class Attachments {
                 if (model instanceof StubbyGrip) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2241,8 +2203,7 @@ public class Attachments {
                 if (model instanceof VGrip) {
                     GL11.glTranslatef(0.6F, 0.3F, -0.5F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(1.2999999523162842D, 1.2999999523162842D, 1.2999999523162842D);
+                    GL11.glScaled(1.3D, 1.3D, 1.3D);
                 }
 
             })
@@ -2250,7 +2211,7 @@ public class Attachments {
                 if (model instanceof VGrip) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })
@@ -2288,8 +2249,7 @@ public class Attachments {
                 if (model instanceof Bipod) {
                     GL11.glTranslatef(0.6F, -0.05F, -0.5F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                    GL11.glScaled(0.9D, 0.9D, 0.9D);
                 }
 
             })
@@ -2297,7 +2257,7 @@ public class Attachments {
                 if (model instanceof Bipod) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 }
 
             })

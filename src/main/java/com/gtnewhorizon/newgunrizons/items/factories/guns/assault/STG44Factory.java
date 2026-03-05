@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -31,9 +32,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class STG44Factory {
+public class STG44Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("STG44")
             .withFireRate(0.6F)
@@ -56,24 +57,23 @@ public class STG44Factory {
             .withShellCasingVerticalOffset(-0.02F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Assault Rifle",
                     "Damage: 8.5",
                     "Caliber: 7.92x33mm Kurz",
                     "Magazines:",
                     "30rnd 7.92x33mm Kurz Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(Magazines.STG44Mag, ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -1.216F, -1.65F);
-                    GL11.glScaled(0.4000000059604645D, 0.30000001192092896D, 0.699999988079071D);
+                    GL11.glScaled(0.4D, 0.3D, 0.7D);
                     GL11.glRotatef(180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.18F, -1.82F, -7.35F);
-                    GL11.glScaled(0.4000000059604645D, 0.5299999713897705D, 0.800000011920929D);
+                    GL11.glScaled(0.4D, 0.53D, 0.8D);
                 } else if (model instanceof AKMiron1) {
                     GL11.glTranslatef(0.0F, -1.5F, -0.5F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -82,7 +82,7 @@ public class STG44Factory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.215F, -2.12F, -2.5F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.699999988079071D);
+                    GL11.glScaled(0.6D, 0.6D, 0.7D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.155F, -1.74F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -120,12 +120,12 @@ public class STG44Factory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glTranslatef(-2.3F, -1.1F, 2.5F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -134,13 +134,13 @@ public class STG44Factory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.599999F, -1.674999F);
+                        GL11.glTranslatef(-0.575F, 1.6F, -1.675F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.599999F, -1.3F);
+                        GL11.glTranslatef(-0.575F, 1.6F, -1.3F);
                         GL11.glRotatef(-2.0F, 1.0F, 0.0F, 0.0F);
                     })
                     .withFirstPersonPositioningZoomingRecoiled((renderContext) -> {
@@ -154,19 +154,13 @@ public class STG44Factory {
                     .withFirstPersonCustomPositioning(Magazines.STG44Mag, (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.STG44Mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.STG44Mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.STG44Action.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.STG44Action.getRenderablePart(),
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
@@ -177,25 +171,25 @@ public class STG44Factory {
                         GL11.glRotatef(38.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 1.599999F, -1.7F);
+                        GL11.glTranslatef(-0.9F, 1.6F, -1.7F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                     }, 280L, 50L), new Transition((renderContext) -> {
                         GL11.glRotatef(38.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 1.599999F, -1.7F);
+                        GL11.glTranslatef(-0.9F, 1.6F, -1.7F);
                         GL11.glRotatef(-7.0F, 1.0F, 0.0F, 0.0F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glRotatef(38.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-3.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 1.599999F, -1.7F);
+                        GL11.glTranslatef(-0.9F, 1.6F, -1.7F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                     }, 100L, 100L), new Transition((renderContext) -> {
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.599999F, -1.674999F);
+                        GL11.glTranslatef(-0.575F, 1.6F, -1.675F);
                         GL11.glRotatef(-18.0F, 1.0F, 0.0F, 0.0F);
                     }, 310L, 55L), new Transition((renderContext) -> {
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
@@ -207,20 +201,20 @@ public class STG44Factory {
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.575F, 1.599999F, -1.674999F);
+                        GL11.glTranslatef(-0.575F, 1.6F, -1.675F);
                         GL11.glRotatef(-18.0F, 1.0F, 0.0F, 0.0F);
                     }, 210L, 40L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glRotatef(38.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 1.599999F, -1.7F);
+                        GL11.glTranslatef(-0.9F, 1.6F, -1.7F);
                         GL11.glRotatef(-6.0F, 1.0F, 0.0F, 0.0F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glRotatef(38.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-8.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 1.599999F, -1.7F);
+                        GL11.glTranslatef(-0.9F, 1.6F, -1.7F);
                         GL11.glRotatef(-2.0F, 1.0F, 0.0F, 0.0F);
                     }, 150L, 50L))
                     .withFirstPersonCustomPositioningUnloading(
@@ -259,14 +253,14 @@ public class STG44Factory {
                         GL11.glRotatef(5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(30.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.55F, 1.999999F, -1.1F);
+                        GL11.glTranslatef(-0.55F, 2.0F, -1.1F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(4.0D, 4.0D, 4.0D);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.549999F, 1.174999F, -0.35F);
+                        GL11.glTranslatef(-1.55F, 1.175F, -0.35F);
                     })
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 5.5F);
@@ -277,7 +271,6 @@ public class STG44Factory {
                     }, (renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.425F, -0.55F, 0.15F);
                     })
@@ -290,7 +283,6 @@ public class STG44Factory {
                     }, (renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.425F, -0.55F, 0.15F);
                     })
@@ -302,26 +294,22 @@ public class STG44Factory {
                     }, (renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.425F, -0.55F, 0.15F);
                     })
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.375F, 0.575F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.05F, -0.275F, 0.65F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.05F, -0.275F, 0.65F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -383,13 +371,11 @@ public class STG44Factory {
                     .withFirstPersonLeftHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.05F, -0.275F, 0.65F);
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.5F, 3.5F, 5.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.125F, -0.375F, 0.575F);
                     }, 50L, 200L))

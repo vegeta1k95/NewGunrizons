@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.smg;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -32,9 +31,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class PP19Factory implements GunFactory {
+public class PP19Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("PP19")
             .withFireRate(0.75F)
@@ -55,15 +54,14 @@ public class PP19Factory implements GunFactory {
             .withFlashOffsetY(() -> { return 0.1F; })
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withCrafting(CraftingComplexity.HIGH, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Submachine gun",
                     "Damage: 5",
                     "Caliber: 9mm",
                     "Magazines:",
                     "65rnd 9mm Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.AKaction, true, (model) -> {})
             .withCompatibleAttachment(Magazines.PP19Mag, ((model) -> {
                 GL11.glTranslatef(-0.38F, 0.85F, -1.62F);
@@ -75,10 +73,10 @@ public class PP19Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AKMiron2) {
                     GL11.glTranslatef(-0.16F, -1.34F, -4.412F);
-                    GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.550000011920929D);
+                    GL11.glScaled(0.35D, 0.35D, 0.55D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.25F, -1.6F, -2.9F);
-                    GL11.glScaled(0.800000011920929D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.8D, 0.6D, 0.6D);
                 } else if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.155F, -1.74F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -121,11 +119,11 @@ public class PP19Factory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new PPBizon())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.2800000011920929D, 0.2800000011920929D, 0.2800000011920929D);
+                        GL11.glScaled(0.28D, 0.28D, 0.28D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.2F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -160,13 +158,7 @@ public class PP19Factory implements GunFactory {
                     })
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.AKaction.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.AKaction.getRenderablePart(),
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
@@ -175,20 +167,18 @@ public class PP19Factory implements GunFactory {
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.PP19Mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.PP19Mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioning(Magazines.PP19Mag, (renderContext) -> {})
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.425F, 0.825F, -0.175F);
                     }, 250L, 100L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.425F, 0.825F, -0.175F);
@@ -203,29 +193,27 @@ public class PP19Factory implements GunFactory {
                         GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.475F, 1.299999F, 0.125F);
+                        GL11.glTranslatef(-0.475F, 1.3F, 0.125F);
                     }, 300L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.475F, 1.299999F, 0.125F);
+                        GL11.glTranslatef(-0.475F, 1.3F, 0.125F);
                     }, 130L, 100L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.475F, 1.299999F, 0.125F);
+                        GL11.glTranslatef(-0.475F, 1.3F, 0.125F);
                     }, 60L, 150L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.425F, 0.825F, -0.175F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-5.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.425F, 0.825F, -0.175F);
@@ -279,7 +267,7 @@ public class PP19Factory implements GunFactory {
                         GL11.glRotatef(-20.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-15.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.149999F, 0.45F, 0.525F);
+                        GL11.glTranslatef(-1.15F, 0.45F, 0.525F);
                     })
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);

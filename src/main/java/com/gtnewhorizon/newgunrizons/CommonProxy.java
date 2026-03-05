@@ -95,7 +95,7 @@ public class CommonProxy {
         AuxiliaryAttachments.init();
         Bullets.init();
         Magazines.init();
-        Guns.init(this);
-        Grenades.init(this);
+        Guns.init();
+        Grenades.init();
     }
 }

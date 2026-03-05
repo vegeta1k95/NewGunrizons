@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -33,9 +34,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class LeeEnfieldNo4MkI {
+public class LeeEnfieldNo4MkI  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("LeeEnfieldNo4MkI")
             .withFireRate(0.16F)
@@ -64,14 +65,13 @@ public class LeeEnfieldNo4MkI {
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents,
                 Blocks.planks)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Bolt-action rifle",
                     "Damage: 27",
                     "Cartridge:",
                     ".303 British Bullet",
-                    "Fire Rate: Bolt Action");
-            })
+                    "Fire Rate: Bolt Action")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.LeeEnfieldSMLEaction, true, (model) -> {
                 if (model instanceof LeeEnfieldSMLEAction) {}
 
@@ -81,15 +81,15 @@ public class LeeEnfieldNo4MkI {
                 ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
             .withCompatibleAttachment(AuxiliaryAttachments.M1CarbineRearSight, true, (model) -> {
                 GL11.glTranslatef(-0.183F, -1.39F, -1.15F);
-                GL11.glScaled(0.14000000059604645D, 0.15000000596046448D, 0.05999999865889549D);
+                GL11.glScaled(0.14D, 0.15D, 0.06D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKpart, true, (model) -> {
                 GL11.glTranslatef(-0.27F, -1.48F, -8.76F);
-                GL11.glScaled(0.5D, 3.0D, 0.20000000298023224D);
+                GL11.glScaled(0.5D, 3.0D, 0.2D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.AKpart2, true, (model) -> {
                 GL11.glTranslatef(-0.09F, -1.48F, -8.76F);
-                GL11.glScaled(0.5D, 3.0D, 0.20000000298023224D);
+                GL11.glScaled(0.5D, 3.0D, 0.2D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof M4Iron1) {
@@ -103,7 +103,7 @@ public class LeeEnfieldNo4MkI {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AKMiron1) {
                     GL11.glTranslatef(-0.11F, -1.04F, -8.69F);
-                    GL11.glScaled(0.30000001192092896D, 0.6000000238418579D, 0.3700000047683716D);
+                    GL11.glScaled(0.3D, 0.6D, 0.37D);
                     GL11.glRotatef(-180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof AKMiron2) {
                     GL11.glTranslatef(0.13F, -1.55F, -3.05F);
@@ -125,7 +125,7 @@ public class LeeEnfieldNo4MkI {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.14F, -1.365F, -8.7F);
-                    GL11.glScaled(0.15000000596046448D, 0.30000001192092896D, 0.800000011920929D);
+                    GL11.glScaled(0.15D, 0.3D, 0.8D);
                     GL11.glRotatef(-180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
@@ -145,7 +145,7 @@ public class LeeEnfieldNo4MkI {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3199999928474426D, 0.3199999928474426D, 0.3199999928474426D);
+                        GL11.glScaled(0.32D, 0.32D, 0.32D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -259,31 +259,31 @@ public class LeeEnfieldNo4MkI {
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 200L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(43.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.46F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.46F);
                     }, 210L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 1.0F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 1.0F);
                     }, 200L, 20L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 220L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 210L, 10L))
                     .withFirstPersonCustomPositioningEjectSpentRound(
                         Magazines.LeeEnfieldMag.getRenderablePart(),
@@ -423,7 +423,6 @@ public class LeeEnfieldNo4MkI {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -436,7 +435,6 @@ public class LeeEnfieldNo4MkI {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -501,32 +499,27 @@ public class LeeEnfieldNo4MkI {
                     .withFirstPersonRightHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     }, 250L, 1000L))
                     .withFirstPersonRightHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     }, 250L, 1000L))

@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
 
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -38,9 +39,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class Kar98KFactory {
+public class Kar98KFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Kar98K")
             .withAmmoCapacity(5)
@@ -71,14 +72,13 @@ public class Kar98KFactory {
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents,
                 Blocks.planks)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Bolt-action rifle",
                     "Damage: 30",
                     "Cartridge:",
                     "7.92x57mm Mauser Bullet",
-                    "Fire Rate: Bolt Action");
-            })
+                    "Fire Rate: Bolt Action")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.Kar98Kaction, true, (model) -> {
                 if (model instanceof Kar98Kaction) {}
 
@@ -102,13 +102,13 @@ public class Kar98KFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AK47iron) {
                     GL11.glTranslatef(-0.29F, -1.76F, -3.85F);
-                    GL11.glScaled(0.800000011920929D, 0.800000011920929D, 1.2000000476837158D);
+                    GL11.glScaled(0.8D, 0.8D, 1.2D);
                 } else if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.22F, -1.94F, -1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.21F, -1.39F, -8.65F);
-                    GL11.glScaled(0.30000001192092896D, 0.4000000059604645D, 1.2000000476837158D);
+                    GL11.glScaled(0.3D, 0.4D, 1.2D);
                 } else if (model instanceof ScarIron1) {
                     GL11.glTranslatef(0.165F, -1.65F, 1.0F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -130,19 +130,19 @@ public class Kar98KFactory {
             })
             .withCompatibleAttachment(Attachments.PUscope, (player, stack) -> {
                 GL11.glTranslatef(0.355F, -1.81F, -3.2F);
-                GL11.glScaled(1.059999942779541D, 1.059999942779541D, 1.059999942779541D);
+                GL11.glScaled(1.06D, 1.06D, 1.06D);
             }, (model) -> {
                 if (model instanceof PUscope) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof PUmount) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof SVTmount) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof PUreticle) {
                     GL11.glTranslatef(-0.5F, 0.23F, 0.82F);
-                    GL11.glScaled(0.029999999329447746D, 0.029999999329447746D, 0.029999999329447746D);
+                    GL11.glScaled(0.03D, 0.03D, 0.03D);
                 }
 
             })
@@ -152,10 +152,10 @@ public class Kar98KFactory {
             }, (model) -> {
                 if (model instanceof PriscopicScope) {
                     GL11.glTranslatef(-0.508F, 0.46F, -0.55F);
-                    GL11.glScaled(0.2199999988079071D, 0.2199999988079071D, 0.2199999988079071D);
+                    GL11.glScaled(0.22D, 0.22D, 0.22D);
                 } else if (model instanceof UnertlReticle) {
                     GL11.glTranslatef(-0.48F, 0.285F, 2.28F);
-                    GL11.glScaled(0.014999999664723873D, 0.014999999664723873D, 0.014999999664723873D);
+                    GL11.glScaled(0.015D, 0.015D, 0.015D);
                 }
 
             })
@@ -170,7 +170,7 @@ public class Kar98KFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3199999928474426D, 0.3199999928474426D, 0.3199999928474426D);
+                        GL11.glScaled(0.32D, 0.32D, 0.32D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -229,31 +229,31 @@ public class Kar98KFactory {
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 200L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(43.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.46F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.46F);
                     }, 210L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 1.0F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 1.0F);
                     }, 200L, 20L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 220L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 210L, 10L))
                     .withFirstPersonCustomPositioningEjectSpentRound(
                         AuxiliaryAttachments.Kar98Kaction.getRenderablePart(),
@@ -448,7 +448,6 @@ public class Kar98KFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -461,7 +460,6 @@ public class Kar98KFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -647,7 +645,6 @@ public class Kar98KFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-130.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.2F, -0.125F, 0.225F);
                     }, 50L, 200L), new Transition((renderContext) -> {

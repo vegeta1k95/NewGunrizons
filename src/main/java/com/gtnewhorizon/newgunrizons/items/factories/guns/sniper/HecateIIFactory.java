@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,16 +12,16 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.LPscope;
 import com.gtnewhorizon.newgunrizons.model.weapon.HecateII;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class HecateIIFactory implements GunFactory {
+public class HecateIIFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("HecateII")
             .withFireRate(0.16F)
@@ -51,18 +50,17 @@ public class HecateIIFactory implements GunFactory {
                 CommonProxy.SteelPlate,
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.BigSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Sniper rifle",
                     "Damage: 35",
                     "Caliber: .50 BMG",
                     "Magazines:",
                     "7rnd .50 BMG Magazine",
-                    "Fire Rate: Bolt Action");
-            })
+                    "Fire Rate: Bolt Action")
+            )
             .withCompatibleAttachment(Magazines.HecateIIMag, ((model) -> {
                 GL11.glTranslatef(0.0F, -0.25F, 0.0F);
-                GL11.glScaled(1.2000000476837158D, 0.699999988079071D, 1.0D);
+                GL11.glScaled(1.2D, 0.7D, 1.0D);
             }))
             .withCompatibleAttachment(AuxiliaryAttachments.HecateIIBoltAction, true, (model) -> {
                 GL11.glTranslatef(-0.01F, 0.02F, 0.03F);
@@ -70,37 +68,37 @@ public class HecateIIFactory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.HP, true, true, (player, stack) -> {
                 GL11.glTranslatef(0.06F, -1.37F, 0.3F);
-                GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                GL11.glScaled(0.6D, 0.6D, 0.6D);
             }, (model) -> {
                 if (model instanceof LPscope) {
                     GL11.glTranslatef(0.237F, -0.235F, 1.16F);
-                    GL11.glScaled(0.10000000149011612D, 0.10000000149011612D, 0.10000000149011612D);
+                    GL11.glScaled(0.1D, 0.1D, 0.1D);
                 }
 
             })
             .withCompatibleAttachment(Attachments.Bipod, true, (model) -> {
                 GL11.glTranslatef(0.135F, -0.55F, -1.2F);
-                GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                GL11.glScaled(0.9D, 0.9D, 0.9D);
             })
             .withCompatibleAttachment(Attachments.Silencer50BMG, (model) -> {
                 GL11.glTranslatef(0.107F, -1.45F, -6.95F);
-                GL11.glScaled(1.100000023841858D, 1.100000023841858D, 1.2999999523162842D);
+                GL11.glScaled(1.1D, 1.1D, 1.3D);
             })
             .withTextureName("HecateII")
             .withRenderer(
                 (new WeaponRenderer.Builder())
                     .withModel(new HecateII())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 1.5F, -0.7F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                        GL11.glScaled(0.7D, 0.7D, 0.7D);
                         GL11.glTranslatef(-1.6F, 0.4F, 1.3F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -108,23 +106,23 @@ public class HecateIIFactory implements GunFactory {
                     .withFirstPersonPositioning((renderContext) -> {
                         GL11.glTranslatef(0.33F, -0.23F, -0.27F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.6499999761581421D, 0.6499999761581421D, 0.6499999761581421D);
+                        GL11.glScaled(0.65D, 0.65D, 0.65D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.8F);
                     })
                     .withFirstPersonCustomPositioning(Magazines.HecateIIMag, (renderContext) -> {})
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.33F, -0.23F, -0.27F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.6499999761581421D, 0.6499999761581421D, 0.6499999761581421D);
+                        GL11.glScaled(0.65D, 0.65D, 0.65D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.0F);
                         GL11.glRotatef(-3.0F, 1.0F, 0.0F, 0.0F);
                     })
                     .withFirstPersonPositioningZoomingRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.3F, 0.1F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(0.17F, -0.99F, 0.45F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-0.5F, 1.0F, 0.0F, 0.0F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.HP)) {
                             GL11.glTranslatef(0.0F, 0.16F, 0.15F);
@@ -148,25 +146,25 @@ public class HecateIIFactory implements GunFactory {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 250L, 300L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 150L, 0L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 150L, 0L))
                     .withFirstPersonCustomPositioningEjectSpentRound(
@@ -185,45 +183,45 @@ public class HecateIIFactory implements GunFactory {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 250L, 300L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.5F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 350L, 100L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.5F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 250L, 100L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 350L, 250L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 150L, 0L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.28F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(7.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 1.2F);
                     }, 150L, 0L))
                     .withFirstPersonPositioningUnloading(new Transition((renderContext) -> {
@@ -231,14 +229,14 @@ public class HecateIIFactory implements GunFactory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.5F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 150L, 50L))
                     .withFirstPersonCustomPositioningUnloading(
@@ -278,9 +276,9 @@ public class HecateIIFactory implements GunFactory {
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glTranslatef(0.2F, -0.3F, 0.1F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(0.17F, -0.99F, 0.4F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.HP)) {
                             GL11.glTranslatef(0.0F, 0.16F, 0.15F);
                         }
@@ -297,12 +295,12 @@ public class HecateIIFactory implements GunFactory {
 
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {
-                        GL11.glScaled(0.8999999761581421D, 0.8999999761581421D, 0.8999999761581421D);
+                        GL11.glScaled(0.9D, 0.9D, 0.9D);
                         GL11.glRotatef(-20.0F, -4.0F, 1.0F, -2.0F);
                         GL11.glTranslatef(0.5F, -0.3F, -1.0F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-35.0F, 2.0F, 1.0F, 1.0F);
                         GL11.glTranslatef(1.0F, -0.8F, -1.5F);
                     })

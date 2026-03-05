@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.smg;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -18,9 +19,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class Tec9Factory {
+public class Tec9Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("Tec9")
             .withFireRate(0.75F)
@@ -42,15 +43,14 @@ public class Tec9Factory {
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Pistol",
                     "Damage: 5.5",
                     "Caliber: .45 ACP",
                     "Magazines:",
                     "10rnd .45 ACP Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.Tec9Action, true, (model) -> {})
             .withCompatibleAttachment(
                 Magazines.Tec9Mag,
@@ -64,11 +64,11 @@ public class Tec9Factory {
                 (new WeaponRenderer.Builder())
                     .withModel(new Tec9())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -116,22 +116,20 @@ public class Tec9Factory {
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 280L, 0L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.325F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.325F, -2.775F);
                     }, 120L, 150L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(4.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-1.125F, 1.3F, -3.0F);
@@ -139,11 +137,9 @@ public class Tec9Factory {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-12.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.125F, 1.449999F, -2.950002F);
+                        GL11.glTranslatef(-1.125F, 1.45F, -2.95F);
                     }, 220L, 50L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(4.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-1.125F, 1.3F, -3.0F);
@@ -168,19 +164,19 @@ public class Tec9Factory {
                         new Transition((renderContext) -> {}, 250L, 1000L))
                     .withFirstPersonCustomPositioningUnloading(
                         AuxiliaryAttachments.Tec9Action.getRenderablePart(),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonCustomPositioningReloading(
                         AuxiliaryAttachments.Tec9Action.getRenderablePart(),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L),
+                        new Transition((renderContext) -> {  }, 250L, 1000L),
+                        new Transition((renderContext) -> {  }, 250L, 1000L),
+                        new Transition((renderContext) -> {  }, 250L, 1000L),
+                        new Transition((renderContext) -> {  }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.5F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glTranslatef(0.35F, 0.7F, -2.799999F);
+                        GL11.glTranslatef(0.35F, 0.7F, -2.8F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
 
                     })
@@ -189,7 +185,7 @@ public class Tec9Factory {
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-20.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.349999F, 2.4F, 0.075F);
+                        GL11.glTranslatef(-1.35F, 2.4F, 0.075F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);

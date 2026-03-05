@@ -12,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -31,9 +31,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class SPAS12Factory implements GunFactory {
+public class SPAS12Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("SPAS-12")
             .withAmmoCapacity(9)
@@ -60,18 +60,17 @@ public class SPAS12Factory implements GunFactory {
             .withFlashOffsetY(() -> 0.1F)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
             .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Combat Shotgun",
                     "Damage per Pellet: 7",
                     "Pellets per Shot: 10",
                     "Ammo: 12 Gauge Shotgun Shell",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleBullet(Bullets.ShotgunShell, (model) -> {})
             .withCompatibleAttachment(Attachments.Silencer12Gauge, (model) -> {
                 GL11.glTranslatef(0.107F, -1.34F, -5.9F);
-                GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withCompatibleBullet(Bullets.ShotgunShell, (model) -> {})
             .withTextureName("spas12")
@@ -96,7 +95,7 @@ public class SPAS12Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.04F, -0.635F, -1.378F);
-                    GL11.glScaled(0.20000000298023224D, 0.20000000298023224D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.2D, 0.2D);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
                 } else if (model instanceof G36CIron2) {
                     GL11.glTranslatef(-0.205F, -1.9F, -3.15F);
@@ -109,7 +108,7 @@ public class SPAS12Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.065F, -0.525F, -4.5F);
-                    GL11.glScaled(0.11999999731779099D, 0.5D, 1.0D);
+                    GL11.glScaled(0.12D, 0.5D, 1.0D);
                     GL11.glRotatef(-180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(-0.145F, -0.84F, 0.5F);
@@ -122,7 +121,7 @@ public class SPAS12Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Silencer12Gauge, (model) -> {
                 GL11.glTranslatef(-0.19F, -0.6F, -6.9F);
-                GL11.glScaled(1.399999976158142D, 1.399999976158142D, 1.399999976158142D);
+                GL11.glScaled(1.4D, 1.4D, 1.4D);
             })
             .withRenderer(
                 (new WeaponRenderer.Builder())
@@ -132,12 +131,12 @@ public class SPAS12Factory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.9F, 0.4F, 1.0F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -400,31 +399,26 @@ public class SPAS12Factory implements GunFactory {
                     .withFirstPersonRightHandPositioningLoadIteration(new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.3F, -0.4F, 0.8F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.35F, -0.425F, 0.45F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.475F, -0.35F, 0.3F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-65.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.35F, -0.425F, 0.45F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(2.0F, 2.0F, 2.0F);
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.3F, -0.4F, 0.8F);
                     }, 250L, 50L))

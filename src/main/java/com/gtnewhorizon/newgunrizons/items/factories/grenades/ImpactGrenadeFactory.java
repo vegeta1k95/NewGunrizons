@@ -11,9 +11,9 @@ import com.gtnewhorizon.newgunrizons.grenade.GrenadeRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.model.misc.ImpactGrenade;
 
-public class ImpactGrenadeFactory implements GrenadeFactory {
+public class ImpactGrenadeFactory {
 
-    public ItemGrenade createGrenade(CommonProxy commonProxy) {
+    public ItemGrenade createGrenade() {
         return (new ItemGrenade.Builder())
             .withName("ImpactGrenade")
             .withCreativeTab(NewGunrizonsMod.GrenadesTab)
@@ -49,13 +49,13 @@ public class ImpactGrenadeFactory implements GrenadeFactory {
                     })
                     .withEntityRotationCenterOffsets(() -> -0.025F, () -> 0.2F, () -> -0.025F)
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                        GL11.glScaled(0.7D, 0.7D, 0.7D);
                         GL11.glTranslatef(1.0F, 1.3F, -1.3F);
                         GL11.glRotatef(230.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                        GL11.glScaled(0.3D, 0.3D, 0.3D);
                         GL11.glTranslatef(-3.0F, -1.0F, 3.0F);
                         GL11.glRotatef(-225.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-45.0F, 1.0F, 0.0F, 0.0F);
@@ -69,7 +69,6 @@ public class ImpactGrenadeFactory implements GrenadeFactory {
                     .withFirstPersonHandPositioning((context) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(60.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.175F, -0.525F, 0.425F);
                     }, (context) -> {
@@ -85,7 +84,7 @@ public class ImpactGrenadeFactory implements GrenadeFactory {
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(0.0F, -6.849998F, -2.4F);
+                        GL11.glTranslatef(0.0F, -6.85F, -2.4F);
                     }, 260L, 120L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(85.0F, 1.0F, 0.0F, 0.0F);
@@ -103,13 +102,11 @@ public class ImpactGrenadeFactory implements GrenadeFactory {
                     .withFirstPersonLeftHandPositioningThrowing(new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(75.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.175F, -1.025F, 0.225F);
                     }, 70L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-105.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(75.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.175F, -1.025F, 0.225F);
                     }, 70L, 0L), new Transition((renderContext) -> {
@@ -123,7 +120,6 @@ public class ImpactGrenadeFactory implements GrenadeFactory {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-150.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.5F, -0.2F, -0.3F);
                     }, 70L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);

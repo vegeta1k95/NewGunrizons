@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.pistol;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -23,9 +24,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class LugerP08Factory {
+public class LugerP08Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("LugerP08")
             .withFireRate(0.35F)
@@ -47,15 +48,14 @@ public class LugerP08Factory {
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Pistol",
                     "Damage: 7",
                     "Caliber: 7.62x21mm",
                     "Magazines:",
                     "8rnd 7.62x21mm Magazine",
-                    "Fire Rate: Semi");
-            })
+                    "Fire Rate: Semi")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.LugerAction1, true, (model) -> {
                 if (model instanceof LugerAction1) {
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
@@ -76,23 +76,23 @@ public class LugerP08Factory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof makarovfrontsight) {
                     GL11.glTranslatef(-0.1393F, -0.95F, -2.2F);
-                    GL11.glScaled(0.15000000596046448D, 0.25D, 0.20000000298023224D);
+                    GL11.glScaled(0.15D, 0.25D, 0.2D);
                 }
 
             })
             .withCompatibleAttachment(
                 Magazines.LugerP08Mag,
-                ((model) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }))
+                ((model) -> {  }))
             .withTextureName("LugerP08")
             .withRenderer(
                 (new WeaponRenderer.Builder())
                     .withModel(new LugerP08())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                        GL11.glScaled(0.4D, 0.4D, 0.4D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(0.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -171,31 +171,24 @@ public class LugerP08Factory {
                         })
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.MakarovTop.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 280L, 0L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glRotatef(0.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 300L, 100L), new Transition((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.299999F, 1.025F, -2.775002F);
+                        GL11.glTranslatef(-1.3F, 1.025F, -2.775F);
                     }, 120L, 150L), new Transition((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
@@ -250,7 +243,7 @@ public class LugerP08Factory {
                             GL11.glTranslatef(0.0F, -0.5F, -0.6F);
                             GL11.glRotatef(-45.0F, 1.0F, 0.0F, 0.0F);
                         }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonCustomPositioningUnloading(
                         AuxiliaryAttachments.LugerAction2.getRenderablePart(),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.4F); }, 250L, 1000L))
@@ -260,7 +253,7 @@ public class LugerP08Factory {
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.4F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.4F); }, 250L, 1000L),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.4F); }, 250L, 1000L),
-                        new Transition((renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); }, 250L, 1000L))
+                        new Transition((renderContext) -> {  }, 250L, 1000L))
                     .withFirstPersonCustomPositioningUnloading(
                         AuxiliaryAttachments.MakarovTop.getRenderablePart(),
                         new Transition((renderContext) -> { GL11.glTranslatef(0.0F, -0.0F, -0.0F); }, 250L, 1000L))
@@ -274,16 +267,14 @@ public class LugerP08Factory {
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
-                        GL11.glTranslatef(0.345F, 0.45F, -2.799999F);
-                        if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Holo2)) {}
-
+                        GL11.glTranslatef(0.345F, 0.45F, -2.8F);
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
                         GL11.glRotatef(-55.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(40.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.9F, 2.25F, -1.699999F);
+                        GL11.glTranslatef(-0.9F, 2.25F, -1.7F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(3.0D, 3.0D, 3.0D);
@@ -339,7 +330,6 @@ public class LugerP08Factory {
                     }, 250L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(4.5F, 4.5F, 4.5F);
                         GL11.glRotatef(-125.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(55.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.375F, -0.7F, -0.075F);
                     }, 250L, 0L), new Transition((renderContext) -> {

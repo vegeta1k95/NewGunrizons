@@ -561,7 +561,7 @@ public class ItemWeapon extends Item
         }
 
         public ItemWeapon.Builder withFireRate(float fireRate) {
-            if (fireRate >= 1.0F || fireRate <= 0.0F) {
+            if (fireRate > 1.0F || fireRate <= 0.0F) {
                 throw new IllegalArgumentException("Invalid fire rate " + fireRate);
             }
             this.fireRate = fireRate;

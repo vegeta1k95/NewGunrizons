@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.items;
 
 import java.util.function.BiConsumer;
 
+import lombok.Getter;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
@@ -20,7 +21,9 @@ import com.gtnewhorizon.newgunrizons.config.ModContext;
  */
 public class ItemScope extends ItemAttachment {
 
+    @Getter
     private final float minZoom;
+    @Getter
     private final float maxZoom;
     private final boolean isOpticalZoom;
     private final boolean hasNightVision;
@@ -31,14 +34,6 @@ public class ItemScope extends ItemAttachment {
         this.maxZoom = builder.maxZoom;
         this.isOpticalZoom = builder.isOpticalZoom;
         this.hasNightVision = builder.hasNightVision;
-    }
-
-    public float getMinZoom() {
-        return this.minZoom;
-    }
-
-    public float getMaxZoom() {
-        return this.maxZoom;
     }
 
     public boolean isOptical() {

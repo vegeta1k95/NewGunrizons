@@ -1,7 +1,6 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.smg;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import net.minecraft.item.Item;
 
@@ -13,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -33,9 +32,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class M1A1ThompsonFactory implements GunFactory {
+public class M1A1ThompsonFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M1A1Thompson")
             .withFireRate(0.75F)
@@ -59,15 +58,14 @@ public class M1A1ThompsonFactory implements GunFactory {
             .withShellCasingVerticalOffset(-0.02F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Submachine gun",
                     "Damage: 5.8",
                     "Caliber: .45 ACP",
                     "Magazines:",
                     ".45 ACP 30rnd Box Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(Magazines.M1A1mag, ((model) -> {}))
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
@@ -103,7 +101,7 @@ public class M1A1ThompsonFactory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.05F, -0.8F, -3.4F);
-                    GL11.glScaled(0.15000000596046448D, 0.3499999940395355D, 0.30000001192092896D);
+                    GL11.glScaled(0.15D, 0.35D, 0.3D);
                     GL11.glRotatef(-180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
@@ -116,12 +114,12 @@ public class M1A1ThompsonFactory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Silencer45ACP, (model) -> {
                 GL11.glTranslatef(-0.14F, -0.81F, -5.25F);
-                GL11.glScaled(1.149999976158142D, 1.149999976158142D, 1.149999976158142D);
+                GL11.glScaled(1.15D, 1.15D, 1.15D);
             })
             .withCompatibleAttachment(AuxiliaryAttachments.M1A1rearsight, true, (model) -> {
                 if (model instanceof M1A1rearsight) {
                     GL11.glTranslatef(-0.16F, -0.846F, 1.9F);
-                    GL11.glScaled(0.20000000298023224D, 0.17499999701976776D, 0.20000000298023224D);
+                    GL11.glScaled(0.2D, 0.175D, 0.2D);
                 }
 
             })
@@ -138,12 +136,12 @@ public class M1A1ThompsonFactory implements GunFactory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-1.4F, -0.2F, 1.5F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -172,10 +170,10 @@ public class M1A1ThompsonFactory implements GunFactory {
                     .withFirstPersonCustomPositioning(Magazines.M1A1mag, (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         Magazines.M1A1mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomZoomingRecoiled(
                         Magazines.M1A1mag,
-                        (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 0.0F); })
+                        (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.M1A1action.getRenderablePart(),
                         (renderContext) -> {
@@ -196,19 +194,19 @@ public class M1A1ThompsonFactory implements GunFactory {
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.424999F, 0.45F, -0.65F);
+                        GL11.glTranslatef(-1.425F, 0.45F, -0.65F);
                     }, 280L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-37.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.424999F, 0.45F, -0.65F);
+                        GL11.glTranslatef(-1.425F, 0.45F, -0.65F);
                     }, 300L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-50.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.424999F, 0.45F, -0.65F);
+                        GL11.glTranslatef(-1.425F, 0.45F, -0.65F);
                     }, 100L, 100L), new Transition((renderContext) -> {
                         GL11.glRotatef(35.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
@@ -227,13 +225,13 @@ public class M1A1ThompsonFactory implements GunFactory {
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-25.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.424999F, 0.45F, -0.65F);
+                        GL11.glTranslatef(-1.425F, 0.45F, -0.65F);
                     }, 150L, 0L), new Transition((renderContext) -> {
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
                         GL11.glRotatef(-40.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(25.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.424999F, 0.45F, -0.6F);
+                        GL11.glTranslatef(-1.425F, 0.45F, -0.6F);
                     }, 150L, 50L))
                     .withFirstPersonCustomPositioningUnloading(
                         Magazines.M1A1mag,
@@ -260,7 +258,7 @@ public class M1A1ThompsonFactory implements GunFactory {
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(5.0F, 5.0F, 5.0F);
-                        GL11.glTranslatef(0.224F, 0.525F, -2.074999F);
+                        GL11.glTranslatef(0.224F, 0.525F, -2.075F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.Kobra)) {}
 
                     })
@@ -269,14 +267,14 @@ public class M1A1ThompsonFactory implements GunFactory {
                         GL11.glRotatef(5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(30.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.525F, 1.199999F, -1.674999F);
+                        GL11.glTranslatef(-0.525F, 1.2F, -1.675F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScaled(5.0D, 5.0D, 5.0D);
                         GL11.glRotatef(-5.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-15.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-1.1F, 0.475F, -1.474999F);
+                        GL11.glTranslatef(-1.1F, 0.475F, -1.475F);
                     })
                     .withFirstPersonHandPositioning((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 5.5F);
@@ -332,7 +330,6 @@ public class M1A1ThompsonFactory implements GunFactory {
                     .withFirstPersonLeftHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 5.5F);
                         GL11.glRotatef(-75.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.25F, -0.65F, 0.6F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -400,7 +397,6 @@ public class M1A1ThompsonFactory implements GunFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 5.5F);
                         GL11.glRotatef(-75.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.25F, -0.65F, 0.6F);
                     }, 50L, 200L))

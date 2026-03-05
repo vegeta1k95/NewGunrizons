@@ -12,7 +12,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -32,9 +32,9 @@ import com.gtnewhorizon.newgunrizons.model.weapon.KN44;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 
-public class KN44Factory implements GunFactory {
+public class KN44Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("KN44")
             .withFireRate(0.6F)
@@ -55,16 +55,15 @@ public class KN44Factory implements GunFactory {
             .withFlashOffsetY(() -> { return 0.12F; })
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withCrafting(CraftingComplexity.MEDIUM, CommonProxy.SteelPlate, CommonProxy.MiniSteelPlate, "ingotSteel")
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Assault Rifle",
                     "Damage: 7.7",
                     "Caliber: 5.56x39mm",
                     "Magazines:",
                     "30rnd 5.56x39mm Magazine (Type 2)",
                     "45rnd 5.56x39mm Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
                 if (model instanceof G36CIron1) {
                     GL11.glTranslatef(-0.17F, -1.155F, -0.1F);
@@ -74,7 +73,7 @@ public class KN44Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof AKMiron1) {
                     GL11.glTranslatef(-0.157F, -1.425F, -1.57F);
-                    GL11.glScaled(0.23999999463558197D, 0.23999999463558197D, 0.23999999463558197D);
+                    GL11.glScaled(0.24D, 0.24D, 0.24D);
                 } else if (model instanceof AKMiron2) {
                     GL11.glTranslatef(0.13F, -1.55F, -3.05F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -98,7 +97,7 @@ public class KN44Factory implements GunFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.15F, -1.32F, -3.253F);
-                    GL11.glScaled(0.25D, 0.25D, 0.6000000238418579D);
+                    GL11.glScaled(0.25D, 0.25D, 0.6D);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -110,19 +109,19 @@ public class KN44Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.Grip2, (model) -> {
                 GL11.glTranslatef(-0.17F, -0.4F, -2.4F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCompatibleAttachment(Attachments.VGrip, (model) -> {
                 GL11.glTranslatef(-0.17F, -0.4F, -2.4F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCompatibleAttachment(Attachments.Bipod, (model) -> {
                 GL11.glTranslatef(-0.17F, -0.4F, -2.4F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCompatibleAttachment(Attachments.StubbyGrip, (model) -> {
                 GL11.glTranslatef(-0.17F, -0.4F, -2.4F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             })
             .withCompatibleAttachment(Attachments.Silencer556x39, (model) -> {
                 GL11.glTranslatef(-0.2F, -1.08F, -5.4F);
@@ -130,14 +129,14 @@ public class KN44Factory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.PSO1, (player, stack) -> {
                 GL11.glTranslatef(0.08F, -1.0F, -0.75F);
-                GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                GL11.glScaled(0.8D, 0.8D, 0.8D);
             }, (model) -> {
                 if (model instanceof LPscope) {
                     GL11.glTranslatef(-0.209F, -0.485F, 1.27F);
-                    GL11.glScaled(0.07000000029802322D, 0.07000000029802322D, 0.07000000029802322D);
+                    GL11.glScaled(0.07D, 0.07D, 0.07D);
                 } else if (model instanceof PSO12) {
                     GL11.glTranslatef(-0.27F, -0.6F, 1.21F);
-                    GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                    GL11.glScaled(0.8D, 0.8D, 0.8D);
                 }
 
             })
@@ -146,16 +145,16 @@ public class KN44Factory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new KN44())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.36000001430511475D, 0.36000001430511475D, 0.36000001430511475D);
+                        GL11.glScaled(0.36D, 0.36D, 0.36D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.4F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                        GL11.glScaled(0.7D, 0.7D, 0.7D);
                         GL11.glTranslatef(-1.6F, -0.8F, 1.7F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -163,22 +162,22 @@ public class KN44Factory implements GunFactory {
                     .withFirstPersonPositioning((renderContext) -> {
                         GL11.glTranslatef(0.65F, 0.25F, -0.15F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.65F, 0.25F, -0.15F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glTranslatef(-0.4F, -0.7F, 1.15F);
                         GL11.glRotatef(-2.0F, 1.0F, 0.0F, 0.0F);
                     })
                     .withFirstPersonPositioningZoomingRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.0F, -0.345F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(0.315F, -1.17F, 1.95F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-0.5F, 1.0F, 0.0F, 0.0F);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PSO1)) {
                             GL11.glTranslatef(1.333F, -1.25F, 2.15F);
@@ -192,37 +191,37 @@ public class KN44Factory implements GunFactory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 250L, 500L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.7F, -0.5F, -0.1F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 250L, 20L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.65F, 0.25F, -0.15F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                     }, 350L, 60L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.65F, 0.25F, -0.15F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                     }, 100L, 0L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.65F, 0.25F, -0.15F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                     }, 100L, 0L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.65F, 0.25F, -0.15F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glTranslatef(-0.4F, -0.7F, 0.9F);
                         GL11.glRotatef(15.0F, 0.0F, 0.0F, 1.0F);
                     }, 250L, 0L))
@@ -231,22 +230,22 @@ public class KN44Factory implements GunFactory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 150L, 50L), new Transition((renderContext) -> {
                         GL11.glTranslatef(0.7F, -0.5F, -0.1F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glTranslatef(-0.4F, -0.8F, 0.9F);
                     }, 150L, 50L))
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glTranslatef(0.0F, -0.345F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(0.315F, -1.17F, 1.9F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.PSO1)) {
                             GL11.glTranslatef(1.333F, -1.25F, 2.15F);
                         } else {
@@ -255,12 +254,12 @@ public class KN44Factory implements GunFactory {
 
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {
-                        GL11.glScaled(0.949999988079071D, 0.949999988079071D, 0.949999988079071D);
+                        GL11.glScaled(0.95D, 0.95D, 0.95D);
                         GL11.glRotatef(-20.0F, -4.0F, 1.0F, -2.0F);
                         GL11.glTranslatef(0.3F, -0.35F, -0.1F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glRotatef(-35.0F, 2.0F, 1.0F, 1.0F);
                         GL11.glTranslatef(1.3F, -0.8F, -0.2F);
                     })

@@ -1,7 +1,5 @@
 package com.gtnewhorizon.newgunrizons.items.factories.guns.special;
 
-import java.util.function.Consumer;
-
 import net.minecraft.item.Item;
 
 import org.lwjgl.opengl.GL11;
@@ -12,7 +10,7 @@ import com.gtnewhorizon.newgunrizons.client.animation.Transition;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.crafting.CraftingComplexity;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.GunFactory;
+
 import com.gtnewhorizon.newgunrizons.model.sight.AK47iron;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron1;
 import com.gtnewhorizon.newgunrizons.model.sight.AKMiron2;
@@ -32,9 +30,9 @@ import com.gtnewhorizon.newgunrizons.model.weapon.SMAW;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class SMAWFactory implements GunFactory {
+public class SMAWFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("SMAW")
             .withAmmoCapacity(1)
@@ -58,7 +56,7 @@ public class SMAWFactory implements GunFactory {
             .withCompatibleAttachment(Attachments.AKMIron, true, (model) -> {
                 if (model instanceof M4Iron1) {
                     GL11.glTranslatef(0.41F, -2.13F, 1.1F);
-                    GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                    GL11.glScaled(0.3D, 0.3D, 0.3D);
                 } else if (model instanceof M4Iron2) {
                     GL11.glTranslatef(0.26F, -2.0F, -2.22F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -103,11 +101,11 @@ public class SMAWFactory implements GunFactory {
             })
             .withCompatibleAttachment(Attachments.ACOG, (player, stack) -> {
                 GL11.glTranslatef(0.4F, -2.0F, 1.2F);
-                GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                GL11.glScaled(0.6D, 0.6D, 0.6D);
             }, (model) -> {
                 if (model instanceof Acog2) {
                     GL11.glTranslatef(0.237F, -0.26F, 0.46F);
-                    GL11.glScaled(0.05999999865889549D, 0.05999999865889549D, 0.05999999865889549D);
+                    GL11.glScaled(0.06D, 0.06D, 0.06D);
                 }
 
             })
@@ -119,16 +117,16 @@ public class SMAWFactory implements GunFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new SMAW())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                        GL11.glScaled(0.6D, 0.6D, 0.6D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.30000001192092896D, 0.30000001192092896D, 0.30000001192092896D);
+                        GL11.glScaled(0.3D, 0.3D, 0.3D);
                         GL11.glTranslatef(1.0F, 0.0F, 1.9F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
                     .withThirdPersonPositioning((renderContext) -> {
-                        GL11.glScaled(0.800000011920929D, 0.800000011920929D, 0.800000011920929D);
+                        GL11.glScaled(0.8D, 0.8D, 0.8D);
                         GL11.glTranslatef(-1.8F, 0.3F, 1.5F);
                         GL11.glRotatef(-45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
@@ -136,29 +134,29 @@ public class SMAWFactory implements GunFactory {
                     .withFirstPersonPositioning((renderContext) -> {
                         GL11.glTranslatef(0.1F, -0.2F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.4F, -1.0F, 0.9F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.1F, -0.2F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.4F, -1.0F, 1.3F);
                         GL11.glRotatef(-4.0F, 1.0F, 0.0F, 0.0F);
                     })
                     .withFirstPersonPositioningReloading(new Transition((renderContext) -> {
                         GL11.glTranslatef(0.1F, 0.2F, -0.3F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(-0.1F, -0.1F, 2.0F);
                         GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F);
                     }, 600L, 4000L))
                     .withFirstPersonPositioningZooming((renderContext) -> {
                         GL11.glTranslatef(0.0F, -0.58F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(0.753F, -1.0F, 2.5F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.ACOG)) {
                             GL11.glTranslatef(-0.09F, -0.03F, -0.13F);
                         }
@@ -167,21 +165,21 @@ public class SMAWFactory implements GunFactory {
                     .withFirstPersonPositioningZoomingRecoiled((renderContext) -> {
                         GL11.glTranslatef(0.0F, -0.58F, -0.2F);
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glTranslatef(0.753F, -1.0F, 2.53F);
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         if (ItemWeapon.isActiveAttachment(renderContext.getWeaponInstance(), Attachments.ACOG)) {
                             GL11.glTranslatef(-0.09F, -0.03F, -0.13F);
                         }
 
                     })
                     .withFirstPersonPositioningRunning((renderContext) -> {
-                        GL11.glScaled(0.699999988079071D, 0.699999988079071D, 0.699999988079071D);
+                        GL11.glScaled(0.7D, 0.7D, 0.7D);
                         GL11.glRotatef(-20.0F, -4.0F, 1.0F, -2.0F);
                         GL11.glTranslatef(1.0F, -0.5F, -0.8F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
-                        GL11.glScaled(0.550000011920929D, 0.550000011920929D, 0.550000011920929D);
+                        GL11.glScaled(0.55D, 0.55D, 0.55D);
                         GL11.glRotatef(-35.0F, 2.0F, 1.0F, 1.0F);
                         GL11.glTranslatef(1.0F, -0.8F, -1.5F);
                     })

@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.sniper;
 
 import java.util.Arrays;
 
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -34,9 +35,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 
-public class M1903A1Factory {
+public class M1903A1Factory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("M1903A1")
             .withAmmoCapacity(5)
@@ -71,21 +72,20 @@ public class M1903A1Factory {
                 Blocks.planks,
                 'F',
                 CommonProxy.SteelPlate)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Bolt-action rifle",
                     "Damage: 27",
                     "Cartridge:",
                     ".30-06 Springfield Bullet",
-                    "Fire Rate: Bolt Action");
-            })
+                    "Fire Rate: Bolt Action")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.SpringfieldAction, true, (model) -> {
                 if (model instanceof SpringfieldAction) {}
 
             })
             .withCompatibleAttachment(AuxiliaryAttachments.SpringfieldRearSight, true, (model) -> {
                 GL11.glTranslatef(-0.18F, -1.46F, -1.38F);
-                GL11.glScaled(0.14000000059604645D, 0.14000000059604645D, 0.14000000059604645D);
+                GL11.glScaled(0.14D, 0.14D, 0.14D);
             })
             .withCompatibleBullet(Bullets.BulletSpringfield3006, (model) -> {})
             .withCompatibleAttachment(AuxiliaryAttachments.Extra, true, (model) -> {
@@ -94,7 +94,7 @@ public class M1903A1Factory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof M4Iron2) {
                     GL11.glTranslatef(-0.11F, -1.29F, -9.7F);
-                    GL11.glScaled(0.5D, 0.5D, 1.2000000476837158D);
+                    GL11.glScaled(0.5D, 0.5D, 1.2D);
                 } else if (model instanceof P90iron) {
                     GL11.glTranslatef(0.26F, -1.55F, -2.35F);
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -121,7 +121,7 @@ public class M1903A1Factory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.13F, -1.39F, -9.7F);
-                    GL11.glScaled(0.15000000596046448D, 0.30000001192092896D, 0.800000011920929D);
+                    GL11.glScaled(0.15D, 0.3D, 0.8D);
                     GL11.glRotatef(-180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
@@ -133,18 +133,16 @@ public class M1903A1Factory {
 
             })
             .withCompatibleAttachment(Attachments.Unertl, true, true, (player, stack) -> {
-                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                 GL11.glScaled(1.0D, 1.0D, 1.0D);
             }, (model) -> {
                 if (model instanceof UnertlReticle) {
                     GL11.glTranslatef(-0.157F, -1.599F, -0.569F);
-                    GL11.glScaled(0.012000000104308128D, 0.012000000104308128D, 0.012000000104308128D);
+                    GL11.glScaled(0.012D, 0.012D, 0.012D);
                 } else if (model instanceof M1903A1scope) {
-                    GL11.glTranslatef(0.0F, 0.0F, 0.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof M1903A1scope2) {
                     GL11.glTranslatef(-0.2F, -1.56F, -1.5F);
-                    GL11.glScaled(0.3700000047683716D, 0.3700000047683716D, 0.6000000238418579D);
+                    GL11.glScaled(0.37D, 0.37D, 0.6D);
                 }
 
             })
@@ -159,7 +157,7 @@ public class M1903A1Factory {
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.3199999928474426D, 0.3199999928474426D, 0.3199999928474426D);
+                        GL11.glScaled(0.32D, 0.32D, 0.32D);
                         GL11.glTranslatef(1.0F, 0.8F, 0.0F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -219,31 +217,31 @@ public class M1903A1Factory {
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 200L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(43.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.46F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.46F);
                     }, 210L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(42.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.8F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.8F);
                     }, 200L, 20L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-9.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 220L, 10L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-8.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(44.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.25F, 1.174999F, 0.425F);
+                        GL11.glTranslatef(-0.25F, 1.175F, 0.425F);
                     }, 210L, 10L))
                     .withFirstPersonCustomPositioningEjectSpentRound(
                         AuxiliaryAttachments.SpringfieldAction.getRenderablePart(),
@@ -460,7 +458,6 @@ public class M1903A1Factory {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -473,7 +470,6 @@ public class M1903A1Factory {
                     }, (renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-100.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(0.2F, -0.425F, -0.05F);
                     })
@@ -659,7 +655,6 @@ public class M1903A1Factory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(-130.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-65.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.2F, -0.125F, 0.225F);
                     }, 50L, 200L), new Transition((renderContext) -> {

@@ -256,8 +256,7 @@ public class AuxiliaryAttachments {
                     GL11.glTranslatef(-0.6F, 0.0F, 0.2F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.699999988079071D, 0.75D);
+                    GL11.glScaled(0.6D, 0.7D, 0.75D);
                 } else {
                     GL11.glScalef(0.0F, 0.0F, 0.0F);
                 }
@@ -267,7 +266,7 @@ public class AuxiliaryAttachments {
                 if (model instanceof AR15CarryHandle) {
                     GL11.glTranslatef(0.1F, 0.0F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.5D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.5D, 0.7D, 0.7D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -278,7 +277,7 @@ public class AuxiliaryAttachments {
                     GL11.glTranslatef(-1.6F, -0.5F, 1.2F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.5D, 0.5D);
+                    GL11.glScaled(0.3D, 0.5D, 0.5D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -298,8 +297,7 @@ public class AuxiliaryAttachments {
                     GL11.glTranslatef(-0.6F, 0.0F, 0.2F);
                     GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                     GL11.glRotatef(-190.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.699999988079071D, 0.75D);
+                    GL11.glScaled(0.6D, 0.7D, 0.75D);
                 } else {
                     GL11.glScalef(0.0F, 0.0F, 0.0F);
                 }
@@ -309,7 +307,7 @@ public class AuxiliaryAttachments {
                 if (model instanceof M16A1CarryHandle) {
                     GL11.glTranslatef(0.1F, 0.0F, 0.4F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.5D, 0.699999988079071D, 0.699999988079071D);
+                    GL11.glScaled(0.5D, 0.7D, 0.7D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -320,7 +318,7 @@ public class AuxiliaryAttachments {
                     GL11.glTranslatef(-1.6F, -0.5F, 1.2F);
                     GL11.glRotatef(-50.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotatef(80.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glScaled(0.30000001192092896D, 0.5D, 0.5D);
+                    GL11.glScaled(0.3D, 0.5D, 0.5D);
                 } else {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -778,7 +776,7 @@ public class AuxiliaryAttachments {
                 if (model instanceof FNP90Sight) {
                     GL11.glTranslatef(0.1F, -0.8F, 0.2F);
                     GL11.glRotatef(30.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glScaled(0.6000000238418579D, 0.6000000238418579D, 0.6000000238418579D);
+                    GL11.glScaled(0.6D, 0.6D, 0.6D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }
@@ -799,7 +797,6 @@ public class AuxiliaryAttachments {
                 if (model instanceof FNP90Sight) {
                     GL11.glTranslatef(-0.6F, -0.1F, 0.3F);
                     GL11.glRotatef(-180.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotatef(0.0F, 0.0F, 0.0F, 1.0F);
                     GL11.glScaled(1.0D, 1.0D, 1.0D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
@@ -810,7 +807,7 @@ public class AuxiliaryAttachments {
                 if (model instanceof FNP90Sight) {
                     GL11.glTranslatef(0.1F, 0.2F, 0.4F);
                     GL11.glRotatef(90.0F, 0.0F, 0.0F, 1.0F);
-                    GL11.glScaled(0.4000000059604645D, 0.4000000059604645D, 0.4000000059604645D);
+                    GL11.glScaled(0.4D, 0.4D, 0.4D);
                 } else if (model instanceof Reflex2) {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 }

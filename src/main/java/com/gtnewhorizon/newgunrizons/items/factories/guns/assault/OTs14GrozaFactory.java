@@ -3,6 +3,7 @@ package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
@@ -32,9 +33,9 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.AuxiliaryAttachments;
 import com.gtnewhorizon.newgunrizons.registry.Magazines;
 
-public class OTs14GrozaFactory {
+public class OTs14GrozaFactory  {
 
-    public Item createGun(CommonProxy commonProxy) {
+    public Item createGun() {
         return (new ItemWeapon.Builder())
             .withName("OTs14Groza")
             .withFireRate(0.7F)
@@ -61,8 +62,7 @@ public class OTs14GrozaFactory {
                 CommonProxy.MiniSteelPlate,
                 CommonProxy.MetalComponents,
                 Blocks.planks)
-            .withInformationProvider((stack) -> {
-                return Arrays.asList(
+            .withInformationProvider((stack) -> Arrays.asList(
                     "Type: Assault rifle",
                     "Damage: 7.2",
                     "Caliber: 7.62x39mm",
@@ -70,8 +70,8 @@ public class OTs14GrozaFactory {
                     "30rnd 7.62x39mm Magazine",
                     "30rnd 7.62x39mm PMAG Magazine",
                     "75rnd 7.62x39mm Drum Magazine",
-                    "Fire Rate: Auto");
-            })
+                    "Fire Rate: Auto")
+            )
             .withCompatibleAttachment(AuxiliaryAttachments.AKaction, true, (model) -> {})
             .withCompatibleAttachment(Magazines.Magazine762x39, ((model) -> {
                 GL11.glTranslatef(0.0F, -0.5F, 0.05F);
@@ -80,11 +80,11 @@ public class OTs14GrozaFactory {
             .withCompatibleAttachment(Magazines.Mag75rnd762x39, ((model) -> {
                 GL11.glRotatef(-15.0F, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslatef(0.011F, 0.59F, 0.05F);
-                GL11.glScaled(1.100000023841858D, 1.2999999523162842D, 1.0D);
+                GL11.glScaled(1.1D, 1.3D, 1.0D);
             }))
             .withCompatibleAttachment(Attachments.Silencer762x39, (model) -> {
                 GL11.glTranslatef(-0.22F, -1.06F, -6.5F);
-                GL11.glScaled(1.2000000476837158D, 1.2000000476837158D, 1.2000000476837158D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withCompatibleAttachment(Magazines.PMAG762x39, ((model) -> {
                 GL11.glTranslatef(0.0F, -0.5F, 0.05F);
@@ -123,7 +123,7 @@ public class OTs14GrozaFactory {
                     GL11.glScaled(0.0D, 0.0D, 0.0D);
                 } else if (model instanceof FALIron) {
                     GL11.glTranslatef(-0.106F, -1.7F, -4.6F);
-                    GL11.glScaled(0.10000000149011612D, 0.30000001192092896D, 0.30000001192092896D);
+                    GL11.glScaled(0.1D, 0.3D, 0.3D);
                     GL11.glRotatef(-180.0F, 0.0F, 0.0F, 1.0F);
                 } else if (model instanceof M14Iron) {
                     GL11.glTranslatef(0.129F, -1.63F, -2.08F);
@@ -139,11 +139,11 @@ public class OTs14GrozaFactory {
                 (new WeaponRenderer.Builder())
                     .withModel(new Ots14Groza())
                     .withEntityPositioning((itemStack) -> {
-                        GL11.glScaled(0.3499999940395355D, 0.3499999940395355D, 0.3499999940395355D);
+                        GL11.glScaled(0.35D, 0.35D, 0.35D);
                         GL11.glRotatef(-90.0F, 0.0F, 0.0F, 4.0F);
                     })
                     .withInventoryPositioning((itemStack) -> {
-                        GL11.glScaled(0.2800000011920929D, 0.2800000011920929D, 0.2800000011920929D);
+                        GL11.glScaled(0.28D, 0.28D, 0.28D);
                         GL11.glTranslatef(1.0F, 2.0F, -1.2F);
                         GL11.glRotatef(-120.0F, -0.5F, 7.0F, 3.0F);
                     })
@@ -157,7 +157,7 @@ public class OTs14GrozaFactory {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
                         GL11.glRotatef(5.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.525F, 1.249999F, 0.125F);
+                        GL11.glTranslatef(-0.525F, 1.25F, 0.125F);
                     })
                     .withFirstPersonPositioningRecoiled((renderContext) -> {
                         GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
@@ -181,13 +181,7 @@ public class OTs14GrozaFactory {
                     .withFirstPersonCustomPositioning(Magazines.Mag75rnd762x39, (renderContext) -> {})
                     .withFirstPersonCustomPositioning(
                         AuxiliaryAttachments.AKaction.getRenderablePart(),
-                        (renderContext) -> {
-                            if (renderContext.getWeaponInstance()
-                                .getAmmo() == 0) {
-                                GL11.glTranslatef(0.0F, 0.0F, 0.0F);
-                            }
-
-                        })
+                        (renderContext) -> {})
                     .withFirstPersonPositioningCustomRecoiled(
                         AuxiliaryAttachments.AKaction.getRenderablePart(),
                         (renderContext) -> { GL11.glTranslatef(0.0F, 0.0F, 1.0F); })
@@ -392,7 +386,7 @@ public class OTs14GrozaFactory {
                         GL11.glRotatef(10.0F, 1.0F, 0.0F, 0.0F);
                         GL11.glRotatef(-10.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(20.0F, 0.0F, 0.0F, 1.0F);
-                        GL11.glTranslatef(-0.825F, 1.424999F, 1.149999F);
+                        GL11.glTranslatef(-0.825F, 1.425F, 1.15F);
                     })
                     .withFirstPersonPositioningModifying((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 3.0F);
@@ -410,7 +404,6 @@ public class OTs14GrozaFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     })
@@ -423,7 +416,6 @@ public class OTs14GrozaFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     })
@@ -436,7 +428,6 @@ public class OTs14GrozaFactory {
                     }, (renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     })
@@ -449,7 +440,6 @@ public class OTs14GrozaFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.0F, -0.625F, 0.425F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -480,19 +470,16 @@ public class OTs14GrozaFactory {
                     .withFirstPersonRightHandPositioningReloading(new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     }, 260L, 0L), new Transition((renderContext) -> {
@@ -523,7 +510,6 @@ public class OTs14GrozaFactory {
                     }, 50L, 200L), new Transition((renderContext) -> {
                         GL11.glScalef(3.0F, 3.0F, 5.0F);
                         GL11.glRotatef(-90.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.0F, -0.625F, 0.425F);
                     }, 50L, 200L), new Transition((renderContext) -> {
@@ -536,19 +522,16 @@ public class OTs14GrozaFactory {
                     .withFirstPersonRightHandPositioningUnloading(new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     }, 250L, 1000L), new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     }, 250L, 50L), new Transition((renderContext) -> {
                         GL11.glScalef(4.0F, 4.0F, 4.0F);
                         GL11.glRotatef(-85.0F, 1.0F, 0.0F, 0.0F);
-                        GL11.glRotatef(0.0F, 0.0F, 1.0F, 0.0F);
                         GL11.glRotatef(-70.0F, 0.0F, 0.0F, 1.0F);
                         GL11.glTranslatef(-0.175F, 0.075F, 0.0F);
                     }, 250L, 50L))
