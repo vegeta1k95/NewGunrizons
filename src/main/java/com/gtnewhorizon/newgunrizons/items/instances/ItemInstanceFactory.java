@@ -7,5 +7,5 @@ import com.gtnewhorizon.newgunrizons.state.ManagedState;
 
 public interface ItemInstanceFactory<T extends ItemInstance<S>, S extends ManagedState<S>> {
 
-    T createItemInstance(EntityLivingBase var1, ItemStack var2, int var3);
+    T createItemInstance(EntityLivingBase player, ItemStack itemStack, int slot);
 }

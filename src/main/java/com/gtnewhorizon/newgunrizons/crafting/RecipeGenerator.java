@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-final class RecipeGenerator {
+public class RecipeGenerator {
 
     private final SequenceGenerator sequenceGenerator = new SequenceGenerator(9);
 
@@ -12,12 +12,9 @@ final class RecipeGenerator {
         List<Object> sequence = this.sequenceGenerator.generate(name, this.createSeed(name, metadata), metadata);
         LinkedHashMap<Object, Character> encodingMap = new LinkedHashMap<>();
         char startFrom = 'A';
-        OptionsMetadata.OptionMetadata[] var6 = metadata.getMetadata();
-        int var7 = var6.length;
 
         int i;
-        for (i = 0; i < var7; ++i) {
-            OptionsMetadata.OptionMetadata optionMetadata = var6[i];
+        for (OptionsMetadata.OptionMetadata optionMetadata : metadata.getMetadata()) {
             char code;
             if (optionMetadata.getOption() == OptionsMetadata.EMPTY_OPTION) {
                 code = ' ';

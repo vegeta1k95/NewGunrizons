@@ -14,9 +14,9 @@ public interface ShaderPhase {
     ShaderPhase SCOPE_RENDER = new ShaderPhase.ScopeRendererBinding();
     ShaderPhase ITEM_RENDER = new ShaderPhase.ItemRenderBinding();
 
-    void apply(ShaderContext var1, DynamicShaderGroup var2);
+    void apply(ShaderContext context, DynamicShaderGroup shaderGroup);
 
-    void remove(ShaderContext var1, DynamicShaderGroup var2);
+    void remove(ShaderContext context, DynamicShaderGroup shaderGroup);
 
     class ScopeRendererBinding implements ShaderPhase {
 
@@ -70,11 +70,11 @@ public interface ShaderPhase {
 
         public void apply(ShaderContext context, DynamicShaderGroup shaderGroup) {
             if (OpenGlHelper.shadersSupported) {
-                int originalMatrixMode = GL11.glGetInteger(2976);
-                GL11.glMatrixMode(5890);
+                int originalMatrixMode = GL11.glGetInteger(GL11.GL_MATRIX_MODE);
+                GL11.glMatrixMode(GL11.GL_TEXTURE);
                 GL11.glPushMatrix();
                 GL11.glLoadIdentity();
-                GL11.glPushAttrib(8193);
+                GL11.glPushAttrib(GL11.GL_ENABLE_BIT | GL11.GL_CURRENT_BIT);
                 shaderGroup.loadShaderGroup(context.getPartialTicks());
                 GL11.glPopAttrib();
                 GL11.glPopMatrix();

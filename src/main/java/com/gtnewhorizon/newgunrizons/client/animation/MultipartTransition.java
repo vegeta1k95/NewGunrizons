@@ -7,12 +7,24 @@ import java.util.function.Consumer;
 import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 
+import lombok.Getter;
+
+/**
+ * A composite animation keyframe that holds per-part positioning functions.
+ * Each part (main item, left hand, right hand, custom attachments) gets its own
+ * GL transform function, duration, and optional attachment parent.
+ * <p>
+ * The sentinel {@link #ANCHORED_POSITION} tells the animation system to hold
+ * the part's last applied matrix instead of evaluating a new function.
+ */
 public class MultipartTransition {
 
     private static final Consumer<RenderContext> ANCHORED_POSITION = (c) -> {};
     private final Map<Part, Consumer<RenderContext>> multipartPositionFunctions;
     private final Map<Part, Part> attachedTo;
+    @Getter
     private final long duration;
+    @Getter
     private final long pause;
 
     public static Consumer<RenderContext> anchoredPosition() {
@@ -62,19 +74,10 @@ public class MultipartTransition {
         if (positionFunction != null) {
             positionFunction.accept(context);
         }
-
     }
 
     public Consumer<RenderContext> getPositioning(Part part) {
         return this.multipartPositionFunctions.get(part);
-    }
-
-    public long getDuration() {
-        return this.duration;
-    }
-
-    public long getPause() {
-        return this.pause;
     }
 
     public Part getAttachedTo(Part part) {

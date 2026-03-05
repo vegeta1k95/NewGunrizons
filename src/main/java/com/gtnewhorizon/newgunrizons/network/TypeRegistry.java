@@ -29,7 +29,7 @@ public class TypeRegistry {
                 cls.getName()
                     .getBytes());
             return new UUID(random.nextLong(), random.nextLong());
-        } catch (NoSuchAlgorithmException var3) {
+        } catch (NoSuchAlgorithmException e) {
             return UUID.fromString(
                 this.getClass()
                     .getName());
@@ -58,9 +58,10 @@ public class TypeRegistry {
         long mostSigBits = buf.readLong();
         long leastSigBits = buf.readLong();
         UUID typeUuid = new UUID(mostSigBits, leastSigBits);
-        Class<T> targetClass = (Class) this.typeRegistry.get(typeUuid);
+        @SuppressWarnings("unchecked")
+        Class<T> targetClass = (Class<T>) this.typeRegistry.get(typeUuid);
         if (targetClass == null) {
-            throw new RuntimeException("Failed to deserailize object. Did you forget to register type?");
+            throw new RuntimeException("Failed to deserialize object. Did you forget to register type?");
         } else {
             UniversallySerializable instance;
             if (targetClass.isEnum()) {
@@ -69,7 +70,7 @@ public class TypeRegistry {
             } else {
                 try {
                     instance = targetClass.newInstance();
-                } catch (IllegalAccessException | InstantiationException var10) {
+                } catch (IllegalAccessException | InstantiationException e) {
                     throw new RuntimeException("Cannot create instance of  " + targetClass);
                 }
 

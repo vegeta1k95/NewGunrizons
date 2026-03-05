@@ -114,11 +114,6 @@ public class ItemInstance<S extends ManagedState<S>> extends UniversalObject
 
     }
 
-    public <E extends ExtendedState<S>> void prepareTransaction(E preparedExtendedState) {
-        this.setState(preparedExtendedState.getState());
-        this.preparedState = (ItemInstance) preparedExtendedState;
-    }
-
     public boolean needsOpticalScopePerspective() {
         return false;
     }

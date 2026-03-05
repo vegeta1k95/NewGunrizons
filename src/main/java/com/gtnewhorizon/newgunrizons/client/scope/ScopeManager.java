@@ -11,7 +11,7 @@ public class ScopeManager {
     private final ClientModContext clientModContext;
 
     private ScopePerspective perspective;
-    private ScopeWorldRenderer entityRenderer;
+    private ScopeWorldRenderer worldRenderer;
     private EffectRenderer effectRenderer;
 
     public ScopeManager(ClientModContext clientModContext) {
@@ -38,13 +38,13 @@ public class ScopeManager {
     }
 
     public ScopeWorldRenderer getWorldRenderer() {
-        if (entityRenderer == null) {
-            entityRenderer = new ScopeWorldRenderer(
+        if (worldRenderer == null) {
+            worldRenderer = new ScopeWorldRenderer(
                 Minecraft.getMinecraft(),
                 Minecraft.getMinecraft()
                     .getResourceManager());
         }
-        return entityRenderer;
+        return worldRenderer;
     }
 
     public EffectRenderer getEffectRenderer() {

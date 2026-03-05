@@ -19,6 +19,4 @@ public interface ExtendedState<T extends ManagedState<T>> {
     /** Returns the timestamp (millis) when the state was last updated. */
     long getStateUpdateTimestamp();
 
-    /** Stages a prepared state change for later commit. */
-    <E extends ExtendedState<T>> void prepareTransaction(E preparedState);
 }

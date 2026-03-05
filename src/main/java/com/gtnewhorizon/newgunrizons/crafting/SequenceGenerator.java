@@ -20,8 +20,8 @@ class SequenceGenerator {
 
         try {
             this.random = SecureRandom.getInstance(ALG_NAME);
-        } catch (NoSuchAlgorithmException var3) {
-            throw new RuntimeException("Failed to initialize sequence generator: " + var3, var3);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Failed to initialize sequence generator: " + e, e);
         }
     }
 
@@ -31,7 +31,7 @@ class SequenceGenerator {
     }
 
     private List<Object> generateUniqueSequence(Object obj, OptionsMetadata optionMetadata) {
-        List result;
+        List<Object> result;
         do {
             result = this.generateSequence(optionMetadata.getMetadata());
         } while (this.uniqueSequenceMap.putIfAbsent(result, obj) != null);

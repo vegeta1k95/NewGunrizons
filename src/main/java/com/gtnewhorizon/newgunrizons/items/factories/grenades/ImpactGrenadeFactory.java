@@ -17,6 +17,7 @@ public class ImpactGrenadeFactory {
         return (new ItemGrenade.Builder()).withName("ImpactGrenade")
             .withCreativeTab(NewGunrizonsMod.GrenadesTab)
             .withTextureNames("ImpactGrenade")
+            .withMaxStackSize(64)
             .withExplosionSound("grenadeexplosion")
             .withExplosionStrength(1.0F)
             .withBounceSoftSound("grenade-soft-bounce")

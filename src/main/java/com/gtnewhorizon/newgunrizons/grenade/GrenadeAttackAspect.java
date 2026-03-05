@@ -24,7 +24,6 @@ import com.gtnewhorizon.newgunrizons.state.StateManager;
 public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInstance> {
 
     private static final Logger logger = LogManager.getLogger(GrenadeAttackAspect.class);
-    private static final long ALERT_TIMEOUT = 300L;
     private final Predicate<ItemGrenadeInstance> hasSafetyPin = (instance) -> instance.getWeapon()
         .hasSafetyPin();
     private static final Predicate<ItemGrenadeInstance> reequipTimeoutExpired = (instance) -> System.currentTimeMillis()
@@ -52,12 +51,12 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
         this.stateManager = stateManager;
         stateManager.in(this)
             .change(GrenadeState.READY)
-            .to(GrenadeState.SAFETY_PING_OFF)
+            .to(GrenadeState.SAFETY_PIN_OFF)
             .withAction(this::takeSafetyPinOff)
             .when(this.hasSafetyPin)
             .manual()
             .in(this)
-            .change(GrenadeState.SAFETY_PING_OFF)
+            .change(GrenadeState.SAFETY_PIN_OFF)
             .to(GrenadeState.STRIKER_LEVER_RELEASED)
             .withAction(this::releaseStrikerLever)
             .manual()
@@ -157,7 +156,7 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
                 this,
                 grenadeInstance,
                 allowedAttackFromStates,
-                GrenadeState.SAFETY_PING_OFF,
+                GrenadeState.SAFETY_PIN_OFF,
                 GrenadeState.THROWING);
         }
 
@@ -182,7 +181,7 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
             .getMainHandItemInstance(player, ItemGrenadeInstance.class);
         if (grenadeInstance != null) {
             if (grenadeInstance.getState() == GrenadeState.STRIKER_LEVER_RELEASED
-                && System.currentTimeMillis() > grenadeInstance.getLastSafetyPinAlertTimestamp() + 1000L) {
+                && System.currentTimeMillis() > grenadeInstance.getLastSafetyPinAlertTimestamp() + SAFETY_IN_ALERT_TIMEOUT) {
                 long remainingTimeUntilExplosion = (long) grenadeInstance.getWeapon()
                     .getExplosionTimeout() - (System.currentTimeMillis() - grenadeInstance.getActivationTimestamp());
                 if (remainingTimeUntilExplosion < 0L) {
@@ -259,7 +258,7 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
 
     static {
         allowedAttackFromStates = new HashSet<>(Arrays.asList(GrenadeState.READY, GrenadeState.STRIKER_LEVER_RELEASED));
-        allowedPinOffFromStates = new HashSet<>(Arrays.asList(GrenadeState.SAFETY_PING_OFF));
+        allowedPinOffFromStates = new HashSet<>(Arrays.asList(GrenadeState.SAFETY_PIN_OFF));
         allowedUpdateFromStates = new HashSet<>(
             Arrays.asList(
                 GrenadeState.STRIKER_LEVER_RELEASED,

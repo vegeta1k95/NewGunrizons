@@ -6,5 +6,5 @@ public interface PlayerContext {
 
     EntityLivingBase getPlayer();
 
-    void setPlayer(EntityLivingBase var1);
+    void setPlayer(EntityLivingBase player);
 }

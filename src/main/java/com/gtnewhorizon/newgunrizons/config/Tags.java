@@ -46,7 +46,7 @@ public final class Tags {
                     return (T) targetClass.cast(
                         TypeRegistry.getInstance()
                             .fromBytes(Unpooled.wrappedBuffer(bytes)));
-                } catch (RuntimeException var4) {
+                } catch (RuntimeException e) {
                     return null;
                 }
             } else {

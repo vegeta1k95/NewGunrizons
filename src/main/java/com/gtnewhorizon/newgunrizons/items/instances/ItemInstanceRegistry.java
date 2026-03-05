@@ -78,32 +78,6 @@ public class ItemInstanceRegistry {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
-    public <S extends ManagedState<S>, T extends ItemInstance<S>> boolean update(S newManagedState,
-        T extendedStateToMerge) {
-        Map<Integer, ItemInstance<?>> slotContexts = this.registry.get(
-            extendedStateToMerge.getPlayer()
-                .getUniqueID());
-        if (slotContexts == null) {
-            return false;
-        }
-
-        T currentState = (T) slotContexts.get(extendedStateToMerge.getItemInventoryIndex());
-        if (currentState == null
-            || Item.getIdFromItem(currentState.getItem()) != Item.getIdFromItem(extendedStateToMerge.getItem())) {
-            return false;
-        }
-
-        extendedStateToMerge.setState(newManagedState);
-        if (newManagedState.commitPhase() != null) {
-            currentState.prepareTransaction(extendedStateToMerge);
-        } else {
-            currentState.updateWith(extendedStateToMerge, true);
-        }
-
-        return true;
-    }
-
     private ItemInstance<?> createItemInstance(EntityPlayer player, int slot) {
         ItemStack itemStack = player.inventory.getStackInSlot(slot);
         if (itemStack == null) {

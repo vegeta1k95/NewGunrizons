@@ -9,7 +9,7 @@ import lombok.Getter;
 public enum GrenadeState implements ManagedState<GrenadeState> {
 
     READY(false),
-    SAFETY_PING_OFF(9),
+    SAFETY_PIN_OFF(9),
     STRIKER_LEVER_RELEASED(9),
     THROWING(9),
     THROWN(9),

@@ -10,7 +10,6 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.gtnewhorizon.newgunrizons.client.animation.PlayerRawPitchAnimationManager;
 import com.gtnewhorizon.newgunrizons.client.handlers.ClientTickHandler;
 import com.gtnewhorizon.newgunrizons.client.handlers.WeaponHudHandler;
 import com.gtnewhorizon.newgunrizons.client.handlers.WeaponInputHandler;
@@ -46,8 +45,6 @@ public class ClientModContext extends CommonModContext {
     private float aspectRatio;
     @Getter
     private Map<Object, Integer> inventoryTextureMap;
-    @Getter
-    private PlayerRawPitchAnimationManager playerRawPitchAnimationManager;
 
     public void init(Object mod, SimpleNetworkWrapper channel) {
         super.init(mod, channel);
@@ -83,7 +80,6 @@ public class ClientModContext extends CommonModContext {
 
         this.viewManager = new ScopeManager(this);
         this.inventoryTextureMap = new HashMap<>();
-        this.playerRawPitchAnimationManager = new PlayerRawPitchAnimationManager();
     }
 
     public boolean isClient() {

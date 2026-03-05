@@ -40,7 +40,7 @@ public class EntityLaserBeamRenderer implements CustomRenderer {
             GL20.glUseProgram(0);
 
             GL11.glPushMatrix();
-            GL11.glPushAttrib(1048575);
+            GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
             GL11.glDisable(GL11.GL_CULL_FACE);
             GL11.glDisable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_TEXTURE_2D);

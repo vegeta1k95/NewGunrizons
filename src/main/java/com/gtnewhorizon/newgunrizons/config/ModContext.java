@@ -23,13 +23,13 @@ public interface ModContext {
 
     boolean isClient();
 
-    void init(Object var1, SimpleNetworkWrapper var4);
+    void init(Object mod, SimpleNetworkWrapper channel);
 
-    void registerWeapon(String var1, ItemWeapon var2, WeaponRenderer var3);
+    void registerWeapon(String name, ItemWeapon weapon, WeaponRenderer renderer);
 
     SimpleNetworkWrapper getChannel();
 
-    void registerRenderableItem(String var1, Item var2, Object var3);
+    void registerRenderableItem(String name, Item item, Object renderer);
 
     ItemInstanceRegistry getItemInstanceRegistry();
 
@@ -47,9 +47,9 @@ public interface ModContext {
 
     RecipeManager getRecipeManager();
 
-    void registerGrenadeWeapon(String var1, ItemGrenade var2, GrenadeRenderer var3);
+    void registerGrenadeWeapon(String name, ItemGrenade grenade, GrenadeRenderer renderer);
 
-    ResourceLocation getNamedResource(String var1);
+    ResourceLocation getNamedResource(String name);
 
     GrenadeAttackAspect getGrenadeAttackAspect();
 }

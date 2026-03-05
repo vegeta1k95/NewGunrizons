@@ -4,5 +4,5 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public interface Updatable {
 
-    void update(EntityPlayer var1);
+    void update(EntityPlayer player);
 }

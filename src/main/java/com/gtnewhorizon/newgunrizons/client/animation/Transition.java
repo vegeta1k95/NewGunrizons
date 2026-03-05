@@ -7,6 +7,14 @@ import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 
 import lombok.Getter;
 
+/**
+ * A single animation keyframe for one part of a weapon model.
+ * Stores the GL positioning function, duration, optional pause after completion,
+ * and an optional parent part for attachment-relative positioning.
+ * <p>
+ * The sentinel {@link #ANCHORED_POSITION} indicates the part should hold its
+ * last applied matrix rather than running a new positioning function.
+ */
 @Getter
 public class Transition {
 
@@ -40,5 +48,4 @@ public class Transition {
         this.pause = pause;
         this.attachedTo = attachedTo;
     }
-
 }

@@ -11,7 +11,6 @@ import org.lwjgl.util.vector.Matrix4f;
 
 import com.gtnewhorizon.newgunrizons.attachment.Part;
 import com.gtnewhorizon.newgunrizons.client.animation.MatrixHelper;
-import com.gtnewhorizon.newgunrizons.client.animation.PartPositionProvider;
 import com.gtnewhorizon.newgunrizons.config.ModContext;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
@@ -20,7 +19,7 @@ import com.gtnewhorizon.newgunrizons.state.RenderableState;
 import lombok.Getter;
 import lombok.Setter;
 
-public class RenderContext implements PartPositionProvider {
+public class RenderContext {
 
     @Getter
     private EntityLivingBase player;
@@ -30,7 +29,7 @@ public class RenderContext implements PartPositionProvider {
     private float limbSwing;
     @Setter
     @Getter
-    private float flimbSwingAmount;
+    private float limbSwingAmount;
     @Setter
     @Getter
     private float ageInTicks;
