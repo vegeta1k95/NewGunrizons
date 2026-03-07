@@ -4,7 +4,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 import org.lwjgl.opengl.GL11;
@@ -58,7 +60,7 @@ public class SmokeFX extends EntityFX {
     private static final float UV_WIDTH = 1.0F / IMAGES_PER_ROW;
     private static final float RENDER_SCALE = 0.1F;
     private static final float MIN_ALPHA_THRESHOLD = 1.0F / 255.0F;
-    private static final int FULL_BRIGHTNESS = 200;
+    private static final float MIN_LIGHT = 0.05F;
 
     /** Randomly chosen sprite variant (0..3) from the texture atlas. */
     private final int imageIndex;
@@ -156,10 +158,20 @@ public class SmokeFX extends EntityFX {
         GL11.glAlphaFunc(GL11.GL_GREATER, MIN_ALPHA_THRESHOLD);
         RenderHelper.disableStandardItemLighting();
 
+        // Compute light factor from sky light (modulated by sun brightness for
+        // time-of-day) and block light at particle position.
+        int bx = MathHelper.floor_double(this.posX);
+        int by = MathHelper.floor_double(this.posY);
+        int bz = MathHelper.floor_double(this.posZ);
+        float skyContrib = this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, bx, by, bz) / 15.0F
+            * this.worldObj.getSunBrightness(1.0F);
+        float blockContrib = this.worldObj.getSavedLightValue(EnumSkyBlock.Block, bx, by, bz) / 15.0F;
+        float light = Math.max(Math.max(skyContrib, blockContrib), MIN_LIGHT);
+
         // Build camera-facing quad
         tessellator.startDrawing(GL11.GL_QUADS);
-        tessellator.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, this.particleAlpha);
-        tessellator.setBrightness(FULL_BRIGHTNESS);
+        tessellator.setColorRGBA_F(
+            this.particleRed * light, this.particleGreen * light, this.particleBlue * light, this.particleAlpha);
 
         float size = RENDER_SCALE * this.particleScale;
         float x = (float) (this.prevPosX + (this.posX - this.prevPosX) * (double) partialTicks - interpPosX);

@@ -31,6 +31,7 @@ public class HudRenderer {
 
     private static final int STATUS_BAR_BOTTOM_OFFSET = 15;
     private static final int STATUS_BAR_TOP_OFFSET = 10;
+    private static final float AMMO_COUNTER_SCALE = 1.5F;
 
     private static final int COLOR_WHITE = 0xFFFFFF;
     private static final int COLOR_YELLOW = 0xFFFF00;
@@ -102,12 +103,9 @@ public class HudRenderer {
             color = COLOR_YELLOW;
         }
 
-        int x = getStatusBarXPosition(width, messageText, fontRender);
-        int y = getStatusBarYPosition(height);
         int stringWidth = fontRender.getStringWidth(messageText);
-        if (stringWidth > 80) {
-            x = width - stringWidth - 5;
-        }
+        int x = width - stringWidth - 5;
+        int y = getStatusBarYPosition(height, fontRender.FONT_HEIGHT);
 
         fontRender.drawStringWithShadow(messageText, x, y, color);
         return true;
@@ -145,9 +143,17 @@ public class HudRenderer {
             messageText = defaultMessage;
         }
 
-        int x = getStatusBarXPosition(width, messageText, fontRender);
-        int y = getStatusBarYPosition(height);
-        fontRender.drawStringWithShadow(messageText, x, y, color);
+        int stringWidth = fontRender.getStringWidth(messageText);
+        int scaledStringWidth = (int) (stringWidth * AMMO_COUNTER_SCALE);
+        int scaledHeight = (int) (fontRender.FONT_HEIGHT * AMMO_COUNTER_SCALE);
+        int x = width - scaledStringWidth - 5;
+        int y = getStatusBarYPosition(height, scaledHeight);
+
+        GL11.glPushMatrix();
+        GL11.glTranslatef(x, y, 0.0F);
+        GL11.glScalef(AMMO_COUNTER_SCALE, AMMO_COUNTER_SCALE, 1.0F);
+        fontRender.drawStringWithShadow(messageText, 0, 0, color);
+        GL11.glPopMatrix();
     }
 
     private String getDefaultMagazineMessage(ItemStack itemStack) {
@@ -183,23 +189,11 @@ public class HudRenderer {
             || weaponInstance.getState() == WeaponState.NEXT_ATTACHMENT;
     }
 
-    private int getStatusBarXPosition(int width, String text, FontRenderer fontRender) {
-        if (statusBarPosition == StatusBarPosition.BOTTOM_RIGHT || statusBarPosition == StatusBarPosition.TOP_RIGHT) {
-            int x = width - 80;
-            int stringWidth = fontRender.getStringWidth(text);
-            if (stringWidth > 80) {
-                x = width - stringWidth - 5;
-            }
-            return x;
-        }
-        return 10;
-    }
-
-    private int getStatusBarYPosition(int height) {
+    private int getStatusBarYPosition(int height, int textHeight) {
         switch (statusBarPosition) {
             case BOTTOM_RIGHT:
             case BOTTOM_LEFT:
-                return height - STATUS_BAR_BOTTOM_OFFSET;
+                return height - STATUS_BAR_BOTTOM_OFFSET - textHeight;
             default:
                 return STATUS_BAR_TOP_OFFSET;
         }

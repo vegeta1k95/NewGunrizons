@@ -8,7 +8,6 @@ import net.minecraftforge.client.event.MouseEvent;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
-import com.gtnewhorizon.newgunrizons.client.debug.MuzzleDebug;
 import com.gtnewhorizon.newgunrizons.client.input.KeyBindings;
 import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
@@ -93,10 +92,6 @@ public class WeaponInputHandler {
             return;
         }
         ItemStack itemStack = player.getHeldItem();
-        if (KeyBindings.muzzleDebugKey.isPressed()) {
-            MuzzleDebug.toggle();
-            return;
-        }
         if (KeyBindings.reloadKey.isPressed()) {
             if (itemStack != null) {
                 Item item = itemStack.getItem();
@@ -184,9 +179,6 @@ public class WeaponInputHandler {
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onClientTick(ClientTickEvent event) {
-        if (event.phase == TickEvent.Phase.START) {
-            MuzzleDebug.tick();
-        }
         if (event.phase == TickEvent.Phase.START && this.leftMouseButtonPressed) {
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
             if (player != null) {

@@ -12,7 +12,6 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
-import com.gtnewhorizon.newgunrizons.client.debug.MuzzleDebug;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
@@ -44,7 +43,7 @@ public class MuzzleFlashRenderer {
     /** How long the flash stays visible after firing (milliseconds). */
     private static final long FLASH_DURATION_MS = 60L;
 
-    /** Default barrel tip offset in model space (X, Y, Z). Tune with MuzzleDebug. */
+    /** Default barrel tip offset in model space (X, Y, Z). */
     private static final float BARREL_X = 0.1F;
     private static final float BARREL_Y = -0.9F;
     private static final float BARREL_Z = -4.7F;
@@ -118,11 +117,6 @@ public class MuzzleFlashRenderer {
         float bx = BARREL_X + weaponOffsetX;
         float by = BARREL_Y + weaponOffsetY;
         float bz = BARREL_Z + weaponOffsetZ;
-        if (MuzzleDebug.isEnabled()) {
-            bx += MuzzleDebug.getXOffset();
-            by += MuzzleDebug.getYOffset();
-            bz += MuzzleDebug.getDistanceOffset();
-        }
         GL11.glTranslatef(bx, by, bz);
 
         // Extract the current modelview matrix and cancel its rotation so the quad

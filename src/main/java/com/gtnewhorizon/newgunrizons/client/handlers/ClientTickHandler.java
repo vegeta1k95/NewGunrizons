@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import com.gtnewhorizon.newgunrizons.items.Updatable;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
@@ -33,6 +34,7 @@ public class ClientTickHandler {
     @SubscribeEvent
     public void onClientTick(ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
+            ParticleManager.tickSmoke();
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
             if (player != null) {
                 Item item = getHeldItem(player);

@@ -1,12 +1,18 @@
 package com.gtnewhorizon.newgunrizons.client.particle;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-
-import com.gtnewhorizon.newgunrizons.client.debug.MuzzleDebug;
 
 /**
  * Factory for spawning weapon and explosion particle effects.
@@ -16,6 +22,41 @@ import com.gtnewhorizon.newgunrizons.client.debug.MuzzleDebug;
  * Angelica/Iris compatibility.
  */
 public class ParticleManager {
+
+    private static final List<SmokeFX> smokeParticles = new ArrayList<>();
+
+    public static void tickSmoke() {
+        Iterator<SmokeFX> it = smokeParticles.iterator();
+        while (it.hasNext()) {
+            SmokeFX p = it.next();
+            p.onUpdate();
+            if (p.isDead) {
+                it.remove();
+            }
+        }
+    }
+
+    public static void renderSmoke(float partialTicks) {
+        if (smokeParticles.isEmpty()) return;
+
+        Entity view = Minecraft.getMinecraft().renderViewEntity;
+        if (view == null) return;
+
+        EntityFX.interpPosX = view.lastTickPosX + (view.posX - view.lastTickPosX) * partialTicks;
+        EntityFX.interpPosY = view.lastTickPosY + (view.posY - view.lastTickPosY) * partialTicks;
+        EntityFX.interpPosZ = view.lastTickPosZ + (view.posZ - view.lastTickPosZ) * partialTicks;
+
+        float rotX = ActiveRenderInfo.rotationX;
+        float rotZ = ActiveRenderInfo.rotationZ;
+        float rotYZ = ActiveRenderInfo.rotationYZ;
+        float rotXY = ActiveRenderInfo.rotationXY;
+        float rotXZ = ActiveRenderInfo.rotationXZ;
+
+        Tessellator tessellator = Tessellator.instance;
+        for (SmokeFX particle : smokeParticles) {
+            particle.renderParticle(tessellator, partialTicks, rotX, rotXZ, rotZ, rotYZ, rotXY);
+        }
+    }
 
     /**
      * Computes a world-space muzzle position relative to the player's eye using
@@ -81,12 +122,6 @@ public class ParticleManager {
         xOffset += -0.02F;
         yOffset += 0.10F;
 
-        if (MuzzleDebug.isEnabled()) {
-            distance += MuzzleDebug.getDistanceOffset();
-            xOffset += MuzzleDebug.getXOffset();
-            yOffset += MuzzleDebug.getYOffset();
-        }
-
         double[] pos = computeMuzzlePosition(player, distance, xOffset, yOffset, 0.01F);
 
         SmokeFX particle = new SmokeFX(
@@ -98,7 +133,7 @@ public class ParticleManager {
             (float) motionX,
             (float) motionY,
             (float) motionZ);
-        Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+        smokeParticles.add(particle);
     }
 
     /**

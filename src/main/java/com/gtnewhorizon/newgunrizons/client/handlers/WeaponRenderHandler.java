@@ -7,8 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent.Pre;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
+import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import com.gtnewhorizon.newgunrizons.client.scope.ScopeManager;
 import com.gtnewhorizon.newgunrizons.client.scope.ScopePerspective;
 import com.gtnewhorizon.newgunrizons.client.shaders.ShaderContext;
@@ -125,6 +127,12 @@ public class WeaponRenderHandler {
                 }
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onRenderWorldLast(RenderWorldLastEvent event) {
+        ParticleManager.renderSmoke(event.partialTicks);
     }
 
     @SideOnly(Side.CLIENT)

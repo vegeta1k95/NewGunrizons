@@ -5,7 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 
-import com.gtnewhorizon.newgunrizons.client.debug.MuzzleDebug;
 import com.gtnewhorizon.newgunrizons.client.render.HudRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.items.ItemMagazine;
@@ -27,8 +26,6 @@ public class WeaponHudHandler {
         if (event.type != ElementType.CROSSHAIRS) {
             return;
         }
-
-        MuzzleDebug.renderOverlay(event.resolution);
 
         ItemStack itemStack = Minecraft.getMinecraft().thePlayer.getHeldItem();
         if (itemStack == null) {
