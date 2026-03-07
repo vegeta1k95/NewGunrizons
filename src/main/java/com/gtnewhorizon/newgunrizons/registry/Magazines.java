@@ -469,7 +469,7 @@ public class Magazines {
         M8A7Mag = (new ItemMagazine.Builder()).withAmmo(32)
             .withCompatibleBullet(Bullets.Bullet300Blackout)
             .withName("M8A7Mag")
-            .withCreativeTab(NewGunrizonsMod.FunGunsTab)
+            .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M8A7Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
@@ -1171,7 +1171,7 @@ public class Magazines {
         Mag10mm = (new ItemMagazine.Builder()).withAmmo(10)
             .withCompatibleBullet(Bullets.Bullet10mm)
             .withName("Mag10mm")
-            .withCreativeTab(NewGunrizonsMod.FunGunsTab)
+            .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M9Mag(), "AK12.png")
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(0.1F, -0.7F, 0.4F);
@@ -1767,7 +1767,7 @@ public class Magazines {
         M41AMag = (new ItemMagazine.Builder()).withAmmo(99)
             .withCompatibleBullet(Bullets.Bullet65x39)
             .withName("M41AMag")
-            .withCreativeTab(NewGunrizonsMod.FunGunsTab)
+            .withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withModel(new M41AMag(), "M41AMag.png")
             .withFirstPersonPositioning((player, itemStack) -> {
                 GL11.glTranslatef(-0.1F, -1.0F, 0.2F);

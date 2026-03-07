@@ -14,6 +14,7 @@ import net.minecraft.util.StatCollector;
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
+import com.gtnewhorizon.newgunrizons.client.render.MuzzleFlashLight;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
@@ -207,6 +208,10 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         weaponInstance.setSeriesShotCount(weaponInstance.getSeriesShotCount() + 1);
         weaponInstance.setLastFireTimestamp(System.currentTimeMillis());
         weaponInstance.setAmmo(weaponInstance.getAmmo() - 1);
+
+        if (!silencerOn) {
+            MuzzleFlashLight.flash(player.posX, player.posY + player.getEyeHeight(), player.posZ);
+        }
     }
 
     private void ejectSpentRound(ItemWeaponInstance weaponInstance) {

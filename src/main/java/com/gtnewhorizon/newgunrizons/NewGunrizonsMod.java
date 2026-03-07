@@ -6,8 +6,6 @@ import com.gtnewhorizon.newgunrizons.registry.GTRecipes;
 import com.gtnewhorizon.newgunrizons.tabs.AmmoTab;
 import com.gtnewhorizon.newgunrizons.tabs.AssaultRiflesTab;
 import com.gtnewhorizon.newgunrizons.tabs.AttachmentsTab;
-import com.gtnewhorizon.newgunrizons.tabs.FunGunsTab;
-import com.gtnewhorizon.newgunrizons.tabs.GrenadesTab;
 import com.gtnewhorizon.newgunrizons.tabs.GunsTab;
 import com.gtnewhorizon.newgunrizons.tabs.PistolsTab;
 import com.gtnewhorizon.newgunrizons.tabs.SMGTab;
@@ -39,8 +37,6 @@ public class NewGunrizonsMod {
     public static CreativeTabs SnipersTab;
     public static CreativeTabs AmmoTab;
     public static CreativeTabs AttachmentsTab;
-    public static CreativeTabs GrenadesTab;
-    public static CreativeTabs FunGunsTab;
 
     @SidedProxy(
         serverSide = "com.gtnewhorizon.newgunrizons.CommonProxy",
@@ -72,7 +68,5 @@ public class NewGunrizonsMod {
         SnipersTab = new SnipersTab(CreativeTabs.getNextID(), "SnipersTab");
         AmmoTab = new AmmoTab(CreativeTabs.getNextID(), "AmmoTab");
         AttachmentsTab = new AttachmentsTab(CreativeTabs.getNextID(), "AttachmentsTab");
-        GrenadesTab = new GrenadesTab(CreativeTabs.getNextID(), "GrenadesTab");
-        FunGunsTab = new FunGunsTab(CreativeTabs.getNextID(), "FunGuns_tab");
     }
 }

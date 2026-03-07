@@ -36,7 +36,7 @@ public class Pistol10mmFactory {
             .withFlashOffsetX(() -> 0.2F)
             .withFlashOffsetY(() -> 0.1F)
             .withInaccuracy(3.0F)
-            .withCreativeTab(NewGunrizonsMod.FunGunsTab)
+            .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(
                     "--Fallout 4's starting pistol--",

@@ -14,7 +14,7 @@ public class FuseGrenadeFactory {
 
     public ItemGrenade createGrenade() {
         return (new ItemGrenade.Builder()).withName("M67Frag")
-            .withCreativeTab(NewGunrizonsMod.GrenadesTab)
+            .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
             .withTextureNames("M67Frag")
             .withMaxStackSize(64)
             .withExplosionStrength(1.0F)

@@ -324,6 +324,25 @@ item.newgunrizons_PriscopicScope.name=Priscopic Prism Scope
 item.newgunrizons_AKMIron.name=Standard Iron-Sight
 item.newgunrizons_AR15Iron.name=AR Carry Handle
 
+item.newgunrizons_GunBarrelSteel.name=Steel Gun Barrel
+item.newgunrizons_GunBarrelStainless.name=Stainless Steel Gun Barrel
+item.newgunrizons_GunBarrelTitanium.name=Titanium Gun Barrel
+item.newgunrizons_GunBarrelTungstenSteel.name=Tungsten Steel Gun Barrel
+item.newgunrizons_GunReceiverSteel.name=Steel Gun Receiver
+item.newgunrizons_GunReceiverStainless.name=Stainless Steel Gun Receiver
+item.newgunrizons_GunReceiverTitanium.name=Titanium Gun Receiver
+item.newgunrizons_GunReceiverTungstenSteel.name=Tungsten Steel Gun Receiver
+item.newgunrizons_GunStockWood.name=Wooden Gun Stock
+item.newgunrizons_GunStockPlastic.name=Plastic Gun Stock
+item.newgunrizons_GunStockCarbon.name=Carbon Fiber Gun Stock
+item.newgunrizons_FiringMechanism.name=Firing Mechanism
+item.newgunrizons_FiringMechanismAdvanced.name=Advanced Firing Mechanism
+item.newgunrizons_BulletCasingSmall.name=Small Bullet Casing
+item.newgunrizons_BulletCasingMedium.name=Medium Bullet Casing
+item.newgunrizons_BulletCasingLarge.name=Large Bullet Casing
+item.newgunrizons_WeaponPartKit.name=Weapon Part Kit
+item.newgunrizons_PrecisionLens.name=Precision Lens
+
 itemGroup.guns_tab=NewGunrizons Resources
 itemGroup.AssaultRifles_tab=NewGunrizons Assault Rifles/Carbines
 itemGroup.ShotgunsTab=NewGunrizons Shotguns/Heavy/LMGs
@@ -332,7 +351,6 @@ itemGroup.Pistols_tab=NewGunrizons Pistols/Machine Pistols
 itemGroup.SMG_tab=NewGunrizons SMGs/PDWs
 itemGroup.AmmoTab=NewGunrizons Ammunition
 itemGroup.AttachmentsTab=NewGunrizons Attachments
-itemGroup.GrenadesTab=NewGunrizons Grenades
 
 key.categories.newgunrizons=NewGunrizons
 key.texture_change=Right Arrow (Debug)

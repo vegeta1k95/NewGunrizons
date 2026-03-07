@@ -65,7 +65,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -88,7 +88,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -111,7 +111,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -134,7 +134,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -162,7 +162,7 @@ public class Bullets {
             .withTextureName("Dummy.png")
 
             .build(ItemBullet.class);
-        Bullet10x24 = (new ItemBullet.Builder()).withCreativeTab(NewGunrizonsMod.FunGunsTab)
+        Bullet10x24 = (new ItemBullet.Builder()).withCreativeTab(NewGunrizonsMod.AmmoTab)
             .withName("Bullet10x24")
             .withModel(new BulletBig(), "Bullet.png")
 
@@ -181,7 +181,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -204,7 +204,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -227,7 +227,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -250,7 +250,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -273,7 +273,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -296,7 +296,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -319,7 +319,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -342,7 +342,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -365,7 +365,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.8D, 1.6D);
+                GL11.glScaled(1.2D, 1.4D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -388,7 +388,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.8D, 1.6D);
+                GL11.glScaled(1.2D, 1.4D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -411,7 +411,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.8D, 1.6D);
+                GL11.glScaled(1.2D, 1.4D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -434,7 +434,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.8D, 1.6D);
+                GL11.glScaled(1.2D, 1.4D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -457,7 +457,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -480,7 +480,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -503,7 +503,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.6D, 1.6D, 1.6D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -526,7 +526,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.4D, 1.4D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -549,7 +549,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.4D, 1.4D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -572,7 +572,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.4D, 1.4D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -595,7 +595,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.3D, 1.4D);
+                GL11.glScaled(1.2D, 1.1D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -618,7 +618,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.3D, 1.4D);
+                GL11.glScaled(1.2D, 1.1D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -641,7 +641,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.3D, 1.4D);
+                GL11.glScaled(1.2D, 1.1D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -664,7 +664,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.4D, 1.4D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -687,7 +687,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.5D, 1.4D);
+                GL11.glScaled(1.2D, 1.3D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -710,7 +710,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.45D, 1.4D);
+                GL11.glScaled(1.2D, 1.25D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -733,7 +733,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.45D, 1.4D);
+                GL11.glScaled(1.2D, 1.25D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -756,7 +756,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.45D, 1.4D);
+                GL11.glScaled(1.2D, 1.25D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -779,7 +779,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.4D, 1.8D, 1.4D);
+                GL11.glScaled(1.2D, 1.4D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);
@@ -802,7 +802,7 @@ public class Bullets {
                 GL11.glTranslatef(-0.8F, -0.45F, 0.4F);
                 GL11.glRotatef(10.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(2.0F, 1.0F, 0.0F, 0.0F);
-                GL11.glScaled(1.45D, 1.45D, 1.45D);
+                GL11.glScaled(1.2D, 1.2D, 1.2D);
             })
             .withTextureName("Dummy.png")
             .build(ItemBullet.class);

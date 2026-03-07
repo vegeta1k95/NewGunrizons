@@ -12,7 +12,7 @@ public class ImpactGrenadeFactory {
 
     public ItemGrenade createGrenade() {
         return (new ItemGrenade.Builder()).withName("ImpactGrenade")
-            .withCreativeTab(NewGunrizonsMod.GrenadesTab)
+            .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
             .withTextureNames("ImpactGrenade")
             .withMaxStackSize(64)
             .withExplosionSound("grenadeexplosion")

@@ -49,7 +49,7 @@ public class M8A7Factory {
             .withFlashOffsetZ(() -> 0.0F)
             .withFlashOffsetX(() -> 0.0F)
             .withFlashOffsetY(() -> 0.0F)
-            .withCreativeTab(NewGunrizonsMod.FunGunsTab)
+            .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(
                     "Type: Assault Rifle",

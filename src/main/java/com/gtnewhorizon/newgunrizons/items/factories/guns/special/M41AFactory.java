@@ -47,7 +47,7 @@ public class M41AFactory {
             .withFlashOffsetZ(() -> 1.8F)
             .withFlashOffsetX(() -> 0.25F)
             .withFlashOffsetY(() -> 0.1F)
-            .withCreativeTab(NewGunrizonsMod.FunGunsTab)
+            .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(
                     "--ALIEN was a good movie--",
