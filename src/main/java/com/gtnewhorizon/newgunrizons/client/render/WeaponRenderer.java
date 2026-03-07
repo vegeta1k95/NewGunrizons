@@ -1323,6 +1323,10 @@ public class WeaponRenderer implements IItemRenderer {
             this.renderItem(weaponItemStack, renderContext, positioner);
         }
 
+        if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
+            MuzzleFlashRenderer.renderIfFiring(renderContext);
+        }
+
         if (type == ItemRenderType.INVENTORY && inventoryTextureInitializationPhaseOn) {
             framebuffer.unbindFramebuffer();
             framebuffer.framebufferTexture = -1;

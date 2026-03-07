@@ -23,7 +23,7 @@ public class MuzzleDebug {
     private static float xOffset = 0.0F;
     @Getter
     private static float yOffset = 0.0F;
-    private static final float STEP = 0.01F;
+    private static final float STEP = 0.1F;
 
     private static boolean wasKp8 = false;
     private static boolean wasKp2 = false;

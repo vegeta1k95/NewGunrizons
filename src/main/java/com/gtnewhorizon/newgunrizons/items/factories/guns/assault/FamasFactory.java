@@ -54,9 +54,10 @@ public class FamasFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.1F; })
-            .withFlashOffsetY(() -> { return 0.12F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 0.3F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withShellCasingForwardOffset(-0.1F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(

@@ -54,9 +54,10 @@ public class SV98Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.07F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> -5.1F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withShellCasingEjectEnabled(false)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withInformationProvider(

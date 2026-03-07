@@ -200,21 +200,9 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             weapon.getSmokeOffsetY()
                 .get());
 
-        // Flash must be spawned after smoke so it renders on top.
-        // Flash uses additive blending (adds brightness), smoke uses standard alpha blending
-        // (dims the framebuffer by 1-alpha). If smoke renders after flash, it erases it.
-        if (weapon.getFlashIntensity() > 0.0F) {
-            ParticleManager.spawnFlashParticle(
-                player,
-                weapon.getFlashIntensity(),
-                weapon.getFlashScale()
-                    .get(),
-                weaponInstance.isAimed() ? 0.0F
-                    : weapon.getFlashOffsetX()
-                        .get(),
-                weapon.getFlashOffsetY()
-                    .get());
-        }
+        // Muzzle flash is rendered in model space by MuzzleFlashRenderer during the
+        // weapon render pass — no world-space particle needed. It uses lastFireTimestamp
+        // to determine visibility.
 
         weaponInstance.setSeriesShotCount(weaponInstance.getSeriesShotCount() + 1);
         weaponInstance.setLastFireTimestamp(System.currentTimeMillis());

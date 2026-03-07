@@ -37,9 +37,10 @@ public class WebleyFactory {
             .withShellCasingEjectEnabled(false)
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.5F; })
-            .withFlashOffsetX(() -> { return 0.11F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashScale(() -> 0.5F)
+            .withFlashOffsetZ(() -> -1.0F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> -0.3F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

@@ -38,9 +38,10 @@ public class G36Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.1F; })
-            .withFlashOffsetY(() -> { return 0.05F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> -1.6F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> -0.25F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

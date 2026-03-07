@@ -92,6 +92,8 @@ public class ItemWeapon extends Item
     @Getter
     private final Supplier<Float> flashOffsetY;
     @Getter
+    private final Supplier<Float> flashOffsetZ;
+    @Getter
     private final Supplier<Float> smokeOffsetX;
     @Getter
     private final Supplier<Float> smokeOffsetY;
@@ -142,6 +144,7 @@ public class ItemWeapon extends Item
         this.flashScale = builder.flashScale;
         this.flashOffsetX = builder.flashOffsetX;
         this.flashOffsetY = builder.flashOffsetY;
+        this.flashOffsetZ = builder.flashOffsetZ;
         this.smokeOffsetX = builder.smokeOffsetX;
         this.smokeOffsetY = builder.smokeOffsetY;
         this.ejectSpentRoundRequired = builder.ejectSpentRoundRequired;
@@ -481,6 +484,7 @@ public class ItemWeapon extends Item
         public Supplier<Float> flashScale = () -> 1.0F;
         public Supplier<Float> flashOffsetX = () -> 0.0F;
         public Supplier<Float> flashOffsetY = () -> 0.0F;
+        public Supplier<Float> flashOffsetZ = () -> 0.0F;
         public Supplier<Float> smokeOffsetX = () -> 0.0F;
         public Supplier<Float> smokeOffsetY = () -> 0.0F;
         private boolean ejectSpentRoundRequired;
@@ -756,6 +760,11 @@ public class ItemWeapon extends Item
 
         public ItemWeapon.Builder withFlashOffsetY(Supplier<Float> flashOffsetY) {
             this.flashOffsetY = flashOffsetY;
+            return this;
+        }
+
+        public ItemWeapon.Builder withFlashOffsetZ(Supplier<Float> flashOffsetZ) {
+            this.flashOffsetZ = flashOffsetZ;
             return this;
         }
 

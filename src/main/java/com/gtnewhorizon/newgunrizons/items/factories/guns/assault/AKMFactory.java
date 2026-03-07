@@ -45,9 +45,10 @@ public class AKMFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.6F; })
-            .withFlashOffsetX(() -> { return 0.14F; })
-            .withFlashOffsetY(() -> { return 0.12F; })
+            .withFlashScale(() -> 0.6F)
+            .withFlashOffsetZ(() -> -1.6F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withInaccuracy(1.0F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(

@@ -50,9 +50,10 @@ public class QBS09Factory {
             .withInaccuracy(10.0F)
             .withPellets(11)
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.1F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 0.4F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.5F)
             .withShellCasingEjectEnabled(false)
             .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
             .withInformationProvider(

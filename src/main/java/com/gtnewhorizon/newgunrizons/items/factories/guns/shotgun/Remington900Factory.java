@@ -43,9 +43,10 @@ public class Remington900Factory {
             .withInaccuracy(10.0F)
             .withPellets(10)
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.5F; })
-            .withFlashOffsetX(() -> { return 0.11F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashScale(() -> 0.5F)
+            .withFlashOffsetZ(() -> -1.5F)
+            .withFlashOffsetX(() -> -0.1F)
+            .withFlashOffsetY(() -> 0.55F)
             .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

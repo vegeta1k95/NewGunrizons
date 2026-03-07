@@ -32,9 +32,10 @@ public class Glock32Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.5F; })
-            .withFlashOffsetX(() -> { return 0.2F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.5F)
+            .withFlashOffsetZ(() -> 2.3F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.1F)
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withInformationProvider(

@@ -102,47 +102,6 @@ public class ParticleManager {
     }
 
     /**
-     * Spawns a {@link FlashFX} burst at the player's muzzle position.
-     *
-     * @param player         the shooter
-     * @param flashIntensity initial alpha (0..1)
-     * @param flashScale     size multiplier
-     * @param xOffset        lateral offset from the look vector
-     * @param yOffset        vertical offset below eye height
-     */
-    public static void spawnFlashParticle(EntityLivingBase player, float flashIntensity, float flashScale,
-        float xOffset, float yOffset) {
-        float distance = 0.82F;
-        float scale = 0.8F * 2.3F * flashScale;
-        xOffset += -0.02F;
-        yOffset += 0.10F;
-
-        if (MuzzleDebug.isEnabled()) {
-            distance += MuzzleDebug.getDistanceOffset();
-            xOffset += MuzzleDebug.getXOffset();
-            yOffset += MuzzleDebug.getYOffset();
-        }
-
-        float motionX = (float) player.worldObj.rand.nextGaussian() * 0.003F;
-        float motionY = (float) player.worldObj.rand.nextGaussian() * 0.003F;
-        float motionZ = (float) player.worldObj.rand.nextGaussian() * 0.003F;
-
-        double[] pos = computeMuzzlePosition(player, distance, xOffset, yOffset, 0.003F);
-
-        FlashFX particle = new FlashFX(
-            player.worldObj,
-            pos[0],
-            pos[1],
-            pos[2],
-            scale,
-            flashIntensity,
-            motionX,
-            motionY,
-            motionZ);
-        Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-    }
-
-    /**
      * Spawns an {@link ExplosionSmokeFX} cloud at the given world position.
      * Used for grenade and weapon explosion aftermath.
      */

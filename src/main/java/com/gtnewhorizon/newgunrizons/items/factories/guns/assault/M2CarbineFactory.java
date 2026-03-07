@@ -45,9 +45,10 @@ public class M2CarbineFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.5F; })
-            .withFlashOffsetX(() -> { return 0.14F; })
-            .withFlashOffsetY(() -> { return 0.08F; })
+            .withFlashScale(() -> 0.5F)
+            .withFlashOffsetZ(() -> 0F)
+            .withFlashOffsetX(() -> 0F)
+            .withFlashOffsetY(() -> 0F)
             .withInaccuracy(1.0F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(

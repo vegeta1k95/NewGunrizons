@@ -57,9 +57,10 @@ public class ScarHFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.12F; })
-            .withFlashOffsetY(() -> { return 0.15F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> -0.3F)
+            .withFlashOffsetX(() -> 0.12F)
+            .withFlashOffsetY(() -> -0.4F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

@@ -37,7 +37,6 @@ public class M14Factory {
         return (new ItemWeapon.Builder()).withName("M14")
             .withFireRate(0.4F)
             .withRecoil(2.0F)
-
             .withMaxShots(1, Integer.MAX_VALUE)
             .withShootSound("M14")
             .withSilencedShootSound("RifleSilencer")
@@ -48,9 +47,10 @@ public class M14Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.1F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> -4.0F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

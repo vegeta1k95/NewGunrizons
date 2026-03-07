@@ -39,7 +39,6 @@ public class AWPFactory {
             .withEjectRoundRequired()
             .withEjectSpentRoundSound("L96BoltAction")
             .withRecoil(4.0F)
-
             .withMaxShots(1)
             .withShootSound("L96")
             .withPumpTimeout(1000L)
@@ -52,8 +51,9 @@ public class AWPFactory {
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
             .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.07F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashOffsetZ(() -> -5.0F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withShellCasingEjectEnabled(false)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withInformationProvider(

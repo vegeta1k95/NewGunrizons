@@ -54,9 +54,10 @@ public class MP9Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.7F; })
-            .withFlashOffsetX(() -> { return 0.212F; })
-            .withFlashOffsetY(() -> { return 0.22F; })
+            .withFlashScale(() -> 0.7F)
+            .withFlashOffsetZ(() -> 2.6F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

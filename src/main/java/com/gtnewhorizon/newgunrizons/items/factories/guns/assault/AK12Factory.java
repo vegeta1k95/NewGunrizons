@@ -58,8 +58,9 @@ public class AK12Factory {
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
             .withFlashScale(() -> 0.6F)
-            .withFlashOffsetX(() -> 0.14F)
-            .withFlashOffsetY(() -> 0.12F)
+            .withFlashOffsetZ(() -> -0.6F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

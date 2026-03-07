@@ -31,9 +31,10 @@ public class Pistol10mmFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.5F; })
-            .withFlashOffsetX(() -> { return 0.2F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.5F)
+            .withFlashOffsetZ(() -> 3.0F)
+            .withFlashOffsetX(() -> 0.2F)
+            .withFlashOffsetY(() -> 0.1F)
             .withInaccuracy(3.0F)
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withInformationProvider(

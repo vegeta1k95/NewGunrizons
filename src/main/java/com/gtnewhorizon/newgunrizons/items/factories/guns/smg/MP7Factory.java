@@ -41,9 +41,10 @@ public class MP7Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.2F; })
-            .withFlashOffsetY(() -> { return 0.21F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 3.1F)
+            .withFlashOffsetX(() -> 0.3F)
+            .withFlashOffsetY(() -> -0.3F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

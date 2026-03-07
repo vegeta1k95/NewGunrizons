@@ -52,8 +52,9 @@ public class SPAS12Factory {
             .withPellets(10)
             .withFlashIntensity(0.4F)
             .withFlashScale(() -> 0.8F)
-            .withFlashOffsetX(() -> 0.1F)
-            .withFlashOffsetY(() -> 0.1F)
+            .withFlashOffsetZ(() -> 0.4F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.5F)
             .withCreativeTab(NewGunrizonsMod.ShotgunsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

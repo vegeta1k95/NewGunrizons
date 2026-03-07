@@ -45,9 +45,10 @@ public class MAC10Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.7F; })
-            .withFlashOffsetX(() -> { return 0.22F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.7F)
+            .withFlashOffsetZ(() -> 3.20F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withInaccuracy(2.0F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withInformationProvider(

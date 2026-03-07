@@ -55,9 +55,10 @@ public class KrissVectorFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.15F; })
-            .withFlashOffsetY(() -> { return 0.2F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 0.5F)
+            .withFlashOffsetX(() -> 0.05F)
+            .withFlashOffsetY(() -> 0.2F)
             .withInaccuracy(2.0F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withInformationProvider(

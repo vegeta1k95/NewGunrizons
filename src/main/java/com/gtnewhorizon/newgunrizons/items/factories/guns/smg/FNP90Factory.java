@@ -33,9 +33,10 @@ public class FNP90Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.6F; })
-            .withFlashOffsetX(() -> { return 0.29F; })
-            .withFlashOffsetY(() -> { return 0.3F; })
+            .withFlashScale(() -> 0.6F)
+            .withFlashOffsetZ(() -> 3.4F)
+            .withFlashOffsetX(() -> 0.3F)
+            .withFlashOffsetY(() -> -0.2F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

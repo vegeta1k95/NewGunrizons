@@ -49,9 +49,10 @@ public class SVT40Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.6F; })
-            .withFlashOffsetX(() -> { return 0.14F; })
-            .withFlashOffsetY(() -> { return 0.08F; })
+            .withFlashScale(() -> 0.6F)
+            .withFlashOffsetZ(() -> -4.0F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.4F)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

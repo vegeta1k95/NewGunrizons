@@ -46,9 +46,10 @@ public class M1GarandFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.4F; })
-            .withFlashOffsetX(() -> { return 0.12F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashScale(() -> 0.4F)
+            .withFlashOffsetZ(() -> -0.9F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withCreativeTab(NewGunrizonsMod.AssaultRiflesTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

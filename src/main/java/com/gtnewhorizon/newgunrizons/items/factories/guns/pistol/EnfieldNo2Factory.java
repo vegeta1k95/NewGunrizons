@@ -37,9 +37,10 @@ public class EnfieldNo2Factory {
             .withShellCasingEjectEnabled(false)
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.5F; })
-            .withFlashOffsetX(() -> { return 0.11F; })
-            .withFlashOffsetY(() -> { return 0.06F; })
+            .withFlashScale(() -> 0.5F)
+            .withFlashOffsetZ(() -> 0.7F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> -0.6F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

@@ -55,9 +55,10 @@ public class UMP45Factory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.2F; })
-            .withFlashOffsetY(() -> { return 0.18F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 1.2F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withInaccuracy(2.0F)
             .withCreativeTab(NewGunrizonsMod.SMGTab)
             .withInformationProvider(

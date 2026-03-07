@@ -48,9 +48,10 @@ public class LeeEnfieldNo4MkI {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.1F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> -5.1F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withShellCasingEjectEnabled(false)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withInformationProvider(
@@ -60,10 +61,7 @@ public class LeeEnfieldNo4MkI {
                     "Cartridge:",
                     ".303 British Bullet",
                     "Fire Rate: Bolt Action"))
-            .withCompatibleAttachment(AuxiliaryAttachments.LeeEnfieldSMLEaction, true, (model) -> {
-                if (model instanceof LeeEnfieldSMLEAction) {}
-
-            })
+            .withCompatibleAttachment(AuxiliaryAttachments.LeeEnfieldSMLEaction, true, (model) -> {})
             .withCompatibleAttachment(Magazines.LeeEnfieldMag, ((model) -> { GL11.glScaled(1.0D, 1.0D, 1.0D); }))
             .withCompatibleAttachment(AuxiliaryAttachments.M1CarbineRearSight, true, (model) -> {
                 GL11.glTranslatef(-0.183F, -1.39F, -1.15F);

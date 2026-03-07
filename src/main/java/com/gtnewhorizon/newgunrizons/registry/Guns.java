@@ -1,5 +1,7 @@
 package com.gtnewhorizon.newgunrizons.registry;
 
+import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.*;
+import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.*;
 import net.minecraft.item.Item;
 
 import com.gtnewhorizon.newgunrizons.items.factories.guns.assault.ACRFactory;
@@ -55,14 +57,6 @@ import com.gtnewhorizon.newgunrizons.items.factories.guns.pistol.Pistol10mmFacto
 import com.gtnewhorizon.newgunrizons.items.factories.guns.pistol.PythonFactory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.pistol.USP45Factory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.pistol.WebleyFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.KSG12Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.M1014Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.QBS09Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.Remington900Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.SPAS12Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.Saiga12Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.Saiga410Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun.VEPR12Factory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.FNP90Factory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.KrissVectorFactory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.M1928ThompsonFactory;
@@ -83,26 +77,6 @@ import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.Tec9Factory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.Type100Factory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.UDP9Factory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.smg.UMP45Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.AS50Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.DragonuvFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.Gewehr98Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.HecateIIFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.Kar98KFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.L96Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.LeeEnfieldNo4MkI;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.LeeEnfieldSMLE;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.M107Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.M110Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.M1903A1Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.M1903A3Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.M21Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.MosinNagantFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.MosinPUFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.Remington700Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.SKSFactory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.SV98Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.SVT40Factory;
-import com.gtnewhorizon.newgunrizons.items.factories.guns.sniper.VSSVintorezFactory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.special.M41AFactory;
 import com.gtnewhorizon.newgunrizons.items.factories.guns.special.SMAWFactory;
 
@@ -129,6 +103,7 @@ public class Guns {
     public static Item P2000;
     public static Item G36;
     public static Item G36C;
+    public static Item AWP;
     public static Item AUG;
     public static Item Famas;
     public static Item FamasF1;
@@ -286,6 +261,7 @@ public class Guns {
         HecateII = (new HecateIIFactory()).createGun();
         MosinNagant = (new MosinNagantFactory()).createGun();
         MosinPU = (new MosinPUFactory()).createGun();
+        AWP = (new AWPFactory()).createGun();
         Dragonuv = (new DragonuvFactory()).createGun();
         VSSVintorez = (new VSSVintorezFactory()).createGun();
         M14 = (new M14Factory()).createGun();

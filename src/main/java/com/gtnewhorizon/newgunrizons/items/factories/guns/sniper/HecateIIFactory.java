@@ -36,9 +36,10 @@ public class HecateIIFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.1F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 0.0F)
+            .withFlashOffsetX(() -> 0.1F)
+            .withFlashOffsetY(() -> 0.1F)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withShellCasingEjectEnabled(false)
             .withInformationProvider(

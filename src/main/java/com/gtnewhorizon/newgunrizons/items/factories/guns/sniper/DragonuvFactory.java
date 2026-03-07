@@ -47,9 +47,10 @@ public class DragonuvFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.6F; })
-            .withFlashOffsetX(() -> { return 0.07F; })
-            .withFlashOffsetY(() -> { return 0.08F; })
+            .withFlashScale(() -> 0.6F)
+            .withFlashOffsetZ(() -> -5.0F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.0F)
             .withCreativeTab(NewGunrizonsMod.SnipersTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

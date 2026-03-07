@@ -43,9 +43,10 @@ public class M41AFactory {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.8F; })
-            .withFlashOffsetX(() -> { return 0.15F; })
-            .withFlashOffsetY(() -> { return 0.2F; })
+            .withFlashScale(() -> 0.8F)
+            .withFlashOffsetZ(() -> 1.8F)
+            .withFlashOffsetX(() -> 0.25F)
+            .withFlashOffsetY(() -> 0.1F)
             .withCreativeTab(NewGunrizonsMod.FunGunsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

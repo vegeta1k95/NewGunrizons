@@ -37,9 +37,10 @@ public class P08Artillerie {
             .withCrosshairRunning("Running")
             .withCrosshairZoomed("Sight")
             .withFlashIntensity(0.4F)
-            .withFlashScale(() -> { return 0.45F; })
-            .withFlashOffsetX(() -> { return 0.2F; })
-            .withFlashOffsetY(() -> { return 0.1F; })
+            .withFlashScale(() -> 0.45F)
+            .withFlashOffsetZ(() -> 2.5F)
+            .withFlashOffsetX(() -> 0.0F)
+            .withFlashOffsetY(() -> 0.2F)
             .withCreativeTab(NewGunrizonsMod.PistolsTab)
             .withInformationProvider(
                 (stack) -> Arrays.asList(

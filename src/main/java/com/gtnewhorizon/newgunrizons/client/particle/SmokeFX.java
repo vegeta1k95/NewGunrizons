@@ -101,16 +101,10 @@ public class SmokeFX extends EntityFX {
         this.motionY *= VERTICAL_DRAG;
         this.motionZ *= HORIZONTAL_DRAG;
 
-        // Skip the first tick so the co-spawned muzzle flash gets a clean frame.
-        // FlashFX uses additive blending and only lives 1 tick — if smoke is visible
-        // on that same frame, its standard alpha blend dims the flash.
-        if (this.particleAge <= 1) {
-            this.particleAlpha = 0.0F;
-        } else {
-            double alphaRadians = ALPHA_PHASE_OFFSET
-                + Math.PI * (double) (this.particleAge - 1) / (double) this.particleMaxAge;
-            this.particleAlpha = PEAK_ALPHA * (float) Math.sin(Math.min(alphaRadians, Math.PI));
-        }
+        // Sine-based alpha: offset by PI/4 so the particle is already partially visible
+        // on its first frame, peaks at PEAK_ALPHA, then fades to zero at end of life.
+        double alphaRadians = ALPHA_PHASE_OFFSET + Math.PI * (double) this.particleAge / (double) this.particleMaxAge;
+        this.particleAlpha = PEAK_ALPHA * (float) Math.sin(Math.min(alphaRadians, Math.PI));
 
         this.particleScale *= SCALE_GROWTH_PER_TICK;
         if (this.onGround) {
