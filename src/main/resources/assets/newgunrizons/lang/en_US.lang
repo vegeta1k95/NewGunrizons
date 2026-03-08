@@ -362,8 +362,8 @@ key.scope=Scope Catagory
 key.silencer=Barrel Catagory
 key.categories.futuristicarsenal=NewGunrizons
 key.laser=Switch Laser
-key.add=Zoom In
-key.subtract=Zoom Out
+key.add=Zoom In ([)
+key.subtract=Zoom Out (])
 key.muzzle_debug=Muzzle Debug (F8)
 
 gui.attachmentMode.changeScope=Press [%s] to change scope

@@ -27,8 +27,8 @@ public class KeyBindings {
         downArrowKey = new KeyBinding("key.recoil_fitter", 208, "key.categories.newgunrizons");
         leftArrowKey = new KeyBinding("key.silencer", 203, "key.categories.newgunrizons");
         rightArrowKey = new KeyBinding("key.texture_change", 205, "key.categories.newgunrizons");
-        addKey = new KeyBinding("key.add", 23, "key.categories.newgunrizons");
-        subtractKey = new KeyBinding("key.subtract", 24, "key.categories.newgunrizons");
+        addKey = new KeyBinding("key.add", 27, "key.categories.newgunrizons");
+        subtractKey = new KeyBinding("key.subtract", 26, "key.categories.newgunrizons");
         fireModeKey = new KeyBinding("key.fire_mode", 54, "key.categories.newgunrizons");
         ClientRegistry.registerKeyBinding(reloadKey);
         ClientRegistry.registerKeyBinding(attachmentKey);
