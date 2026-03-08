@@ -7,15 +7,14 @@ A Minecraft 1.7.10 firearms mod for the [GT New Horizons](https://github.com/GTN
 
 ## Shader Compatibility
 
-NewGunrizons is compatible with Angelica's shader pipeline. Muzzle flash effects use Angelica's dynamic lighting system for real-time illumination when firing. Scope rendering works correctly with both shaders enabled and disabled — a mixin prevents Angelica/Celeritas from re-culling chunks during scope framebuffer rendering, avoiding visual artifacts at screen edges.
-
-If shaders are not in use, dynamic muzzle flash lighting is automatically disabled — the mod functions normally without it.
+NewGunrizons should be compatible with Angelica's shader pipeline. Muzzle flash effects use Angelica's dynamic lighting system for real-time illumination when firing. Scope rendering works correctly with both shaders enabled and disabled.
 
 ## What Changed from Vic's Modern Warfare
 
 This is not a simple config tweak — the mod has been extensively restructured and refactored.
 
 - **Full refactor** of the internal codebase.
+- **Everything unrelated to weapons was cut**.
 - **Bug fixes and enhancements** for the original mod.
 - **GregTech crafting integration** — all items are crafted exclusively through GT machines (Assembler, Forming Press). No vanilla crafting table recipes.
 - **Tiered progression** — weapons are gated behind GregTech voltage tiers (LV through IV), requiring progressively advanced components
@@ -35,7 +34,6 @@ Over **100 firearms** spanning multiple eras and categories:
 | Sniper & Marksman Rifles | 21 | AWP, Dragunov SVD, Barrett M107, Kar98K, Mosin Nagant |
 | Shotguns & Heavy Weapons | 12 | Remington 870, SPAS-12, Saiga 12, M249 SAW, Mk153 SMAW |
 
-<!-- TODO: Add weapon showcase screenshots -->
 ![Weapons Showcase](screenshots/weapons_showcase.png)
 
 ### Attachments
@@ -54,7 +52,6 @@ Over **100 firearms** spanning multiple eras and categories:
 - **Magazine-based reloading** — most weapons use detachable magazines that must be loaded with the correct bullet type
 - **Three casing tiers** — small (pistol/SMG), medium (rifle), and large (.50 BMG) casings as crafting intermediates
 
-<!-- TODO: Add combat screenshot -->
 ![Combat](screenshots/combat.png)
 
 ### GregTech Integration
@@ -75,7 +72,6 @@ All crafting is done through GregTech machines — no crafting table recipes exi
 | EV (1920) | TungstenSteel barrel + Titanium receiver + Carbon stock | SCAR-H, AK-12, Barrett M107, M249 |
 | IV (7680) | TungstenSteel barrel + Titanium receiver + Carbon stock | M41A, SMAW |
 
-<!-- TODO: Add crafting/NEI screenshot -->
 ![GregTech Crafting](screenshots/gt_crafting1.png)![GregTech Crafting](screenshots/gt_crafting2.png)![GregTech Crafting](screenshots/gt_crafting3.png)
 
 ## Building
