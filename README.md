@@ -2,9 +2,6 @@
 
 A Minecraft 1.7.10 firearms mod for the [GT New Horizons](https://github.com/GTNewHorizons) modpack. NewGunrizons is a heavily modified fork of **Vic's Modern Warfare** (also known as Modern Warfare Mod / MWC), rebuilt from the ground up to integrate with GregTech and the GTNH ecosystem.
 
-![NewGunrizons Banner](screenshots/banner.png)
-<!-- TODO: Add banner screenshot -->
-
 ## What Changed from Vic's Modern Warfare
 
 This is not a simple config tweak — the mod has been extensively restructured:
@@ -39,7 +36,6 @@ Over **100 firearms** spanning multiple eras and categories:
 - **Suppressors** — caliber-specific silencers for 9mm through .50 BMG
 - **Grips** — angled grip, stubby grip, vertical foregrip, bipod
 - **Lasers** — tactical laser sights
-- **Iron Sights** — swappable carry handles and standard sights
 
 <!-- TODO: Add attachments screenshot -->
 ![Attachments](screenshots/attachments.png)
@@ -49,16 +45,6 @@ Over **100 firearms** spanning multiple eras and categories:
 - **Realistic caliber system** — each weapon uses its specific ammunition type
 - **Magazine-based reloading** — most weapons use detachable magazines that must be loaded with the correct bullet type
 - **Three casing tiers** — small (pistol/SMG), medium (rifle), and large (.50 BMG) casings as crafting intermediates
-
-### Combat Mechanics
-
-- **Selective fire** — toggle between semi-auto, burst, and full-auto on supported weapons
-- **ADS (Aim Down Sights)** — functional scope rendering with zoom levels
-- **Recoil system** — weapon-specific recoil patterns
-- **Muzzle flash** — dynamic light emission on firing (requires Angelica)
-- **Shell casings** — ejected brass with physics
-- **Bullet ballistics** — projectile-based shooting with damage falloff
-- **Grenades** — fuse and impact variants with fragment damage
 
 <!-- TODO: Add combat screenshot -->
 ![Combat](screenshots/combat.png)
@@ -84,15 +70,6 @@ All crafting is done through GregTech machines — no crafting table recipes exi
 <!-- TODO: Add crafting/NEI screenshot -->
 ![GregTech Crafting](screenshots/gt_crafting.png)
 
-## Dependencies
-
-- **Minecraft** 1.7.10
-- **Forge** 10.13.4.1614
-- **GT5-Unofficial** 5.09.51+
-- **Angelica** 1.0.0-beta66b+ (for dynamic lighting)
-- **GTNHLib** 0.7.10+
-- **NotEnoughItems** 2.8.44-GTNH+
-
 ## Building
 
 ```bash
@@ -104,21 +81,20 @@ All crafting is done through GregTech machines — no crafting table recipes exi
 
 ## Controls
 
-| Key | Action |
-|-----|--------|
+| Key         | Action |
+|-------------|--------|
 | Right Click | Aim Down Sights |
-| Left Click | Fire |
-| R | Reload |
-| V | Selective Fire (Semi/Burst/Auto) |
-| Z | Attachment Mode |
-| X | Switch Laser |
-| + / - | Zoom In / Out (while scoped) |
+| Left Click  | Fire |
+| R           | Reload |
+| Shift       | Selective Fire (Semi/Burst/Auto) |
+| M           | Attachment Mode |
+| L           | Switch Laser |
+| O / I       | Zoom In / Out (while scoped) |
 
 ## Credits
 
 - **Original mod**: [Vic's Modern Warfare](https://www.curseforge.com/minecraft/mc-mods/vics-modern-warfare-mod) by Vic4Games — the foundation this mod was built upon
 - **GT New Horizons team** — for the modpack and build toolchain
-- **NewGunrizons contributors** — restructuring, GT integration, and ongoing development
 
 ## License
 
