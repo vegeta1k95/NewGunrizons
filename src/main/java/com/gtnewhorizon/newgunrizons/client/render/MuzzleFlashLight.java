@@ -3,6 +3,8 @@ package com.gtnewhorizon.newgunrizons.client.render;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizon.gtnhlib.blockpos.BlockPos;
 import com.gtnewhorizon.gtnhlib.blockpos.IBlockPos;
 import com.gtnewhorizons.angelica.dynamiclights.DynamicLights;
@@ -10,7 +12,6 @@ import com.gtnewhorizons.angelica.dynamiclights.IDynamicLightSource;
 
 import it.unimi.dsi.fastutil.longs.LongOpenHashSet;
 import me.jellysquid.mods.sodium.client.render.SodiumWorldRenderer;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * A standalone dynamic light source for muzzle flash illumination.

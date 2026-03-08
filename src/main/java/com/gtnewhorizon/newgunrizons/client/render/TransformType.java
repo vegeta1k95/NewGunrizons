@@ -16,11 +16,16 @@ public enum TransformType {
 
     public static TransformType fromItemRenderType(ItemRenderType itemRenderType) {
         switch (itemRenderType) {
-            case ENTITY: return GROUND;
-            case EQUIPPED: return THIRD_PERSON_RIGHT_HAND;
-            case EQUIPPED_FIRST_PERSON: return FIRST_PERSON_RIGHT_HAND;
-            case INVENTORY: return GUI;
-            default: return NONE;
+            case ENTITY:
+                return GROUND;
+            case EQUIPPED:
+                return THIRD_PERSON_RIGHT_HAND;
+            case EQUIPPED_FIRST_PERSON:
+                return FIRST_PERSON_RIGHT_HAND;
+            case INVENTORY:
+                return GUI;
+            default:
+                return NONE;
         }
     }
 }

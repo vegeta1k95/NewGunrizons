@@ -41,7 +41,8 @@ public class MagazineReloadAspect implements Aspect<MagazineState, ItemMagazineI
             .getItem() instanceof ItemMagazine)) {
             return false;
         }
-        ItemMagazine magazine = (ItemMagazine) instance.getItemStack().getItem();
+        ItemMagazine magazine = (ItemMagazine) instance.getItemStack()
+            .getItem();
         List<ItemBullet> compatibleBullets = magazine.getCompatibleBullets();
         return InventoryUtils.hasCompatibleItem(compatibleBullets, player, (s) -> true);
     };

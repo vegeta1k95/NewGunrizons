@@ -27,10 +27,14 @@ public class AttachmentsTab extends CreativeTabs {
         if (item instanceof ItemAttachment) {
             ItemAttachment att = (ItemAttachment) item;
             switch (att.getCategory()) {
-                case SCOPE: return 0;
-                case SILENCER: return 1;
-                case GRIP: return 2;
-                default: return 3;
+                case SCOPE:
+                    return 0;
+                case SILENCER:
+                    return 1;
+                case GRIP:
+                    return 2;
+                default:
+                    return 3;
             }
         }
         return 4;
