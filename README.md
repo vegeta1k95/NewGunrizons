@@ -2,6 +2,15 @@
 
 A Minecraft 1.7.10 firearms mod for the [GT New Horizons](https://github.com/GTNewHorizons) modpack. NewGunrizons is a heavily modified fork of **Vic's Modern Warfare** (also known as Modern Warfare Mod / MWC), rebuilt from the ground up to integrate with GregTech and the GTNH ecosystem.
 
+> **WARNING: This mod is built for GTNH 2.8.4 release.**
+> It depends on specific versions of GT5-Unofficial (5.09.51.482), Angelica (1.0.0-beta66b), and GTNHLib (0.7.10) shipped with that release. It is **not guaranteed to work** with newer or older GTNH versions, as internal APIs and class structures may change between releases.
+
+## Shader Compatibility
+
+NewGunrizons is compatible with Angelica's shader pipeline. Muzzle flash effects use Angelica's dynamic lighting system for real-time illumination when firing. Scope rendering works correctly with both shaders enabled and disabled — a mixin prevents Angelica/Celeritas from re-culling chunks during scope framebuffer rendering, avoiding visual artifacts at screen edges.
+
+If shaders are not in use, dynamic muzzle flash lighting is automatically disabled — the mod functions normally without it.
+
 ## What Changed from Vic's Modern Warfare
 
 This is not a simple config tweak — the mod has been extensively restructured:
@@ -68,7 +77,7 @@ All crafting is done through GregTech machines — no crafting table recipes exi
 | IV (7680) | TungstenSteel barrel + Titanium receiver + Carbon stock | M41A, SMAW |
 
 <!-- TODO: Add crafting/NEI screenshot -->
-![GregTech Crafting](screenshots/gt_crafting.png)
+![GregTech Crafting](screenshots/gt_crafting1.png)![GregTech Crafting](screenshots/gt_crafting2.png)![GregTech Crafting](screenshots/gt_crafting3.png)
 
 ## Building
 
