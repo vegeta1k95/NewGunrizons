@@ -13,14 +13,13 @@ If shaders are not in use, dynamic muzzle flash lighting is automatically disabl
 
 ## What Changed from Vic's Modern Warfare
 
-This is not a simple config tweak — the mod has been extensively restructured:
+This is not a simple config tweak — the mod has been extensively restructured and refactored.
 
-- **Full package migration** from `com.vicmatskiv.weaponlib` to `com.gtnewhorizon.newgunrizons`
+- **Full refactor** of the internal codebase.
+- **Bug fixes and enhancements** for the original mod.
 - **GregTech crafting integration** — all items are crafted exclusively through GT machines (Assembler, Forming Press). No vanilla crafting table recipes.
 - **Tiered progression** — weapons are gated behind GregTech voltage tiers (LV through IV), requiring progressively advanced components
 - **Custom component system** — gun barrels, receivers, stocks, firing mechanisms, bullet casings, and precision lenses are intermediate crafting ingredients made in GT machines
-- **ModContext system dissolved** — replaced with a clean `@SidedProxy` architecture (`CommonProxy` / `ClientProxy`)
-- **Creative tab reorganization** — weapons sorted into dedicated categories: Assault Rifles, Pistols, SMGs, Shotguns/Heavy/LMGs, Snipers, Ammunition, and Attachments
 
 ## Features
 
