@@ -21,9 +21,8 @@ import com.google.gson.JsonParser;
  * Loads a Bedrock geometry (.geo.json) model and creates ModelRenderer instances,
  * providing a drop-in replacement for hand-coded Java model classes.
  * <p>
- * Bedrock geometry uses Y-up with Y=0 at ground level.
- * Minecraft 1.7.10 ModelRenderer uses Y-down with a 24-unit entity height offset.
- * Coordinate conversion is handled automatically.
+ * Bedrock geometry uses Y-up. Minecraft 1.7.10 ModelRenderer uses Y-down.
+ * Coordinate conversion (Y negation) is handled automatically.
  * <p>
  * Supported: bones (pivot, rotation, parent hierarchy), cubes (origin, size, box UV, mirror, inflate).
  * Not supported: per-face UV mapping (only box UV).
@@ -134,9 +133,9 @@ public class JsonModel extends ModelWithAttachments {
 
             absolutePivots.put(name, pivot);
 
-            // Convert pivot: Bedrock (Y-up, 0=ground) → Java (Y-down, 24-unit offset)
+            // Convert pivot: Bedrock (Y-up) → Java (Y-down)
             float javaPivotX = pivot[0];
-            float javaPivotY = 24.0f - pivot[1];
+            float javaPivotY = -pivot[1];
             float javaPivotZ = pivot[2];
 
             ModelRenderer renderer = new ModelRenderer(this, name);

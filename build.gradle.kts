@@ -10,3 +10,8 @@ configurations.all {
         force("com.github.GTNewHorizons:GTNHLib:0.7.10")
     }
 }
+
+// Angelica's GLSM mixins crash on dedicated servers
+tasks.named("runServer25") {
+    (this as JavaExec).classpath = classpath.filter { !it.name.contains("Angelica") }
+}

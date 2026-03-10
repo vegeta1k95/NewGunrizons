@@ -30,13 +30,10 @@ import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemMagazineInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.BlockHitMessage;
-import com.gtnewhorizon.newgunrizons.network.BlockHitMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.ExplosionMessage;
-import com.gtnewhorizon.newgunrizons.network.ExplosionMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessage;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessage;
-import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessageHandler;
@@ -55,10 +52,14 @@ import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
+
+import net.minecraft.entity.EntityLivingBase;
 
 public class CommonProxy {
 
@@ -100,14 +101,12 @@ public class CommonProxy {
             WeaponActionMessage.class,
             15,
             Side.SERVER);
-        channel.registerMessage(new SpawnParticleMessageHandler(), SpawnParticleMessage.class, 18, Side.CLIENT);
-        channel.registerMessage(new BlockHitMessageHandler(), BlockHitMessage.class, 19, Side.CLIENT);
         channel.registerMessage(
             new GrenadeMessageHandler(GrenadeAttackAspect.INSTANCE),
             GrenadeMessage.class,
             20,
             Side.SERVER);
-        channel.registerMessage(new ExplosionMessageHandler(), ExplosionMessage.class, 21, Side.CLIENT);
+        registerClientMessageHandlers(channel);
 
         EntityRegistry
             .registerModEntity(EntityBullet.class, "Ammo" + this.modEntityID, this.modEntityID++, mod, 64, 3, true);
@@ -173,6 +172,21 @@ public class CommonProxy {
         Magazines.init();
         Guns.init();
         Grenades.init();
+    }
+
+    protected void registerClientMessageHandlers(SimpleNetworkWrapper channel) {
+        channel.registerMessage((msg, ctx) -> null, SpawnParticleMessage.class, 18, Side.CLIENT);
+        channel.registerMessage((msg, ctx) -> null, BlockHitMessage.class, 19, Side.CLIENT);
+        channel.registerMessage((msg, ctx) -> null, ExplosionMessage.class, 21, Side.CLIENT);
+    }
+
+    public void onWeaponFireEffects(EntityLivingBase player, float smokeOffsetX, float smokeOffsetY,
+        boolean silencerOn) {
+        // No-op on server; overridden in ClientProxy
+    }
+
+    public boolean isLocalPlayer(EntityLivingBase player) {
+        return false;
     }
 
     public void registerItem(String name, Item item, IItemRenderer renderer) {

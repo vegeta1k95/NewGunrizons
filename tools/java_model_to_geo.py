@@ -16,8 +16,8 @@ Handles the pattern:
 
 Coordinate conversion (Java entity model -> Bedrock geometry):
   - Java ModelRenderer Y-axis is inverted (positive = down)
-  - Bedrock geometry Y-axis is up, with 0 at ground
-  - Standard 24-unit offset for entity height is applied
+  - Bedrock geometry Y-axis is up
+  - Simple Y negation (no entity height offset)
 
 Output: Bedrock geometry format_version 1.12.0 (widely compatible)
 """
@@ -110,9 +110,9 @@ def convert_to_bedrock_geo(tex_width, tex_height, parts, identifier="geometry.mo
       Bedrock: Y+ is up, origin at ground (Y=0)
 
       For each cube:
-        bedrock_pivot = [java_pivot_x, 24 - java_pivot_y, java_pivot_z]
+        bedrock_pivot = [java_pivot_x, -java_pivot_y, java_pivot_z]
         bedrock_origin = [java_pivot_x + offset_x,
-                          24 - java_pivot_y - offset_y - size_y,
+                          -java_pivot_y - offset_y - size_y,
                           java_pivot_z + offset_z]
         bedrock_rotation = [-deg(java_rot_x), -deg(java_rot_y), deg(java_rot_z)]
 
@@ -132,11 +132,11 @@ def convert_to_bedrock_geo(tex_width, tex_height, parts, identifier="geometry.mo
         sx, sy, sz = part['size']
         rx, ry, rz = part['rotation']
 
-        # Convert coordinates
-        bedrock_pivot = [px, 24 - py, pz]
+        # Convert coordinates (negate Y: Java Y-down → Bedrock Y-up)
+        bedrock_pivot = [px, -py, pz]
         bedrock_origin = [
             px + ox,
-            24 - py - oy - sy,
+            -py - oy - sy,
             pz + oz,
         ]
 

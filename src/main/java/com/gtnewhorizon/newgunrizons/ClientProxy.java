@@ -1,5 +1,7 @@
 package com.gtnewhorizon.newgunrizons;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
@@ -11,16 +13,25 @@ import com.gtnewhorizon.newgunrizons.client.handlers.WeaponHudHandler;
 import com.gtnewhorizon.newgunrizons.client.handlers.WeaponInputHandler;
 import com.gtnewhorizon.newgunrizons.client.handlers.WeaponRenderHandler;
 import com.gtnewhorizon.newgunrizons.client.input.KeyBindings;
+import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
 import com.gtnewhorizon.newgunrizons.client.render.EntityBulletRenderer;
 import com.gtnewhorizon.newgunrizons.client.render.EntityGrenadeRenderer;
 import com.gtnewhorizon.newgunrizons.client.render.EntityShellRenderer;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
 import com.gtnewhorizon.newgunrizons.entities.EntityGrenade;
 import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
+import com.gtnewhorizon.newgunrizons.network.BlockHitMessage;
+import com.gtnewhorizon.newgunrizons.network.BlockHitMessageHandler;
+import com.gtnewhorizon.newgunrizons.network.ExplosionMessage;
+import com.gtnewhorizon.newgunrizons.network.ExplosionMessageHandler;
+import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessage;
+import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessageHandler;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
 
 public class ClientProxy extends CommonProxy {
 
@@ -52,6 +63,24 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, new EntityBulletRenderer());
         RenderingRegistry.registerEntityRenderingHandler(EntityShellCasing.class, new EntityShellRenderer());
         RenderingRegistry.registerEntityRenderingHandler(EntityGrenade.class, new EntityGrenadeRenderer());
+    }
+
+    @Override
+    protected void registerClientMessageHandlers(SimpleNetworkWrapper channel) {
+        channel.registerMessage(new SpawnParticleMessageHandler(), SpawnParticleMessage.class, 18, Side.CLIENT);
+        channel.registerMessage(new BlockHitMessageHandler(), BlockHitMessage.class, 19, Side.CLIENT);
+        channel.registerMessage(new ExplosionMessageHandler(), ExplosionMessage.class, 21, Side.CLIENT);
+    }
+
+    @Override
+    public void onWeaponFireEffects(EntityLivingBase player, float smokeOffsetX, float smokeOffsetY,
+        boolean silencerOn) {
+        ParticleManager.spawnSmokeParticle(player, smokeOffsetX, smokeOffsetY);
+    }
+
+    @Override
+    public boolean isLocalPlayer(EntityLivingBase player) {
+        return Minecraft.getMinecraft().thePlayer == player;
     }
 
     @Override

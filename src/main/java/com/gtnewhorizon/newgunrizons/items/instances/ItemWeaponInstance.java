@@ -2,21 +2,14 @@ package com.gtnewhorizon.newgunrizons.items.instances;
 
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.UUID;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
-import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.client.shaders.ShaderEffect;
-import com.gtnewhorizon.newgunrizons.client.shaders.ShaderPhase;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
@@ -31,14 +24,6 @@ import lombok.Setter;
 public class ItemWeaponInstance extends ItemInstance<WeaponState> {
 
     private static final int SERIAL_VERSION = 11;
-    private static final UUID NIGHT_VISION_SOURCE_UUID = UUID.randomUUID();
-    private static final UUID VIGNETTE_SOURCE_UUID = UUID.randomUUID();
-    private static final UUID BLUR_SOURCE_UUID = UUID.randomUUID();
-
-    public final ShaderEffect BLUR_SOURCE;
-    public final ShaderEffect NIGHT_VISION_SOURCE;
-    public final ShaderEffect VIGNETTE_SOURCE;
-
     private static final long AIM_CHANGE_DURATION = 400L;
 
     @Setter
@@ -81,27 +66,6 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
 
     private int[] activeAttachmentIds = new int[0];
     private byte[] selectedAttachmentIndexes = new byte[0];
-
-    {
-        this.BLUR_SOURCE = (new ShaderEffect(
-            BLUR_SOURCE_UUID,
-            new ResourceLocation(NewGunrizonsMod.MODID, "shaders/post/blur.json")))
-                .withUniform("Radius", (context) -> this.hasOpticScope() ? 10.0F : 5.0F)
-                .withUniform("Progress", (context) -> this.getAimChangeProgress());
-        this.NIGHT_VISION_SOURCE = (new ShaderEffect(
-            NIGHT_VISION_SOURCE_UUID,
-            new ResourceLocation(NewGunrizonsMod.MODID, "shaders/post/night-vision.json")))
-                .withUniform(
-                    "IntensityAdjust",
-                    (context) -> 40.0F - Minecraft.getMinecraft().gameSettings.gammaSetting * 38.0F)
-                .withUniform(
-                    "NoiseAmplification",
-                    (context) -> 2.0F + 3.0F * Minecraft.getMinecraft().gameSettings.gammaSetting);
-        this.VIGNETTE_SOURCE = (new ShaderEffect(
-            VIGNETTE_SOURCE_UUID,
-            new ResourceLocation(NewGunrizonsMod.MODID, "shaders/post/vignette.json")))
-                .withUniform("Radius", (context) -> this.getOpticScopeVignetteRadius(context.getPartialTicks()));
-    }
 
     public ItemWeaponInstance() {}
 
@@ -351,24 +315,7 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         return false;
     }
 
-    private boolean hasOpticScope() {
-        ItemAttachment scope = this.getAttachmentItemWithCategory(AttachmentCategory.SCOPE);
-        return scope instanceof ItemScope && ((ItemScope) scope).isOptical();
-    }
-
-    private ItemScope getScope() {
-        ItemAttachment scope = this.getAttachmentItemWithCategory(AttachmentCategory.SCOPE);
-        return scope instanceof ItemScope ? (ItemScope) scope : null;
-    }
-
-    private float getOpticScopeVignetteRadius(float partialTicks) {
-        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-        float f2 = player.prevCameraYaw + (player.cameraYaw - player.prevCameraYaw) * partialTicks;
-        return -6.5F * f2 + 0.55F;
-    }
-
-    private float getAimChangeProgress() {
-
+    public float getAimChangeProgress() {
         float delta = (float) (System.currentTimeMillis() - this.aimChangeTimestamp) / AIM_CHANGE_DURATION;
         float p = Math.min(Math.max(delta, 0.0F), 1.0F);
 
@@ -377,20 +324,6 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         }
 
         return p;
-    }
-
-    public ShaderEffect getShaderSource(ShaderPhase phase) {
-
-        if (this.isAimed() && phase == ShaderPhase.SCOPE_RENDER) {
-            ItemScope scope = this.getScope();
-            if (scope != null && scope.isOptical()) {
-                return scope.hasNightVision() && this.nightVisionOn ? this.NIGHT_VISION_SOURCE : this.VIGNETTE_SOURCE;
-            }
-        }
-
-        float progress = this.getAimChangeProgress();
-        return phase != ShaderPhase.ITEM_RENDER || !this.isAimed() && (!(progress > 0.0F) || !(progress < 1.0F)) ? null
-            : this.BLUR_SOURCE;
     }
 
     public String toString() {

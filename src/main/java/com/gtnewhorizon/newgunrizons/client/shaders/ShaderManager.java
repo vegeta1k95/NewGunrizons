@@ -18,6 +18,7 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.client.shader.Framebuffer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,14 +26,26 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.JsonSyntaxException;
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
+import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.client.render.Framebuffers;
+import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
+import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 
 public class ShaderManager {
 
     private static final Logger logger = LogManager.getLogger(ShaderManager.class);
 
+    private static final UUID BLUR_SOURCE_UUID = UUID.randomUUID();
+    private static final UUID NIGHT_VISION_SOURCE_UUID = UUID.randomUUID();
+    private static final UUID VIGNETTE_SOURCE_UUID = UUID.randomUUID();
+
     private final Map<UUID, LoadedShaderGroup> loaded = new LinkedHashMap<>();
+
+    private ShaderEffect blurSource;
+    private ShaderEffect nightVisionSource;
+    private ShaderEffect vignetteSource;
+    private ItemWeaponInstance currentInstance;
 
     public boolean hasActiveGroups() {
         return !this.loaded.isEmpty();
@@ -40,11 +53,65 @@ public class ShaderManager {
 
     public void applyShader(ShaderContext shaderContext, ItemWeaponInstance instance) {
         if (instance != null) {
-            ShaderEffect source = instance.getShaderSource(shaderContext.getPhase());
+            ShaderEffect source = resolveShaderEffect(instance, shaderContext.getPhase());
             if (source != null) {
                 loadFromSource(shaderContext, source);
             }
         }
+    }
+
+    private void ensureEffectsInitialized() {
+        if (blurSource == null) {
+            blurSource = new ShaderEffect(
+                BLUR_SOURCE_UUID,
+                new ResourceLocation(NewGunrizonsMod.MODID, "shaders/post/blur.json"))
+                    .withUniform("Radius", (context) -> {
+                        ItemAttachment scope = currentInstance
+                            .getAttachmentItemWithCategory(AttachmentCategory.SCOPE);
+                        return scope instanceof ItemScope && ((ItemScope) scope).isOptical() ? 10.0F : 5.0F;
+                    })
+                    .withUniform("Progress", (context) -> currentInstance.getAimChangeProgress());
+            nightVisionSource = new ShaderEffect(
+                NIGHT_VISION_SOURCE_UUID,
+                new ResourceLocation(NewGunrizonsMod.MODID, "shaders/post/night-vision.json"))
+                    .withUniform(
+                        "IntensityAdjust",
+                        (context) -> 40.0F - Minecraft.getMinecraft().gameSettings.gammaSetting * 38.0F)
+                    .withUniform(
+                        "NoiseAmplification",
+                        (context) -> 2.0F + 3.0F * Minecraft.getMinecraft().gameSettings.gammaSetting);
+            vignetteSource = new ShaderEffect(
+                VIGNETTE_SOURCE_UUID,
+                new ResourceLocation(NewGunrizonsMod.MODID, "shaders/post/vignette.json"))
+                    .withUniform("Radius", (context) -> {
+                        EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+                        float f2 = player.prevCameraYaw
+                            + (player.cameraYaw - player.prevCameraYaw) * context.getPartialTicks();
+                        return -6.5F * f2 + 0.55F;
+                    });
+        }
+    }
+
+    private ShaderEffect resolveShaderEffect(ItemWeaponInstance instance, ShaderPhase phase) {
+        this.currentInstance = instance;
+        ensureEffectsInitialized();
+
+        if (instance.isAimed() && phase == ShaderPhase.SCOPE_RENDER) {
+            ItemAttachment scopeItem = instance.getAttachmentItemWithCategory(AttachmentCategory.SCOPE);
+            if (scopeItem instanceof ItemScope) {
+                ItemScope scope = (ItemScope) scopeItem;
+                if (scope.isOptical()) {
+                    return scope.hasNightVision() && instance.isNightVisionOn() ? nightVisionSource : vignetteSource;
+                }
+            }
+        }
+
+        float progress = instance.getAimChangeProgress();
+        if (phase == ShaderPhase.ITEM_RENDER && (instance.isAimed() || (progress > 0.0F && progress < 1.0F))) {
+            return blurSource;
+        }
+
+        return null;
     }
 
     /**

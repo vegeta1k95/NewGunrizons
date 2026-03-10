@@ -13,8 +13,6 @@ import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
-import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
-import com.gtnewhorizon.newgunrizons.client.render.MuzzleFlashLight;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
@@ -194,24 +192,17 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         float rotationYawFactor = -1.0F + random.nextFloat() * 2.0F;
         player.rotationYaw += weaponInstance.getRecoil() * rotationYawFactor;
 
-        ParticleManager.spawnSmokeParticle(
+        NewGunrizonsMod.proxy.onWeaponFireEffects(
             player,
             weapon.getSmokeOffsetX()
                 .get(),
             weapon.getSmokeOffsetY()
-                .get());
-
-        // Muzzle flash is rendered in model space by MuzzleFlashRenderer during the
-        // weapon render pass — no world-space particle needed. It uses lastFireTimestamp
-        // to determine visibility.
+                .get(),
+            silencerOn);
 
         weaponInstance.setSeriesShotCount(weaponInstance.getSeriesShotCount() + 1);
         weaponInstance.setLastFireTimestamp(System.currentTimeMillis());
         weaponInstance.setAmmo(weaponInstance.getAmmo() - 1);
-
-        if (!silencerOn) {
-            MuzzleFlashLight.flash(player.posX, player.posY + player.getEyeHeight(), player.posZ);
-        }
     }
 
     private void ejectSpentRound(ItemWeaponInstance weaponInstance) {

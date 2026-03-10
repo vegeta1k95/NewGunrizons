@@ -16,6 +16,9 @@ import net.minecraft.item.ItemStack;
 import com.gtnewhorizon.newgunrizons.state.ManagedState;
 import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 /**
  * Maintains runtime state objects ({@link ItemWeaponInstance}, {@link ItemMagazineInstance},
  * {@link ItemGrenadeInstance}) for items in player inventories.
@@ -39,6 +42,7 @@ public class ItemInstanceRegistry {
     private final WeakHashMap<ItemStack, ItemInstance<?>> itemStackCache = new WeakHashMap<>();
 
     /** Client-side convenience: gets the main-hand weapon instance for the local player. */
+    @SideOnly(Side.CLIENT)
     public static ItemWeaponInstance getMainHeldWeapon() {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
         return INSTANCE.getMainHandItemInstance(player, ItemWeaponInstance.class);
@@ -124,7 +128,8 @@ public class ItemInstanceRegistry {
 
         ItemInstance<?> instance = null;
 
-        if (Minecraft.getMinecraft().thePlayer == player) {
+        if (player.worldObj != null && player.worldObj.isRemote && player instanceof EntityPlayer
+            && com.gtnewhorizon.newgunrizons.NewGunrizonsMod.proxy.isLocalPlayer(player)) {
             int slot = InventoryUtils.getInventorySlot((EntityPlayer) player, itemStack);
             if (slot >= 0) {
                 instance = this.getItemInstance((EntityPlayer) player, slot);
