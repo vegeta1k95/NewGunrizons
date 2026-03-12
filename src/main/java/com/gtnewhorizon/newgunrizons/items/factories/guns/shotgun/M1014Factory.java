@@ -25,7 +25,6 @@ public class M1014Factory {
             .withEjectSpentRoundSound("pump")
             .withFireRate(0.3F)
             .withRecoil(9.0F)
-
             .withMaxShots(1)
             .withShootSound("M1014")
             .withSilencedShootSound("ShotgunSilenced")
