@@ -11,7 +11,7 @@ package com.gtnewhorizon.newgunrizons.state;
 public enum RenderableState {
 
     // --- Base states ---
-    NORMAL,
+    IDLE,
     RUNNING,
 
     // --- Aiming ---
@@ -19,18 +19,13 @@ public enum RenderableState {
 
     // --- Firing ---
     SHOOTING,
-    AUTO_SHOOTING,
     ZOOMING_SHOOTING,
 
     // --- Reload ---
-    RELOADING,
+    RELOADING_START,
+    RELOADING_ITERATION,
+    RELOADING_END,
     UNLOADING,
-    LOAD_ITERATION,
-    LOAD_ITERATION_COMPLETED,
-    ALL_LOAD_ITERATIONS_COMPLETED,
-
-    // --- Mechanical ---
-    EJECT_SPENT_ROUND,
 
     // --- Attachment mode ---
     MODIFYING,

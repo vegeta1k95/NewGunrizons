@@ -66,7 +66,7 @@ public class GrenadeRenderer implements IItemRenderer {
 	 * Maps the grenade state machine state to a renderable animation state.
 	 */
 	private static RenderableState mapGrenadeState(ItemGrenadeInstance instance, EntityLivingBase player) {
-		if (instance == null) return RenderableState.NORMAL;
+		if (instance == null) return RenderableState.IDLE;
 		switch (instance.getState()) {
 			case SAFETY_PIN_OFF:
 				return RenderableState.SAFETY_PIN_OFF;
@@ -78,7 +78,7 @@ public class GrenadeRenderer implements IItemRenderer {
 				return RenderableState.THROWN;
 			default:
 				if (player.isSprinting()) return RenderableState.RUNNING;
-				return RenderableState.NORMAL;
+				return RenderableState.IDLE;
 		}
 	}
 

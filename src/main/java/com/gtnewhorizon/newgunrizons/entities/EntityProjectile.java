@@ -102,22 +102,23 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
 
     public void setPositionAndDirection() {
         float yaw = this.thrower instanceof EntityPlayer ? this.thrower.rotationYaw : this.thrower.renderYawOffset;
+        float pitch = this.thrower.rotationPitch;
+
+        // Spawn at eye position, no lateral offset
         this.setLocationAndAngles(
             this.thrower.posX,
             this.thrower.posY + (double) this.thrower.getEyeHeight(),
             this.thrower.posZ,
             yaw,
-            this.thrower.rotationPitch);
-        this.posX -= MathHelper.cos(this.rotationYaw * DEG_TO_RAD) * SPAWN_LATERAL_OFFSET;
-        this.posY -= SPAWN_VERTICAL_OFFSET;
-        this.posZ -= MathHelper.sin(this.rotationYaw * DEG_TO_RAD) * SPAWN_LATERAL_OFFSET;
+            pitch);
         this.setPosition(this.posX, this.posY, this.posZ);
-        float speed = this.velocity;
-        this.motionX = -MathHelper.sin(this.rotationYaw * DEG_TO_RAD) * MathHelper.cos(this.rotationPitch * DEG_TO_RAD)
-            * speed;
-        this.motionZ = MathHelper.cos(this.rotationYaw * DEG_TO_RAD) * MathHelper.cos(this.rotationPitch * DEG_TO_RAD)
-            * speed;
-        this.motionY = -MathHelper.sin((this.rotationPitch + this.getPitchOffset()) * DEG_TO_RAD) * speed;
+
+        // Velocity along look direction
+        float yawRad = yaw * DEG_TO_RAD;
+        float pitchRad = pitch * DEG_TO_RAD;
+        this.motionX = -MathHelper.sin(yawRad) * MathHelper.cos(pitchRad) * this.velocity;
+        this.motionZ = MathHelper.cos(yawRad) * MathHelper.cos(pitchRad) * this.velocity;
+        this.motionY = -MathHelper.sin(pitchRad) * this.velocity;
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.velocity, this.inaccuracy);
     }
 
@@ -145,13 +146,18 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
     }
 
     public void setVelocity(double mX, double mY, double mZ) {
-        this.motionX = mX;
-        this.motionY = mY;
-        this.motionZ = mZ;
-        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-            float horizontalSpeed = MathHelper.sqrt_double(mX * mX + mZ * mZ);
-            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(mX, mZ) * RAD_TO_DEG);
-            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(mY, horizontalSpeed) * RAD_TO_DEG);
+        // MC's velocity packets encode as shorts (value * 8000), which overflows
+        // for fast projectiles (speed > ~4). Ignore velocity packets on the client
+        // and use the values synced via spawn data instead.
+        if (!this.worldObj.isRemote) {
+            this.motionX = mX;
+            this.motionY = mY;
+            this.motionZ = mZ;
+            if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
+                float horizontalSpeed = MathHelper.sqrt_double(mX * mX + mZ * mZ);
+                this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(mX, mZ) * RAD_TO_DEG);
+                this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(mY, horizontalSpeed) * RAD_TO_DEG);
+            }
         }
     }
 
@@ -213,25 +219,10 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
         this.posY += this.motionY;
         this.posZ += this.motionZ;
         float horizontalSpeed = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        this.prevRotationYaw = this.rotationYaw;
+        this.prevRotationPitch = this.rotationPitch;
         this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * RAD_TO_DEG);
         this.rotationPitch = (float) (Math.atan2(this.motionY, horizontalSpeed) * RAD_TO_DEG);
-
-        while (this.rotationPitch - this.prevRotationPitch < -180.0F) {
-            this.prevRotationPitch -= 360.0F;
-        }
-        while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
-            this.prevRotationPitch += 360.0F;
-        }
-        while (this.rotationYaw - this.prevRotationYaw < -180.0F) {
-            this.prevRotationYaw -= 360.0F;
-        }
-        while (this.rotationYaw - this.prevRotationYaw >= 180.0F) {
-            this.prevRotationYaw += 360.0F;
-        }
-
-        this.rotationPitch = this.prevRotationPitch
-            + (this.rotationPitch - this.prevRotationPitch) * ROTATION_SMOOTHING;
-        this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * ROTATION_SMOOTHING;
 
         float drag = AIR_DRAG;
         if (this.isInWater()) {
@@ -348,10 +339,26 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
 
     public void writeSpawnData(ByteBuf buffer) {
         buffer.writeFloat(this.gravityVelocity);
+        buffer.writeFloat((float) this.motionX);
+        buffer.writeFloat((float) this.motionY);
+        buffer.writeFloat((float) this.motionZ);
+        String name = this.thrower instanceof EntityPlayer ? ((EntityPlayer) this.thrower).getCommandSenderName() : "";
+        byte[] nameBytes = name.getBytes();
+        buffer.writeShort(nameBytes.length);
+        buffer.writeBytes(nameBytes);
     }
 
     public void readSpawnData(ByteBuf buffer) {
         this.gravityVelocity = buffer.readFloat();
+        this.motionX = buffer.readFloat();
+        this.motionY = buffer.readFloat();
+        this.motionZ = buffer.readFloat();
+        short nameLen = buffer.readShort();
+        if (nameLen > 0) {
+            byte[] nameBytes = new byte[nameLen];
+            buffer.readBytes(nameBytes);
+            this.throwerName = new String(nameBytes);
+        }
     }
 
     public float getShadowSize() {

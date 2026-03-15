@@ -12,7 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
-import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
@@ -34,16 +33,11 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
     private static final Predicate<ItemWeaponInstance> readyToShootAccordingToFireMode = (
         instance) -> instance.getSeriesShotCount() < instance.getMaxShots();
     private static final Predicate<ItemWeaponInstance> hasAmmo = (instance) -> instance.getAmmo() > 0;
-    private static final Predicate<ItemWeaponInstance> ejectSpentRoundRequired = (instance) -> instance.getWeapon()
-        .ejectSpentRoundRequired();
-    private static final Predicate<ItemWeaponInstance> ejectSpentRoundTimeoutExpired = (
-        instance) -> System.currentTimeMillis() >= instance.getWeapon()
-            .getPumpTimeoutMilliseconds() + instance.getStateUpdateTimestamp();
     private static final Predicate<ItemWeaponInstance> alertTimeoutExpired = (instance) -> System.currentTimeMillis()
         >= ALERT_TIMEOUT + instance.getStateUpdateTimestamp();
     private static final Predicate<ItemWeaponInstance> sprinting = (instance) -> instance.getPlayer()
         .isSprinting();
-    private static final Set<WeaponState> allowedFireOrEjectFromStates;
+    private static final Set<WeaponState> allowedFireFromStates;
     private static final Set<WeaponState> allowedUpdateFromStates;
     public static final WeaponFireAspect INSTANCE = new WeaponFireAspect();
 
@@ -54,50 +48,31 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
     public void setStateManager(StateManager<WeaponState, ? super ItemWeaponInstance> stateManager) {
         this.stateManager = stateManager;
         stateManager.in(this)
-            .change(WeaponState.READY)
-            .to(WeaponState.ALERT)
+            .change(WeaponState.IDLE)
+            .to(WeaponState.NO_AMMO)
             .when(hasAmmo.negate())
             .withAction(this::cannotFire)
             .manual()
             .in(this)
-            .change(WeaponState.ALERT)
-            .to(WeaponState.READY)
+            .change(WeaponState.NO_AMMO)
+            .to(WeaponState.IDLE)
             .when(alertTimeoutExpired)
             .automatic()
             .in(this)
-            .change(WeaponState.READY)
-            .to(WeaponState.FIRING)
+            .change(WeaponState.IDLE)
+            .to(WeaponState.SHOOTING)
             .when(
                 hasAmmo.and(sprinting.negate())
                     .and(readyToShootAccordingToFireRate))
             .withAction(this::fire)
             .manual()
             .in(this)
-            .change(WeaponState.FIRING)
+            .change(WeaponState.SHOOTING)
             .to(WeaponState.RECOILED)
             .automatic()
             .in(this)
             .change(WeaponState.RECOILED)
-            .to(WeaponState.PAUSED)
-            .automatic()
-            .in(this)
-            .change(WeaponState.PAUSED)
-            .to(WeaponState.EJECT_REQUIRED)
-            .when(ejectSpentRoundRequired)
-            .manual()
-            .in(this)
-            .change(WeaponState.EJECT_REQUIRED)
-            .to(WeaponState.EJECTING)
-            .withAction(this::ejectSpentRound)
-            .manual()
-            .in(this)
-            .change(WeaponState.EJECTING)
-            .to(WeaponState.READY)
-            .when(ejectSpentRoundTimeoutExpired)
-            .automatic()
-            .in(this)
-            .change(WeaponState.PAUSED)
-            .to(WeaponState.FIRING)
+            .to(WeaponState.SHOOTING)
             .when(
                 hasAmmo.and(sprinting.negate())
                     .and(readyToShootAccordingToFireMode)
@@ -105,9 +80,8 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             .withAction(this::fire)
             .manual()
             .in(this)
-            .change(WeaponState.PAUSED)
-            .to(WeaponState.READY)
-            .when(ejectSpentRoundRequired.negate())
+            .change(WeaponState.RECOILED)
+            .to(WeaponState.IDLE)
             .withAction(ItemWeaponInstance::resetCurrentSeries)
             .manual();
     }
@@ -119,21 +93,18 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             this.stateManager.changeStateFromAnyOf(
                 this,
                 weaponInstance,
-                allowedFireOrEjectFromStates,
-                WeaponState.FIRING,
-                WeaponState.EJECTING,
-                WeaponState.ALERT);
+                allowedFireFromStates,
+                WeaponState.SHOOTING,
+                WeaponState.NO_AMMO);
         }
-
     }
 
     public void onFireButtonRelease(EntityPlayer player) {
         ItemWeaponInstance weaponInstance = ItemInstanceRegistry.INSTANCE
             .getMainHandItemInstance(player, ItemWeaponInstance.class);
         if (weaponInstance != null) {
-            this.stateManager.changeState(this, weaponInstance, WeaponState.EJECT_REQUIRED, WeaponState.READY);
+            this.stateManager.changeState(this, weaponInstance, WeaponState.IDLE);
         }
-
     }
 
     public void onUpdate(EntityPlayer player) {
@@ -142,7 +113,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         if (weaponInstance != null) {
             this.stateManager.changeStateFromAnyOf(this, weaponInstance, allowedUpdateFromStates);
         }
-
     }
 
     private void cannotFire(ItemWeaponInstance weaponInstance) {
@@ -157,7 +127,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
                 }
             }
         }
-
     }
 
     private void fire(ItemWeaponInstance weaponInstance) {
@@ -180,34 +149,26 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             player.playSound(weapon.getEndOfShootSound(), 1.0F, 1.0F);
         }
 
-        float recoilAmount = weaponInstance.getRecoil();
-        float rotationYawFactor = -1.0F + random.nextFloat() * 2.0F;
-        NewGunrizonsMod.proxy.applyCameraRecoil(-recoilAmount, recoilAmount * rotationYawFactor,
-            weapon.getCameraRecoilDurationMs());
+        float recoilAmount = weapon.getRecoil();
+        if (recoilAmount > 0) {
+            float rotationYawFactor = -1.0F + random.nextFloat() * 2.0F;
+            NewGunrizonsMod.proxy.applyCameraRecoil(-recoilAmount, recoilAmount * rotationYawFactor,
+                weapon.getCameraRecoilDurationMs());
+        }
 
-        NewGunrizonsMod.proxy.onWeaponFireEffects(
-            player,
-            weapon.getSmokeOffsetX()
-                .get(),
-            weapon.getSmokeOffsetY()
-                .get(),
-            silencerOn);
+        if (weapon.isSmokeEnabled()) {
+            NewGunrizonsMod.proxy.onWeaponFireEffects(
+                player,
+                weapon.getSmokeOffsetX()
+                    .get(),
+                weapon.getSmokeOffsetY()
+                    .get(),
+                silencerOn);
+        }
 
         weaponInstance.setSeriesShotCount(weaponInstance.getSeriesShotCount() + 1);
         weaponInstance.setLastFireTimestamp(System.currentTimeMillis());
         weaponInstance.setAmmo(weaponInstance.getAmmo() - 1);
-    }
-
-    private void ejectSpentRound(ItemWeaponInstance weaponInstance) {
-        EntityLivingBase player = weaponInstance.getPlayer();
-        if (weaponInstance.getWeapon()
-            .getEjectSpentRoundSound() != null) {
-            player.playSound(
-                weaponInstance.getWeapon()
-                    .getEjectSpentRoundSound(),
-                1.0F,
-                1.0F);
-        }
     }
 
     public void serverFire(EntityLivingBase player, ItemStack itemStack, int slotIndex) {
@@ -215,7 +176,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             return;
         }
         ItemWeapon weapon = (ItemWeapon) itemStack.getItem();
-
         ItemWeaponInstance instance = ItemInstance.fromStack(itemStack, ItemWeaponInstance.class);
         if (instance == null) {
             instance = weapon.createItemInstance(player, itemStack, slotIndex);
@@ -223,7 +183,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         }
         instance.setPlayer(player);
 
-        // Server-authoritative ammo check
         int ammo = instance.getAmmo();
         if (ammo <= 0) {
             return;
@@ -232,7 +191,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
         ItemInstance.setAmmo(itemStack, ammo - 1);
         ItemInstance.toStack(itemStack, instance);
 
-        // Spawn projectiles
         for (int i = 0; i < weapon.getPellets(); ++i) {
             weapon.spawnBullet(player);
         }
@@ -241,7 +199,6 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             weapon.spawnShell(instance, player);
         }
 
-        // Play sound for other players
         boolean silencerOn = WeaponAttachmentAspect.INSTANCE.isSilencerOn(instance);
         String snd = silencerOn ? weapon.getSilencedShootSound() : weapon.getShootSound();
         float vol = silencerOn ? weapon.getSilencedShootSoundVolume() : weapon.getShootSoundVolume();
@@ -253,15 +210,12 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
     }
 
     static {
-        allowedFireOrEjectFromStates = new HashSet<>(
-            Arrays.asList(WeaponState.READY, WeaponState.PAUSED, WeaponState.EJECT_REQUIRED));
+        allowedFireFromStates = new HashSet<>(
+            Arrays.asList(WeaponState.IDLE, WeaponState.RECOILED));
         allowedUpdateFromStates = new HashSet<>(
             Arrays.asList(
-                WeaponState.EJECTING,
-                WeaponState.PAUSED,
-                WeaponState.FIRING,
+                WeaponState.SHOOTING,
                 WeaponState.RECOILED,
-                WeaponState.PAUSED,
-                WeaponState.ALERT));
+                WeaponState.NO_AMMO));
     }
 }

@@ -125,9 +125,8 @@ public class WeaponRenderHandler {
                 if (instance instanceof ItemWeaponInstance) {
                     ItemWeaponInstance weaponInstance = (ItemWeaponInstance) instance;
                     rp.modelBipedMain.aimedBow = weaponInstance.isAimed()
-                        || weaponInstance.getState() == WeaponState.FIRING
-                        || weaponInstance.getState() == WeaponState.RECOILED
-                        || weaponInstance.getState() == WeaponState.PAUSED;
+                        || weaponInstance.getState() == WeaponState.SHOOTING
+                        || weaponInstance.getState() == WeaponState.RECOILED;
                 }
             }
         }

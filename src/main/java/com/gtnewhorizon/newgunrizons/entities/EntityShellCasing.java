@@ -2,6 +2,7 @@ package com.gtnewhorizon.newgunrizons.entities;
 
 import java.util.Random;
 
+import lombok.Getter;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,6 +25,7 @@ public class EntityShellCasing extends EntityProjectile {
     private static final float SHELL_OFFSET = 0.15F;
     private static final float SHELL_OFFSET_AIMED = 0.05F;
 
+    @Getter
     private ItemWeapon weapon;
 
     private ItemWeaponInstance weaponInstance;
@@ -33,6 +35,7 @@ public class EntityShellCasing extends EntityProjectile {
 
     private float xRotation;
     private float yRotation;
+    @Getter
     private float zRotation;
 
     private float xRotationChange;
@@ -131,10 +134,6 @@ public class EntityShellCasing extends EntityProjectile {
         tagCompound.setInteger(TAG_ENTITY_ITEM, Item.getIdFromItem(this.weapon));
     }
 
-    public ItemWeapon getWeapon() {
-        return this.weapon;
-    }
-
     public float getXRotation() {
         return this.initialPitch - this.xRotation;
     }
@@ -143,11 +142,4 @@ public class EntityShellCasing extends EntityProjectile {
         return this.yRotation - this.initialYaw - 90.0F;
     }
 
-    public float getZRotation() {
-        return this.zRotation;
-    }
-
-    public void setDead() {
-        super.setDead();
-    }
 }

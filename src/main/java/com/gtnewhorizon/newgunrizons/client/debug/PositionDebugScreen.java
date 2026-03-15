@@ -217,7 +217,7 @@ public class PositionDebugScreen extends GuiScreen {
 	protected void actionPerformed(GuiButton button) {
 		if (button.id >= CLIP_BTN_BASE_ID && button.id < CLIP_BTN_BASE_ID + 1000) {
 			int clipIndex = button.id - CLIP_BTN_BASE_ID;
-			if (clipIndex >= 0 && clipIndex < clipNames.size()) {
+			if (clipIndex < clipNames.size()) {
 				PositionDebugger.selectClip(clipNames.get(clipIndex));
 				rebuildClipButtons();
 			}

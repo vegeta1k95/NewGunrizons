@@ -207,8 +207,8 @@ public class StateManager<S extends ManagedState<S>, E extends ItemInstance<S>> 
      *
      * <pre>
      * stateManager.in(aspect)
-     *     .change(WeaponState.READY)
-     *     .to(WeaponState.FIRING)
+     *     .change(WeaponState.IDLE)
+     *     .to(WeaponState.SHOOTING)
      *     .when(instance -&gt; instance.hasAmmo())
      *     .withAction(instance -&gt; instance.fire())
      *     .manual();

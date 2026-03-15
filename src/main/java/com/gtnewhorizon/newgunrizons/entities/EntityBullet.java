@@ -52,6 +52,12 @@ public class EntityBullet extends EntityProjectile {
     private ItemWeapon weapon;
     private float damage = DEFAULT_DAMAGE;
     private float explosionRadius;
+    /** Initial flight yaw, set at spawn from velocity. Used by renderer for tracer orientation. */
+    @Getter
+    private float spawnYaw;
+    /** Initial flight pitch, set at spawn from velocity. Used by renderer for tracer orientation. */
+    @Getter
+    private float spawnPitch;
 
     public EntityBullet(World world) {
         super(world);
@@ -63,6 +69,12 @@ public class EntityBullet extends EntityProjectile {
         this.weapon = weapon;
         this.damage = damage;
         this.explosionRadius = explosionRadius;
+    }
+
+    /** Captures the current rotation as the spawn direction. Call after setPositionAndDirection(). */
+    public void captureSpawnDirection() {
+        this.spawnYaw = this.rotationYaw;
+        this.spawnPitch = this.rotationPitch;
     }
 
     public void onImpact(MovingObjectPosition position) {
@@ -155,6 +167,8 @@ public class EntityBullet extends EntityProjectile {
         buffer.writeInt(Item.getIdFromItem(this.weapon));
         buffer.writeFloat(this.damage);
         buffer.writeFloat(this.explosionRadius);
+        buffer.writeFloat(this.spawnYaw);
+        buffer.writeFloat(this.spawnPitch);
     }
 
     public void readSpawnData(ByteBuf buffer) {
@@ -162,6 +176,8 @@ public class EntityBullet extends EntityProjectile {
         this.weapon = (ItemWeapon) Item.getItemById(buffer.readInt());
         this.damage = buffer.readFloat();
         this.explosionRadius = buffer.readFloat();
+        this.spawnYaw = buffer.readFloat();
+        this.spawnPitch = buffer.readFloat();
     }
 
     public void readEntityFromNBT(NBTTagCompound tagCompound) {

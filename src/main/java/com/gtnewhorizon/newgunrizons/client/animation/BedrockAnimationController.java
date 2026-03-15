@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.gtnewhorizon.newgunrizons.model.BedrockModel;
+import lombok.Getter;
 import net.minecraft.client.model.ModelRenderer;
 
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.AnimationClip;
@@ -24,8 +25,14 @@ public class BedrockAnimationController {
     private static final long BLEND_DURATION_MS = 250L;
     private static final float DEG_TO_RAD = (float) (Math.PI / 180.0);
 
+    /**
+     * -- GETTER --
+     *  Returns the underlying animation data.
+     */
+    @Getter
     private final BedrockAnimation animation;
     private final Map<RenderableState, String> stateClipMap = new HashMap<>();
+    @Getter
     private BedrockAnimationPlayer currentPlayer;
     private RenderableState currentAnimState;
 
@@ -43,18 +50,13 @@ public class BedrockAnimationController {
 
     // Debug offset: additive position/rotation applied to a named bone
     private String debugBoneName;
+    @Getter
     private float[] debugPosOffset;
+    @Getter
     private float[] debugRotOffset;
 
     public BedrockAnimationController(BedrockAnimation animation) {
         this.animation = animation;
-    }
-
-    /**
-     * Returns the underlying animation data.
-     */
-    public BedrockAnimation getAnimation() {
-        return animation;
     }
 
     /**
@@ -90,14 +92,6 @@ public class BedrockAnimationController {
         this.debugBoneName = null;
         this.debugPosOffset = null;
         this.debugRotOffset = null;
-    }
-
-    public float[] getDebugPosOffset() {
-        return debugPosOffset;
-    }
-
-    public float[] getDebugRotOffset() {
-        return debugRotOffset;
     }
 
     /**
@@ -303,10 +297,6 @@ public class BedrockAnimationController {
 
     public boolean hasAnimation(RenderableState state) {
         return stateClipMap.containsKey(state);
-    }
-
-    public BedrockAnimationPlayer getCurrentPlayer() {
-        return currentPlayer;
     }
 
     /**

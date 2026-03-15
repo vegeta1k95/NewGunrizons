@@ -24,7 +24,7 @@ public class ItemAmmo extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean flag) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean flag) {
         tooltip.add("Compatible guns:");
         this.compatibleWeapons.forEach((weapon) -> tooltip.add(weapon.getName()));
     }

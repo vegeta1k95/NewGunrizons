@@ -12,6 +12,7 @@ import net.minecraft.util.StatCollector;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
+import com.gtnewhorizon.newgunrizons.state.RenderableState;
 import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
@@ -57,54 +58,54 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
 
     public void setStateManager(StateManager<WeaponState, ? super ItemWeaponInstance> stateManager) {
         this.stateManager = stateManager.in(this)
-            .change(WeaponState.READY)
-            .to(WeaponState.LOAD)
+            .change(WeaponState.IDLE)
+            .to(WeaponState.RELOADING_START)
             .when(supportsDirectBulletLoad.and(this.hasCompatibleAmmo))
             .withAction(this::performLoad)
             .manual()
             .in(this)
-            .change(WeaponState.LOAD)
-            .to(WeaponState.READY)
+            .change(WeaponState.RELOADING_START)
+            .to(WeaponState.IDLE)
             .when(reloadAnimationCompleted.and(hasNextLoadIteration.negate()))
             .automatic()
             .in(this)
-            .change(WeaponState.LOAD)
-            .to(WeaponState.LOAD_ITERATION)
+            .change(WeaponState.RELOADING_START)
+            .to(WeaponState.RELOADING_ITERATION)
             .when(hasNextLoadIteration.and(prepareFirstLoadIterationAnimationCompleted))
             .withAction(this::startLoadIteration)
             .automatic()
             .in(this)
-            .change(WeaponState.LOAD_ITERATION)
-            .to(WeaponState.LOAD_ITERATION_COMPLETED)
+            .change(WeaponState.RELOADING_ITERATION)
+            .to(WeaponState.RELOADING_ITERATION_COMPLETED)
             .when(loadIterationCompleted)
             .withAction(this::completeLoadIteration)
             .automatic()
             .in(this)
-            .change(WeaponState.LOAD_ITERATION_COMPLETED)
-            .to(WeaponState.LOAD_ITERATION)
+            .change(WeaponState.RELOADING_ITERATION_COMPLETED)
+            .to(WeaponState.RELOADING_ITERATION)
             .when(hasNextLoadIteration)
             .withAction(this::startLoadIteration)
             .automatic()
             .in(this)
-            .change(WeaponState.LOAD_ITERATION_COMPLETED)
-            .to(WeaponState.ALL_LOAD_ITERATIONS_COMPLETED)
+            .change(WeaponState.RELOADING_ITERATION_COMPLETED)
+            .to(WeaponState.RELOADING_END)
             .when(hasNextLoadIteration.negate())
             .automatic()
             .in(this)
-            .change(WeaponState.ALL_LOAD_ITERATIONS_COMPLETED)
-            .to(WeaponState.READY)
+            .change(WeaponState.RELOADING_END)
+            .to(WeaponState.IDLE)
             .when(allLoadIterationsCompleted)
             .withAction(this::completeAllLoadIterations)
             .automatic()
             .in(this)
-            .change(WeaponState.READY)
-            .to(WeaponState.ALERT)
+            .change(WeaponState.IDLE)
+            .to(WeaponState.NO_AMMO)
             .when(this.hasCompatibleAmmo.negate())
             .withAction(this::noAmmoAlert)
             .manual()
             .in(this)
-            .change(WeaponState.ALERT)
-            .to(WeaponState.READY)
+            .change(WeaponState.NO_AMMO)
+            .to(WeaponState.IDLE)
             .when(alertTimeoutExpired)
             .automatic();
     }
@@ -113,7 +114,7 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
         ItemWeaponInstance instance = ItemInstanceRegistry.INSTANCE
             .getMainHandItemInstance(player, ItemWeaponInstance.class);
         if (instance != null) {
-            this.stateManager.changeState(this, instance, WeaponState.LOAD, WeaponState.ALERT);
+            this.stateManager.changeState(this, instance, WeaponState.RELOADING_START, WeaponState.NO_AMMO);
         }
     }
 
@@ -204,34 +205,28 @@ public class WeaponReloadAspect implements Aspect<WeaponState, ItemWeaponInstanc
     static {
         allowedUpdateFromStates = new HashSet<>(
             Arrays.asList(
-                WeaponState.LOAD,
-                WeaponState.LOAD_ITERATION,
-                WeaponState.LOAD_ITERATION_COMPLETED,
-                WeaponState.ALL_LOAD_ITERATIONS_COMPLETED,
-                WeaponState.ALERT));
+                WeaponState.RELOADING_START,
+                WeaponState.RELOADING_ITERATION,
+                WeaponState.RELOADING_ITERATION_COMPLETED,
+                WeaponState.RELOADING_END,
+                WeaponState.NO_AMMO));
 
         hasNextLoadIteration = (weaponInstance) -> weaponInstance.getWeapon()
             .hasIteratedLoad() && weaponInstance.getLoadIterationCount() > 0;
         supportsDirectBulletLoad = (weaponInstance) -> weaponInstance.getWeapon()
             .getAmmoCapacity() > 0;
         loadIterationCompleted = (weaponInstance) -> System.currentTimeMillis()
-            >= weaponInstance.getStateUpdateTimestamp() + Math.max(
-                weaponInstance.getWeapon()
-                    .getLoadIterationTimeout(),
-                weaponInstance.getWeapon()
-                    .getTotalLoadIterationDuration() + 250L);
+            >= weaponInstance.getStateUpdateTimestamp()
+                + weaponInstance.getWeapon().getAnimationDurationMs(RenderableState.RELOADING_ITERATION);
         allLoadIterationsCompleted = (weaponInstance) -> System.currentTimeMillis()
-            >= weaponInstance.getStateUpdateTimestamp() + weaponInstance.getWeapon()
-                .getAllLoadIterationAnimationsCompletedDuration();
-        reloadAnimationCompleted = (weaponInstance) -> (double) System.currentTimeMillis()
-            >= (double) weaponInstance.getStateUpdateTimestamp() + Math.max(
-                (double) weaponInstance.getWeapon()
-                    .getReloadingTimeout(),
-                (double) weaponInstance.getWeapon()
-                    .getTotalReloadingDuration() * 1.1D);
-        prepareFirstLoadIterationAnimationCompleted = (weaponInstance) -> (double) System.currentTimeMillis()
-            >= (double) weaponInstance.getStateUpdateTimestamp() + (double) weaponInstance.getWeapon()
-                .getPrepareFirstLoadIterationAnimationDuration() * 1.1D;
+            >= weaponInstance.getStateUpdateTimestamp()
+                + weaponInstance.getWeapon().getAnimationDurationMs(RenderableState.RELOADING_END);
+        reloadAnimationCompleted = (weaponInstance) -> System.currentTimeMillis()
+            >= weaponInstance.getStateUpdateTimestamp()
+                + weaponInstance.getWeapon().getAnimationDurationMs(RenderableState.RELOADING_START);
+        prepareFirstLoadIterationAnimationCompleted = (weaponInstance) -> System.currentTimeMillis()
+            >= weaponInstance.getStateUpdateTimestamp()
+                + weaponInstance.getWeapon().getAnimationDurationMs(RenderableState.RELOADING_START);
         alertTimeoutExpired = (instance) -> System.currentTimeMillis()
             >= ALERT_TIMEOUT + instance.getStateUpdateTimestamp();
     }

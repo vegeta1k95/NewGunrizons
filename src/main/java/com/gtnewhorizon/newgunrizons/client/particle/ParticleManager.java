@@ -102,24 +102,71 @@ public class ParticleManager {
         return new double[] { posX, posY, posZ };
     }
 
+    // Cached firing point world position, updated each frame during weapon rendering
+    private static double lastFiringPointX, lastFiringPointY, lastFiringPointZ;
+    private static boolean hasFiringPoint;
+
+    public static boolean hasFiringPointPosition() {
+        return hasFiringPoint;
+    }
+
+    public static double getLastFiringPointX() {
+        return lastFiringPointX;
+    }
+
+    public static double getLastFiringPointY() {
+        return lastFiringPointY;
+    }
+
+    public static double getLastFiringPointZ() {
+        return lastFiringPointZ;
+    }
+
     /**
-     * Spawns a {@link SmokeFX} wisp at the player's muzzle position.
-     *
-     * @param player  the shooter
-     * @param xOffset lateral offset from the look vector (positive = right)
-     * @param yOffset vertical offset below eye height
+     * Stores the world-space position of the firing point bone, captured during weapon rendering.
+     */
+    public static void setFiringPointWorldPosition(double x, double y, double z) {
+        lastFiringPointX = x;
+        lastFiringPointY = y;
+        lastFiringPointZ = z;
+        hasFiringPoint = true;
+    }
+
+    /**
+     * Computes and stores the firing point world position from model-space camera-relative offsets.
+     */
+    public static void setMuzzleFromModelSpace(EntityLivingBase player, float forward, float right, float up) {
+        double[] pos = computeMuzzlePosition(player, forward, right, -up, 0f);
+        lastFiringPointX = pos[0];
+        lastFiringPointY = pos[1];
+        lastFiringPointZ = pos[2];
+        hasFiringPoint = true;
+    }
+
+    /**
+     * Spawns a {@link SmokeFX} wisp at the firing point bone position if available,
+     * otherwise falls back to the offset-based calculation.
      */
     public static void spawnSmokeParticle(EntityLivingBase player, float xOffset, float yOffset) {
         double motionX = player.worldObj.rand.nextGaussian() * 0.003D;
         double motionY = player.worldObj.rand.nextGaussian() * 0.003D;
         double motionZ = player.worldObj.rand.nextGaussian() * 0.003D;
 
-        float distance = 0.42F;
         float scale = 2.3F;
-        xOffset += -0.02F;
-        yOffset += 0.10F;
+        double[] pos;
 
-        double[] pos = computeMuzzlePosition(player, distance, xOffset, yOffset, 0.01F);
+        if (hasFiringPoint) {
+            pos = new double[] { lastFiringPointX, lastFiringPointY, lastFiringPointZ };
+            java.util.Random r = player.worldObj.rand;
+            pos[0] += (r.nextFloat() * 2.0F - 1.0F) * 0.01F;
+            pos[1] += (r.nextFloat() * 2.0F - 1.0F) * 0.01F;
+            pos[2] += (r.nextFloat() * 2.0F - 1.0F) * 0.01F;
+        } else {
+            float distance = 0.42F;
+            xOffset += -0.02F;
+            yOffset += 0.10F;
+            pos = computeMuzzlePosition(player, distance, xOffset, yOffset, 0.01F);
+        }
 
         SmokeFX particle = new SmokeFX(
             player.worldObj,

@@ -156,15 +156,12 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
             this.recoil = recoil;
 
         }
-
     }
 
     public void setMaxShots(int maxShots) {
         if (this.maxShots != maxShots) {
             this.maxShots = maxShots;
-
         }
-
     }
 
     public void resetCurrentSeries() {

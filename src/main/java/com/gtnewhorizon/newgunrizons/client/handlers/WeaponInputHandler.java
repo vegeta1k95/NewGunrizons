@@ -104,7 +104,7 @@ public class WeaponInputHandler {
             if (KeyBindings.laserSwitchKey.isPressed()) {
                 instance = ItemInstanceRegistry.INSTANCE.getMainHandItemInstance(player, ItemWeaponInstance.class);
                 if (instance != null
-                    && (instance.getState() == WeaponState.READY || instance.getState() == WeaponState.MODIFYING)) {
+                    && (instance.getState() == WeaponState.IDLE || instance.getState() == WeaponState.MODIFYING)) {
                     instance.setLaserOn(!instance.isLaserOn());
                     NewGunrizonsMod.CHANNEL.sendToServer(
                         new WeaponActionMessage(WeaponActionMessage.TOGGLE_LASER, player.inventory.currentItem));
@@ -113,8 +113,8 @@ public class WeaponInputHandler {
                 ItemWeaponInstance nvInstance = ItemInstanceRegistry.INSTANCE
                     .getMainHandItemInstance(player, ItemWeaponInstance.class);
                 if (nvInstance != null
-                    && (nvInstance.getState() == WeaponState.READY || nvInstance.getState() == WeaponState.MODIFYING
-                        || nvInstance.getState() == WeaponState.EJECT_REQUIRED)) {
+                    && (nvInstance.getState() == WeaponState.IDLE || nvInstance.getState() == WeaponState.MODIFYING
+                        )) {
                     nvInstance.setNightVisionOn(!nvInstance.isNightVisionOn());
                 }
             } else if (KeyBindings.attachmentKey.isPressed()) {
@@ -139,21 +139,21 @@ public class WeaponInputHandler {
                     }
                 } else if (KeyBindings.fireModeKey.isPressed()) {
                     instance = ItemInstanceRegistry.INSTANCE.getMainHandItemInstance(player, ItemWeaponInstance.class);
-                    if (instance != null && instance.getState() == WeaponState.READY) {
+                    if (instance != null && instance.getState() == WeaponState.IDLE) {
                         instance.getWeapon()
                             .changeFireMode(instance);
                     }
                 } else if (KeyBindings.addKey.isPressed()) {
                     instance = ItemInstanceRegistry.INSTANCE.getMainHandItemInstance(player, ItemWeaponInstance.class);
-                    if (instance != null && (instance.getState() == WeaponState.READY
-                        || instance.getState() == WeaponState.EJECT_REQUIRED)) {
+                    if (instance != null && (instance.getState() == WeaponState.IDLE
+)) {
                         instance.getWeapon()
                             .incrementZoom(instance);
                     }
                 } else if (KeyBindings.subtractKey.isPressed()) {
                     instance = ItemInstanceRegistry.INSTANCE.getMainHandItemInstance(player, ItemWeaponInstance.class);
-                    if (instance != null && (instance.getState() == WeaponState.READY
-                        || instance.getState() == WeaponState.EJECT_REQUIRED)) {
+                    if (instance != null && (instance.getState() == WeaponState.IDLE
+)) {
                         instance.getWeapon()
                             .decrementZoom(instance);
                     }

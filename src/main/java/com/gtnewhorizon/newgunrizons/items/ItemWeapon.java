@@ -23,6 +23,7 @@ import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
 import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
+import com.gtnewhorizon.newgunrizons.state.RenderableState;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
@@ -56,9 +57,6 @@ public class ItemWeapon extends Item
     @Getter
     private String unloadSound;
     @Getter
-    private String ejectSpentRoundSound;
-
-    @Getter
     private final String name;
     @Getter
     private final String textureName;
@@ -91,10 +89,17 @@ public class ItemWeapon extends Item
     @Getter
     private final float flashScale;
     @Getter
+    private final String tracerTexture;
+    @Getter
+    private final float tracerWidth;
+    @Getter
+    private final float tracerLength;
+    @Getter
+    private final boolean smokeEnabled;
+    @Getter
     private final Supplier<Float> smokeOffsetX;
     @Getter
     private final Supplier<Float> smokeOffsetY;
-    private final boolean ejectSpentRoundRequired;
     @Getter
     private final int maxBulletsPerReload;
     private final Function<ItemStack, List<String>> informationProvider;
@@ -102,10 +107,6 @@ public class ItemWeapon extends Item
     private final Map<ItemAttachment, CompatibleAttachment> compatibleAttachments;
     @Getter
     private final WeaponRenderer renderer;
-    @Getter
-    private final long reloadingTimeout;
-    @Getter
-    private final long loadIterationTimeout;
     @Getter
     private final long pumpTimeoutMilliseconds;
     @Getter
@@ -140,15 +141,16 @@ public class ItemWeapon extends Item
         this.pellets = builder.pellets;
         this.flashIntensity = builder.flashIntensity;
         this.flashScale = builder.flashScale;
+        this.tracerTexture = builder.tracerTexture;
+        this.tracerWidth = builder.tracerWidth;
+        this.tracerLength = builder.tracerLength;
+        this.smokeEnabled = builder.smokeEnabled;
         this.smokeOffsetX = builder.smokeOffsetX;
         this.smokeOffsetY = builder.smokeOffsetY;
-        this.ejectSpentRoundRequired = builder.ejectSpentRoundRequired;
         this.maxBulletsPerReload = builder.maxBulletsPerReload;
         this.informationProvider = builder.informationProvider;
         this.compatibleAttachments = builder.compatibleAttachments;
         this.renderer = builder.renderer;
-        this.reloadingTimeout = builder.reloadingTimeout;
-        this.loadIterationTimeout = builder.loadIterationTimeout;
         this.pumpTimeoutMilliseconds = builder.pumpTimeoutMilliseconds;
         this.shellCasingForwardOffset = builder.shellCasingForwardOffset;
         this.shellCasingVerticalOffset = builder.shellCasingVerticalOffset;
@@ -184,8 +186,7 @@ public class ItemWeapon extends Item
 
     public void toggleAiming() {
         ItemWeaponInstance mainHandHeldWeaponInstance = ItemInstanceRegistry.getMainHeldWeapon();
-        if (mainHandHeldWeaponInstance != null && (mainHandHeldWeaponInstance.getState() == WeaponState.READY
-            || mainHandHeldWeaponInstance.getState() == WeaponState.EJECT_REQUIRED)) {
+        if (mainHandHeldWeaponInstance != null && mainHandHeldWeaponInstance.getState() == WeaponState.IDLE) {
             mainHandHeldWeaponInstance.setAimed(!mainHandHeldWeaponInstance.isAimed());
         }
 
@@ -224,9 +225,6 @@ public class ItemWeapon extends Item
         return WeaponAttachmentAspect.INSTANCE.getActiveAttachments(player, itemStack);
     }
 
-    public boolean ejectSpentRoundRequired() {
-        return this.ejectSpentRoundRequired;
-    }
 
     public List<ItemAttachment> getCompatibleAttachments(Class<? extends ItemAttachment> target) {
         return this.compatibleAttachments.keySet()
@@ -236,7 +234,7 @@ public class ItemWeapon extends Item
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean flag) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean flag) {
         if (tooltip != null && this.informationProvider != null) {
             tooltip.addAll(this.informationProvider.apply(itemStack));
         }
@@ -262,7 +260,7 @@ public class ItemWeapon extends Item
 
     public ItemWeaponInstance createItemInstance(EntityLivingBase player, ItemStack itemStack, int slot) {
         ItemWeaponInstance instance = new ItemWeaponInstance(slot, player, itemStack);
-        instance.setState(WeaponState.READY);
+        instance.setState(WeaponState.IDLE);
         instance.setRecoil(this.recoil);
         instance.setMaxShots(this.maxShots.get(0));
 
@@ -284,7 +282,7 @@ public class ItemWeapon extends Item
 
     public boolean onDroppedByPlayer(ItemStack itemStack, EntityPlayer player) {
         ItemWeaponInstance instance = (ItemWeaponInstance) ItemInstance.fromStack(itemStack);
-        return instance == null || instance.getState() == WeaponState.READY;
+        return instance == null || instance.getState() == WeaponState.IDLE;
     }
 
     public void changeFireMode(ItemWeaponInstance instance) {
@@ -325,6 +323,7 @@ public class ItemWeapon extends Item
             this.spawnEntityDamage,
             this.spawnEntityExplosionRadius);
         bullet.setPositionAndDirection();
+        bullet.captureSpawnDirection();
         player.worldObj.spawnEntityInWorld(bullet);
     }
 
@@ -334,24 +333,11 @@ public class ItemWeapon extends Item
         player.worldObj.spawnEntityInWorld(shell);
     }
 
-    public long getTotalReloadingDuration() {
-        return this.renderer.getTotalReloadingDuration();
-    }
-
-    public long getPrepareFirstLoadIterationAnimationDuration() {
-        return this.renderer.getPrepareFirstLoadIterationAnimationDuration();
-    }
-
-    public long getAllLoadIterationAnimationsCompletedDuration() {
-        return this.renderer.getAllLoadIterationAnimationsCompletedDuration();
-    }
-
-    public long getTotalLoadIterationDuration() {
-        return this.renderer.getTotalLoadIterationDuration();
-    }
-
-    public long getTotalUnloadingDuration() {
-        return this.renderer.getTotalUnloadingDuration();
+    /**
+     * Returns the animation duration for a given state, derived from the Bedrock animation file.
+     */
+    public long getAnimationDurationMs(RenderableState state) {
+        return this.renderer.getAnimationDurationMs(state);
     }
 
     public void incrementZoom(ItemWeaponInstance instance) {
@@ -439,7 +425,6 @@ public class ItemWeapon extends Item
         private String reloadIterationSound;
         private String allReloadIterationsCompletedSound;
         private String unloadSound;
-        private String ejectSpentRoundSound;
         private String endOfShootSound;
         public ItemAmmo ammo;
         public float fireRate = 0.5F;
@@ -455,8 +440,6 @@ public class ItemWeapon extends Item
         public float spawnEntityExplosionRadius;
         public float spawnEntityGravityVelocity;
 
-        public long reloadingTimeout = 10L;
-        public long loadIterationTimeout = 10L;
 
         Map<ItemAttachment, CompatibleAttachment> compatibleAttachments = new HashMap<>();
 
@@ -466,10 +449,13 @@ public class ItemWeapon extends Item
         public int pellets = 1;
         public float flashIntensity = 0.4F;
         public Float flashScale = 1.0F;
+        public String tracerTexture = "tracer";
+        public float tracerWidth = 0.03F;
+        public float tracerLength = 1.5F;
 
+        public boolean smokeEnabled = true;
         public Supplier<Float> smokeOffsetX = () -> 0.0F;
         public Supplier<Float> smokeOffsetY = () -> 0.0F;
-        private boolean ejectSpentRoundRequired;
         public int maxBulletsPerReload;
         private Function<ItemStack, List<String>> informationProvider;
         private float shellCasingForwardOffset = 0.1F;
@@ -486,18 +472,9 @@ public class ItemWeapon extends Item
             this.shootSoundVolume = 10.0F;
         }
 
-        public ItemWeapon.Builder withEjectRoundRequired() {
-            this.ejectSpentRoundRequired = true;
-            return this;
-        }
 
         public ItemWeapon.Builder withInformationProvider(Function<ItemStack, List<String>> informationProvider) {
             this.informationProvider = informationProvider;
-            return this;
-        }
-
-        public ItemWeapon.Builder withReloadingTime(long reloadingTime) {
-            this.reloadingTimeout = reloadingTime;
             return this;
         }
 
@@ -582,10 +559,6 @@ public class ItemWeapon extends Item
             return this;
         }
 
-        public ItemWeapon.Builder withEjectSpentRoundSound(String ejectSpentRoundSound) {
-            this.ejectSpentRoundSound = ejectSpentRoundSound.toLowerCase();
-            return this;
-        }
 
         public ItemWeapon.Builder withSilencedShootSound(String silencedShootSound) {
             this.silencedShootSound = silencedShootSound.toLowerCase();
@@ -715,6 +688,26 @@ public class ItemWeapon extends Item
             return this;
         }
 
+        public ItemWeapon.Builder withTracerTexture(String tracerTexture) {
+            this.tracerTexture = tracerTexture;
+            return this;
+        }
+
+        public ItemWeapon.Builder withTracerWidth(float tracerWidth) {
+            this.tracerWidth = tracerWidth;
+            return this;
+        }
+
+        public ItemWeapon.Builder withTracerLength(float tracerLength) {
+            this.tracerLength = tracerLength;
+            return this;
+        }
+
+        public ItemWeapon.Builder withSmokeEnabled(boolean smokeEnabled) {
+            this.smokeEnabled = smokeEnabled;
+            return this;
+        }
+
         public ItemWeapon build() {
             if (this.name == null) {
                 throw new IllegalStateException("Weapon name not provided");
@@ -767,10 +760,6 @@ public class ItemWeapon extends Item
             weapon.allReloadIterationsCompletedSound = Sounds.resolve(this.allReloadIterationsCompletedSound);
             weapon.unloadSound = Sounds.resolve(this.unloadSound);
             weapon.silencedShootSound = Sounds.resolve(this.silencedShootSound);
-            if (this.ejectSpentRoundSound != null) {
-                weapon.ejectSpentRoundSound = Sounds.resolve(this.ejectSpentRoundSound);
-            }
-
             weapon.setCreativeTab(this.creativeTab);
             weapon.setUnlocalizedName(this.name);
             if (this.ammo != null) {

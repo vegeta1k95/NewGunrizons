@@ -318,7 +318,7 @@
 					]
 				},
 				{
-					"name": "muzzle_flash",
+					"name": "firing_point",
 					"parent": "barrel",
 					"pivot": [0, 3.75, -15]
 				},

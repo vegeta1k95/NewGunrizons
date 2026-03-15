@@ -21,14 +21,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * Renders muzzle flash at the "muzzle_flash" bone position (child of barrel),
+ * Renders muzzle flash at the firing_point bone position (child of barrel),
  * oriented to face the camera (billboard). Falls back to hardcoded offsets
  * if the bone doesn't exist in the model.
  */
 @SideOnly(Side.CLIENT)
 public class MuzzleFlashRenderer {
 
-    public static final String BONE_MUZZLE_FLASH = "muzzle_flash";
+    public static final String BONE_FIRING_POINT = "firing_point";
 
     private static final ResourceLocation FLASH_TEXTURE = new ResourceLocation(
         NewGunrizonsMod.MODID,
@@ -46,7 +46,7 @@ public class MuzzleFlashRenderer {
 
     /**
      * Renders a muzzle flash if the weapon just fired.
-     * If the weapon model has a "muzzle_flash" bone, renders at that bone's position.
+     * If the weapon model has a "firing_point" bone, renders at that bone's position.
      * Otherwise falls back to the weapon's configured flash offsets.
      */
     public static void renderIfFiring(RenderContext renderContext, BedrockModel weaponModel, float renderScale) {
@@ -66,14 +66,14 @@ public class MuzzleFlashRenderer {
         float scale = weapon.getFlashScale();
         int imageIndex = Math.abs(rand.nextInt()) % IMAGES_PER_ROW;
 
-        if (weaponModel != null && weaponModel.getBone(BONE_MUZZLE_FLASH) != null) {
+        if (weaponModel != null && weaponModel.getBone(BONE_FIRING_POINT) != null) {
             renderFlashAtBone(weaponModel, renderScale, alpha, scale, imageIndex);
         }
     }
 
     /**
-     * Renders the flash quad at the muzzle_flash bone position.
-     * Walks the bone hierarchy: receiver -> barrel -> muzzle_flash.
+     * Renders the flash quad at the firing_point bone position.
+     * Walks the bone hierarchy: receiver -> barrel -> firing_point.
      */
     private static void renderFlashAtBone(BedrockModel model, float renderScale,
                                           float alpha, float flashScale, int imageIndex) {
@@ -91,8 +91,8 @@ public class MuzzleFlashRenderer {
 
         if (prevProgram != 0) GL11.glDrawBuffer(GL30.GL_COLOR_ATTACHMENT0);
 
-        // Walk bone hierarchy to muzzle_flash bone
-        model.applyBoneTransform(BONE_MUZZLE_FLASH, renderScale);
+        // Walk bone hierarchy to firing_point bone
+        model.applyBoneTransform(BONE_FIRING_POINT, renderScale);
 
         // Billboard: cancel rotation, keep position and scale
         modelviewBuf.clear();

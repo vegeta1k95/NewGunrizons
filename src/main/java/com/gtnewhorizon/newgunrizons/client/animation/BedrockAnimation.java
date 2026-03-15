@@ -13,6 +13,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 
 /**
  * Parses and stores Bedrock animation data from a {@code .animation.json} file.
@@ -23,7 +24,7 @@ public class BedrockAnimation {
     private final Map<String, AnimationClip> clips = new LinkedHashMap<>();
 
     public BedrockAnimation(String animationPath) {
-        this("newgunrizons", animationPath);
+        this(NewGunrizonsMod.MODID, animationPath);
     }
 
     public BedrockAnimation(String domain, String animationPath) {

@@ -144,7 +144,7 @@ public class Explosion {
                             }
 
                             if (strength > 0.0F && (this.exploder == null || this.exploder.func_145774_a(
-                                getCompatibleExplosion(),
+                                toVanillaExplosion(),
                                 this.world,
                                 pos.getX(),
                                 pos.getY(),
@@ -192,7 +192,7 @@ public class Explosion {
                     double blockDensity = this.world.getBlockDensity(explosionCenter, entity.boundingBox);
                     double impact = (1.0D - relativeDistance) * blockDensity;
                     entity.attackEntityFrom(
-                        DamageSource.setExplosionSource(getCompatibleExplosion()),
+                        DamageSource.setExplosionSource(toVanillaExplosion()),
                         (float) ((int) ((impact * impact + impact) / 2.0D * 7.0D * (double) blastDiameter + 1.0D)));
                     double knockbackMultiplier = 1.0D;
                     if (entity instanceof EntityLivingBase) {
@@ -262,7 +262,7 @@ public class Explosion {
                 }
 
                 if (block.getMaterial() != Material.air) {
-                    if (block.canDropFromExplosion(getCompatibleExplosion())) {
+                    if (block.canDropFromExplosion(toVanillaExplosion())) {
                         int meta = this.world.getBlockMetadata(blockpos.getX(), blockpos.getY(), blockpos.getZ());
                         block.dropBlockAsItemWithChance(
                             this.world,
@@ -279,7 +279,7 @@ public class Explosion {
                         blockpos.getX(),
                         blockpos.getY(),
                         blockpos.getZ(),
-                        getCompatibleExplosion());
+                        toVanillaExplosion());
                 }
             }
 
@@ -319,7 +319,7 @@ public class Explosion {
 
     }
 
-    private net.minecraft.world.Explosion getCompatibleExplosion() {
+    private net.minecraft.world.Explosion toVanillaExplosion() {
         return new net.minecraft.world.Explosion(
             this.world,
             this.exploder,

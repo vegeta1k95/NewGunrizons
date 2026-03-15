@@ -41,14 +41,14 @@ public final class WeaponAttachmentAspect implements Aspect<WeaponState, ItemWea
 
     public void setStateManager(StateManager<WeaponState, ? super ItemWeaponInstance> stateManager) {
         this.stateManager = stateManager.in(this)
-            .change(WeaponState.READY)
+            .change(WeaponState.IDLE)
             .to(WeaponState.MODIFYING)
             .when(this.clickSpammingPreventer)
             .withAction(this::enterAttachmentSelectionMode)
             .manual()
             .in(this)
             .change(WeaponState.MODIFYING)
-            .to(WeaponState.READY)
+            .to(WeaponState.IDLE)
             .when(this.clickSpammingPreventer2)
             .withAction(this::exitAttachmentSelectionMode)
             .manual()
@@ -68,7 +68,7 @@ public final class WeaponAttachmentAspect implements Aspect<WeaponState, ItemWea
         ItemWeaponInstance weaponInstance = ItemInstanceRegistry.INSTANCE
             .getMainHandItemInstance(player, ItemWeaponInstance.class);
         if (weaponInstance != null) {
-            this.stateManager.changeState(this, weaponInstance, WeaponState.MODIFYING, WeaponState.READY);
+            this.stateManager.changeState(this, weaponInstance, WeaponState.MODIFYING, WeaponState.IDLE);
         }
 
     }

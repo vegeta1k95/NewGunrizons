@@ -1,8 +1,14 @@
 package com.gtnewhorizon.newgunrizons.client.render;
 
+import java.nio.FloatBuffer;
 import java.util.List;
 
+import org.lwjgl.BufferUtils;
+
+import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation;
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController;
+import com.gtnewhorizon.newgunrizons.client.particle.ParticleManager;
+
 import com.gtnewhorizon.newgunrizons.client.animation.IdleSway;
 import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import net.minecraft.client.Minecraft;
@@ -15,7 +21,6 @@ import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
@@ -44,19 +49,11 @@ public class WeaponRenderer implements IItemRenderer {
 
     /** GL_ENABLE_BIT | GL_CURRENT_BIT -- saves enable flags and current color/normal/texcoord. */
     private static final int ATTRIB_ENABLE_CURRENT = GL11.GL_ENABLE_BIT | GL11.GL_CURRENT_BIT;
+    private static final String FIRING_POINT_BONE = "firing_point";
+    private static final FloatBuffer MATRIX_BUF = BufferUtils.createFloatBuffer(16);
 
     private final ModelBase model;
     private final String textureName;
-    @Getter
-    private final long totalReloadingDuration;
-    @Getter
-    private final long totalUnloadingDuration;
-    @Getter
-    private final long totalLoadIterationDuration;
-    @Getter
-    private final long prepareFirstLoadIterationAnimationDuration;
-    @Getter
-    private final long allLoadIterationAnimationsCompletedDuration;
     @Getter
     private final BedrockAnimationController bedrockAnimController;
     private final IdleSway idleSway = new IdleSway();
@@ -68,12 +65,20 @@ public class WeaponRenderer implements IItemRenderer {
     private WeaponRenderer(Builder builder) {
         this.model = builder.model;
         this.textureName = builder.textureName;
-        this.totalReloadingDuration = builder.totalReloadingDuration;
-        this.totalUnloadingDuration = builder.totalUnloadingDuration;
-        this.totalLoadIterationDuration = builder.totalLoadIterationDuration;
-        this.prepareFirstLoadIterationAnimationDuration = builder.prepareFirstLoadIterationAnimationDuration;
-        this.allLoadIterationAnimationsCompletedDuration = builder.allLoadIterationAnimationsCompletedDuration;
         this.bedrockAnimController = builder.bedrockAnimController;
+    }
+
+    /**
+     * Returns the animation duration in milliseconds for the given renderable state,
+     * as defined in the Bedrock animation file. Returns 250ms as fallback if no
+     * animation is mapped.
+     */
+    public long getAnimationDurationMs(RenderableState state) {
+        if (bedrockAnimController != null) {
+            long duration = bedrockAnimController.getAnimationDurationMs(state);
+            if (duration > 0) return duration;
+        }
+        return 250L;
     }
 
     /**
@@ -81,33 +86,28 @@ public class WeaponRenderer implements IItemRenderer {
      * The bedrock animation controller handles all blending, hold, and transitions.
      */
     private static RenderableState mapWeaponState(ItemWeaponInstance instance, EntityLivingBase player) {
-        if (instance == null) return RenderableState.NORMAL;
+        if (instance == null) return RenderableState.IDLE;
         switch (instance.getState()) {
-            case FIRING:
+            case SHOOTING:
             case RECOILED:
-            case PAUSED:
-            case EJECT_REQUIRED:
                 return instance.isAimed() ? RenderableState.ZOOMING_SHOOTING : RenderableState.SHOOTING;
-            case EJECTING:
-                return RenderableState.EJECT_SPENT_ROUND;
-            case LOAD:
-                return RenderableState.RELOADING;
-            case UNLOAD_PREPARING:
-            case UNLOAD:
+            case RELOADING_START:
+                return RenderableState.RELOADING_START;
+            case UNLOADING_PREPARING:
+            case UNLOADING:
                 return RenderableState.UNLOADING;
-            case LOAD_ITERATION:
-                return RenderableState.LOAD_ITERATION;
-            case LOAD_ITERATION_COMPLETED:
-                return RenderableState.LOAD_ITERATION_COMPLETED;
-            case ALL_LOAD_ITERATIONS_COMPLETED:
-                return RenderableState.ALL_LOAD_ITERATIONS_COMPLETED;
+            case RELOADING_ITERATION:
+            case RELOADING_ITERATION_COMPLETED:
+                return RenderableState.RELOADING_ITERATION;
+            case RELOADING_END:
+                return RenderableState.RELOADING_END;
             case MODIFYING:
             case NEXT_ATTACHMENT:
                 return RenderableState.MODIFYING;
-            default: // READY, ALERT, etc.
+            default: // IDLE, NO_AMMO, etc.
                 if (player.isSprinting()) return RenderableState.RUNNING;
                 if (instance.isAimed()) return RenderableState.ZOOMING;
-                return RenderableState.NORMAL;
+                return RenderableState.IDLE;
         }
     }
 
@@ -156,6 +156,9 @@ public class WeaponRenderer implements IItemRenderer {
             renderContext.getScale());
 
         if (this.model instanceof BedrockModel) {
+            BedrockModel bedrockModel = (BedrockModel) this.model;
+
+            captureFiringPointWorldPosition(bedrockModel, renderContext);
 
             if (weapon == null)
                 return;
@@ -164,9 +167,68 @@ public class WeaponRenderer implements IItemRenderer {
                 .getActiveAttachments(renderContext.getPlayer(), weaponItemStack);
 
             if (attachments != null) {
-                this.renderAttachments((BedrockModel) this.model, renderContext, attachments);
+                this.renderAttachments(bedrockModel, renderContext, attachments);
             }
         }
+    }
+
+    /**
+     * Captures the world-space position of the firing point bone for smoke particles.
+     * Uses the bone's model-space position projected into world space via player look vectors.
+     */
+    private void captureFiringPointWorldPosition(BedrockModel model, RenderContext renderContext) {
+        if (model.getBone(FIRING_POINT_BONE) == null) return;
+        EntityLivingBase player = renderContext.getPlayer();
+        if (player == null) return;
+
+        GL11.glPushMatrix();
+        model.applyBoneTransform(FIRING_POINT_BONE, renderContext.getScale());
+
+        MATRIX_BUF.clear();
+        GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX, MATRIX_BUF);
+        // Eye-space position is the translation column (indices 12, 13, 14)
+        float ex = MATRIX_BUF.get(12);
+        float ey = MATRIX_BUF.get(13);
+        float ez = MATRIX_BUF.get(14);
+        GL11.glPopMatrix();
+
+        // The camera rotation portion of the modelview is a pure rotation matrix.
+        // Its upper-left 3x3 rows are the camera's right/up/forward axes in world space.
+        // To go from eye-space back to world-space offset we multiply by the
+        // transpose (= inverse for rotation matrices).
+        // We read the camera rotation from the current modelview, but we need the
+        // rotation BEFORE item transforms were applied. Instead, reconstruct it
+        // from the player's yaw and pitch which is how EntityRenderer.orientCamera sets it up.
+        float partialTicks = renderContext.getAgeInTicks() - (int) renderContext.getAgeInTicks();
+        float yaw = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * partialTicks;
+        float pitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks;
+
+        // GL camera setup: glRotatef(pitch, 1,0,0) then glRotatef(yaw+180, 0,1,0)
+        // Effective matrix (right-to-left): RotateY(yaw+180) * RotateX(pitch)
+        // Inverse: RotateX(-pitch) * RotateY(-(yaw+180))
+        double yawRad = Math.toRadians(-(yaw + 180.0));
+        double pitchRad = Math.toRadians(-pitch);
+
+        double cosY = Math.cos(yawRad);
+        double sinY = Math.sin(yawRad);
+        double cosP = Math.cos(pitchRad);
+        double sinP = Math.sin(pitchRad);
+
+        // Apply RotateX(-pitch) first
+        double p1x = ex;
+        double p1y = ey * cosP - ez * sinP;
+        double p1z = ey * sinP + ez * cosP;
+
+        // Then apply RotateY(-(yaw+180))
+        double wx = p1x * cosY + p1z * sinY;
+        double wy = p1y;
+        double wz = -p1x * sinY + p1z * cosY;
+
+        double interpX = player.prevPosX + (player.posX - player.prevPosX) * partialTicks;
+        double interpY = player.prevPosY + (player.posY - player.prevPosY) * partialTicks + player.getEyeHeight();
+        double interpZ = player.prevPosZ + (player.posZ - player.prevPosZ) * partialTicks;
+
+        ParticleManager.setFiringPointWorldPosition(interpX + wx, interpY + wy, interpZ + wz);
     }
 
     public void renderAttachments(BedrockModel weaponModel, RenderContext renderContext,
@@ -223,13 +285,7 @@ public class WeaponRenderer implements IItemRenderer {
         private ModelBase model;
         private String textureName;
 
-        private long totalReloadingDuration = 250;
-        private long totalUnloadingDuration = 250;
-        private long totalLoadIterationDuration = 250;
-        private int prepareFirstLoadIterationAnimationDuration = 100;
-        private int allLoadIterationAnimationsCompletedDuration = 100;
-
-        private com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController bedrockAnimController;
+        private BedrockAnimationController bedrockAnimController;
 
         public Builder withModel(ModelBase model) {
             this.model = model;
@@ -242,8 +298,8 @@ public class WeaponRenderer implements IItemRenderer {
          * @param animationPath path relative to assets/newgunrizons/animations/, without .animation.json extension
          */
         public Builder withBedrockAnimation(String animationPath) {
-            this.bedrockAnimController = new com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController(
-                new com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation(animationPath));
+            this.bedrockAnimController = new BedrockAnimationController(
+                new BedrockAnimation(animationPath));
             return this;
         }
 
@@ -256,32 +312,6 @@ public class WeaponRenderer implements IItemRenderer {
                 throw new IllegalStateException("Call withBedrockAnimation() before withBedrockAnimationForState()");
             }
             this.bedrockAnimController.mapState(state, clipName);
-            return this;
-        }
-
-        public Builder withTotalReloadingDuration(long totalReloadingDuration) {
-            this.totalReloadingDuration = totalReloadingDuration;
-            return this;
-        }
-
-        public Builder withTotalUnloadingDuration(long totalUnloadingDuration) {
-            this.totalUnloadingDuration = totalUnloadingDuration;
-            return this;
-        }
-
-        public Builder withTotalLoadIterationDuration(long totalLoadIterationDuration) {
-            this.totalLoadIterationDuration = totalLoadIterationDuration;
-            return this;
-        }
-
-        public Builder withPrepareFirstLoadIterationAnimationDuration(int prepareFirstLoadIterationAnimationDuration) {
-            this.prepareFirstLoadIterationAnimationDuration = prepareFirstLoadIterationAnimationDuration;
-            return this;
-        }
-
-        public Builder withAllLoadIterationAnimationsCompletedDuration(
-            int allLoadIterationAnimationsCompletedDuration) {
-            this.allLoadIterationAnimationsCompletedDuration = allLoadIterationAnimationsCompletedDuration;
             return this;
         }
 
@@ -367,7 +397,9 @@ public class WeaponRenderer implements IItemRenderer {
                 GL11.glTranslatef(0.5F, -1.0F, 0.5F);           // Counter Forge's block-centering offset
                 GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);  // Counter vanilla ItemRenderer's 45° Y rotation
 
-                this.idleSway.apply(0.33F, 0.06F);
+                if (!com.gtnewhorizon.newgunrizons.client.debug.PositionDebugger.isActive()) {
+                    this.idleSway.apply(0.33F, 0.06F);
+                }
 
                 BedrockModel weaponModel = this.model instanceof BedrockModel ? (BedrockModel) this.model : null;
 
@@ -503,18 +535,18 @@ public class WeaponRenderer implements IItemRenderer {
 
     public static void renderRightArm(EntityPlayer player, BedrockModel weaponModel, float renderScale) {
         if (weaponModel != null && weaponModel.getBone(
-                com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController.BONE_RIGHT_HAND) != null) {
+                BedrockAnimationController.BONE_RIGHT_HAND) != null) {
             renderArmAtBone(player, weaponModel,
-                com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController.BONE_RIGHT_HAND,
+                BedrockAnimationController.BONE_RIGHT_HAND,
                 true, renderScale);
         }
     }
 
     public static void renderLeftArm(EntityPlayer player, BedrockModel weaponModel, float renderScale) {
         if (weaponModel != null && weaponModel.getBone(
-                com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController.BONE_LEFT_HAND) != null) {
+                BedrockAnimationController.BONE_LEFT_HAND) != null) {
             renderArmAtBone(player, weaponModel,
-                com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController.BONE_LEFT_HAND,
+                BedrockAnimationController.BONE_LEFT_HAND,
                 false, renderScale);
         }
     }

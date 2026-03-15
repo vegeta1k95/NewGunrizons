@@ -1,5 +1,6 @@
 package com.gtnewhorizon.newgunrizons.client.animation;
 
+import com.gtnewhorizon.newgunrizons.client.debug.PositionDebugger;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,17 +33,18 @@ public final class CameraRecoilController {
      * being applied, the remaining amount is applied instantly and the new recoil starts fresh.
      */
     public void addRecoil(float pitchRecoil, float yawRecoil) {
+
         // Apply debug override if active
-        int debugOverride = com.gtnewhorizon.newgunrizons.client.debug.PositionDebugger
+        int debugOverride = PositionDebugger
             .getCameraRecoilDurationOverride();
-        if (com.gtnewhorizon.newgunrizons.client.debug.PositionDebugger.isActive() && debugOverride >= 0) {
+        if (PositionDebugger.isActive() && debugOverride >= 0) {
             durationMs = debugOverride;
         }
-        // Flush any remaining recoil from previous shot
-        pendingPitch += pitchRecoil;
-        pendingYaw += yawRecoil;
-        totalPitch = pendingPitch;
-        totalYaw = pendingYaw;
+        // Start fresh — each shot is its own recoil impulse
+        pendingPitch = pitchRecoil;
+        pendingYaw = yawRecoil;
+        totalPitch = pitchRecoil;
+        totalYaw = yawRecoil;
         appliedPitch = 0f;
         appliedYaw = 0f;
         startTime = System.currentTimeMillis();
@@ -52,6 +54,15 @@ public final class CameraRecoilController {
      * Called every render tick to apply a portion of the pending recoil.
      * Returns true if recoil was applied this tick.
      */
+    public void reset() {
+        pendingPitch = 0f;
+        pendingYaw = 0f;
+        totalPitch = 0f;
+        totalYaw = 0f;
+        appliedPitch = 0f;
+        appliedYaw = 0f;
+    }
+
     public boolean update(EntityLivingBase player) {
         if (player == null || (pendingPitch == 0f && pendingYaw == 0f)) {
             return false;

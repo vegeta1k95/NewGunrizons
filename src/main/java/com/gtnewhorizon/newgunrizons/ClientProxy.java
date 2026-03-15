@@ -1,5 +1,6 @@
 package com.gtnewhorizon.newgunrizons;
 
+import com.gtnewhorizon.newgunrizons.client.animation.CameraRecoilController;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -85,8 +86,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void applyCameraRecoil(float pitchDelta, float yawDelta, int durationMs) {
-        com.gtnewhorizon.newgunrizons.client.animation.CameraRecoilController controller =
-            com.gtnewhorizon.newgunrizons.client.animation.CameraRecoilController.INSTANCE;
+        CameraRecoilController controller = CameraRecoilController.INSTANCE;
         controller.setDurationMs(durationMs);
         controller.addRecoil(pitchDelta, yawDelta);
     }
