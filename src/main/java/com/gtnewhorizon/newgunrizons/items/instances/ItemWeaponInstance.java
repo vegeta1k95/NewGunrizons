@@ -17,9 +17,11 @@ import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 import io.netty.buffer.ByteBuf;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponState> {
 
+    private static final String AMMO_TAG = "Ammo";
     private static final long AIM_CHANGE_DURATION = 400L;
 
     @Getter
@@ -76,6 +78,7 @@ public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponS
         super(itemInventoryIndex, player);
     }
 
+    @Override
     public void readFromBuf(ByteBuf buf) {
         super.readFromBuf(buf);
         this.state = WeaponState.values()[buf.readInt()];
@@ -88,6 +91,7 @@ public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponS
         this.laserOn = buf.readBoolean();
     }
 
+    @Override
     public void writeToBuf(ByteBuf buf) {
         super.writeToBuf(buf);
         buf.writeInt(this.state != null ? this.state.ordinal() : 0);
@@ -98,6 +102,11 @@ public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponS
         buf.writeFloat(this.recoil);
         buf.writeFloat(this.zoom);
         buf.writeBoolean(this.laserOn);
+    }
+
+    @Override
+    public void writeByteType(ByteBuf buf) {
+        buf.writeByte(1);
     }
 
     private static void writeIntArray(ByteBuf buf, int[] a) {
@@ -137,17 +146,6 @@ public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponS
         this.stateUpdateTimestamp = System.currentTimeMillis();
     }
 
-    protected void updateWith(ItemWeaponInstance otherWeaponInstance) {
-        this.setAmmo(otherWeaponInstance.ammo);
-        this.setZoom(otherWeaponInstance.zoom);
-        this.setRecoil(otherWeaponInstance.recoil);
-        this.setSelectedAttachmentIndexes(otherWeaponInstance.selectedAttachmentIndexes);
-        this.setActiveAttachmentIds(otherWeaponInstance.activeAttachmentIds);
-        this.setLaserOn(otherWeaponInstance.laserOn);
-        this.setMaxShots(otherWeaponInstance.maxShots);
-        this.setLoadIterationCount(otherWeaponInstance.loadIterationCount);
-    }
-
     public ItemWeapon getWeapon() {
         return (ItemWeapon) this.item;
     }
@@ -175,6 +173,12 @@ public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponS
 
     public boolean isAutomaticModeEnabled() {
         return this.maxShots > 1;
+    }
+
+    public boolean isSilencerOn() {
+        int[] activeAttachmentsIds = getActiveAttachmentIds();
+        int activeAttachmentIdForThisCategory = activeAttachmentsIds[AttachmentCategory.SILENCER.ordinal()];
+        return activeAttachmentIdForThisCategory > 0;
     }
 
     public void setAimed(boolean aimed) {
@@ -269,5 +273,20 @@ public class ItemWeaponInstance extends ItemInstance implements Stateful<WeaponS
 
     public String toString() {
         return this.getWeapon().getName() + "[weapon]";
+    }
+
+
+    public static int getAmmo(ItemStack itemStack) {
+        return itemStack != null && itemStack.stackTagCompound != null ? itemStack.stackTagCompound.getInteger(AMMO_TAG)
+            : 0;
+    }
+
+    public static void setAmmo(ItemStack itemStack, int ammo) {
+        if (itemStack != null) {
+            if (itemStack.stackTagCompound == null) {
+                itemStack.stackTagCompound = new NBTTagCompound();
+            }
+            itemStack.stackTagCompound.setInteger(AMMO_TAG, ammo);
+        }
     }
 }

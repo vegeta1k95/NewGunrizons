@@ -44,7 +44,7 @@ public class ClientTickHandler {
             }
         } else if (event.phase == TickEvent.Phase.END) {
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-            ItemInstanceRegistry.INSTANCE.update(player);
+            ItemInstanceRegistry.update(player);
             ItemWeaponInstance weaponInstance = ItemInstanceRegistry.getMainHeldWeapon();
             if (weaponInstance != null) {
                 if (player.isSprinting()) {

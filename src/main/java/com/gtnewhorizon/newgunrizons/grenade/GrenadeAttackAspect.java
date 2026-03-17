@@ -16,10 +16,10 @@ import com.gtnewhorizon.newgunrizons.items.instances.ItemGrenadeInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessage;
 import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
-import com.gtnewhorizon.newgunrizons.state.Aspect;
+import com.gtnewhorizon.newgunrizons.state.StateAspect;
 import com.gtnewhorizon.newgunrizons.state.StateManager;
 
-public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInstance> {
+public class GrenadeAttackAspect implements StateAspect<GrenadeState, ItemGrenadeInstance> {
 
     private final Predicate<ItemGrenadeInstance> hasSafetyPin = (instance) -> instance.getWeapon()
         .hasSafetyPin();
@@ -132,7 +132,7 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
     }
 
     public void onAttackButtonClick(EntityPlayer player, boolean throwingFar) {
-        ItemGrenadeInstance grenadeInstance = ItemInstanceRegistry.INSTANCE
+        ItemGrenadeInstance grenadeInstance = ItemInstanceRegistry
             .getMainHandItemInstance(player, ItemGrenadeInstance.class);
         if (grenadeInstance != null) {
             grenadeInstance.setThrowingFar(throwingFar);
@@ -146,7 +146,7 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
     }
 
     public void onAttackButtonUp(EntityPlayer player, boolean throwingFar) {
-        ItemGrenadeInstance grenadeInstance = ItemInstanceRegistry.INSTANCE
+        ItemGrenadeInstance grenadeInstance = ItemInstanceRegistry
             .getMainHandItemInstance(player, ItemGrenadeInstance.class);
         if (grenadeInstance != null) {
             grenadeInstance.setThrowingFar(throwingFar);
@@ -159,7 +159,7 @@ public class GrenadeAttackAspect implements Aspect<GrenadeState, ItemGrenadeInst
     }
 
     public void onUpdate(EntityPlayer player) {
-        ItemGrenadeInstance grenadeInstance = ItemInstanceRegistry.INSTANCE
+        ItemGrenadeInstance grenadeInstance = ItemInstanceRegistry
             .getMainHandItemInstance(player, ItemGrenadeInstance.class);
         if (grenadeInstance != null) {
             if (grenadeInstance.getState() == GrenadeState.STRIKER_LEVER_RELEASED && System.currentTimeMillis()

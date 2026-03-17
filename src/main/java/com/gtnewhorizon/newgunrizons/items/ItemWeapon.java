@@ -23,15 +23,13 @@ import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
 import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
-import com.gtnewhorizon.newgunrizons.state.RenderableState;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
 import com.gtnewhorizon.newgunrizons.registry.Sounds;
-import com.gtnewhorizon.newgunrizons.weapon.Reloadable;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
@@ -39,8 +37,7 @@ import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import lombok.Getter;
 
-public class ItemWeapon extends Item
-    implements ItemInstanceFactory<ItemWeaponInstance>, Reloadable, Updatable {
+public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponInstance>, Updatable {
 
     @Getter
     private String shootSound;
@@ -76,10 +73,11 @@ public class ItemWeapon extends Item
     private final String crosshair;
     private final String crosshairRunning;
     private final String crosshairZoomed;
-    private final float spawnEntitySpeed;
-    private final float spawnEntityDamage;
-    private final float spawnEntityExplosionRadius;
-    private final float spawnEntityGravityVelocity;
+
+    private final float projectileSpeed;
+    private final float projectileDamage;
+    private final float projectileExplosionRadius;
+    private final float projectileGravityVelocity;
     private final float inaccuracy;
 
     @Getter
@@ -104,10 +102,6 @@ public class ItemWeapon extends Item
     private final float tracerIntensity;
     @Getter
     private final boolean smokeEnabled;
-    @Getter
-    private final Supplier<Float> smokeOffsetX;
-    @Getter
-    private final Supplier<Float> smokeOffsetY;
     @Getter
     private final int maxBulletsPerReload;
     private final Function<ItemStack, List<String>> informationProvider;
@@ -141,10 +135,10 @@ public class ItemWeapon extends Item
         this.crosshair = builder.crosshair;
         this.crosshairRunning = builder.crosshairRunning;
         this.crosshairZoomed = builder.crosshairZoomed;
-        this.spawnEntitySpeed = builder.spawnEntitySpeed;
-        this.spawnEntityDamage = builder.spawnEntityDamage;
-        this.spawnEntityExplosionRadius = builder.spawnEntityExplosionRadius;
-        this.spawnEntityGravityVelocity = builder.spawnEntityGravityVelocity;
+        this.projectileSpeed = builder.spawnEntitySpeed;
+        this.projectileDamage = builder.spawnEntityDamage;
+        this.projectileExplosionRadius = builder.spawnEntityExplosionRadius;
+        this.projectileGravityVelocity = builder.spawnEntityGravityVelocity;
         this.inaccuracy = builder.inaccuracy;
         this.pellets = builder.pellets;
         this.flashIntensity = builder.flashIntensity;
@@ -157,8 +151,6 @@ public class ItemWeapon extends Item
         this.tracerColorB = builder.tracerColorB;
         this.tracerIntensity = builder.tracerIntensity;
         this.smokeEnabled = builder.smokeEnabled;
-        this.smokeOffsetX = builder.smokeOffsetX;
-        this.smokeOffsetY = builder.smokeOffsetY;
         this.maxBulletsPerReload = builder.maxBulletsPerReload;
         this.informationProvider = builder.informationProvider;
         this.compatibleAttachments = builder.compatibleAttachments;
@@ -193,7 +185,7 @@ public class ItemWeapon extends Item
         if (this.ammoCapacity <= 0) {
             return 0.0;
         }
-        return 1.0 - (double) ItemInstance.getAmmo(stack) / (double) this.ammoCapacity;
+        return 1.0 - (double) ItemWeaponInstance.getAmmo(stack) / (double) this.ammoCapacity;
     }
 
     public void toggleAiming() {
@@ -272,7 +264,6 @@ public class ItemWeapon extends Item
 
     public ItemWeaponInstance createItemInstance(EntityLivingBase player, ItemStack itemStack, int slot) {
         ItemWeaponInstance instance = new ItemWeaponInstance(slot, player, itemStack);
-        instance.setState(WeaponState.IDLE);
         instance.setRecoil(this.recoil);
         instance.setMaxShots(this.maxShots.get(0));
 
@@ -325,22 +316,22 @@ public class ItemWeapon extends Item
                 ((EntityPlayer) instance.getPlayer()).inventory.currentItem));
     }
 
-    public void spawnBullet(EntityLivingBase player) {
+    public void spawnBullet(EntityPlayer player) {
         EntityBullet bullet = new EntityBullet(
             this,
             player.worldObj,
             player,
-            this.spawnEntitySpeed,
-            this.spawnEntityGravityVelocity,
+            this.projectileSpeed,
+            this.projectileGravityVelocity,
             this.inaccuracy,
-            this.spawnEntityDamage,
-            this.spawnEntityExplosionRadius);
+            this.projectileDamage,
+            this.projectileExplosionRadius);
         bullet.setPositionAndDirection();
         bullet.captureSpawnDirection();
         player.worldObj.spawnEntityInWorld(bullet);
     }
 
-    public void spawnShell(ItemWeaponInstance weaponInstance, EntityLivingBase player) {
+    public void spawnShell(ItemWeaponInstance weaponInstance, EntityPlayer player) {
         EntityShellCasing shell = new EntityShellCasing(weaponInstance, player.worldObj, player, 0.1F, 0.05F, 20.0F);
         shell.setPositionAndDirection();
         player.worldObj.spawnEntityInWorld(shell);

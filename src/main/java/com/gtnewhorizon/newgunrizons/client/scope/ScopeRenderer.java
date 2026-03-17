@@ -2,6 +2,9 @@ package com.gtnewhorizon.newgunrizons.client.scope;
 
 import java.util.function.BiConsumer;
 
+import com.gtnewhorizon.newgunrizons.items.ItemAmmo;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,7 +31,10 @@ public class ScopeRenderer implements CustomRenderer {
             return;
         }
 
-        ScopePerspective perspective = ScopeManager.INSTANCE.getPerspective(renderContext.getItemInstance(), false);
+        ItemInstance itemInstance = renderContext.getItemInstance();
+        ItemWeaponInstance weapon = (ItemWeaponInstance) itemInstance;
+
+        ScopePerspective perspective = ScopeManager.INSTANCE.getPerspective(weapon, false);
 
         if (perspective == null) {
             return;
@@ -37,7 +43,7 @@ public class ScopeRenderer implements CustomRenderer {
         float brightness = perspective.getBrightness(renderContext);
         GL11.glPushMatrix();
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT | GL11.GL_CURRENT_BIT);
-        this.positioning.accept(renderContext.getPlayer(), renderContext.getWeapon());
+        this.positioning.accept(renderContext.getPlayer(), renderContext.getItemStack());
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, perspective.getTexture());
         Minecraft.getMinecraft().entityRenderer.disableLightmap(0.0D);
         GL11.glEnable(GL11.GL_DEPTH_TEST);

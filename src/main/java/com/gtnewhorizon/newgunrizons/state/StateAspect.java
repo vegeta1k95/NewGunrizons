@@ -7,7 +7,7 @@ package com.gtnewhorizon.newgunrizons.state;
  * @param <S> the state enum type
  * @param <E> the stateful context type
  */
-public interface Aspect<S, E extends Stateful<S>> {
+public interface StateAspect<S, E extends Stateful<S>> {
 
     void setStateManager(StateManager<S, ? super E> stateManager);
 }

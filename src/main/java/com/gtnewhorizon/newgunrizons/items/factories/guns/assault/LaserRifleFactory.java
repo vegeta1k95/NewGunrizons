@@ -9,7 +9,7 @@ import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
-import com.gtnewhorizon.newgunrizons.state.RenderableState;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 public class LaserRifleFactory {
 

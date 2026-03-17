@@ -49,12 +49,12 @@ public class CommonProxy {
         WeaponAttachmentAspect.INSTANCE.setStateManager(weaponStateManager);
 
         channel.registerMessage(
-            new WeaponActionMessageHandler(WeaponFireAspect.INSTANCE),
+            new WeaponActionMessageHandler(),
             WeaponActionMessage.class,
             15,
             Side.SERVER);
         channel.registerMessage(
-            new GrenadeMessageHandler(GrenadeAttackAspect.INSTANCE),
+            new GrenadeMessageHandler(),
             GrenadeMessage.class,
             20,
             Side.SERVER);

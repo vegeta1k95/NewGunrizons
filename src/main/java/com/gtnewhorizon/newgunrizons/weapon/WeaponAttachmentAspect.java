@@ -20,10 +20,10 @@ import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
-import com.gtnewhorizon.newgunrizons.state.Aspect;
+import com.gtnewhorizon.newgunrizons.state.StateAspect;
 import com.gtnewhorizon.newgunrizons.state.StateManager;
 
-public final class WeaponAttachmentAspect implements Aspect<WeaponState, ItemWeaponInstance> {
+public final class WeaponAttachmentAspect implements StateAspect<WeaponState, ItemWeaponInstance> {
 
     public static final WeaponAttachmentAspect INSTANCE = new WeaponAttachmentAspect();
 
@@ -61,7 +61,7 @@ public final class WeaponAttachmentAspect implements Aspect<WeaponState, ItemWea
     }
 
     public void toggleClientAttachmentSelectionMode(EntityPlayer player) {
-        ItemWeaponInstance weaponInstance = ItemInstanceRegistry.INSTANCE
+        ItemWeaponInstance weaponInstance = ItemInstanceRegistry
             .getMainHandItemInstance(player, ItemWeaponInstance.class);
         if (weaponInstance != null) {
             this.stateManager.changeState(this, weaponInstance, WeaponState.MODIFYING, WeaponState.IDLE);
@@ -88,7 +88,7 @@ public final class WeaponAttachmentAspect implements Aspect<WeaponState, ItemWea
             itemStack.stackTagCompound = new NBTTagCompound();
         }
         List<CompatibleAttachment> activeAttachments = new ArrayList<>();
-        ItemInstance itemInstance = ItemInstanceRegistry.INSTANCE.getItemInstance(player, itemStack);
+        ItemInstance itemInstance = ItemInstanceRegistry.getItemInstance(player, itemStack);
         int[] activeAttachmentsIds;
         if (!(itemInstance instanceof ItemWeaponInstance)) {
             activeAttachmentsIds = new int[AttachmentCategory.VALUES.length];
@@ -320,12 +320,6 @@ public final class WeaponAttachmentAspect implements Aspect<WeaponState, ItemWea
         int[] activeAttachmentIds = weaponInstance.getActiveAttachmentIds();
         return Arrays.stream(activeAttachmentIds)
             .anyMatch((attachmentId) -> attachment == Item.getItemById(attachmentId));
-    }
-
-    public boolean isSilencerOn(ItemWeaponInstance weaponInstance) {
-        int[] activeAttachmentsIds = weaponInstance.getActiveAttachmentIds();
-        int activeAttachmentIdForThisCategory = activeAttachmentsIds[AttachmentCategory.SILENCER.ordinal()];
-        return activeAttachmentIdForThisCategory > 0;
     }
 
     public ItemAttachment getActiveAttachment(ItemWeaponInstance weaponInstance, AttachmentCategory category) {

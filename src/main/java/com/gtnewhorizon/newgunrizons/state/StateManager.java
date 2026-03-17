@@ -18,25 +18,25 @@ import java.util.function.Predicate;
 public class StateManager<S, E extends Stateful<S>> {
 
     private final StateComparator<S> stateComparator;
-    private final Map<Aspect<S, ? extends E>, LinkedHashSet<TransitionRule<S, E>>> transitionRules = new HashMap<>();
+    private final Map<StateAspect<S, ? extends E>, LinkedHashSet<TransitionRule<S, E>>> transitionRules = new HashMap<>();
 
     public StateManager(StateComparator<S> stateComparator) {
         this.stateComparator = stateComparator;
     }
 
-    public <EE extends E> RuleBuilder<EE> in(Aspect<S, EE> aspect) {
+    public <EE extends E> RuleBuilder<EE> in(StateAspect<S, EE> aspect) {
         return new RuleBuilder<>(aspect);
     }
 
     @SafeVarargs
-    public final void changeState(Aspect<S, ? extends E> aspect, E extendedState, S... targetStates) {
+    public final void changeState(StateAspect<S, ? extends E> aspect, E extendedState, S... targetStates) {
         S currentState = extendedState.getState();
         this.executeTransition(aspect, extendedState, currentState, targetStates);
     }
 
     @SafeVarargs
-    public final void changeStateFromAnyOf(Aspect<S, ? extends E> aspect, E extendedState, Collection<S> fromStates,
-        S... targetStates) {
+    public final void changeStateFromAnyOf(StateAspect<S, ? extends E> aspect, E extendedState, Collection<S> fromStates,
+                                           S... targetStates) {
         S currentState = extendedState.getState();
         if (!fromStates.contains(currentState)) {
             return;
@@ -45,8 +45,8 @@ public class StateManager<S, E extends Stateful<S>> {
     }
 
     @SafeVarargs
-    protected final void executeTransition(Aspect<S, ? extends E> aspect, E extendedState, S currentState,
-        S... targetStates) {
+    protected final void executeTransition(StateAspect<S, ? extends E> aspect, E extendedState, S currentState,
+                                           S... targetStates) {
         if (extendedState == null) {
             return;
         }
@@ -72,8 +72,8 @@ public class StateManager<S, E extends Stateful<S>> {
     }
 
     @SafeVarargs
-    private TransitionRule<S, E> findMatchingRule(Aspect<S, ? extends E> aspect, E extendedState, S currentState,
-        S... targetStates) {
+    private TransitionRule<S, E> findMatchingRule(StateAspect<S, ? extends E> aspect, E extendedState, S currentState,
+                                                  S... targetStates) {
         return this.transitionRules.entrySet()
             .stream()
             .filter(e -> e.getKey() == aspect)
@@ -130,13 +130,13 @@ public class StateManager<S, E extends Stateful<S>> {
 
     public class RuleBuilder<EE extends E> {
 
-        private final Aspect<S, EE> aspect;
+        private final StateAspect<S, EE> aspect;
         private S fromState;
         private S toState;
         private BiPredicate<S, EE> guard;
         private TransitionAction<S, EE> action;
 
-        RuleBuilder(Aspect<S, EE> aspect) {
+        RuleBuilder(StateAspect<S, EE> aspect) {
             this.aspect = aspect;
         }
 

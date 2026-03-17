@@ -29,14 +29,11 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
     private static final long DEFAULT_MAX_LIFETIME = 5000L;
     private static final float HITBOX_SIZE = 0.25F;
 
-    private static final float SPAWN_LATERAL_OFFSET = 0.16F;
-    private static final float SPAWN_VERTICAL_OFFSET = 0.1F;
     private static final double INACCURACY_SPREAD = 0.0075;
 
     private static final float AIR_DRAG = 0.99F;
     private static final float WATER_DRAG = 0.8F;
     private static final float GROUND_BOUNCE_RANDOMIZATION = 0.2F;
-    private static final float ROTATION_SMOOTHING = 0.2F;
 
     private static final int BUBBLE_COUNT = 4;
     private static final float BUBBLE_OFFSET_FRACTION = 0.25F;
@@ -121,10 +118,6 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
         this.motionZ = MathHelper.cos(yawRad) * MathHelper.cos(pitchRad) * this.velocity;
         this.motionY = -MathHelper.sin(pitchRad) * this.velocity;
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.velocity, this.inaccuracy);
-    }
-
-    protected float getPitchOffset() {
-        return 0.0F;
     }
 
     public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy) {
@@ -367,7 +360,7 @@ public abstract class EntityProjectile extends Entity implements IProjectile, IE
         buffer.writeFloat((float) this.motionX);
         buffer.writeFloat((float) this.motionY);
         buffer.writeFloat((float) this.motionZ);
-        String name = this.thrower instanceof EntityPlayer ? ((EntityPlayer) this.thrower).getCommandSenderName() : "";
+        String name = this.thrower instanceof EntityPlayer ? this.thrower.getCommandSenderName() : "";
         byte[] nameBytes = name.getBytes();
         buffer.writeShort(nameBytes.length);
         buffer.writeBytes(nameBytes);

@@ -18,51 +18,33 @@ import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-/**
- * Maintains runtime state objects ({@link ItemWeaponInstance}, {@link ItemGrenadeInstance})
- * for items in player inventories.
- * <p>
- * Minecraft items are value objects (ItemStack = Item + metadata + NBT), but weapons need
- * mutable runtime state (firing, reloading, aiming, zoom) that persists across ticks.
- * This registry maps player UUID + inventory slot to the corresponding state object.
- */
 public class ItemInstanceRegistry {
 
-    public static final ItemInstanceRegistry INSTANCE = new ItemInstanceRegistry();
+    private static final Map<UUID, Map<Integer, ItemInstance>> registry = new HashMap<>();
+    private static final WeakHashMap<ItemStack, ItemInstance> itemStackCache = new WeakHashMap<>();
 
-    /** Primary registry: player UUID → (inventory slot → instance). */
-    private final Map<UUID, Map<Integer, ItemInstance>> registry = new HashMap<>();
-
-    /**
-     * Secondary lookup for rendering: ItemStack → instance.
-     * Uses weak keys so entries are GC'd when the ItemStack is no longer referenced.
-     * ItemStack uses identity equality, so this works as an identity cache.
-     */
-    private final WeakHashMap<ItemStack, ItemInstance> itemStackCache = new WeakHashMap<>();
-
-    /** Client-side convenience: gets the main-hand weapon instance for the local player. */
     @SideOnly(Side.CLIENT)
     public static ItemWeaponInstance getMainHeldWeapon() {
         EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-        return INSTANCE.getMainHandItemInstance(player, ItemWeaponInstance.class);
+        return getMainHandItemInstance(player, ItemWeaponInstance.class);
     }
 
-    public <T extends ItemInstance> T getMainHandItemInstance(EntityPlayer player,
+    public static <T extends ItemInstance> T getMainHandItemInstance(EntityPlayer player,
         Class<T> targetClass) {
         if (player == null) {
             return null;
         }
-        ItemInstance instance = this.getItemInstance(player, player.inventory.currentItem);
+        ItemInstance instance = getItemInstance(player, player.inventory.currentItem);
         return targetClass.isInstance(instance) ? targetClass.cast(instance) : null;
     }
 
-    public ItemInstance getItemInstance(EntityPlayer player, int slot) {
-        Map<Integer, ItemInstance> slotInstances = this.registry
+    public static ItemInstance getItemInstance(EntityPlayer player, int slot) {
+        Map<Integer, ItemInstance> slotInstances = registry
             .computeIfAbsent(player.getPersistentID(), p -> new HashMap<>());
         ItemInstance result = slotInstances.get(slot);
 
         if (result == null) {
-            result = this.createItemInstance(player, slot);
+            result = createItemInstance(player, slot);
             if (result != null) {
                 slotInstances.put(slot, result);
             }
@@ -71,7 +53,7 @@ public class ItemInstanceRegistry {
 
         ItemStack slotItemStack = player.inventory.getStackInSlot(slot);
         if (slotItemStack != null && slotItemStack.getItem() != result.getItem()) {
-            result = this.createItemInstance(player, slot);
+            result = createItemInstance(player, slot);
             if (result != null) {
                 slotInstances.put(slot, result);
             }
@@ -88,7 +70,7 @@ public class ItemInstanceRegistry {
         return result;
     }
 
-    private ItemInstance createItemInstance(EntityPlayer player, int slot) {
+    private static ItemInstance createItemInstance(EntityPlayer player, int slot) {
         ItemStack itemStack = player.inventory.getStackInSlot(slot);
         if (itemStack == null) {
             return null;
@@ -105,7 +87,7 @@ public class ItemInstanceRegistry {
         } catch (RuntimeException ignored) {}
 
         if (result == null) {
-            result = ((ItemInstanceFactory) item).createItemInstance(player, itemStack, slot);
+            result = ((ItemInstanceFactory<?>) item).createItemInstance(player, itemStack, slot);
         }
 
         result.setItemInventoryIndex(slot);
@@ -119,8 +101,8 @@ public class ItemInstanceRegistry {
      * <p>
      * Lookup order: weak cache → slot-based registry → NBT deserialization → factory creation.
      */
-    public ItemInstance getItemInstance(EntityLivingBase player, ItemStack itemStack) {
-        ItemInstance cached = this.itemStackCache.get(itemStack);
+    public static ItemInstance getItemInstance(EntityLivingBase player, ItemStack itemStack) {
+        ItemInstance cached = itemStackCache.get(itemStack);
         if (cached != null && cached.getItem() == itemStack.getItem()) {
             return cached;
         }
@@ -132,7 +114,7 @@ public class ItemInstanceRegistry {
             && com.gtnewhorizon.newgunrizons.NewGunrizonsMod.proxy.isLocalPlayer(player)) {
             int slot = InventoryUtils.getInventorySlot((EntityPlayer) player, itemStack);
             if (slot >= 0) {
-                instance = this.getItemInstance((EntityPlayer) player, slot);
+                instance = getItemInstance((EntityPlayer) player, slot);
             }
         }
 
@@ -144,22 +126,22 @@ public class ItemInstanceRegistry {
 
         if ((instance == null || instance.getItem() != itemStack.getItem())
             && itemStack.getItem() instanceof ItemInstanceFactory) {
-            instance = ((ItemInstanceFactory) itemStack.getItem()).createItemInstance(player, itemStack, -1);
+            instance = ((ItemInstanceFactory<?>) itemStack.getItem()).createItemInstance(player, itemStack, -1);
             instance.setPlayer(player);
         }
 
         if (instance != null) {
-            this.itemStackCache.put(itemStack, instance);
+            itemStackCache.put(itemStack, instance);
         }
 
         return instance;
     }
 
     /** Removes registry entries for items no longer in the player's inventory. */
-    public void update(EntityPlayer player) {
+    public static void update(EntityPlayer player) {
         if (player == null) return;
 
-        Map<Integer, ItemInstance> slotContexts = this.registry.get(player.getPersistentID());
+        Map<Integer, ItemInstance> slotContexts = registry.get(player.getPersistentID());
         if (slotContexts == null) return;
 
         Iterator<Entry<Integer, ItemInstance>> it = slotContexts.entrySet()

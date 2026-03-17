@@ -13,17 +13,19 @@ import lombok.Setter;
 
 public abstract class ItemInstance {
 
-    private static final String AMMO_TAG = "Ammo";
-    private static final String INSTANCE_TAG = "Instance";
+    private static final String INSTANCE_TAG = "gunrizons_instance";
 
-    private static final byte TYPE_WEAPON = 0;
-    private static final byte TYPE_GRENADE = 1;
+    private static final byte TYPE_WEAPON = 1;
+    private static final byte TYPE_GRENADE = 2;
 
     @Setter
     @Getter
     protected EntityLivingBase player;
+
     @Getter
     protected Item item;
+
+    @Setter
     @Getter
     protected int itemInventoryIndex;
 
@@ -52,10 +54,6 @@ public abstract class ItemInstance {
             : null;
     }
 
-    protected void setItemInventoryIndex(int itemInventoryIndex) {
-        this.itemInventoryIndex = itemInventoryIndex;
-    }
-
     public void readFromBuf(ByteBuf buf) {
         this.item = Item.getItemById(buf.readInt());
         this.itemInventoryIndex = buf.readInt();
@@ -66,59 +64,10 @@ public abstract class ItemInstance {
         buf.writeInt(this.itemInventoryIndex);
     }
 
-    public boolean needsOpticalScopePerspective() {
-        return false;
-    }
-
-    // ==================== Static NBT helpers ====================
-
-    public static int getAmmo(ItemStack itemStack) {
-        return itemStack != null && itemStack.stackTagCompound != null ? itemStack.stackTagCompound.getInteger(AMMO_TAG)
-            : 0;
-    }
-
-    public static void setAmmo(ItemStack itemStack, int ammo) {
-        if (itemStack != null) {
-            if (itemStack.stackTagCompound == null) {
-                itemStack.stackTagCompound = new NBTTagCompound();
-            }
-            itemStack.stackTagCompound.setInteger(AMMO_TAG, ammo);
-        }
-    }
+    public abstract void writeByteType(ByteBuf buf);
 
     @SuppressWarnings("unchecked")
-    public static <T extends ItemInstance> T fromStack(ItemStack itemStack) {
-        return (T) deserializeInstance(itemStack);
-    }
-
-    public static void toStack(ItemStack itemStack, ItemInstance instance) {
-        if (itemStack == null) return;
-        if (itemStack.stackTagCompound == null) {
-            itemStack.stackTagCompound = new NBTTagCompound();
-        }
-        if (instance == null) {
-            itemStack.stackTagCompound.removeTag(INSTANCE_TAG);
-            return;
-        }
-        ByteBuf buf = Unpooled.buffer();
-        try {
-            if (instance instanceof ItemWeaponInstance) {
-                buf.writeByte(TYPE_WEAPON);
-            } else if (instance instanceof ItemGrenadeInstance) {
-                buf.writeByte(TYPE_GRENADE);
-            } else {
-                return;
-            }
-            instance.writeToBuf(buf);
-            byte[] bytes = new byte[buf.readableBytes()];
-            buf.readBytes(bytes);
-            itemStack.stackTagCompound.setByteArray(INSTANCE_TAG, bytes);
-        } finally {
-            buf.release();
-        }
-    }
-
-    private static ItemInstance deserializeInstance(ItemStack itemStack) {
+    public static <T> T fromStack(ItemStack itemStack) {
         if (itemStack == null || itemStack.stackTagCompound == null) {
             return null;
         }
@@ -141,7 +90,28 @@ public abstract class ItemInstance {
                     return null;
             }
             instance.readFromBuf(buf);
-            return instance;
+            return (T) instance;
+        } finally {
+            buf.release();
+        }
+    }
+
+    public static void toStack(ItemStack itemStack, ItemInstance instance) {
+        if (itemStack == null) return;
+        if (itemStack.stackTagCompound == null) {
+            itemStack.stackTagCompound = new NBTTagCompound();
+        }
+        if (instance == null) {
+            itemStack.stackTagCompound.removeTag(INSTANCE_TAG);
+            return;
+        }
+        ByteBuf buf = Unpooled.buffer();
+        try {
+            instance.writeByteType(buf);
+            instance.writeToBuf(buf);
+            byte[] bytes = new byte[buf.readableBytes()];
+            buf.readBytes(bytes);
+            itemStack.stackTagCompound.setByteArray(INSTANCE_TAG, bytes);
         } finally {
             buf.release();
         }

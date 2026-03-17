@@ -52,6 +52,11 @@ public class ItemGrenadeInstance extends ItemInstance implements Stateful<Grenad
         buf.writeInt(this.ammo);
     }
 
+    @Override
+    public void writeByteType(ByteBuf buf) {
+        buf.writeByte(2);
+    }
+
     protected void setAmmo(int ammo) {
         if (ammo != this.ammo) {
             this.ammo = ammo;

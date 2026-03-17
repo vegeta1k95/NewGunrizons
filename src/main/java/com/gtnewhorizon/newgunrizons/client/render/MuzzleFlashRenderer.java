@@ -47,15 +47,15 @@ public class MuzzleFlashRenderer {
     /**
      * Renders a muzzle flash if the weapon just fired.
      * If the weapon model has a "firing_point" bone, renders at that bone's position.
-     * Otherwise falls back to the weapon's configured flash offsets.
+     * Otherwise, falls back to the weapon's configured flash offsets.
      */
-    public static void renderIfFiring(RenderContext renderContext, BedrockModel weaponModel, float renderScale) {
+    public static void render(RenderContext renderContext, BedrockModel weaponModel, float renderScale) {
         ItemWeaponInstance weaponInstance = renderContext.getWeaponInstance();
-        if (weaponInstance == null) return;
+        if (weaponInstance == null || weaponModel == null) return;
+        if (weaponInstance.isSilencerOn()) return;
 
         ItemWeapon weapon = weaponInstance.getWeapon();
         if (weapon.getFlashIntensity() <= 0.0F) return;
-        if (WeaponAttachmentAspect.INSTANCE.isSilencerOn(weaponInstance)) return;
 
         long elapsed = System.currentTimeMillis() - weaponInstance.getLastFireTimestamp();
         if (elapsed < 0 || elapsed > FLASH_DURATION_MS) return;
@@ -66,7 +66,7 @@ public class MuzzleFlashRenderer {
         float scale = weapon.getFlashScale();
         int imageIndex = Math.abs(rand.nextInt()) % IMAGES_PER_ROW;
 
-        if (weaponModel != null && weaponModel.getBone(BONE_FIRING_POINT) != null) {
+        if (weaponModel.getBone(BONE_FIRING_POINT) != null) {
             renderFlashAtBone(weaponModel, renderScale, alpha, scale, imageIndex);
         }
     }

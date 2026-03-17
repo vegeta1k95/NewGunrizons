@@ -13,7 +13,7 @@ import com.gtnewhorizon.newgunrizons.client.shaders.ShaderContext;
 import com.gtnewhorizon.newgunrizons.client.shaders.ShaderManager;
 import com.gtnewhorizon.newgunrizons.client.shaders.ShaderPhase;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.state.RenderableState;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 

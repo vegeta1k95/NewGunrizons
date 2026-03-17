@@ -3,7 +3,6 @@ package com.gtnewhorizon.newgunrizons.grenade;
 import java.util.function.Supplier;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,7 +23,7 @@ import com.gtnewhorizon.newgunrizons.items.instances.ItemGrenadeInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.model.BedrockModel;
-import com.gtnewhorizon.newgunrizons.state.RenderableState;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -34,7 +33,7 @@ import lombok.Getter;
 public class GrenadeRenderer implements IItemRenderer {
 
 	@Getter
-	private final ModelBase model;
+	private final BedrockModel model;
 	@Getter
 	private final String textureName;
 	@Getter
@@ -93,15 +92,13 @@ public class GrenadeRenderer implements IItemRenderer {
 		// Apply bedrock bone animations if active.
 		// Skip if already applied by the EQUIPPED_FIRST_PERSON path (which needs
 		// animation applied before arm rendering).
-		if (this.bedrockAnimController != null && this.model instanceof BedrockModel
-			&& !this.bedrockAnimAppliedThisFrame) {
-			BedrockModel bedrockModel = (BedrockModel) this.model;
-			bedrockModel.resetBonesToRestPose();
+		if (this.bedrockAnimController != null && !this.bedrockAnimAppliedThisFrame) {
+			this.model.resetBonesToRestPose();
 			RenderableState toState = renderContext.getToState();
 			if (toState != null) {
 				this.bedrockAnimController.onStateChanged(toState);
 			}
-			this.bedrockAnimController.applyToModel(bedrockModel);
+			this.bedrockAnimController.applyToModel(this.model);
 		}
 		this.bedrockAnimAppliedThisFrame = false;
 
@@ -164,16 +161,15 @@ public class GrenadeRenderer implements IItemRenderer {
 				// Counter vanilla ItemRenderer's 45° Y rotation
 				GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);
 
-				BedrockModel grenadeModel = this.model instanceof BedrockModel ? (BedrockModel) this.model : null;
 
 				// Reset bones before any animation
-				if (grenadeModel != null) {
-					grenadeModel.resetBonesToRestPose();
+				if (model != null) {
+					model.resetBonesToRestPose();
 				}
 
 				// Map grenade state to renderable state
 				ItemGrenadeInstance grenadeInstance = null;
-				ItemInstance itemInst = ItemInstanceRegistry.INSTANCE.getItemInstance(player, grenadeItemStack);
+				ItemInstance itemInst = ItemInstanceRegistry.getItemInstance(player, grenadeItemStack);
 				if (itemInst instanceof ItemGrenadeInstance && itemInst.getItem() == grenadeItemStack.getItem()) {
 					grenadeInstance = (ItemGrenadeInstance) itemInst;
 				}
@@ -182,24 +178,24 @@ public class GrenadeRenderer implements IItemRenderer {
 
 				renderContext.setToState(currentRenderState);
 
-				if (this.bedrockAnimController != null && grenadeModel != null) {
+				if (this.bedrockAnimController != null && model != null) {
 					this.bedrockAnimController.onStateChanged(currentRenderState);
-					this.bedrockAnimController.applyToModel(grenadeModel);
+					this.bedrockAnimController.applyToModel(model);
 				}
 
-				this.bedrockAnimAppliedThisFrame = (grenadeModel != null);
+				this.bedrockAnimAppliedThisFrame = (model != null);
 
 				// Render arms at hand bone positions
-				WeaponRenderer.renderLeftArm((EntityPlayer) player, grenadeModel, renderContext.getScale());
-				WeaponRenderer.renderRightArm((EntityPlayer) player, grenadeModel, renderContext.getScale());
+				WeaponRenderer.renderLeftArm((EntityPlayer) player, model, renderContext.getScale());
+				WeaponRenderer.renderRightArm((EntityPlayer) player, model, renderContext.getScale());
 				break;
 		}
 
 		this.renderItem(grenadeItemStack, renderContext);
 
 		// Reset bones to rest pose after all rendering
-		if (this.bedrockAnimController != null && this.model instanceof BedrockModel) {
-			this.bedrockAnimController.resetModel((BedrockModel) this.model);
+		if (this.bedrockAnimController != null) {
+			this.bedrockAnimController.resetModel(this.model);
 		}
 
 		GL11.glPopMatrix();
@@ -214,7 +210,7 @@ public class GrenadeRenderer implements IItemRenderer {
 
 	public static class Builder {
 
-		private ModelBase model;
+		private BedrockModel model;
 		private String textureName;
 		private Runnable thrownEntityPositioning = () -> {};
 		private long totalThrowingDuration;
@@ -223,7 +219,7 @@ public class GrenadeRenderer implements IItemRenderer {
 		private Supplier<Float> zCenterOffset = () -> 0.0F;
 		private BedrockAnimationController bedrockAnimController;
 
-		public Builder withModel(ModelBase model) {
+		public Builder withModel(BedrockModel model) {
 			this.model = model;
 			return this;
 		}
@@ -233,20 +229,11 @@ public class GrenadeRenderer implements IItemRenderer {
 			return this;
 		}
 
-		/**
-		 * Loads a Bedrock animation file containing animation clips.
-		 *
-		 * @param animationPath path relative to assets/newgunrizons/animations/, without .animation.json extension
-		 */
 		public Builder withBedrockAnimation(String animationPath) {
 			this.bedrockAnimController = new BedrockAnimationController(new BedrockAnimation(animationPath));
 			return this;
 		}
 
-		/**
-		 * Maps a grenade renderable state to a named Bedrock animation clip.
-		 * Requires {@link #withBedrockAnimation(String)} to be called first.
-		 */
 		public Builder withBedrockAnimationForState(RenderableState state, String clipName) {
 			if (this.bedrockAnimController == null) {
 				throw new IllegalStateException("Call withBedrockAnimation() before withBedrockAnimationForState()");

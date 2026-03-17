@@ -14,7 +14,6 @@ import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
@@ -34,7 +33,6 @@ import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.state.RenderableState;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -350,16 +348,14 @@ public class WeaponRenderer implements IItemRenderer {
                     this.idleSway.apply(0.33F, 0.06F);
                 }
 
-                BedrockModel weaponModel = this.model instanceof BedrockModel ? (BedrockModel) this.model : null;
-
                 // Reset bones before any animation
-                if (weaponModel != null) {
-                    weaponModel.resetBonesToRestPose();
+                if (this.model != null) {
+                    this.model.resetBonesToRestPose();
                 }
 
                 // Map weapon state to renderable state
                 ItemWeaponInstance weaponInstance = null;
-                ItemInstance itemInst = ItemInstanceRegistry.INSTANCE.getItemInstance((EntityLivingBase) player, weaponItemStack);
+                ItemInstance itemInst = ItemInstanceRegistry.getItemInstance((EntityLivingBase) player, weaponItemStack);
                 if (itemInst instanceof ItemWeaponInstance && itemInst.getItem() == weaponItemStack.getItem()) {
                     weaponInstance = (ItemWeaponInstance) itemInst;
                 }
@@ -377,17 +373,17 @@ public class WeaponRenderer implements IItemRenderer {
 
                 renderContext.setToState(currentRenderState);
 
-                if (this.bedrockAnimController != null && weaponModel != null) {
+                if (this.bedrockAnimController != null && model != null) {
                     long fireTimestamp = weaponInstance != null ? weaponInstance.getLastFireTimestamp() : 0;
                     this.bedrockAnimController.onStateChanged(currentRenderState, fireTimestamp);
-                    this.bedrockAnimController.applyToModel(weaponModel);
+                    this.bedrockAnimController.applyToModel(model);
                 }
 
-                this.bedrockAnimAppliedThisFrame = (weaponModel != null);
+                this.bedrockAnimAppliedThisFrame = (model != null);
 
                 // Render arms at hand bone positions
-                renderLeftArm((EntityPlayer) player, weaponModel, renderContext.getScale());
-                renderRightArm((EntityPlayer) player, weaponModel, renderContext.getScale());
+                renderLeftArm((EntityPlayer) player, model, renderContext.getScale());
+                renderRightArm((EntityPlayer) player, model, renderContext.getScale());
                 break;
         }
 
@@ -396,14 +392,12 @@ public class WeaponRenderer implements IItemRenderer {
         }
 
         if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
-            BedrockModel flashModel = this.model instanceof BedrockModel ? (BedrockModel) this.model : null;
-            MuzzleFlashRenderer.renderIfFiring(renderContext, flashModel, renderContext.getScale());
+            MuzzleFlashRenderer.render(renderContext, this.model, renderContext.getScale());
         }
 
         // Reset bones to rest pose after all rendering (including muzzle flash)
-        if (this.bedrockAnimController != null && this.model instanceof BedrockModel) {
-            this.bedrockAnimController
-                .resetModel((BedrockModel) this.model);
+        if (this.bedrockAnimController != null) {
+            this.bedrockAnimController.resetModel(this.model);
         }
 
         if (type == ItemRenderType.INVENTORY && inventoryTextureInitializationPhaseOn) {

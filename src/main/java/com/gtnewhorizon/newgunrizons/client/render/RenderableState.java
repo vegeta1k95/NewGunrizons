@@ -1,4 +1,4 @@
-package com.gtnewhorizon.newgunrizons.state;
+package com.gtnewhorizon.newgunrizons.client.render;
 
 /**
  * Simplified visual states used by the rendering system.

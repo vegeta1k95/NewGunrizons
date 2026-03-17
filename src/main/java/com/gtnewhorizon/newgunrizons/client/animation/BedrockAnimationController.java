@@ -11,7 +11,7 @@ import net.minecraft.client.model.ModelRenderer;
 
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.AnimationClip;
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.BoneAnimation;
-import com.gtnewhorizon.newgunrizons.state.RenderableState;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 /**
  * Maps {@link RenderableState}s to Bedrock animation clips and manages
