@@ -292,8 +292,9 @@ public class ItemWeapon extends Item
         WeaponAttachmentAspect.INSTANCE.toggleClientAttachmentSelectionMode(player);
     }
 
+    @Override
     public boolean onDroppedByPlayer(ItemStack itemStack, EntityPlayer player) {
-        ItemWeaponInstance instance = (ItemWeaponInstance) ItemInstance.fromStack(itemStack);
+        ItemWeaponInstance instance = ItemWeaponInstance.fromStack(itemStack);
         return instance == null || instance.getState() == WeaponState.IDLE;
     }
 

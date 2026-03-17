@@ -20,15 +20,13 @@ public class GrenadeMessage implements IMessage {
     }
 
     public void fromBytes(ByteBuf buf) {
-        this.instance = TypeRegistry.getInstance()
-            .fromBytes(buf);
+        this.instance = new ItemGrenadeInstance();
+        this.instance.readFromBuf(buf);
         this.activationTimestamp = buf.readLong();
     }
 
     public void toBytes(ByteBuf buf) {
-        TypeRegistry.getInstance()
-            .toBytes(this.instance, buf);
+        this.instance.writeToBuf(buf);
         buf.writeLong(this.activationTimestamp);
     }
-
 }

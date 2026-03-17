@@ -16,7 +16,6 @@ import com.gtnewhorizon.newgunrizons.network.ExplosionMessage;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessage;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessageHandler;
 import com.gtnewhorizon.newgunrizons.network.SpawnParticleMessage;
-import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessageHandler;
 import com.gtnewhorizon.newgunrizons.registry.Attachments;
@@ -108,14 +107,4 @@ public class CommonProxy {
         GameRegistry.registerItem(item, name);
     }
 
-    static {
-        TypeRegistry.getInstance()
-            .register(ItemInstance.class);
-        TypeRegistry.getInstance()
-            .register(ItemWeaponInstance.class);
-        TypeRegistry.getInstance()
-            .register(WeaponState.class);
-        TypeRegistry.getInstance()
-            .register(ItemGrenadeInstance.class);
-    }
 }

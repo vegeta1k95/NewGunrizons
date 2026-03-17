@@ -166,7 +166,7 @@ public class WeaponFireAspect implements Aspect<WeaponState, ItemWeaponInstance>
             return;
         }
         ItemWeapon weapon = (ItemWeapon) itemStack.getItem();
-        ItemWeaponInstance instance = ItemInstance.fromStack(itemStack, ItemWeaponInstance.class);
+        ItemWeaponInstance instance = ItemInstance.fromStack(itemStack);
         if (instance == null) {
             instance = weapon.createItemInstance(player, itemStack, slotIndex);
             ItemInstance.toStack(itemStack, instance);

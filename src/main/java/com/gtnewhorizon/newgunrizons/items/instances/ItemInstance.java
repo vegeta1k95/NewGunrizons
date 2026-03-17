@@ -6,22 +6,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
-import com.gtnewhorizon.newgunrizons.network.UniversalObject;
-import com.gtnewhorizon.newgunrizons.state.ManagedState;
-
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ItemInstance<S extends ManagedState> extends UniversalObject {
+import com.gtnewhorizon.newgunrizons.state.ManagedState;
+
+public abstract class ItemInstance<S extends ManagedState> {
 
     private static final String AMMO_TAG = "Ammo";
     private static final String INSTANCE_TAG = "Instance";
+
+    private static final byte TYPE_WEAPON = 0;
+    private static final byte TYPE_GRENADE = 1;
+
     @Getter
     protected S state;
     @Getter
@@ -43,7 +42,6 @@ public class ItemInstance<S extends ManagedState> extends UniversalObject {
         if (itemStack != null) {
             this.item = itemStack.getItem();
         }
-
     }
 
     public ItemInstance(int itemInventoryIndex, EntityLivingBase player, ItemStack itemStack) {
@@ -52,7 +50,6 @@ public class ItemInstance<S extends ManagedState> extends UniversalObject {
         if (itemStack != null) {
             this.item = itemStack.getItem();
         }
-
     }
 
     public ItemStack getItemStack() {
@@ -65,33 +62,27 @@ public class ItemInstance<S extends ManagedState> extends UniversalObject {
         this.itemInventoryIndex = itemInventoryIndex;
     }
 
-    public void init(ByteBuf buf) {
-        super.init(buf);
+    /** Reads base fields from the buffer. Subclasses must call super and read their own fields. */
+    public void readFromBuf(ByteBuf buf) {
         this.item = Item.getItemById(buf.readInt());
         this.itemInventoryIndex = buf.readInt();
-        this.state = TypeRegistry.getInstance()
-            .fromBytes(buf);
     }
 
-    public void serialize(ByteBuf buf) {
-        super.serialize(buf);
+    /** Writes base fields to the buffer. Subclasses must call super and write their own fields. */
+    public void writeToBuf(ByteBuf buf) {
         buf.writeInt(Item.getIdFromItem(this.item));
         buf.writeInt(this.itemInventoryIndex);
-        TypeRegistry.getInstance()
-            .toBytes(this.state, buf);
     }
 
-    public boolean setState(S state) {
+    public void setState(S state) {
         this.state = state;
         this.stateUpdateTimestamp = System.currentTimeMillis();
-        return false;
     }
 
     protected void updateWith(ItemInstance<S> otherState, boolean updateManagedState) {
         if (updateManagedState) {
             this.setState(otherState.getState());
         }
-
     }
 
     public boolean needsOpticalScopePerspective() {
@@ -114,37 +105,35 @@ public class ItemInstance<S extends ManagedState> extends UniversalObject {
         }
     }
 
-    public static ItemInstance<?> fromStack(ItemStack itemStack) {
-        return deserializeInstance(itemStack);
-    }
-
-    public static <T extends ItemInstance<?>> T fromStack(ItemStack itemStack, Class<T> targetClass) {
-        try {
-            return targetClass.cast(deserializeInstance(itemStack));
-        } catch (RuntimeException e) {
-            return null;
-        }
+    @SuppressWarnings("unchecked")
+    public static <T extends ItemInstance<?>> T fromStack(ItemStack itemStack) {
+        return (T) deserializeInstance(itemStack);
     }
 
     public static void toStack(ItemStack itemStack, ItemInstance<?> instance) {
-        if (itemStack != null) {
-            if (itemStack.stackTagCompound == null) {
-                itemStack.stackTagCompound = new NBTTagCompound();
-            }
-            if (instance != null) {
-                ByteBuf buf = Unpooled.buffer();
-                try {
-                    TypeRegistry.getInstance()
-                        .toBytes(instance, buf);
-                    byte[] bytes = new byte[buf.readableBytes()];
-                    buf.readBytes(bytes);
-                    itemStack.stackTagCompound.setByteArray(INSTANCE_TAG, bytes);
-                } finally {
-                    buf.release();
-                }
+        if (itemStack == null) return;
+        if (itemStack.stackTagCompound == null) {
+            itemStack.stackTagCompound = new NBTTagCompound();
+        }
+        if (instance == null) {
+            itemStack.stackTagCompound.removeTag(INSTANCE_TAG);
+            return;
+        }
+        ByteBuf buf = Unpooled.buffer();
+        try {
+            if (instance instanceof ItemWeaponInstance) {
+                buf.writeByte(TYPE_WEAPON);
+            } else if (instance instanceof ItemGrenadeInstance) {
+                buf.writeByte(TYPE_GRENADE);
             } else {
-                itemStack.stackTagCompound.removeTag(INSTANCE_TAG);
+                return;
             }
+            instance.writeToBuf(buf);
+            byte[] bytes = new byte[buf.readableBytes()];
+            buf.readBytes(bytes);
+            itemStack.stackTagCompound.setByteArray(INSTANCE_TAG, bytes);
+        } finally {
+            buf.release();
         }
     }
 
@@ -158,17 +147,22 @@ public class ItemInstance<S extends ManagedState> extends UniversalObject {
         }
         ByteBuf buf = Unpooled.copiedBuffer(bytes);
         try {
-            return TypeRegistry.getInstance()
-                .fromBytes(buf);
+            byte typeId = buf.readByte();
+            ItemInstance<?> instance;
+            switch (typeId) {
+                case TYPE_WEAPON:
+                    instance = new ItemWeaponInstance();
+                    break;
+                case TYPE_GRENADE:
+                    instance = new ItemGrenadeInstance();
+                    break;
+                default:
+                    return null;
+            }
+            instance.readFromBuf(buf);
+            return instance;
         } finally {
             buf.release();
         }
-    }
-
-    static {
-        TypeRegistry.getInstance()
-            .register(ItemInstance.class);
-        TypeRegistry.getInstance()
-            .register(ItemWeaponInstance.class);
     }
 }

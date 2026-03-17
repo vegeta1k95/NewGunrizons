@@ -11,7 +11,6 @@ import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.network.TypeRegistry;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import io.netty.buffer.ByteBuf;
@@ -20,7 +19,6 @@ import lombok.Setter;
 
 public class ItemWeaponInstance extends ItemInstance<WeaponState> {
 
-    private static final int SERIAL_VERSION = 11;
     private static final long AIM_CHANGE_DURATION = 400L;
 
     @Setter
@@ -72,14 +70,11 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         super(itemInventoryIndex, player);
     }
 
-    protected int getSerialVersion() {
-        return SERIAL_VERSION;
-    }
-
-    public void init(ByteBuf buf) {
-        super.init(buf);
-        this.activeAttachmentIds = initIntArray(buf);
-        this.selectedAttachmentIndexes = initByteArray(buf);
+    public void readFromBuf(ByteBuf buf) {
+        super.readFromBuf(buf);
+        this.state = WeaponState.values()[buf.readInt()];
+        this.activeAttachmentIds = readIntArray(buf);
+        this.selectedAttachmentIndexes = readByteArray(buf);
         this.ammo = buf.readInt();
         this.maxShots = buf.readInt();
         this.recoil = buf.readFloat();
@@ -87,10 +82,11 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         this.laserOn = buf.readBoolean();
     }
 
-    public void serialize(ByteBuf buf) {
-        super.serialize(buf);
-        serializeIntArray(buf, this.activeAttachmentIds);
-        serializeByteArray(buf, this.selectedAttachmentIndexes);
+    public void writeToBuf(ByteBuf buf) {
+        super.writeToBuf(buf);
+        buf.writeInt(this.state != null ? this.state.ordinal() : 0);
+        writeIntArray(buf, this.activeAttachmentIds);
+        writeByteArray(buf, this.selectedAttachmentIndexes);
         buf.writeInt(this.ammo);
         buf.writeInt(this.maxShots);
         buf.writeFloat(this.recoil);
@@ -98,39 +94,35 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
         buf.writeBoolean(this.laserOn);
     }
 
-    private static void serializeIntArray(ByteBuf buf, int[] a) {
+    private static void writeIntArray(ByteBuf buf, int[] a) {
         buf.writeByte(a.length);
         for (int b : a) {
             buf.writeInt(b);
         }
     }
 
-    private static void serializeByteArray(ByteBuf buf, byte[] a) {
+    private static void writeByteArray(ByteBuf buf, byte[] a) {
         buf.writeByte(a.length);
         for (byte b : a) {
             buf.writeByte(b);
         }
     }
 
-    private static int[] initIntArray(ByteBuf buf) {
+    private static int[] readIntArray(ByteBuf buf) {
         int length = buf.readByte();
         int[] a = new int[length];
-
         for (int i = 0; i < length; ++i) {
             a[i] = buf.readInt();
         }
-
         return a;
     }
 
-    private static byte[] initByteArray(ByteBuf buf) {
+    private static byte[] readByteArray(ByteBuf buf) {
         int length = buf.readByte();
         byte[] a = new byte[length];
-
         for (int i = 0; i < length; ++i) {
             a[i] = buf.readByte();
         }
-
         return a;
     }
 
@@ -154,7 +146,6 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     public void setRecoil(float recoil) {
         if (recoil != this.recoil) {
             this.recoil = recoil;
-
         }
     }
 
@@ -180,10 +171,8 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     public void setAimed(boolean aimed) {
         if (aimed != this.aimed) {
             this.aimed = aimed;
-
             this.aimChangeTimestamp = System.currentTimeMillis();
         }
-
     }
 
     public int[] getActiveAttachmentIds() {
@@ -207,9 +196,7 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     public void setActiveAttachmentIds(int[] activeAttachmentIds) {
         if (!Arrays.equals(this.activeAttachmentIds, activeAttachmentIds)) {
             this.activeAttachmentIds = activeAttachmentIds;
-
         }
-
     }
 
     public byte[] getSelectedAttachmentIds() {
@@ -219,9 +206,7 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     public void setSelectedAttachmentIndexes(byte[] selectedAttachmentIndexes) {
         if (!Arrays.equals(this.selectedAttachmentIndexes, selectedAttachmentIndexes)) {
             this.selectedAttachmentIndexes = selectedAttachmentIndexes;
-
         }
-
     }
 
     public boolean isAttachmentZoomEnabled() {
@@ -241,25 +226,19 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     public void setZoom(float zoom) {
         if (this.zoom != zoom) {
             this.zoom = zoom;
-
         }
-
     }
 
     public void setLaserOn(boolean laserOn) {
         if (this.laserOn != laserOn) {
             this.laserOn = laserOn;
-
         }
-
     }
 
     public void setNightVisionOn(boolean nightVisionOn) {
         if (this.nightVisionOn != nightVisionOn) {
             this.nightVisionOn = nightVisionOn;
-
         }
-
     }
 
     public boolean needsOpticalScopePerspective() {
@@ -273,23 +252,13 @@ public class ItemWeaponInstance extends ItemInstance<WeaponState> {
     public float getAimChangeProgress() {
         float delta = (float) (System.currentTimeMillis() - this.aimChangeTimestamp) / AIM_CHANGE_DURATION;
         float p = Math.min(Math.max(delta, 0.0F), 1.0F);
-
         if (!this.isAimed()) {
             p = 1.0F - p;
         }
-
         return p;
     }
 
     public String toString() {
-        return this.getWeapon()
-            .getName() + "["
-            + this.getUuid()
-            + "]";
-    }
-
-    static {
-        TypeRegistry.getInstance()
-            .register(ItemWeaponInstance.class);
+        return this.getWeapon().getName() + "[weapon]";
     }
 }

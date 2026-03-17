@@ -99,7 +99,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
             weaponStack.stackTagCompound = new NBTTagCompound();
         }
 
-        ItemWeaponInstance instance = ItemInstance.fromStack(weaponStack, ItemWeaponInstance.class);
+        ItemWeaponInstance instance = ItemInstance.fromStack(weaponStack);
         if (instance == null) {
             instance = weapon.createItemInstance(player, weaponStack, slotIndex);
             ItemInstance.toStack(weaponStack, instance);
