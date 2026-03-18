@@ -1,6 +1,5 @@
 package com.gtnewhorizon.newgunrizons.items.instances;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,7 +19,7 @@ public abstract class ItemInstance {
 
     @Setter
     @Getter
-    protected EntityLivingBase player;
+    protected EntityPlayer player;
 
     @Getter
     protected Item item;
@@ -31,7 +30,7 @@ public abstract class ItemInstance {
 
     public ItemInstance() {}
 
-    public ItemInstance(int itemInventoryIndex, EntityLivingBase player) {
+    public ItemInstance(int itemInventoryIndex, EntityPlayer player) {
         this.itemInventoryIndex = itemInventoryIndex;
         this.player = player;
         ItemStack itemStack = player.getHeldItem();
@@ -40,7 +39,7 @@ public abstract class ItemInstance {
         }
     }
 
-    public ItemInstance(int itemInventoryIndex, EntityLivingBase player, ItemStack itemStack) {
+    public ItemInstance(int itemInventoryIndex, EntityPlayer player, ItemStack itemStack) {
         this.itemInventoryIndex = itemInventoryIndex;
         this.player = player;
         if (itemStack != null) {
@@ -49,9 +48,7 @@ public abstract class ItemInstance {
     }
 
     public ItemStack getItemStack() {
-        return this.player instanceof EntityPlayer
-            ? ((EntityPlayer) this.player).inventory.getStackInSlot(this.itemInventoryIndex)
-            : null;
+        return this.player != null ? this.player.inventory.getStackInSlot(this.itemInventoryIndex) : null;
     }
 
     public void readFromBuf(ByteBuf buf) {

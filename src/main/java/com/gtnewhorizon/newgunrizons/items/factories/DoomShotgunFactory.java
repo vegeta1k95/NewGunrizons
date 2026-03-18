@@ -1,21 +1,20 @@
-package com.gtnewhorizon.newgunrizons.items.factories.guns.shotgun;
+package com.gtnewhorizon.newgunrizons.items.factories;
 
 import java.util.Arrays;
 
-import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import net.minecraft.item.Item;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
+import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
-import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 public class DoomShotgunFactory {
 
     public Item createGun() {
-        return new ItemWeapon.Builder()
-            .withName("DoomShotgun")
+        return new ItemWeapon.Builder().withName("DoomShotgun")
             .withAmmoCapacity(9)
             .withFireRate(0.06F)
             .withRecoil(8.0F)
@@ -41,8 +40,7 @@ public class DoomShotgunFactory {
             .withCompatibleBullet(Bullets.ShotgunShell)
             .withTextureName("shotgun")
             .withRenderer(
-                new WeaponRenderer.Builder()
-                    .withModel(new BedrockModel("weapon/shotgun"))
+                new WeaponRenderer.Builder().withModel(new BedrockModel("weapon/shotgun"))
                     .withBedrockAnimation("weapon/shotgun")
                     .withBedrockAnimationForState(RenderableState.IDLE, "animation.shotgun.idle")
                     .withBedrockAnimationForState(RenderableState.ZOOMING, "animation.shotgun.zoom")
@@ -51,7 +49,9 @@ public class DoomShotgunFactory {
                     .withBedrockAnimationForState(RenderableState.SHOOTING, "animation.shotgun.shoot_and_pump")
                     .withBedrockAnimationForState(RenderableState.ZOOMING_SHOOTING, "animation.shotgun.shoot_zoom")
                     .withBedrockAnimationForState(RenderableState.RELOADING_START, "animation.shotgun.reload_start")
-                    .withBedrockAnimationForState(RenderableState.RELOADING_ITERATION, "animation.shotgun.reload_insert")
+                    .withBedrockAnimationForState(
+                        RenderableState.RELOADING_ITERATION,
+                        "animation.shotgun.reload_insert")
                     .withBedrockAnimationForState(RenderableState.RELOADING_END, "animation.shotgun.reload_end")
                     .withFlashIntensity(0.7F)
                     .withFlashScale(0.4F)

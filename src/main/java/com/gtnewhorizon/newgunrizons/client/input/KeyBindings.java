@@ -8,10 +8,6 @@ public class KeyBindings {
 
     public static KeyBinding reloadKey;
     public static KeyBinding attachmentKey;
-    public static KeyBinding upArrowKey;
-    public static KeyBinding downArrowKey;
-    public static KeyBinding leftArrowKey;
-    public static KeyBinding rightArrowKey;
     public static KeyBinding laserSwitchKey;
     public static KeyBinding nightVisionSwitchKey;
     public static KeyBinding addKey;
@@ -24,20 +20,12 @@ public class KeyBindings {
         laserSwitchKey = new KeyBinding("key.laser", 38, "key.categories.newgunrizons");
         nightVisionSwitchKey = new KeyBinding("key.nightVision", 49, "key.categories.newgunrizons");
         attachmentKey = new KeyBinding("key.attachment", 50, "key.categories.newgunrizons");
-        upArrowKey = new KeyBinding("key.scope", 200, "key.categories.newgunrizons");
-        downArrowKey = new KeyBinding("key.recoil_fitter", 208, "key.categories.newgunrizons");
-        leftArrowKey = new KeyBinding("key.silencer", 203, "key.categories.newgunrizons");
-        rightArrowKey = new KeyBinding("key.texture_change", 205, "key.categories.newgunrizons");
         addKey = new KeyBinding("key.add", 27, "key.categories.newgunrizons");
         subtractKey = new KeyBinding("key.subtract", 26, "key.categories.newgunrizons");
         fireModeKey = new KeyBinding("key.fire_mode", 54, "key.categories.newgunrizons");
         debugKey = new KeyBinding("key.position_debug", 64, "key.categories.newgunrizons");
         ClientRegistry.registerKeyBinding(reloadKey);
         ClientRegistry.registerKeyBinding(attachmentKey);
-        ClientRegistry.registerKeyBinding(upArrowKey);
-        ClientRegistry.registerKeyBinding(downArrowKey);
-        ClientRegistry.registerKeyBinding(leftArrowKey);
-        ClientRegistry.registerKeyBinding(rightArrowKey);
         ClientRegistry.registerKeyBinding(laserSwitchKey);
         ClientRegistry.registerKeyBinding(nightVisionSwitchKey);
         ClientRegistry.registerKeyBinding(addKey);

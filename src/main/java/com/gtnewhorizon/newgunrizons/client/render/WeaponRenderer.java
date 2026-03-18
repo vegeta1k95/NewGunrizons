@@ -3,14 +3,6 @@ package com.gtnewhorizon.newgunrizons.client.render;
 import java.nio.FloatBuffer;
 import java.util.List;
 
-import org.lwjgl.BufferUtils;
-
-import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation;
-import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController;
-import com.gtnewhorizon.newgunrizons.weapon.FiringPointTracker;
-
-import com.gtnewhorizon.newgunrizons.client.animation.IdleSway;
-import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.ScaledResolution;
@@ -24,15 +16,21 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
+import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation;
+import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimationController;
+import com.gtnewhorizon.newgunrizons.client.animation.IdleSway;
 import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
+import com.gtnewhorizon.newgunrizons.model.BedrockModel;
+import com.gtnewhorizon.newgunrizons.weapon.FiringPointTracker;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
@@ -142,7 +140,6 @@ public class WeaponRenderer implements IItemRenderer {
         Minecraft.getMinecraft().renderEngine
             .bindTexture(new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + texture));
 
-
         // Apply bedrock bone animations if active.
         // Skip if already applied by the EQUIPPED_FIRST_PERSON path (which needs
         // animation applied before arm rendering).
@@ -173,8 +170,7 @@ public class WeaponRenderer implements IItemRenderer {
 
         captureFiringPointWorldPosition(model, renderContext);
 
-        if (weapon == null)
-            return;
+        if (weapon == null) return;
 
         List<CompatibleAttachment> attachments = weapon
             .getActiveAttachments(renderContext.getPlayer(), weaponItemStack);
@@ -211,8 +207,8 @@ public class WeaponRenderer implements IItemRenderer {
         }
     }
 
-    private void renderCompatibleAttachment(CompatibleAttachment compatibleAttachment,
-        BedrockModel weaponModel, RenderContext renderContext) {
+    private void renderCompatibleAttachment(CompatibleAttachment compatibleAttachment, BedrockModel weaponModel,
+        RenderContext renderContext) {
         ItemAttachment itemAttachment = compatibleAttachment.getAttachment();
         String boneName = compatibleAttachment.getBoneName();
         BedrockModel attachModel = itemAttachment.getModel();
@@ -225,7 +221,8 @@ public class WeaponRenderer implements IItemRenderer {
 
             if (itemAttachment.getModelTextureName() != null) {
                 Minecraft.getMinecraft().renderEngine.bindTexture(
-                    new ResourceLocation(NewGunrizonsMod.MODID + ":textures/models/" + itemAttachment.getModelTextureName()));
+                    new ResourceLocation(
+                        NewGunrizonsMod.MODID + ":textures/models/" + itemAttachment.getModelTextureName()));
             }
             attachModel.render(
                 null,
@@ -277,8 +274,7 @@ public class WeaponRenderer implements IItemRenderer {
          * @param animationPath path relative to assets/newgunrizons/animations/, without .animation.json extension
          */
         public Builder withBedrockAnimation(String animationPath) {
-            this.bedrockAnimController = new BedrockAnimationController(
-                new BedrockAnimation(animationPath));
+            this.bedrockAnimController = new BedrockAnimationController(new BedrockAnimation(animationPath));
             return this;
         }
 
@@ -405,8 +401,8 @@ public class WeaponRenderer implements IItemRenderer {
                 GL11.glRotatef(70.0F, 1.0F, 0.0F, 0.0F);
                 break;
             case EQUIPPED_FIRST_PERSON:
-                GL11.glTranslatef(0.5F, -1.0F, 0.5F);           // Counter Forge's block-centering offset
-                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F);  // Counter vanilla ItemRenderer's 45° Y rotation
+                GL11.glTranslatef(0.5F, -1.0F, 0.5F); // Counter Forge's block-centering offset
+                GL11.glRotatef(45.0F, 0.0F, 1.0F, 0.0F); // Counter vanilla ItemRenderer's 45° Y rotation
 
                 if (!com.gtnewhorizon.newgunrizons.client.debug.PositionDebugger.isActive()) {
                     this.idleSway.apply(0.33F, 0.06F);
@@ -419,7 +415,8 @@ public class WeaponRenderer implements IItemRenderer {
 
                 // Map weapon state to renderable state
                 ItemWeaponInstance weaponInstance = null;
-                ItemInstance itemInst = ItemInstanceRegistry.getItemInstance((EntityLivingBase) player, weaponItemStack);
+                ItemInstance itemInst = ItemInstanceRegistry
+                    .getItemInstance((EntityLivingBase) player, weaponItemStack);
                 if (itemInst instanceof ItemWeaponInstance && itemInst.getItem() == weaponItemStack.getItem()) {
                     weaponInstance = (ItemWeaponInstance) itemInst;
                 }
@@ -541,20 +538,14 @@ public class WeaponRenderer implements IItemRenderer {
     }
 
     public static void renderRightArm(EntityPlayer player, BedrockModel weaponModel, float renderScale) {
-        if (weaponModel != null && weaponModel.getBone(
-                BedrockAnimationController.BONE_RIGHT_HAND) != null) {
-            renderArmAtBone(player, weaponModel,
-                BedrockAnimationController.BONE_RIGHT_HAND,
-                true, renderScale);
+        if (weaponModel != null && weaponModel.getBone(BedrockAnimationController.BONE_RIGHT_HAND) != null) {
+            renderArmAtBone(player, weaponModel, BedrockAnimationController.BONE_RIGHT_HAND, true, renderScale);
         }
     }
 
     public static void renderLeftArm(EntityPlayer player, BedrockModel weaponModel, float renderScale) {
-        if (weaponModel != null && weaponModel.getBone(
-                BedrockAnimationController.BONE_LEFT_HAND) != null) {
-            renderArmAtBone(player, weaponModel,
-                BedrockAnimationController.BONE_LEFT_HAND,
-                false, renderScale);
+        if (weaponModel != null && weaponModel.getBone(BedrockAnimationController.BONE_LEFT_HAND) != null) {
+            renderArmAtBone(player, weaponModel, BedrockAnimationController.BONE_LEFT_HAND, false, renderScale);
         }
     }
 
@@ -562,12 +553,13 @@ public class WeaponRenderer implements IItemRenderer {
      * Renders a player arm (left or right) positioned at the given hand bone's transform.
      * Uses {@link BedrockModel#applyBoneTransform} to walk the full parent chain.
      */
-    public static void renderArmAtBone(EntityPlayer player, BedrockModel model,
-        String handBoneName, boolean rightArm, float renderScale) {
+    public static void renderArmAtBone(EntityPlayer player, BedrockModel model, String handBoneName, boolean rightArm,
+        float renderScale) {
         if (model.getBone(handBoneName) == null) return;
 
         RenderPlayer render = (RenderPlayer) RenderManager.instance.getEntityRenderObject(player);
-        Minecraft.getMinecraft().getTextureManager()
+        Minecraft.getMinecraft()
+            .getTextureManager()
             .bindTexture(((AbstractClientPlayer) player).getLocationSkin());
 
         GL11.glPushMatrix();

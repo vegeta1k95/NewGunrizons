@@ -9,24 +9,24 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import lombok.Getter;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.PositionTextureVertex;
 import net.minecraft.client.model.TexturedQuad;
-import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.Entity;
+
+import org.lwjgl.opengl.GL11;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import lombok.Getter;
 
 /**
  * Loads a Bedrock geometry (.geo.json) model and creates ModelRenderer instances,
@@ -54,7 +54,7 @@ public class BedrockModel extends ModelBase {
 
     /**
      * -- GETTER --
-     *  Returns the model path this JsonModel was loaded from.
+     * Returns the model path this JsonModel was loaded from.
      */
     @Getter
     private final String modelPath;
@@ -297,12 +297,10 @@ public class BedrockModel extends ModelBase {
             String name = entry.getKey();
             ModelRenderer renderer = entry.getValue();
             boneMap.put(name, renderer);
-            restRotations.put(
-                name,
-                new float[] { renderer.rotateAngleX, renderer.rotateAngleY, renderer.rotateAngleZ });
-            restPositions.put(
-                name,
-                new float[] { renderer.rotationPointX, renderer.rotationPointY, renderer.rotationPointZ });
+            restRotations
+                .put(name, new float[] { renderer.rotateAngleX, renderer.rotateAngleY, renderer.rotateAngleZ });
+            restPositions
+                .put(name, new float[] { renderer.rotationPointX, renderer.rotationPointY, renderer.rotationPointZ });
             if (!parentMap.containsKey(name)) {
                 rootRenderers.add(renderer);
             }
@@ -353,10 +351,17 @@ public class BedrockModel extends ModelBase {
                 target.mirror = mirror;
                 target.cubeList.add(
                     new PerFaceUVBox(
-                        target, offX, offY, offZ,
-                        size[0], size[1], size[2], inflate,
+                        target,
+                        offX,
+                        offY,
+                        offZ,
+                        size[0],
+                        size[1],
+                        size[2],
+                        inflate,
                         uvElem.getAsJsonObject(),
-                        this.textureWidth, this.textureHeight));
+                        this.textureWidth,
+                        this.textureHeight));
             } else if (uvElem.isJsonArray()) {
                 // Box UV: [u, v] array
                 JsonArray uv = uvElem.getAsJsonArray();
@@ -368,8 +373,7 @@ public class BedrockModel extends ModelBase {
                         .getAsFloat());
                 target.mirror = mirror;
                 target.setTextureOffset(texU, texV);
-                target.addBox(offX, offY, offZ,
-                    Math.round(size[0]), Math.round(size[1]), Math.round(size[2]), inflate);
+                target.addBox(offX, offY, offZ, Math.round(size[0]), Math.round(size[1]), Math.round(size[2]), inflate);
             }
         }
     }
@@ -402,11 +406,9 @@ public class BedrockModel extends ModelBase {
 
         private final TexturedQuad[] faceQuads;
 
-        PerFaceUVBox(ModelRenderer renderer, float offX, float offY, float offZ,
-            float sizeX, float sizeY, float sizeZ, float inflate,
-            JsonObject uvObj, float texW, float texH) {
-            super(renderer, 0, 0, offX, offY, offZ,
-                Math.round(sizeX), Math.round(sizeY), Math.round(sizeZ), inflate);
+        PerFaceUVBox(ModelRenderer renderer, float offX, float offY, float offZ, float sizeX, float sizeY, float sizeZ,
+            float inflate, JsonObject uvObj, float texW, float texH) {
+            super(renderer, 0, 0, offX, offY, offZ, Math.round(sizeX), Math.round(sizeY), Math.round(sizeZ), inflate);
 
             // Compute float-precision corners with inflate
             float x1 = offX - inflate;
@@ -450,10 +452,8 @@ public class BedrockModel extends ModelBase {
             }
         }
 
-        private static TexturedQuad makeFaceQuad(JsonObject uvObj, String face,
-            float texW, float texH,
-            PositionTextureVertex a, PositionTextureVertex b,
-            PositionTextureVertex c, PositionTextureVertex d) {
+        private static TexturedQuad makeFaceQuad(JsonObject uvObj, String face, float texW, float texH,
+            PositionTextureVertex a, PositionTextureVertex b, PositionTextureVertex c, PositionTextureVertex d) {
             if (!uvObj.has(face)) {
                 return null;
             }
@@ -477,12 +477,9 @@ public class BedrockModel extends ModelBase {
 
             // UV assignment matches MC's TexturedQuad pattern:
             // vert[0] → (u2, v1), vert[1] → (u1, v1), vert[2] → (u1, v2), vert[3] → (u2, v2)
-            return new TexturedQuad(new PositionTextureVertex[] {
-                a.setTexturePosition(u2, v1),
-                b.setTexturePosition(u1, v1),
-                c.setTexturePosition(u1, v2),
-                d.setTexturePosition(u2, v2)
-            });
+            return new TexturedQuad(
+                new PositionTextureVertex[] { a.setTexturePosition(u2, v1), b.setTexturePosition(u1, v1),
+                    c.setTexturePosition(u1, v2), d.setTexturePosition(u2, v2) });
         }
 
         @Override

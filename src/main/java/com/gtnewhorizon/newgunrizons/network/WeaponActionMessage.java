@@ -13,8 +13,6 @@ public class WeaponActionMessage implements IMessage {
 
     public static final byte WEAPON_LOAD = 0;
     public static final byte WEAPON_UNLOAD = 1;
-    public static final byte MAGAZINE_LOAD = 2;
-    public static final byte CHANGE_ATTACHMENT = 3;
     public static final byte CHANGE_FIRE_MODE = 4;
     public static final byte TOGGLE_LASER = 5;
     public static final byte ZOOM_IN = 6;

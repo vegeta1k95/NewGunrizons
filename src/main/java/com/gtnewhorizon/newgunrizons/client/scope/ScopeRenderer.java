@@ -2,9 +2,6 @@ package com.gtnewhorizon.newgunrizons.client.scope;
 
 import java.util.function.BiConsumer;
 
-import com.gtnewhorizon.newgunrizons.items.ItemAmmo;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,6 +12,8 @@ import org.lwjgl.opengl.GL11;
 import com.gtnewhorizon.newgunrizons.client.render.CustomRenderer;
 import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
 import com.gtnewhorizon.newgunrizons.client.render.TransformType;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 
 public class ScopeRenderer implements CustomRenderer {
 

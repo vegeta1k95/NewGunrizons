@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,17 +12,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
-import com.gtnewhorizon.newgunrizons.grenade.GrenadeAttackAspect;
 import com.gtnewhorizon.newgunrizons.grenade.GrenadeRenderer;
-import com.gtnewhorizon.newgunrizons.grenade.GrenadeState;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemGrenadeInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.registry.Sounds;
 
 import lombok.Getter;
 
-public class ItemGrenade extends Item
-    implements ItemInstanceFactory<ItemGrenadeInstance>, Updatable {
+public class ItemGrenade extends Item implements ItemInstanceFactory<ItemGrenadeInstance>, Updatable {
 
     public static final int EXPLODE_ON_IMPACT = -1;
 
@@ -87,20 +84,29 @@ public class ItemGrenade extends Item
         return this.explosionTimeout > 0;
     }
 
-    public ItemGrenadeInstance createItemInstance(EntityLivingBase player, ItemStack itemStack, int slot) {
+    public ItemGrenadeInstance createItemInstance(EntityPlayer player, ItemStack itemStack, int slot) {
         return new ItemGrenadeInstance(slot, player, itemStack);
     }
 
     public void attack(EntityPlayer player, boolean throwingFar) {
-        GrenadeAttackAspect.INSTANCE.onAttackButtonClick(player, throwingFar);
+        ItemGrenadeInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemGrenadeInstance.class);
+        if (instance != null) {
+            instance.onAttackButtonClick(throwingFar);
+        }
     }
 
     public void attackUp(EntityPlayer player, boolean throwingFar) {
-        GrenadeAttackAspect.INSTANCE.onAttackButtonUp(player, throwingFar);
+        ItemGrenadeInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemGrenadeInstance.class);
+        if (instance != null) {
+            instance.onAttackButtonUp(throwingFar);
+        }
     }
 
     public void update(EntityPlayer player) {
-        GrenadeAttackAspect.INSTANCE.onUpdate(player);
+        ItemGrenadeInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemGrenadeInstance.class);
+        if (instance != null) {
+            instance.update();
+        }
     }
 
     public long getReequipTimeout() {

@@ -1,10 +1,9 @@
 package com.gtnewhorizon.newgunrizons.client.scope;
 
-import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 
-import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
+import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 
 public class ScopeManager {
 

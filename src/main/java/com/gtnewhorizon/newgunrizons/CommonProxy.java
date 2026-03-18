@@ -7,10 +7,6 @@ import net.minecraftforge.client.IItemRenderer;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
 import com.gtnewhorizon.newgunrizons.entities.EntityGrenade;
 import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
-import com.gtnewhorizon.newgunrizons.grenade.GrenadeAttackAspect;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemGrenadeInstance;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.BlockHitMessage;
 import com.gtnewhorizon.newgunrizons.network.ExplosionMessage;
 import com.gtnewhorizon.newgunrizons.network.GrenadeMessage;
@@ -22,11 +18,6 @@ import com.gtnewhorizon.newgunrizons.registry.Attachments;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
 import com.gtnewhorizon.newgunrizons.registry.Grenades;
 import com.gtnewhorizon.newgunrizons.registry.Guns;
-import com.gtnewhorizon.newgunrizons.state.StateManager;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -41,23 +32,8 @@ public class CommonProxy {
     public void init(Object mod, FMLPreInitializationEvent event) {
         SimpleNetworkWrapper channel = NewGunrizonsMod.CHANNEL;
 
-        GrenadeAttackAspect.INSTANCE.setStateManager(new StateManager<>((s1, s2) -> s1 == s2));
-
-        StateManager<WeaponState, ItemWeaponInstance> weaponStateManager = new StateManager<>((s1, s2) -> s1 == s2);
-        WeaponReloadAspect.INSTANCE.setStateManager(weaponStateManager);
-        WeaponFireAspect.INSTANCE.setStateManager(weaponStateManager);
-        WeaponAttachmentAspect.INSTANCE.setStateManager(weaponStateManager);
-
-        channel.registerMessage(
-            new WeaponActionMessageHandler(),
-            WeaponActionMessage.class,
-            15,
-            Side.SERVER);
-        channel.registerMessage(
-            new GrenadeMessageHandler(),
-            GrenadeMessage.class,
-            20,
-            Side.SERVER);
+        channel.registerMessage(new WeaponActionMessageHandler(), WeaponActionMessage.class, 15, Side.SERVER);
+        channel.registerMessage(new GrenadeMessageHandler(), GrenadeMessage.class, 20, Side.SERVER);
         registerClientMessageHandlers(channel);
 
         EntityRegistry

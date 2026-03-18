@@ -14,31 +14,31 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 
 public class DebugInputHandler {
 
-	@SubscribeEvent
-	public void onKeyInput(InputEvent.KeyInputEvent event) {
-		if (KeyBindings.debugKey.isPressed()) {
-			Minecraft mc = Minecraft.getMinecraft();
-			if (mc.currentScreen == null) {
-				EntityPlayer player = mc.thePlayer;
-				if (player == null) return;
+    @SubscribeEvent
+    public void onKeyInput(InputEvent.KeyInputEvent event) {
+        if (KeyBindings.debugKey.isPressed()) {
+            Minecraft mc = Minecraft.getMinecraft();
+            if (mc.currentScreen == null) {
+                EntityPlayer player = mc.thePlayer;
+                if (player == null) return;
 
-				ItemStack heldStack = player.getHeldItem();
-				if (heldStack == null || !(heldStack.getItem() instanceof ItemWeapon)) return;
+                ItemStack heldStack = player.getHeldItem();
+                if (heldStack == null || !(heldStack.getItem() instanceof ItemWeapon)) return;
 
-				ItemWeapon weapon = (ItemWeapon) heldStack.getItem();
-				WeaponRenderer renderer = weapon.getRenderer();
-				if (renderer == null) return;
+                ItemWeapon weapon = (ItemWeapon) heldStack.getItem();
+                WeaponRenderer renderer = weapon.getRenderer();
+                if (renderer == null) return;
 
-				BedrockAnimationController controller = renderer.getBedrockAnimController();
-				if (controller == null) return;
+                BedrockAnimationController controller = renderer.getBedrockAnimController();
+                if (controller == null) return;
 
-				PositionDebugger.setCurrentController(controller);
-				PositionDebugger.setActive(true);
-				PositionDebugger.setScreenOpen(true);
-				mc.displayGuiScreen(new PositionDebugScreen());
-			} else if (mc.currentScreen instanceof PositionDebugScreen) {
-				mc.displayGuiScreen(null);
-			}
-		}
-	}
+                PositionDebugger.setCurrentController(controller);
+                PositionDebugger.setActive(true);
+                PositionDebugger.setScreenOpen(true);
+                mc.displayGuiScreen(new PositionDebugScreen());
+            } else if (mc.currentScreen instanceof PositionDebugScreen) {
+                mc.displayGuiScreen(null);
+            }
+        }
+    }
 }

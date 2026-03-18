@@ -1,9 +1,11 @@
 package com.gtnewhorizon.newgunrizons.client.animation;
 
+import net.minecraft.entity.EntityLivingBase;
+
 import com.gtnewhorizon.newgunrizons.client.debug.PositionDebugger;
+
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.entity.EntityLivingBase;
 
 /**
  * Applies camera recoil (pitch/yaw kick) gradually over a configurable duration
@@ -35,8 +37,7 @@ public final class CameraRecoilController {
     public void addRecoil(float pitchRecoil, float yawRecoil) {
 
         // Apply debug override if active
-        int debugOverride = PositionDebugger
-            .getCameraRecoilDurationOverride();
+        int debugOverride = PositionDebugger.getCameraRecoilDurationOverride();
         if (PositionDebugger.isActive() && debugOverride >= 0) {
             durationMs = debugOverride;
         }

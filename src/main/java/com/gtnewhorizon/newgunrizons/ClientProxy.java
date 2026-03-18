@@ -1,6 +1,5 @@
 package com.gtnewhorizon.newgunrizons;
 
-import com.gtnewhorizon.newgunrizons.client.animation.CameraRecoilController;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -9,6 +8,7 @@ import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.gtnewhorizon.newgunrizons.client.animation.CameraRecoilController;
 import com.gtnewhorizon.newgunrizons.client.debug.DebugInputHandler;
 import com.gtnewhorizon.newgunrizons.client.handlers.ClientTickHandler;
 import com.gtnewhorizon.newgunrizons.client.handlers.WeaponHudHandler;

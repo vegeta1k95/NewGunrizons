@@ -12,10 +12,10 @@ import org.lwjgl.opengl.GL20;
 /**
  * Renders bullet tracers as a textured cylinder with two render paths:
  * <ul>
- *   <li><b>Iris ON</b>: plain white-textured cylinder with vertex color tinting.
- *       Iris's gbuffers shader handles lighting and bloom.</li>
- *   <li><b>Iris OFF</b>: custom GLSL glow shader with additive blending for
- *       a procedural hot-core-to-color falloff effect.</li>
+ * <li><b>Iris ON</b>: plain white-textured cylinder with vertex color tinting.
+ * Iris's gbuffers shader handles lighting and bloom.</li>
+ * <li><b>Iris OFF</b>: custom GLSL glow shader with additive blending for
+ * a procedural hot-core-to-color falloff effect.</li>
  * </ul>
  */
 public class TracerRenderer {
@@ -106,9 +106,12 @@ public class TracerRenderer {
         whiteTexture = GL11.glGenTextures();
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, whiteTexture);
         ByteBuffer pixel = BufferUtils.createByteBuffer(4);
-        pixel.put((byte) 255).put((byte) 255).put((byte) 255).put((byte) 255).flip();
-        GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, 1, 1, 0,
-            GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixel);
+        pixel.put((byte) 255)
+            .put((byte) 255)
+            .put((byte) 255)
+            .put((byte) 255)
+            .flip();
+        GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, 1, 1, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixel);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, 0);
@@ -155,14 +158,15 @@ public class TracerRenderer {
     }
 
     private static String readResource(String name) {
-        try (InputStream is = TracerRenderer.class
-            .getResourceAsStream("/assets/newgunrizons/shaders/program/" + name)) {
+        try (
+            InputStream is = TracerRenderer.class.getResourceAsStream("/assets/newgunrizons/shaders/program/" + name)) {
             if (is == null) return null;
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
-                sb.append(line).append('\n');
+                sb.append(line)
+                    .append('\n');
             }
             return sb.toString();
         } catch (Exception e) {
@@ -179,8 +183,11 @@ public class TracerRenderer {
         boolean irisActive = prevProgram != 0;
 
         GL11.glPushMatrix();
-        GL11.glPushAttrib(GL11.GL_TEXTURE_BIT | GL11.GL_ENABLE_BIT | GL11.GL_DEPTH_BUFFER_BIT
-            | GL11.GL_COLOR_BUFFER_BIT | GL11.GL_CURRENT_BIT);
+        GL11.glPushAttrib(
+            GL11.GL_TEXTURE_BIT | GL11.GL_ENABLE_BIT
+                | GL11.GL_DEPTH_BUFFER_BIT
+                | GL11.GL_COLOR_BUFFER_BIT
+                | GL11.GL_CURRENT_BIT);
 
         GL11.glDisable(GL11.GL_CULL_FACE);
 

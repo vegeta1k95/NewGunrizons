@@ -6,14 +6,14 @@ import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 
 public class Bullets {
 
-	public static ItemBullet ShotgunShell;
+    public static ItemBullet ShotgunShell;
 
-	public static void init() {
-		ShotgunShell = (new ItemBullet.Builder())
+    public static void init() {
+        ShotgunShell = new ItemBullet.Builder()
             .withCreativeTab(NewGunrizonsMod.AmmoTab)
-			.withName("ShotgunShell")
-			.withModel(new BedrockModel("ammo/shotgunshell"))
-			.withTextureName("ShotgunShell")
-			.build(ItemBullet.class);
-	}
+            .withName("ShotgunShell")
+            .withModel(new BedrockModel("ammo/shotgunshell"))
+            .withTextureName("ShotgunShell")
+            .build();
+    }
 }

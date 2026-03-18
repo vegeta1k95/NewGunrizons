@@ -2,7 +2,6 @@ package com.gtnewhorizon.newgunrizons.client.render;
 
 import java.nio.FloatBuffer;
 
-import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.ResourceLocation;
@@ -13,9 +12,8 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
-import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
+import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -54,7 +52,8 @@ public class MuzzleFlashRenderer {
         if (weaponInstance == null || weaponModel == null) return;
         if (weaponInstance.isSilencerOn()) return;
 
-        WeaponRenderer renderer = weaponInstance.getWeapon().getRenderer();
+        WeaponRenderer renderer = weaponInstance.getWeapon()
+            .getRenderer();
         if (renderer == null || renderer.getFlashIntensity() <= 0.0F) return;
 
         long elapsed = System.currentTimeMillis() - weaponInstance.getLastFireTimestamp();
@@ -75,19 +74,23 @@ public class MuzzleFlashRenderer {
      * Renders the flash quad at the firing_point bone position.
      * Walks the bone hierarchy: receiver -> barrel -> firing_point.
      */
-    private static void renderFlashAtBone(BedrockModel model, float renderScale,
-                                          float alpha, float flashScale, int imageIndex) {
+    private static void renderFlashAtBone(BedrockModel model, float renderScale, float alpha, float flashScale,
+        int imageIndex) {
 
         int prevProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
         if (prevProgram != 0) GL20.glUseProgram(0);
 
-        Minecraft.getMinecraft().getTextureManager().bindTexture(FLASH_TEXTURE);
+        Minecraft.getMinecraft()
+            .getTextureManager()
+            .bindTexture(FLASH_TEXTURE);
 
         GL11.glPushMatrix();
         GL11.glPushAttrib(
             GL11.GL_TEXTURE_BIT | GL11.GL_DEPTH_BUFFER_BIT
-                | GL11.GL_ENABLE_BIT | GL11.GL_COLOR_BUFFER_BIT
-                | GL11.GL_CURRENT_BIT | GL11.GL_POLYGON_BIT);
+                | GL11.GL_ENABLE_BIT
+                | GL11.GL_COLOR_BUFFER_BIT
+                | GL11.GL_CURRENT_BIT
+                | GL11.GL_POLYGON_BIT);
 
         if (prevProgram != 0) GL11.glDrawBuffer(GL30.GL_COLOR_ATTACHMENT0);
 
@@ -141,8 +144,7 @@ public class MuzzleFlashRenderer {
 
     private static float columnLength(int col) {
         return (float) Math.sqrt(
-            modelviewBuf.get(col) * modelviewBuf.get(col)
-                + modelviewBuf.get(col + 1) * modelviewBuf.get(col + 1)
+            modelviewBuf.get(col) * modelviewBuf.get(col) + modelviewBuf.get(col + 1) * modelviewBuf.get(col + 1)
                 + modelviewBuf.get(col + 2) * modelviewBuf.get(col + 2));
     }
 }

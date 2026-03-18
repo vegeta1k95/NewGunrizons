@@ -125,14 +125,12 @@ public class BedrockAnimation {
     }
 
     private static float[] parseVec3(JsonArray arr) {
-        return new float[] {
-            arr.get(0)
-                .getAsFloat(),
+        return new float[] { arr.get(0)
+            .getAsFloat(),
             arr.get(1)
                 .getAsFloat(),
             arr.get(2)
-                .getAsFloat()
-        };
+                .getAsFloat() };
     }
 
     public AnimationClip getClip(String name) {

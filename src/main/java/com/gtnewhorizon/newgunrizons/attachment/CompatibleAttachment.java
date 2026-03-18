@@ -13,47 +13,46 @@ import lombok.Getter;
 @Getter
 public class CompatibleAttachment {
 
-	private final ItemAttachment attachment;
+    private final ItemAttachment attachment;
 
-	/** Bone in the parent model to render this attachment at (null for non-visual attachments). */
-	private final String boneName;
+    /** Bone in the parent model to render this attachment at (null for non-visual attachments). */
+    private final String boneName;
 
-	/** Whether this attachment is pre-equipped on the weapon by default. */
-	private final boolean isDefault;
+    /** Whether this attachment is pre-equipped on the weapon by default. */
+    private final boolean isDefault;
 
-	/** Whether this attachment cannot be removed by the player. */
-	private final boolean isPermanent;
+    /** Whether this attachment cannot be removed by the player. */
+    private final boolean isPermanent;
 
-	/** Called when this attachment is equipped onto a weapon. */
-	private final ItemAttachment.AttachmentHandler applyHandler;
+    /** Called when this attachment is equipped onto a weapon. */
+    private final ItemAttachment.AttachmentHandler applyHandler;
 
-	/** Called when this attachment is removed from a weapon. */
-	private final ItemAttachment.AttachmentHandler removeHandler;
+    /** Called when this attachment is removed from a weapon. */
+    private final ItemAttachment.AttachmentHandler removeHandler;
 
-	public CompatibleAttachment(ItemAttachment attachment, String boneName,
-		boolean isDefault, boolean isPermanent,
-		ItemAttachment.AttachmentHandler applyHandler, ItemAttachment.AttachmentHandler removeHandler) {
-		this.attachment = attachment;
-		this.boneName = boneName;
-		this.isDefault = isDefault;
-		this.isPermanent = isPermanent;
-		this.applyHandler = applyHandler;
-		this.removeHandler = removeHandler;
-	}
+    public CompatibleAttachment(ItemAttachment attachment, String boneName, boolean isDefault, boolean isPermanent,
+        ItemAttachment.AttachmentHandler applyHandler, ItemAttachment.AttachmentHandler removeHandler) {
+        this.attachment = attachment;
+        this.boneName = boneName;
+        this.isDefault = isDefault;
+        this.isPermanent = isPermanent;
+        this.applyHandler = applyHandler;
+        this.removeHandler = removeHandler;
+    }
 
-	/** Visual attachment at a bone, non-default. */
-	public CompatibleAttachment(ItemAttachment attachment, String boneName) {
-		this(attachment, boneName, false, false, null, null);
-	}
+    /** Visual attachment at a bone, non-default. */
+    public CompatibleAttachment(ItemAttachment attachment, String boneName) {
+        this(attachment, boneName, false, false, null, null);
+    }
 
-	/** Visual attachment at a bone, with default flag. */
-	public CompatibleAttachment(ItemAttachment attachment, String boneName, boolean isDefault) {
-		this(attachment, boneName, isDefault, false, null, null);
-	}
+    /** Visual attachment at a bone, with default flag. */
+    public CompatibleAttachment(ItemAttachment attachment, String boneName, boolean isDefault) {
+        this(attachment, boneName, isDefault, false, null, null);
+    }
 
-	/** Non-visual attachment with equip/unequip handlers. */
-	public CompatibleAttachment(ItemAttachment attachment,
-		ItemAttachment.AttachmentHandler applyHandler, ItemAttachment.AttachmentHandler removeHandler) {
-		this(attachment, null, false, false, applyHandler, removeHandler);
-	}
+    /** Non-visual attachment with equip/unequip handlers. */
+    public CompatibleAttachment(ItemAttachment attachment, ItemAttachment.AttachmentHandler applyHandler,
+        ItemAttachment.AttachmentHandler removeHandler) {
+        this(attachment, null, false, false, applyHandler, removeHandler);
+    }
 }

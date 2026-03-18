@@ -7,17 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
-import com.gtnewhorizon.newgunrizons.client.input.KeyBindings;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 public class HudRenderer {
 
@@ -64,11 +58,7 @@ public class HudRenderer {
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glEnable(GL11.GL_BLEND);
 
-        if (isInModifyingState(weaponInstance)) {
-            renderAttachmentModeHints(fontRender, width, height);
-        } else {
-            renderStatusMessage(fontRender, width, height, getDefaultWeaponMessage(weaponInstance), COLOR_YELLOW);
-        }
+        renderStatusMessage(fontRender, width, height, getDefaultWeaponMessage(weaponInstance), COLOR_YELLOW);
 
         GL11.glPopAttrib();
         return true;
@@ -98,23 +88,6 @@ public class HudRenderer {
 
         fontRender.drawStringWithShadow(messageText, x, y, color);
         return true;
-    }
-
-    private void renderAttachmentModeHints(FontRenderer fontRender, int width, int height) {
-        String changeScopeMessage = StatCollector.translateToLocalFormatted(
-            "gui.attachmentMode.changeScope",
-            Keyboard.getKeyName(KeyBindings.upArrowKey.getKeyCode()));
-        fontRender.drawStringWithShadow(changeScopeMessage, width / 2 - 40, 60, COLOR_WHITE);
-
-        String changeBarrelRig = StatCollector.translateToLocalFormatted(
-            "gui.attachmentMode.changeBarrelRig",
-            Keyboard.getKeyName(KeyBindings.leftArrowKey.getKeyCode()));
-        fontRender.drawStringWithShadow(changeBarrelRig, 10, height / 2 - 10, COLOR_WHITE);
-
-        String changeUnderBarrelRig = StatCollector.translateToLocalFormatted(
-            "gui.attachmentMode.changeUnderBarrelRig",
-            Keyboard.getKeyName(KeyBindings.downArrowKey.getKeyCode()));
-        fontRender.drawStringWithShadow(changeUnderBarrelRig, 10, height - 40, COLOR_WHITE);
     }
 
     private void renderStatusMessage(FontRenderer fontRender, int width, int height, String defaultMessage,
@@ -153,10 +126,6 @@ public class HudRenderer {
             weaponInstance.getWeapon()
                 .getCurrentAmmo() + "/"
                 + totalCapacity);
-    }
-
-    private boolean isInModifyingState(ItemWeaponInstance weaponInstance) {
-        return weaponInstance.getState() == WeaponState.MODIFYING;
     }
 
     private int getStatusBarYPosition(int height, int textHeight) {

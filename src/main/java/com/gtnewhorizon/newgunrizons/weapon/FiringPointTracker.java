@@ -2,8 +2,9 @@ package com.gtnewhorizon.newgunrizons.weapon;
 
 import java.lang.reflect.Method;
 
-import lombok.Getter;
 import net.minecraft.entity.EntityLivingBase;
+
+import lombok.Getter;
 
 /**
  * Tracks the firing point (muzzle) position of the currently held weapon.
@@ -95,10 +96,7 @@ public class FiringPointTracker {
         double playerEyeY = player.posY + player.getEyeHeight();
         double playerEyeZ = player.posZ;
 
-        return new double[] {
-            playerEyeX + p1x * cosY + p1z * sinY,
-            playerEyeY + p1y,
-            playerEyeZ - p1x * sinY + p1z * cosY
-        };
+        return new double[] { playerEyeX + p1x * cosY + p1z * sinY, playerEyeY + p1y,
+            playerEyeZ - p1x * sinY + p1z * cosY };
     }
 }

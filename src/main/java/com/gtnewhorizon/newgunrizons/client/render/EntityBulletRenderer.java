@@ -8,10 +8,9 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import com.gtnewhorizon.newgunrizons.weapon.FiringPointTracker;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
-import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
+import com.gtnewhorizon.newgunrizons.weapon.FiringPointTracker;
 
 public class EntityBulletRenderer extends Render {
 
@@ -60,8 +59,7 @@ public class EntityBulletRenderer extends Render {
 
                 // If we have the barrel bone delta (eye-space offset from model origin),
                 // convert it to world-space and add to the eye position for muzzle accuracy.
-                if (thrower == mc.thePlayer
-                    && mc.gameSettings.thirdPersonView == 0
+                if (thrower == mc.thePlayer && mc.gameSettings.thirdPersonView == 0
                     && FiringPointTracker.hasFiringPoint()) {
                     float dEx = FiringPointTracker.getEyeX();
                     float dEy = FiringPointTracker.getEyeY();
@@ -101,13 +99,21 @@ public class EntityBulletRenderer extends Render {
 
         GL11.glRotatef(
             bullet.prevRotationYaw + (bullet.rotationYaw - bullet.prevRotationYaw) * partialTicks - 90.0F,
-            0.0F, 1.0F, 0.0F);
+            0.0F,
+            1.0F,
+            0.0F);
         GL11.glRotatef(
             bullet.prevRotationPitch + (bullet.rotationPitch - bullet.prevRotationPitch) * partialTicks,
-            0.0F, 0.0F, 1.0F);
+            0.0F,
+            0.0F,
+            1.0F);
 
-        TracerRenderer.render(tracerLength, tracerWidth,
-            renderer.getTracerColorR(), renderer.getTracerColorG(), renderer.getTracerColorB(),
+        TracerRenderer.render(
+            tracerLength,
+            tracerWidth,
+            renderer.getTracerColorR(),
+            renderer.getTracerColorG(),
+            renderer.getTracerColorB(),
             renderer.getTracerIntensity());
         GL11.glPopMatrix();
     }

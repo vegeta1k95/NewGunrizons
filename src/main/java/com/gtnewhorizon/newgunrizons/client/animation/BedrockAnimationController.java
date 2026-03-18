@@ -5,13 +5,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.gtnewhorizon.newgunrizons.model.BedrockModel;
-import lombok.Getter;
 import net.minecraft.client.model.ModelRenderer;
 
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.AnimationClip;
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.BoneAnimation;
 import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
+import com.gtnewhorizon.newgunrizons.model.BedrockModel;
+
+import lombok.Getter;
 
 /**
  * Maps {@link RenderableState}s to Bedrock animation clips and manages
@@ -27,7 +28,7 @@ public class BedrockAnimationController {
 
     /**
      * -- GETTER --
-     *  Returns the underlying animation data.
+     * Returns the underlying animation data.
      */
     @Getter
     private final BedrockAnimation animation;
@@ -110,8 +111,7 @@ public class BedrockAnimationController {
      * @param fireTimestamp weapon's last fire timestamp (0 if not in a fire state)
      */
     public void onStateChanged(RenderableState newState, long fireTimestamp) {
-        boolean isFireState = newState == RenderableState.SHOOTING
-            || newState == RenderableState.ZOOMING_SHOOTING;
+        boolean isFireState = newState == RenderableState.SHOOTING || newState == RenderableState.ZOOMING_SHOOTING;
 
         if (isFireState) {
             if (fireTimestamp == lastFireTimestamp) {
@@ -143,11 +143,17 @@ public class BedrockAnimationController {
     private void captureBlendFrom() {
         blendFromRotations.clear();
         for (Map.Entry<String, float[]> e : lastAppliedRotations.entrySet()) {
-            blendFromRotations.put(e.getKey(), e.getValue().clone());
+            blendFromRotations.put(
+                e.getKey(),
+                e.getValue()
+                    .clone());
         }
         blendFromPositions.clear();
         for (Map.Entry<String, float[]> e : lastAppliedPositions.entrySet()) {
-            blendFromPositions.put(e.getKey(), e.getValue().clone());
+            blendFromPositions.put(
+                e.getKey(),
+                e.getValue()
+                    .clone());
         }
         blending = !lastAppliedRotations.isEmpty() || !lastAppliedPositions.isEmpty();
         blendStartTime = System.currentTimeMillis();
@@ -275,9 +281,10 @@ public class BedrockAnimationController {
         for (String boneName : boneNames) {
             ModelRenderer renderer = model.getBone(boneName);
             if (renderer == null) continue;
-            lastAppliedRotations.put(boneName,
-                new float[] { renderer.rotateAngleX, renderer.rotateAngleY, renderer.rotateAngleZ });
-            lastAppliedPositions.put(boneName,
+            lastAppliedRotations
+                .put(boneName, new float[] { renderer.rotateAngleX, renderer.rotateAngleY, renderer.rotateAngleZ });
+            lastAppliedPositions.put(
+                boneName,
                 new float[] { renderer.rotationPointX, renderer.rotationPointY, renderer.rotationPointZ });
         }
     }
@@ -308,9 +315,9 @@ public class BedrockAnimationController {
      * so the renderer can hold that state until the animation finishes.
      */
     public RenderableState getActiveFireCycleState() {
-        if (currentPlayer != null && currentPlayer.isPlaying() && currentAnimState != null
-            && (currentAnimState == RenderableState.SHOOTING
-                || currentAnimState == RenderableState.ZOOMING_SHOOTING)) {
+        if (currentPlayer != null && currentPlayer.isPlaying()
+            && currentAnimState != null
+            && (currentAnimState == RenderableState.SHOOTING || currentAnimState == RenderableState.ZOOMING_SHOOTING)) {
             return currentAnimState;
         }
         return null;

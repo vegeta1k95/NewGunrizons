@@ -1,21 +1,20 @@
-package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
+package com.gtnewhorizon.newgunrizons.items.factories;
 
 import java.util.Arrays;
 
 import net.minecraft.item.Item;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
-import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 public class LaserRifleFactory {
 
     public Item createGun() {
-        return new ItemWeapon.Builder()
-            .withName("LaserRifle")
+        return new ItemWeapon.Builder().withName("LaserRifle")
             .withAmmoCapacity(24)
             .withFireRate(0.4F)
             .withRecoil(1.5F)
@@ -39,8 +38,7 @@ public class LaserRifleFactory {
             .withCompatibleBullet(Bullets.ShotgunShell)
             .withTextureName("laserrifle")
             .withRenderer(
-                new WeaponRenderer.Builder()
-                    .withModel(new BedrockModel("weapon/laserrifle"))
+                new WeaponRenderer.Builder().withModel(new BedrockModel("weapon/laserrifle"))
                     .withBedrockAnimation("weapon/laserrifle")
                     .withBedrockAnimationForState(RenderableState.IDLE, "animation.laserrifle.idle")
                     .withBedrockAnimationForState(RenderableState.ZOOMING, "animation.laserrifle.zoom")
@@ -49,7 +47,9 @@ public class LaserRifleFactory {
                     .withBedrockAnimationForState(RenderableState.SHOOTING, "animation.laserrifle.shoot")
                     .withBedrockAnimationForState(RenderableState.ZOOMING_SHOOTING, "animation.laserrifle.shoot_zoom")
                     .withBedrockAnimationForState(RenderableState.RELOADING_START, "animation.laserrifle.reload_start")
-                    .withBedrockAnimationForState(RenderableState.RELOADING_ITERATION, "animation.laserrifle.reload_insert")
+                    .withBedrockAnimationForState(
+                        RenderableState.RELOADING_ITERATION,
+                        "animation.laserrifle.reload_insert")
                     .withBedrockAnimationForState(RenderableState.RELOADING_END, "animation.laserrifle.reload_end")
                     .withFlashIntensity(0.5F)
                     .withFlashScale(0.25F)

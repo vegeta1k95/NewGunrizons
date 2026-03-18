@@ -7,14 +7,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.MouseEvent;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
-import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.client.input.KeyBindings;
 import com.gtnewhorizon.newgunrizons.items.ItemGrenade;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -45,6 +43,9 @@ public class WeaponInputHandler {
         }
 
         ItemStack itemStack = player.getHeldItem();
+        if (itemStack == null) {
+            return;
+        }
         Item item = itemStack.getItem();
 
         if (!(item instanceof ItemWeapon) && !(item instanceof ItemGrenade)) {
@@ -102,7 +103,8 @@ public class WeaponInputHandler {
                 }
             }
         } else {
-            ItemWeaponInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemWeaponInstance.class);
+            ItemWeaponInstance instance = ItemInstanceRegistry
+                .getMainHandItemInstance(player, ItemWeaponInstance.class);
             if (KeyBindings.laserSwitchKey.isPressed()) {
                 if (instance != null
                     && (instance.getState() == WeaponState.IDLE || instance.getState() == WeaponState.MODIFYING)) {
@@ -119,20 +121,8 @@ public class WeaponInputHandler {
                 if (itemStack != null && itemStack.getItem() instanceof ItemWeapon) {
                     ((ItemWeapon) itemStack.getItem()).toggleClientAttachmentSelectionMode(player);
                 }
-            } else if (KeyBindings.upArrowKey.isPressed()) {
-                if (instance != null && instance.getState() == WeaponState.MODIFYING) {
-                    WeaponAttachmentAspect.INSTANCE.changeAttachment(AttachmentCategory.SCOPE, instance);
-                }
             } else {
-                if (KeyBindings.downArrowKey.isPressed()) {
-                    if (instance != null && instance.getState() == WeaponState.MODIFYING) {
-                        WeaponAttachmentAspect.INSTANCE.changeAttachment(AttachmentCategory.GRIP, instance);
-                    }
-                } else if (KeyBindings.leftArrowKey.isPressed()) {
-                    if (instance != null && instance.getState() == WeaponState.MODIFYING) {
-                        WeaponAttachmentAspect.INSTANCE.changeAttachment(AttachmentCategory.SILENCER, instance);
-                    }
-                } else if (KeyBindings.fireModeKey.isPressed()) {
+                if (KeyBindings.fireModeKey.isPressed()) {
                     if (instance != null && instance.getState() == WeaponState.IDLE) {
                         instance.getWeapon()
                             .changeFireMode(instance);

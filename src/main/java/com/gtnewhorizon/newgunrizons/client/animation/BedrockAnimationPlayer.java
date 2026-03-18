@@ -3,12 +3,12 @@ package com.gtnewhorizon.newgunrizons.client.animation;
 import java.util.List;
 import java.util.Map;
 
-import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import net.minecraft.client.model.ModelRenderer;
 
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.AnimationClip;
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.BoneAnimation;
 import com.gtnewhorizon.newgunrizons.client.animation.BedrockAnimation.Keyframe;
+import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 
 /**
  * Evaluates a single Bedrock animation clip at the current time and applies
@@ -166,11 +166,8 @@ public class BedrockAnimationPlayer {
             if (time >= kf1.time && time <= kf2.time) {
                 float duration = kf2.time - kf1.time;
                 float progress = duration > 0 ? (time - kf1.time) / duration : 0f;
-                return new float[] {
-                    lerp(kf1.value[0], kf2.value[0], progress),
-                    lerp(kf1.value[1], kf2.value[1], progress),
-                    lerp(kf1.value[2], kf2.value[2], progress)
-                };
+                return new float[] { lerp(kf1.value[0], kf2.value[0], progress),
+                    lerp(kf1.value[1], kf2.value[1], progress), lerp(kf1.value[2], kf2.value[2], progress) };
             }
         }
 

@@ -2,7 +2,6 @@ package com.gtnewhorizon.newgunrizons.entities;
 
 import java.util.Random;
 
-import lombok.Getter;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,6 +13,7 @@ import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 
 import io.netty.buffer.ByteBuf;
+import lombok.Getter;
 
 public class EntityShellCasing extends EntityProjectile {
 

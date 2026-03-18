@@ -43,8 +43,7 @@ public class NewGunrizonsMod {
     }
 
     @EventHandler
-    public void init(FMLInitializationEvent event) {
-    }
+    public void init(FMLInitializationEvent event) {}
 
     static {
         CHANNEL = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);

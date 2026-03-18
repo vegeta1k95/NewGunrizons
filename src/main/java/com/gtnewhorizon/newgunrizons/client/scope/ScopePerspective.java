@@ -9,11 +9,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
 import com.gtnewhorizon.newgunrizons.client.render.RenderContext;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.client.shaders.ShaderContext;
 import com.gtnewhorizon.newgunrizons.client.shaders.ShaderManager;
 import com.gtnewhorizon.newgunrizons.client.shaders.ShaderPhase;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
-import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 
@@ -94,8 +94,7 @@ public class ScopePerspective {
     }
 
     private static boolean isAimingState(RenderableState renderableState) {
-        return renderableState == RenderableState.ZOOMING
-            || renderableState == RenderableState.ZOOMING_SHOOTING;
+        return renderableState == RenderableState.ZOOMING || renderableState == RenderableState.ZOOMING_SHOOTING;
     }
 
     public void update(RenderTickEvent event, ItemWeaponInstance weaponInstance) {

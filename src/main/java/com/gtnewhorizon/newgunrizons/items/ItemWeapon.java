@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,19 +17,16 @@ import net.minecraft.world.World;
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
 import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.entities.EntityBullet;
 import com.gtnewhorizon.newgunrizons.entities.EntityShellCasing;
-import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceFactory;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstanceRegistry;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.network.StatusMessageManager;
 import com.gtnewhorizon.newgunrizons.network.WeaponActionMessage;
 import com.gtnewhorizon.newgunrizons.registry.Sounds;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponAttachmentAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponReloadAspect;
 import com.gtnewhorizon.newgunrizons.weapon.WeaponState;
 
 import lombok.Getter;
@@ -41,8 +35,6 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
 
     @Getter
     private String shootSound;
-    @Getter
-    private String endOfShootSound;
     @Getter
     private String silencedShootSound;
     @Getter
@@ -89,6 +81,8 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
     @Getter
     private final Map<ItemAttachment, CompatibleAttachment> compatibleAttachments;
     @Getter
+    private final List<ItemBullet> compatibleBullets;
+    @Getter
     private final WeaponRenderer renderer;
     @Getter
     private final long pumpTimeoutMilliseconds;
@@ -125,6 +119,7 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
         this.smokeEnabled = builder.smokeEnabled;
         this.informationProvider = builder.informationProvider;
         this.compatibleAttachments = builder.compatibleAttachments;
+        this.compatibleBullets = new ArrayList<>(builder.compatibleBullets);
         this.renderer = builder.renderer;
         this.pumpTimeoutMilliseconds = builder.pumpTimeoutMilliseconds;
         this.shellCasingForwardOffset = builder.shellCasingForwardOffset;
@@ -170,7 +165,7 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
     public String getCrosshair(ItemWeaponInstance weaponInstance) {
         if (weaponInstance.isAimed()) {
             String crosshair = null;
-            ItemAttachment scopeAttachment = WeaponAttachmentAspect
+            ItemAttachment scopeAttachment = ItemWeaponInstance
                 .getActiveAttachment(AttachmentCategory.SCOPE, weaponInstance);
             if (scopeAttachment != null) {
                 crosshair = scopeAttachment.getCrosshair();
@@ -188,7 +183,7 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
     }
 
     public static boolean isActiveAttachment(ItemWeaponInstance weaponInstance, ItemAttachment attachment) {
-        return weaponInstance != null && WeaponAttachmentAspect.isActiveAttachment(attachment, weaponInstance);
+        return weaponInstance != null && ItemWeaponInstance.isActiveAttachment(attachment, weaponInstance);
     }
 
     public int getCurrentAmmo() {
@@ -197,15 +192,7 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
     }
 
     public List<CompatibleAttachment> getActiveAttachments(EntityLivingBase player, ItemStack itemStack) {
-        return WeaponAttachmentAspect.INSTANCE.getActiveAttachments(player, itemStack);
-    }
-
-
-    public List<ItemAttachment> getCompatibleAttachments(Class<? extends ItemAttachment> target) {
-        return this.compatibleAttachments.keySet()
-            .stream()
-            .filter(target::isInstance)
-            .collect(Collectors.toList());
+        return ItemWeaponInstance.getActiveAttachments(player, itemStack);
     }
 
     @Override
@@ -216,24 +203,34 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
     }
 
     public void reloadHeldItem(EntityPlayer player) {
-        WeaponReloadAspect.INSTANCE.reloadMainHeldItem(player);
+        ItemWeaponInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemWeaponInstance.class);
+        if (instance != null) {
+            instance.tryReload();
+        }
     }
 
     public void update(EntityPlayer player) {
-        WeaponReloadAspect.INSTANCE.updateMainHeldItem(player);
-        WeaponFireAspect.INSTANCE.onUpdate(player);
-        WeaponAttachmentAspect.INSTANCE.updateMainHeldItem(player);
+        ItemWeaponInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemWeaponInstance.class);
+        if (instance != null) {
+            instance.update();
+        }
     }
 
     public void tryFire(EntityPlayer player) {
-        WeaponFireAspect.INSTANCE.onFireButtonClick(player);
+        ItemWeaponInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemWeaponInstance.class);
+        if (instance != null) {
+            instance.tryFire();
+        }
     }
 
     public void tryStopFire(EntityPlayer player) {
-        WeaponFireAspect.INSTANCE.onFireButtonRelease(player);
+        ItemWeaponInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemWeaponInstance.class);
+        if (instance != null) {
+            instance.tryStopFire();
+        }
     }
 
-    public ItemWeaponInstance createItemInstance(EntityLivingBase player, ItemStack itemStack, int slot) {
+    public ItemWeaponInstance createItemInstance(EntityPlayer player, ItemStack itemStack, int slot) {
         ItemWeaponInstance instance = new ItemWeaponInstance(slot, player, itemStack);
         instance.setRecoil(this.recoil);
         instance.setMaxShots(this.maxShots.get(0));
@@ -251,7 +248,10 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
     }
 
     public void toggleClientAttachmentSelectionMode(EntityPlayer player) {
-        WeaponAttachmentAspect.INSTANCE.toggleClientAttachmentSelectionMode(player);
+        ItemWeaponInstance instance = ItemInstanceRegistry.getMainHandItemInstance(player, ItemWeaponInstance.class);
+        if (instance != null) {
+            instance.toggleAttachmentMode();
+        }
     }
 
     @Override
@@ -282,9 +282,7 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
         }
 
         NewGunrizonsMod.CHANNEL.sendToServer(
-            new WeaponActionMessage(
-                WeaponActionMessage.CHANGE_FIRE_MODE,
-                ((EntityPlayer) instance.getPlayer()).inventory.currentItem));
+            new WeaponActionMessage(WeaponActionMessage.CHANGE_FIRE_MODE, instance.getPlayer().inventory.currentItem));
     }
 
     public void spawnBullet(EntityPlayer player) {
@@ -337,9 +335,7 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
             }
 
             NewGunrizonsMod.CHANNEL.sendToServer(
-                new WeaponActionMessage(
-                    WeaponActionMessage.ZOOM_IN,
-                    ((EntityPlayer) instance.getPlayer()).inventory.currentItem));
+                new WeaponActionMessage(WeaponActionMessage.ZOOM_IN, instance.getPlayer().inventory.currentItem));
         }
     }
 
@@ -365,19 +361,8 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
             }
 
             NewGunrizonsMod.CHANNEL.sendToServer(
-                new WeaponActionMessage(
-                    WeaponActionMessage.ZOOM_OUT,
-                    ((EntityPlayer) instance.getPlayer()).inventory.currentItem));
+                new WeaponActionMessage(WeaponActionMessage.ZOOM_OUT, instance.getPlayer().inventory.currentItem));
         }
-    }
-
-    public ItemAttachment.AttachmentHandler getEquivalentHandler(AttachmentCategory attachmentCategory) {
-        if (attachmentCategory == AttachmentCategory.SCOPE) {
-            return (a, i) -> {};
-        } else if (attachmentCategory == AttachmentCategory.GRIP) {
-            return (a, i) -> i.setRecoil(this.recoil);
-        }
-        return (a, i) -> {};
     }
 
     public boolean hasIteratedLoad() {
@@ -400,7 +385,6 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
         private String reloadIterationSound;
         private String allReloadIterationsCompletedSound;
         private String unloadSound;
-        private String endOfShootSound;
         public ItemAmmo ammo;
         public float fireRate = 0.5F;
         private CreativeTabs creativeTab;
@@ -415,8 +399,8 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
         public float spawnEntityExplosionRadius;
         public float spawnEntityGravityVelocity;
 
-
         Map<ItemAttachment, CompatibleAttachment> compatibleAttachments = new HashMap<>();
+        List<ItemBullet> compatibleBullets = new ArrayList<>();
 
         private Class<? extends EntityBullet> spawnEntityClass;
         public long pumpTimeoutMilliseconds;
@@ -438,7 +422,6 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
             this.silencedShootSoundVolume = 0.7F;
             this.shootSoundVolume = 10.0F;
         }
-
 
         public ItemWeapon.Builder withInformationProvider(Function<ItemStack, List<String>> informationProvider) {
             this.informationProvider = informationProvider;
@@ -516,12 +499,6 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
             return this;
         }
 
-        public ItemWeapon.Builder withEndOfShootSound(String endOfShootSound) {
-            this.endOfShootSound = endOfShootSound.toLowerCase();
-            return this;
-        }
-
-
         public ItemWeapon.Builder withSilencedShootSound(String silencedShootSound) {
             this.silencedShootSound = silencedShootSound.toLowerCase();
             return this;
@@ -582,9 +559,8 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
             return this;
         }
 
-        /** Adds a compatible bullet (no visual bone, purely functional). */
         public ItemWeapon.Builder withCompatibleBullet(ItemBullet bullet) {
-            this.compatibleAttachments.put(bullet, new CompatibleAttachment(bullet, null));
+            this.compatibleBullets.add(bullet);
             return this;
         }
 
@@ -681,10 +657,6 @@ public class ItemWeapon extends Item implements ItemInstanceFactory<ItemWeaponIn
 
             ItemWeapon weapon = new ItemWeapon(this);
             weapon.shootSound = Sounds.resolve(this.shootSound);
-            if (this.endOfShootSound != null) {
-                weapon.endOfShootSound = Sounds.resolve(this.endOfShootSound);
-            }
-
             weapon.reloadSound = Sounds.resolve(this.reloadSound);
             weapon.reloadIterationSound = Sounds.resolve(this.reloadIterationSound);
             weapon.allReloadIterationsCompletedSound = Sounds.resolve(this.allReloadIterationsCompletedSound);

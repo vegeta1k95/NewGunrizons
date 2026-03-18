@@ -29,8 +29,7 @@ public class ItemInstanceRegistry {
         return getMainHandItemInstance(player, ItemWeaponInstance.class);
     }
 
-    public static <T extends ItemInstance> T getMainHandItemInstance(EntityPlayer player,
-        Class<T> targetClass) {
+    public static <T extends ItemInstance> T getMainHandItemInstance(EntityPlayer player, Class<T> targetClass) {
         if (player == null) {
             return null;
         }
@@ -125,9 +124,11 @@ public class ItemInstanceRegistry {
         }
 
         if ((instance == null || instance.getItem() != itemStack.getItem())
-            && itemStack.getItem() instanceof ItemInstanceFactory) {
-            instance = ((ItemInstanceFactory<?>) itemStack.getItem()).createItemInstance(player, itemStack, -1);
-            instance.setPlayer(player);
+            && itemStack.getItem() instanceof ItemInstanceFactory
+            && player instanceof EntityPlayer) {
+            instance = ((ItemInstanceFactory<?>) itemStack.getItem())
+                .createItemInstance((EntityPlayer) player, itemStack, -1);
+            instance.setPlayer((EntityPlayer) player);
         }
 
         if (instance != null) {

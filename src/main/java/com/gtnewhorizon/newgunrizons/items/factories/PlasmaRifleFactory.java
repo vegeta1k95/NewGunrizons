@@ -1,15 +1,15 @@
-package com.gtnewhorizon.newgunrizons.items.factories.guns.assault;
+package com.gtnewhorizon.newgunrizons.items.factories;
 
 import java.util.Arrays;
 
 import net.minecraft.item.Item;
 
 import com.gtnewhorizon.newgunrizons.NewGunrizonsMod;
+import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 import com.gtnewhorizon.newgunrizons.client.render.WeaponRenderer;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.model.BedrockModel;
 import com.gtnewhorizon.newgunrizons.registry.Bullets;
-import com.gtnewhorizon.newgunrizons.client.render.RenderableState;
 
 public class PlasmaRifleFactory {
 
@@ -47,12 +47,14 @@ public class PlasmaRifleFactory {
                     .withBedrockAnimationForState(RenderableState.SHOOTING, "animation.plasmarifle.shoot")
                     .withBedrockAnimationForState(RenderableState.ZOOMING_SHOOTING, "animation.plasmarifle.shoot_zoom")
                     .withBedrockAnimationForState(RenderableState.RELOADING_START, "animation.plasmarifle.reload_start")
-                    .withBedrockAnimationForState(RenderableState.RELOADING_ITERATION, "animation.plasmarifle.reload_insert")
+                    .withBedrockAnimationForState(
+                        RenderableState.RELOADING_ITERATION,
+                        "animation.plasmarifle.reload_insert")
                     .withBedrockAnimationForState(RenderableState.RELOADING_END, "animation.plasmarifle.reload_end")
                     .withFlashIntensity(0.6F)
                     .withFlashScale(0.3F)
                     .withTracerWidth(0.15F)
-                    .withTracerLength(10.0F)
+                    .withTracerLength(1.0F)
                     .withTracerColor(0.0F, 0.0F, 1.0F)
                     .withTracerIntensity(9.0F)
                     .build())

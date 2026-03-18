@@ -8,8 +8,8 @@ package com.gtnewhorizon.newgunrizons.registry;
  */
 public class Attachments {
 
-	public static void init() {
-		// Attachments will be defined here using AttachmentBuilder
-		// and bone-based positioning on weapon models.
-	}
+    public static void init() {
+        // Attachments will be defined here using AttachmentBuilder
+        // and bone-based positioning on weapon models.
+    }
 }

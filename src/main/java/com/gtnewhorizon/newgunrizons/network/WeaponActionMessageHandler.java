@@ -1,6 +1,5 @@
 package com.gtnewhorizon.newgunrizons.network;
 
-import java.util.Arrays;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,15 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 import com.gtnewhorizon.newgunrizons.attachment.AttachmentCategory;
-import com.gtnewhorizon.newgunrizons.attachment.CompatibleAttachment;
-import com.gtnewhorizon.newgunrizons.items.ItemAttachment;
 import com.gtnewhorizon.newgunrizons.items.ItemBullet;
 import com.gtnewhorizon.newgunrizons.items.ItemScope;
 import com.gtnewhorizon.newgunrizons.items.ItemWeapon;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemInstance;
 import com.gtnewhorizon.newgunrizons.items.instances.ItemWeaponInstance;
 import com.gtnewhorizon.newgunrizons.util.InventoryUtils;
-import com.gtnewhorizon.newgunrizons.weapon.WeaponFireAspect;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -62,9 +58,6 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
             case WeaponActionMessage.WEAPON_UNLOAD:
                 this.processWeaponUnload(player, weaponStack, weapon, slotIndex);
                 break;
-            case WeaponActionMessage.CHANGE_ATTACHMENT:
-                this.processChangeAttachment(player, weaponStack, weapon, message.getAttachmentCategory(), slotIndex);
-                break;
             case WeaponActionMessage.CHANGE_FIRE_MODE:
                 this.processChangeFireMode(player, weaponStack, weapon, slotIndex);
                 break;
@@ -78,7 +71,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
                 this.processZoom(player, weaponStack, false, slotIndex);
                 break;
             case WeaponActionMessage.FIRE:
-                WeaponFireAspect.INSTANCE.serverFire(player, weaponStack, slotIndex);
+                ItemWeaponInstance.serverFire(player, weaponStack, slotIndex);
                 break;
         }
 
@@ -98,7 +91,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
     private void processWeaponLoad(EntityPlayerMP player, ItemStack weaponStack, ItemWeapon weapon, int slotIndex) {
         ItemWeaponInstance instance = getOrCreateInstance(player, weaponStack, slotIndex);
 
-        List<ItemAttachment> compatibleBullets = weapon.getCompatibleAttachments(ItemBullet.class);
+        List<ItemBullet> compatibleBullets = weapon.getCompatibleBullets();
 
         if (!compatibleBullets.isEmpty()) {
             this.loadWithBullets(player, weaponStack, weapon, instance, compatibleBullets);
@@ -108,7 +101,7 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
     }
 
     private void loadWithBullets(EntityPlayerMP player, ItemStack weaponStack, ItemWeapon weapon,
-        ItemWeaponInstance instance, List<ItemAttachment> compatibleBullets) {
+        ItemWeaponInstance instance, List<ItemBullet> compatibleBullets) {
         int currentAmmo = instance.getAmmo();
         int maxToLoad = weapon.getAmmoCapacity() - currentAmmo;
 
@@ -149,91 +142,6 @@ public class WeaponActionMessageHandler implements IMessageHandler<WeaponActionM
         if (weapon.getUnloadSound() != null) {
             player.worldObj.playSoundToNearExcept(player, weapon.getUnloadSound(), 1.0F, 1.0F);
         }
-    }
-
-    private void processChangeAttachment(EntityPlayerMP player, ItemStack weaponStack, ItemWeapon weapon,
-        byte categoryOrdinal, int slotIndex) {
-        if (categoryOrdinal < 0 || categoryOrdinal >= AttachmentCategory.VALUES.length) {
-            return;
-        }
-        AttachmentCategory attachmentCategory = AttachmentCategory.VALUES[categoryOrdinal];
-
-        ItemWeaponInstance instance = getOrCreateInstance(player, weaponStack, slotIndex);
-
-        int[] originalActiveAttachmentIds = instance.getActiveAttachmentIds();
-        int[] activeAttachmentIds = Arrays.copyOf(originalActiveAttachmentIds, originalActiveAttachmentIds.length);
-        int activeAttachmentIdForThisCategory = activeAttachmentIds[attachmentCategory.ordinal()];
-
-        ItemAttachment currentAttachment = null;
-        if (activeAttachmentIdForThisCategory > 0) {
-            currentAttachment = (ItemAttachment) Item.getItemById(activeAttachmentIdForThisCategory);
-        }
-
-        if (currentAttachment != null) {
-            CompatibleAttachment currentCompatibleAttachment = weapon.getCompatibleAttachments()
-                .get(currentAttachment);
-            if (currentCompatibleAttachment != null && currentCompatibleAttachment.isPermanent()) {
-                return;
-            }
-        }
-
-        int foundSlot = -1;
-        CompatibleAttachment foundCompatibleAttachment = null;
-
-        for (int i = 0; i < player.inventory.mainInventory.length; ++i) {
-            ItemStack slotItemStack = player.inventory.getStackInSlot(i);
-            if (slotItemStack != null && slotItemStack.getItem() instanceof ItemAttachment) {
-                ItemAttachment attachmentFromInventory = (ItemAttachment) slotItemStack.getItem();
-                if (attachmentFromInventory.getCategory() == attachmentCategory) {
-                    CompatibleAttachment compatibleAttachment = weapon.getCompatibleAttachments()
-                        .get(attachmentFromInventory);
-                    if (compatibleAttachment != null && attachmentFromInventory != currentAttachment) {
-                        foundSlot = i;
-                        foundCompatibleAttachment = compatibleAttachment;
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (currentAttachment != null && currentAttachment.getRemoveHandler() != null) {
-            currentAttachment.getRemoveHandler()
-                .apply(currentAttachment, instance);
-        }
-
-        if (foundSlot >= 0) {
-            ItemStack slotItemStack = player.inventory.getStackInSlot(foundSlot);
-            ItemAttachment nextAttachment = (ItemAttachment) slotItemStack.getItem();
-
-            if (nextAttachment != null && nextAttachment.getApplyHandler() != null) {
-                nextAttachment.getApplyHandler()
-                    .apply(nextAttachment, instance);
-            } else if (foundCompatibleAttachment.getApplyHandler() != null) {
-                foundCompatibleAttachment.getApplyHandler()
-                    .apply(nextAttachment, instance);
-            } else {
-                ItemAttachment.AttachmentHandler handler = weapon.getEquivalentHandler(attachmentCategory);
-                if (handler != null) {
-                    handler.apply(null, instance);
-                }
-            }
-
-            InventoryUtils.consumeInventoryItemFromSlot(player, foundSlot);
-            activeAttachmentIds[attachmentCategory.ordinal()] = Item.getIdFromItem(nextAttachment);
-        } else {
-            activeAttachmentIds[attachmentCategory.ordinal()] = -1;
-            ItemAttachment.AttachmentHandler handler = weapon.getEquivalentHandler(attachmentCategory);
-            if (handler != null) {
-                handler.apply(null, instance);
-            }
-        }
-
-        if (currentAttachment != null) {
-            InventoryUtils.addItemToPlayerInventory(player, currentAttachment, foundSlot);
-        }
-
-        instance.setActiveAttachmentIds(activeAttachmentIds);
-        ItemInstance.toStack(weaponStack, instance);
     }
 
     private void processChangeFireMode(EntityPlayerMP player, ItemStack weaponStack, ItemWeapon weapon, int slotIndex) {
